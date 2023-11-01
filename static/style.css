@@ -1,8 +1,6 @@
 .navbar {
-  background-color: #333;
+  background-color: rgb(26, 31, 48);
   /* 네비게이션 바 배경색 설정 */
-  color: #fff;
-  /* 텍스트 색상 설정 */
   display: flex;
   /* 요소를 가로로 정렬 */
   justify-content: space-between;
@@ -23,15 +21,15 @@
 
 .navbar__menu {
   list-style: none;
-  /* 리스트 스타일 제거 */
+  /* 점 제거 */
   display: flex;
   /* 요소를 가로로 정렬 */
 }
 
 .navbar__menu li {
-  margin-left: 30px;
+  margin-left: 15px;
   /* 메뉴 간격 설정 */
-  margin-right: 30px;
+  margin-right: 15px;
   /* 메뉴 간격 설정 */
 }
 
@@ -44,7 +42,7 @@
 
 /* 호버 효과 (마우스를 메뉴 위로 올릴 때) */
 .navbar__menu a:hover {
-  color: #ffcc00;
+  color: #31b8b6;
   /* 호버 시 텍스트 색상 변경 */
 }
 
@@ -53,14 +51,12 @@
   /* 리스트 스타일 제거 */
   display: flex;
   /* 요소를 가로로 정렬 */
-  /*float: right;*/
-  /*justify-content: flex-end; /* 오른쪽 정렬 */
 }
 
 .navbar__login li {
-  margin-left: 20px;
+  margin-left: 15px;
   /* 메뉴 간격 설정 */
-  margin-right: 20px;
+  margin-right: 15px;
   /* 메뉴 간격 설정 */
 }
 
@@ -73,6 +69,6 @@
 
 /* 호버 효과 (마우스를 메뉴 위로 올릴 때) */
 .navbar__login a:hover {
-  color: #ffcc00;
+  color: #31b8b6;
   /* 호버 시 텍스트 색상 변경 */
 }
