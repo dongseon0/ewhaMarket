@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
   <script src="{{ url_for('static', filename='main.js') }}" defer></script>
 </head>
+
 <body>
   <nav class="navbar">
     <div class="navbar__logo">
@@ -22,10 +24,11 @@
       <li><a href="/login">Login</a></li>
     </ul>
   </nav>
-<section>
-  {% block section %}
-  
-  {% endblock section %}
-</section>
+  <section>
+    {% block section %}
+
+    {% endblock section %}
+  </section>
 </body>
+
 </html>

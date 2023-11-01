@@ -5,7 +5,7 @@
     Seller {{data.seller}} sells {{data.name}} and its c
     ategory is {{data.category}}.
     The item is
-    {% if data['status'] == "lnew" %} 
+    {% if data['status'] == "lnew" %}
     likely new!
     {% endif %}
     {% if data['status'] == "new" %}
@@ -15,20 +15,20 @@
     used!
     {% endif %}
 </p>
-<img src="{{img_path}}"/>
-<p> 
-    Contact via {{data.email}} or {{data.phone}} 
-if you are interested!
-    
-    The address is {{data.addr}} 
+<img src="{{img_path}}" />
+<p>
+    Contact via {{data.email}} or {{data.phone}}
+    if you are interested!
+
+    The address is {{data.addr}}
 </p>
 <p>
-    For payment, the credit card is 
+    For payment, the credit card is
     {% if data['card'] == "Y" %}
     accepted!
     {% endif %}
-    {% if data['card'] == "N" %} 
+    {% if data['card'] == "N" %}
     NOT accepted!
     {% endif %}
-</p> 
+</p>
 {% endblock section %}
