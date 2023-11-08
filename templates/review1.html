@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        hr {
+            background-color: rgb(188, 235, 255);
+            border: 1px solid rgb(188, 235, 255);
+        }
+
+        textarea {
+            border: 1px solid rgb(226, 226, 226);
+            border-radius: 5px;
+            resize: none;
+        }
+
+        .asterisk {
+            color: red;
+        }
+
+        .stars {
+            color: rgb(127, 217, 255);
+            font-size: 180%;
+            margin-top: -0.9%;
+            margin-bottom: 1%;
+        }
+
+        .review {
+            width: 700px;
+
+            cursor: default;
+            font-family: Arial, Helvetica, sans-serif;
+            margin: auto;
+            margin-top: 7%;
+            text-align: center;
+        }
+
+        .text1 {
+            font-size: 135%;
+            margin-bottom: 1.5%;
+        }
+
+        .text2 {
+            margin-top: 3%;
+            margin-bottom: 1%;
+        }
+
+        .text3 {
+            margin-top: 2%;
+            margin-bottom: 1%;
+        }
+
+        #review-image {
+            margin-left: 12%;
+        }
+
+        #ok {
+            float: right;
+            width: 14%;
+
+            background-color: rgb(188, 235, 255);
+            border: none;
+            border-radius: 5px;
+            color: rgb(61, 140, 174);
+            font-size: 95%;
+            margin: 1%;
+            padding: 0.5% 0%;
+        }
+
+        #ok:hover {
+            background-color: rgb(166, 208, 225);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="review">
+        <div class="text1">리뷰 작성</div>
+        <hr>
+        <div class="text2"><span class="asterisk">* </span>거래 제목을 입력해주세요</div>
+        <textarea name="review-title" id="review-title" cols="40" rows="1"></textarea>
+        <div class="text3"><span class="asterisk">* </span>거래는 어떠셨나요?</div>
+        <div class="stars">
+            <span class="star" id="0">★</span>
+            <span class="star" id="1">★</span>
+            <span class="star" id="2">★</span>
+            <span class="star" id="3">★</span>
+            <span class="star" id="4">★</span>
+        </div>
+        <hr>
+        <div class="text2"><span class="asterisk">* </span>솔직한 리뷰를 남겨주세요</div>
+        <textarea name="review-contents" id="review-contents" cols="75" rows="10"></textarea>
+        <br><br>
+        <input type="file" name="review-image" id="review-image">
+        <br><br>
+        <hr>
+        <input type="button" name="ok" id="ok" value="등록하기">
+    </div>
+    <!--☆ ★-->
+    <script>
+        // 별
+        star = 0;
+        stars = document.getElementsByClassName("star");
+
+        function starEvent() {
+            for (i = 0; i < stars.length; i++) {
+                stars.item(i).addEventListener("mouseover", function () {
+                    starHoverOn(parseInt(this.id));
+                });
+                stars.item(i).addEventListener("mouseleave", starHoverOff);
+                stars.item(i).addEventListener("click", function () {
+                    starSet(parseInt(this.id));
+                });
+            }
+        }
+
+        function starHoverOn(h) {
+            for (i = 0; i < stars.length; i++) {
+                if (i > h) {
+                    stars.item(i).innerHTML = "☆";
+                } else {
+                    stars.item(i).innerHTML = "★";
+                }
+            }
+        }
+
+        function starHoverOff() {
+            starFill();
+        }
+
+        function starSet(i) {
+            star = i;
+            starFill();
+        }
+
+        function starFill() {
+            for (i = 0; i < stars.length; i++) {
+                if (i > star) {
+                    stars.item(i).innerHTML = "☆";
+                } else {
+                    stars.item(i).innerHTML = "★";
+                }
+            }
+        }
+
+        starEvent();
+        starFill();
+        // 별
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        hr {
+            background-color: rgb(188, 235, 255);
+            border: 1px solid rgb(188, 235, 255);
+        }
+
+        .stars {
+            color: rgb(127, 217, 255);
+            font-size: 150%;
+            padding-left: 15%;
+        }
+
+        .review {
+            width: 700px;
+
+            cursor: default;
+            font-family: Arial, Helvetica, sans-serif;
+            margin: auto;
+            margin-top: 7%;
+        }
+
+        #product-image {
+            width: 30%;
+
+            margin-left: 5%;
+            padding: 1%;
+        }
+
+        #product-title {
+            font-size: 110%;
+            margin-top: 3%;
+            margin-bottom: 1%;
+            margin-left: 5%;
+        }
+
+        #profile {
+            float: left;
+            width: 9%;
+
+            border-radius: 50%;
+            margin: 0% 5%;
+        }
+
+        #review-contents {
+            width: 80%;
+
+            background-color: rgb(226, 226, 226);
+            border-radius: 10px;
+            color: rgb(91, 91, 91);
+            margin: auto;
+            margin-top: 1%;
+            padding: 2% 5%;
+        }
+
+        #user-id {
+            margin: 1%;
+        }
+
+        #good,
+        #bad {
+            float: left;
+            width: 10%;
+            margin: 1%;
+
+            border: none;
+            border-radius: 5px;
+            font-size: 90%;
+            padding: 1% 0%;
+        }
+
+        #bad {
+            background-color: pink;
+            color: rgb(156, 87, 87);
+        }
+
+        #bad:hover {
+            background-color: rgb(235, 180, 189);
+        }
+
+        #good {
+            background-color: rgb(188, 235, 255);
+            color: rgb(61, 140, 174);
+        }
+
+        #good:hover {
+            background-color: rgb(166, 208, 225);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="review">
+        <img src="jungwha.jpeg" id="profile">
+        <div id="user-id"></div>
+        <div id="review-title"></div>
+        <div class="stars">
+            <span class="star" id="0">★</span>
+            <span class="star" id="1">★</span>
+            <span class="star" id="2">★</span>
+            <span class="star" id="3">★</span>
+            <span class="star" id="4">★</span>
+        </div>
+        <hr>
+        <div id="product-title"></div>
+        <img src="watch.jpeg" id="product-image">
+        <br>
+        <div id="review-contents"></div>
+        <br>
+        <hr>
+        <input type="button" name="good" id="good">
+        <input type="button" name="bad" id="bad">
+    </div>
+
+    <script>
+        // 별
+        star = 2;
+        stars = document.getElementsByClassName("star");
+        function starFill() {
+            for (i = 0; i < stars.length; i++) {
+                if (i > star) {
+                    stars.item(i).innerHTML = "☆";
+                } else {
+                    stars.item(i).innerHTML = "★";
+                }
+            }
+        }
+        starFill();
+        // 별
+
+        userId = document.getElementById("user-id");
+        userId.innerHTML = "JUNGH150";
+
+        reviewTitle = document.getElementById("review-title");
+        reviewTitle.innerHTML = "답장이 빠르고 친절해요!";
+
+        productTitle = document.getElementById("product-title");
+        productTitle.innerHTML = "갤럭시 워치4 LTE 모델 40인치";
+
+        reviewContents = document.getElementById("review-contents");
+        reviewContents.innerHTML = "경매는 처음이라 무서웠는데 벗의 물건으로 한다는 거 자체가 너무 안심됐어요! 꼭 갖고 싶었던 물건이었는데 작은 메모지도 챙겨주시고 너무 감사했습니다^^";
+
+        // 따봉, 우우~
+        good = 0;
+        bad = 0;
+        goodBtn = document.getElementById("good");
+        badBtn = document.getElementById("bad");
+        goodBtn.value = "👍 " + good;
+        badBtn.value = "👎 " + bad;
+        // 따봉, 우우~
+    </script>
+</body>
+
+</html>
