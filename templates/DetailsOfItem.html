@@ -44,14 +44,30 @@
         padding: 10px 10px 20px 20px;
     }
 
+    li a{
+        float: left;
+        display: block;
+        text-align: center;
+        padding: 10px 10px;
+        text-decoration: none;
+        
+    }
+
+    ul{
+        list-style:none;
+    }
     @media screen and (max-width: 600px){
         .column.side, .column.middle{
         width:100%;
         }
     }
-    footer {
-        text-align: center;
+    .comment{
+        font-size:18px;
+        background-color: rgb(235, 234, 234);
+        padding : 3%;
+        margin: 2% 4% 2% 4%;
     }
+
 </style>
 </head> 
 
@@ -86,22 +102,28 @@
         </div>
     </div>
     <hr>
-    <div class>
+    <div class="more">
         <ul style="list-style-type:none;">
-            <li><a href="#">추가정보</a></li>
-            <li><a href="---">댓글(1)</a></li>
+            <li><a href="#" style="background-color:rgb(219, 236, 243);">추가정보</a></li>
+            <li><a>|</a></li>
+            <li><a href="#" style="background-color:rgb(219, 236, 243);">댓글(1)</a></li>
             </ul>
         </div>
 
+    <br><br>
+    <div class="comment">
+        <pre>
+            <b>사용자 추가 설명</b>
+            사용감 없고 상태 아주 좋습니다. 충전기도 함께 드릴게요.
+            직거래나 편의점 반값택배가 편해요! 직거래는 신촌역, 이대역 가능합니다.
+            모서리 찍힘도 없고, 액정 필름 항상 사용했습니다.
+            배터리 효율 92%입니다.
+        </pre>
+    </div>
 </body>
 
 
 
 
 
-<footer>
-    <h3>If you have any further questions for me, press the email button on the top right
-    and send me an email!
-    </h3>
-    </footer>
 </html>
