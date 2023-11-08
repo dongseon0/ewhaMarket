@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Product List</title>
 <html>
 
@@ -9,27 +9,31 @@
 </head>
 
 <body>
-    <h1>상품리스트</h1>
+    <div class="text">상품 리스트</div>
     <hr>
-
     <div class="menubar">
         <ul class="menubar__menu">
-            <li><a href="product_list.html">전체 상품</a></li>
+            <li><a href="product_list.html" style="text-decoration: underline;">전체 상품</a></li>
             <li><a href="auction_list.html">경매</a></li>
-            <li><a href="list.html" style="text-decoration: underline;">일반 결제</a></li>
+            <li><a href="list.html">일반 결제</a></li>
         </ul>
-        <button type="button">상품 등록하기</button>
+        <button onclick="document.location='add_product.html'" type="button">상품 등록하기</button>
     </div>
     <div class="product_list">
         <div class="product">
             <a target="_blank" href="">
-                <img src="img_5terre.jpg" alt="product1" width="200px" height="200px">
+                <img src="https://1801889e95b1f9bf.kinxzone.com/webfile/product/5/5231/209q2e90g00a.jpg" alt="product1"
+                    width="200px" height="200px">
             </a>
+            <div class="auction_product">
+                <p>경매</p>
+            </div>
             <div class="desc">Product 1</div>
         </div>
         <div class="product">
             <a target="_blank" href="">
-                <img src="img_5terre.jpg" alt="product2" width="200px" height="200px">
+                <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/MTJV3?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=1694014871985"
+                    alt="product2" width="200px" height="200px">
             </a>
             <div class="desc">Product 2</div>
         </div>
