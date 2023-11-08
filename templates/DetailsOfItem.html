@@ -10,15 +10,6 @@
         border:0; 
     }
 
-    .fakeimg{
-            background-color: #ffecaf;
-            width: 60%;
-            height: 80%;
-        }
-    iframe{
-        border: none;
-    }
-
     table, th, td{
         border:none;
     }
@@ -33,21 +24,19 @@
         padding: 40px 80px; 
     }
     .columnleft {
-        flex: 40%;
-        padding : 5px 7px 3px 3px;
+        margin : 2% 5% 2% 4%;
     }
 
     .columnright {
-        flex: 60%;
         background-color: rgb(235, 234, 234);
-        margin: 10px 10px; 
-        padding: 10px 10px 20px 20px;
+        margin: 2% 2%; 
+        padding: 30px 30px 10px 30px;
     }
 
     li a{
         float: left;
         display: block;
-        text-align: center;
+        text-align: left;
         padding: 10px 10px;
         text-decoration: none;
         
@@ -64,9 +53,13 @@
     .comment{
         font-size:18px;
         background-color: rgb(235, 234, 234);
-        padding : 3%;
-        margin: 2% 4% 2% 4%;
-    }
+        padding :20px 40px 20px 20px ;
+        margin: 30px 50px 30px 20px;
+        text-align : left;
+  }
+  p{
+    display: block
+  }
 
 </style>
 </head> 
@@ -74,31 +67,35 @@
 <body>
     <div class="container">
         <div class="columnleft">
-                <div class="fakeimg">
-                    <iframe src="/ewhaMarket/static/images/2.png"  alt="CAT"></iframe>
-                </div>
-        
+            <img src="./Users/yangdongseon/Documents/GitHub/ewhaMarket/static/images/2.png" 
+            width="350", height="450">
         </div>
         <div class="columnright">
-            <h2>갤럭시 워치4 LTE모델 40인치</h2>
-            <table style="float:left;">
-                <tr>
-                    <th>가격</th><td>10000</td>
-                </tr>
-                    <th>상태</th><td>좋음</td>
-                <tr>
-                    <th>브랜드</th><td>삼성(SAMSUNG)</td>
-                </tr>
-                <tr>
-                    <th>제조일자</th><td>2022.08 제조</td>
-                </tr>
-                <tr>
-                    <th>지역</th><td>서울 서대문구</td>
-                </tr>
-                <tr>
-                    <th>특이사항</th><td>기스 없음, 충전기 제공</td>
-                 </tr>
-            </table>
+            <p>
+                <h2>갤럭시 워치4 LTE모델 40인치</h2>
+                <table style="float:left;">
+                    <tr>
+                        <th>가격</th><td>120,000원</td>
+                    </tr>
+                        <th>상태</th><td>좋음</td>
+                    <tr>
+                        <th>브랜드</th><td>삼성(SAMSUNG)</td>
+                    </tr>
+                    <tr>
+                        <th>제조일자</th><td>2022.08 제조</td>
+                    </tr>
+                    <tr>
+                        <th>지역</th><td>서울 서대문구</td>
+                    </tr>
+                    <tr>
+                        <th>특이사항</th><td>기스 없음, 충전기 제공</td>
+                        </tr>
+                </table>
+            </p>
+                <p>
+                <input type="button" value="찜하기"></input>
+                <p>
+            
         </div>
     </div>
     <hr>
