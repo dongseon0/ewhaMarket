@@ -1,52 +1,100 @@
 <!DOCTYPE html> 
-<html lang="en"> 
-    <style>
-        .fakeimg{
-                background-color: #ffecaf;
-                width: 100%;
-                height: auto;
-            }
-            iframe{
-                border: none;
-            }
-    </style>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+<style>
+    hr{
+        background: rgb(79, 136, 236);
+        height:1.5px;
+        border:0; 
+    }
+
+    .fakeimg{
+            background-color: #ffecaf;
+            width: 60%;
+            height: 80%;
+        }
+    iframe{
+        border: none;
+    }
+
+    table, th, td{
+        border:none;
+    }
+
+    td {
+        text-align: left;
+        padding: 10px; 
+    }
+
+    .container {
+        display: flex;
+        padding: 40px 80px; 
+    }
+    .columnleft {
+        flex: 40%;
+        padding : 5px 7px 3px 3px;
+    }
+
+    .columnright {
+        flex: 60%;
+        background-color: rgb(235, 234, 234);
+        margin: 10px 10px; 
+        padding: 10px 10px 20px 20px;
+    }
+
+    @media screen and (max-width: 600px){
+        .column.side, .column.middle{
+        width:100%;
+        }
+    }
+    footer {
+        text-align: center;
+    }
+</style>
 </head> 
 
 <body>
-    <div class="row">
-        <div class="column left">
-            <div class="card">
-                <h2>photo</h2>
+    <div class="container">
+        <div class="columnleft">
                 <div class="fakeimg">
-                    <iframe src="/Users/yangdongseon/Desktop/오소플 실습/실습3_양동선_2271037/
-                    cuteboy.jpeg" alt="CAT" width="600" height="400"></iframe>
+                    <iframe src="/ewhaMarket/static/images/2.png"  alt="CAT"></iframe>
                 </div>
         
         </div>
-        <div class="column right">
-        <h2>Main Content</h2>
-        <title>갤럭시 워치4 LTE모델 40인치</title>
-        <style>
-            table, th, td{
-            border:1px solid blue;
-            }
-        </style>
+        <div class="columnright">
+            <h2>갤럭시 워치4 LTE모델 40인치</h2>
             <table style="float:left;">
                 <tr>
                     <th>가격</th><td>10000</td>
                 </tr>
                     <th>상태</th><td>좋음</td>
+                <tr>
+                    <th>브랜드</th><td>삼성(SAMSUNG)</td>
                 </tr>
-                    <th>브랜드</th><td>삼성</td>
+                <tr>
+                    <th>제조일자</th><td>2022.08 제조</td>
                 </tr>
-            
+                <tr>
+                    <th>지역</th><td>서울 서대문구</td>
+                </tr>
+                <tr>
+                    <th>특이사항</th><td>기스 없음, 충전기 제공</td>
+                 </tr>
             </table>
         </div>
-    
+    </div>
+    <hr>
+    <div class>
+        <ul style="list-style-type:none;">
+            <li><a href="#">추가정보</a></li>
+            <li><a href="---">댓글(1)</a></li>
+            </ul>
+        </div>
+
 </body>
+
 
 
 
