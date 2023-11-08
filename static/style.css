@@ -1,5 +1,10 @@
+#navbar-gra {
+  height: 10px;
+  background-image: linear-gradient(to bottom, rgb(207, 207, 207), white);
+}
+
 .navbar {
-  background-color: rgb(26, 31, 48);
+  background-color: white;
   /* 네비게이션 바 배경색 설정 */
   display: flex;
   /* 요소를 가로로 정렬 */
@@ -15,7 +20,7 @@
   /* 폰트 크기 설정 */
   text-decoration: none;
   /* 밑줄 제거 */
-  color: #fff;
+  color: black;
   /* 텍스트 색상 설정 */
 }
 
@@ -36,7 +41,7 @@
 .navbar__menu a {
   text-decoration: none;
   /* 밑줄 제거 */
-  color: #fff;
+  color: black;
   /* 텍스트 색상 설정 */
 }
 
@@ -63,7 +68,7 @@
 .navbar__login a {
   text-decoration: none;
   /* 밑줄 제거 */
-  color: #fff;
+  color: black;
   /* 텍스트 색상 설정 */
 }
 

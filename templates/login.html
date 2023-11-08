@@ -6,6 +6,7 @@
 <script>alert("{{ mesg[0] }}")</script>
 {% endif %}
 {% endwith %}
+<script src="../static/main.js" defer></script>
 <style>
   .login-wrapper {
     width: 700px;
@@ -63,7 +64,7 @@
     <input type="text" name="id">
     <p>password : </p>
     <input type="password" name="pw"><br><br>
-    <input type="submit" value="로그인"/><br>
+    <input type="submit" value="로그인" id="loginBtn"/><br>
   </form>
   <!-- <p>아직 회원이 아니신가요?</p> -->
   <div style="width: 70%; margin: auto;">
