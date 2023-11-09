@@ -1,0 +1,69 @@
+{% extends "index.html" %}
+
+{% block section %}
+<head>
+  <style>
+    .mypage-wrapper {
+      width: 700px;
+      height: 350px;
+      padding: 40px;
+      margin: auto;
+      box-sizing: border-box;
+    }
+
+    #mypage-title {
+      font-size: 135%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    hr {
+      background-color: #65ACFF;
+      border: 2px solid #65ACFF;
+    }
+
+    .menubar {
+      display: flex; /* 메뉴 항목을 가로로 정렬 */
+      justify-content: space-between; /* 메뉴를 수평으로 가운데 정렬 */
+      align-items: center; /* 메뉴를 수직으로 가운데 정렬 */
+    }
+
+    .menubar ul {
+      list-style: none;
+      display: flex; /* 메뉴 항목을 가로로 정렬 */
+    }
+
+    .menubar__menu li {
+      margin-left: 20px; /* 메뉴 간격 설정 */
+      margin-right: 20px;
+      /* margin-bottom: 20px; */
+    }
+
+    .menubar__menu a {
+      text-decoration: none; /* 밑줄 제거 */
+      text-align: left;
+      font-size: 16px;
+      color: #000;
+    }
+
+    .menubar__menu a:hover{
+      text-decoration: underline;
+      background-color: skyblue;
+    }
+  </style>
+</head>
+<body>
+  <div class="mypage-wrapper">
+    <br><p id="mypage-title">마이 페이지</p><hr>
+    <div class="menubar">
+      <ul class="menubar__menu">
+        <li><a href="/mypage">내 상점</a></li>
+        <li><a href="/myreview">내 리뷰</a></li>
+        <li><a href="/wish">찜</a></li>
+        <li><a href="/personal">개인정보</a></li>
+      </ul>
+    </div><hr>
+  </div>
+</body>
+{% endblock section %}

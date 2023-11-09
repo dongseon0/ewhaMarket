@@ -58,6 +58,22 @@ def login():
 def signup():
     return render_template("signup.html")
 
+@application.route("/mypage")
+def mypage():
+    return render_template("mypage.html")
+
+@application.route("/myreview")
+def myreview():
+    return render_template("myreview.html")
+
+@application.route("/wish")
+def wish():
+    return render_template("wish.html")
+
+@application.route("/personal")
+def personal():
+    return render_template("personal.html")
+
 @application.route("/signup_post", methods=['POST'])
 def register_user():
     data=request.form
