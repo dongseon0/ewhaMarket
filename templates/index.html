@@ -12,7 +12,8 @@
 <body>
   <nav class="navbar">
     <div class="navbar__logo">
-      <a href="/">이화마켓</a>
+      <!-- <a href="/">이화마켓</a> -->
+      <a href="/"><img src="../static/images/logo2.png" alt="이화마켓" height="40px"></a>
     </div>
     <!-- <ul class="navbar__menu">
       <li><a href="/list">모두의 마켓</a></li>
@@ -27,6 +28,14 @@
     </ul>
   </nav>
   <div id="navbar-gra"></div>
+  <script>
+    var navLogin = document.getElementById("nav-login");
+    navLogin.innerHTML="마이 페이지";
+    navLogin.href = "/mypage";
+    var navSignup = document.getElementById("nav-signup");
+    navSignup.innerHTML="로그아웃";
+    navSignup.href = "";
+  </script>
   <section>
     {% block section %}
 
