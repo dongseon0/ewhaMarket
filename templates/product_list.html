@@ -5,10 +5,11 @@
 <html>
 
 <head>
-    <link rel="stylesheet" type="text/css" href="../static/style_product_list.css">
+    <link rel="stylesheet" type="text/css" href="style_product_list.css">
 </head>
 
 <body>
+    <div class="wrapper">
     <div class="text">상품 리스트</div>
     <hr>
     <div class="menubar">
@@ -19,7 +20,7 @@
         </ul>
         <button onclick="document.location='add_product.html'" type="button">상품 등록하기</button>
     </div>
-    <div class="product_list">
+    <div class="content">
         <div class="product">
             <a target="_blank" href="">
                 <img src="https://1801889e95b1f9bf.kinxzone.com/webfile/product/5/5231/209q2e90g00a.jpg" alt="product1"
@@ -99,12 +100,10 @@
         </div>
     </div>
     <ul class="pagination">
-        <li><a href="#">&laquo;</a></li>
-        <li><a href="#"> 1 </a></li>
-        <li><a href="#"> 2 </a></li>
-        <li><a href="#"> 3 </a></li>
-        <li><a href="#">&raquo;</a></li>
+        <li><a href="#" class="active">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
     </ul>
     <hr>
-
+</div>
 </body>
