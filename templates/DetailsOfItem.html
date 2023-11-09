@@ -4,10 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 <style>
+    .wrapper{
+        width: 900px;
+        cursor: default;
+        margin: auto;
+        margin-top: 7%;
+        text-align: center;
+    }
+    .text {
+        text-align: center;
+        font-size: 135%;
+        margin-bottom: 1.5%;
+    }
     hr{
-        background: rgb(79, 136, 236);
-        height:1.5px;
-        border:0; 
+        border: 1px solid skyblue;
     }
 
     table, th, td{
@@ -24,22 +34,27 @@
         padding: 40px 80px; 
     }
     .columnleft {
-        margin : 2% 5% 2% 4%;
+        margin : 2%;
     }
 
+   
     .columnright {
+        text-align: left;
         background-color: rgb(235, 234, 234);
-        margin: 2% 2%; 
-        padding :2% 5%;
+        margin-top, margin-bottom: 3%;
+        margin-left:2%;
+        margin-right:1%;
+        padding :2% 5% ;
+        border-radius: 10px 10px;
     }
 
     li a{
         float: left;
         display: block;
         text-align: left;
-        padding: 10px 10px;
+        padding: 0.8% 1% 0.8% 1%;
         text-decoration: none;
-        
+        border-radius: 10px 10px;
     }
 
     ul{
@@ -51,44 +66,94 @@
         }
     }
     .comment{
+        border-radius: 10px 10px;
         font-size:18px;
         background-color: rgb(235, 234, 234);
-        
-        padding :2% 10%;
-        margin : 2% 2%;
+        line-height: 150%;
+        padding :3% 4% 5% 4%;
+        margin : 2% 7% 0% 7%;
         text-align : left;
   }
-  p{
-    display: block
-  }
 
-  .down{
-    margin: 1% 10% 5% 10%;
-    width:70%;
-    float: left;
-    display: block
-  }
+    .boldtext{
+        font-size:110%;
+        font-weight: bold;
+        padding-bottom: 2%;
+    }
+
+    p{
+        display: block;
+        float : left;
+    }
+
 
   .auction{
-        font-size:18px;
         background-color: rgb(241, 244, 253);
-        padding :2% 10%;
-        margin : 2% 15%;
-        text-align : center;
+        padding :4% 4%;
+        margin : 1% 25%;
+        text-align : left;
+        line-height: 150%;
+        font-size:18px;
+        border-radius: 10px 10px;
   }
+  .favorite-button {
+        margin-top: 100%; /* 버튼과 테이블 간격 조절을 위한 여백 추가 */
+        margin-left:35%;
+        margin-right:65%;
+}
+    .btn-love {
+        background-color: aliceblue;
+        color: #1e6b7b;
+        border-radius:5px;
+        border: 3px solid aliceblue;
+        font-size :100%;
+        padding : 4px 7px;
+    }
 
+    #profile {
+        float: left;
+        width: 10%;
+
+        border-radius: 70%;
+        margin: 0% 2%;
+    }
+    #user-id{
+        padding-left:2%;
+    }
+
+    .auction_product{
+        background-color:firebrick;
+        text-align: center;
+        float:right;
+        top:20%;
+        right:20%;
+        border: 0;
+        outline: none;
+        width: 60px;
+        height: 60px;
+        border-radius: 100px;
+        font-size: 20px;
+    }
 
 </style>
 </head> 
 
 <body>
+    
+<div class= "wrapper">
+    <div class="text">상품 세부화면</div>
+    <hr>
     <div class="container">
+       
         <div class="columnleft">
             <img src="../static/images/tlrp.jpeg" width="320" height="400" alt="item">
         </div>
-        <div class="columnright">
-            <p>
+        
+        <div class="columnright"> 
+                <img src="../static/images/watch.jpeg" id="profile">
+                <div id="user-id"><a href="#"> 갤럭시벗<a></div>
                 <h2>갤럭시 워치4 LTE모델 40인치</h2>
+                
                 <table style="float:left;">
                     <tr>
                         <th>가격</th><td>120,000원</td>
@@ -107,17 +172,16 @@
                         <th>특이사항</th><td>기스 없음, 충전기 제공</td>
                         </tr>
                 </table>
-            </p>
-                <p>
-                    <input type="button" value="찜하기"></input>
-                <p>
-            
+                <div class="favorite-button">
+                    <input class="btn-love" type="button" value="♡ 찜하기"></input>
+                </div>
         </div>
     </div>
+    
     <div class = "down">
         <div class="more">
-            <hr>
-            <ul style="list-style-type:none;">
+            <hr style= "width:90%">
+            <ul>
                 <li><a href="#" style="background-color:rgb(219, 236, 243);">추가정보</a></li>
                 <li><a>|</a></li>
                 <li><a href="#" style="background-color:rgb(219, 236, 243);">댓글(1)</a></li>
@@ -125,29 +189,28 @@
             </div>
 
         <br><br>
+      
         <div class="comment">
             <p>
-                <h4>사용자 추가 설명</h4>
+                <div class="boldtext">사용자 추가 설명</div>
                 사용감 없고 상태 아주 좋습니다. 충전기도 함께 드릴게요.<br>
                 직거래나 편의점 반값택배가 편해요! 직거래는 신촌역, 이대역 가능합니다.<br>
                 모서리 찍힘도 없고, 액정 필름 항상 사용했습니다. 배터리 효율 92%입니다.
             </p>
         </div>
-    
+ 
     <br>
         <div class="auction">
             <p>
-                <h4>경매 참여하기</h4>
-                종료시간 : 23.10.13 13:00<br>
-                현재가격 : 11만 5천원<br>
-                <input type="button" value="▲1만원"></input>
+                <div class="boldtext">경매 참여하기</div>
+                <span style="color: red">종료시간 : 23.10.13 13:00</span><br>
+                <span style="color: skyblue">현재 가격 : <u>11만 5천원</u></span><br>
             </p>
+                <input style="top: 20% float:right" type="button" value="▲1만원"></input>
         </div>
     </div>
+</div>
 </body>
-
-
-
 
 
 </html>
