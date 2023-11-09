@@ -43,7 +43,7 @@
     .columnright {
         text-align: left;
         background-color: rgb(251, 251, 251);
-        margin-top, margin-bottom: 3%;
+        margin: 3% 0%;
         margin-left:4%;
         margin-right:0.5%;
         padding :2% 5% ;
@@ -100,7 +100,7 @@
         line-height: 150%;
         font-size:18px;
         border-radius: 10px 10px;
-        box-shadow: 0 10px 10px -5px;
+        box-shadow: 0 3px 3px rgba(0,0,0,0.2);
   }
   .favorite-button {
         margin-top: 100%; /* 버튼과 테이블 간격 조절을 위한 여백 추가 */
@@ -115,6 +115,26 @@
         font-size :100%;
         padding : 4px 7px;
     }
+    .btn-love:hover {
+        background-color: #c1e6ff;
+        color: #003742;
+        border: 3px solid #c1e6ff;
+    }
+
+    .btn-money {
+        background-color: rgb(223, 254, 227);
+        color: rgb(30, 123, 75);
+        border-radius:5px;
+        border: 3px solid rgb(223, 254, 227);
+        font-size :100%;
+        padding : 4px 7px;
+    }
+    .btn-money:hover {
+        background-color:rgb(181, 228, 187);
+        color: rgb(8, 86, 46);
+        border: 3px solid rgb(181, 228, 187);
+    }
+
 
     #profile {
         float: left;
@@ -154,7 +174,7 @@
     <div class="container">
        
         <div class="columnleft">
-            <img style="border-radius: 10px 10px; box-shadow: 0 3px 3px rgba(0,0,0,0.2);" src="../static/images/tlrp.jpeg" width="320" alt="item">
+            <img style="border-radius: 10px 10px; box-shadow: 0 3px 3px rgba(0,0,0,0.2)" src="../static/images/tlrp.jpeg" width="320" alt="item">
         </div>
         
         <div class="columnright"> 
@@ -182,7 +202,7 @@
                         </tr>
                 </table>
                 <div class="favorite-button">
-                    <input class="btn-love" type="button" value="♡ 찜하기"></input>
+                    <input class="btn-love" type="button" value="♡ 찜하기">
                 </div>
         </div>
     </div>
@@ -211,11 +231,12 @@
     <br>
         <div class="auction">
             <p>
+                <input class="btn-money" style="float:right" type="button" value="▲1만원">
                 <div class="boldtext">경매 참여하기</div>
                 <span style="color: red">종료시간 : 23.10.13 13:00</span><br>
                 <span style="color: skyblue">현재 가격 : <u>11만 5천원</u></span><br>
             </p>
-                <input style="top: 20% float:right" type="button" value="▲1만원"></input>
+                
         </div>
     </div>
 </div>
