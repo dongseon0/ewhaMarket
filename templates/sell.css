@@ -1,9 +1,24 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+}
 
-        
-body {
+.wrapper{
+    width: 700px;
+    cursor: default;
+    margin: auto;
+    margin-top: 7%;
+    text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+hr {
+    border: 2px solid #65ACFF;
+    width: 100%;
+}
+
+.text{
+    font-size: 135%;
 }
 .sell {
     padding: 10px;
@@ -11,10 +26,13 @@ body {
     padding-bottom: 20px;
     margin-bottom: 20px;
     display: flex;
-
   
-    width: 80%;
+    width: 700px;
     max-width: 600px;
+}
+.sell p{
+    display: flex;
+    text-align: left;
 }
 .sell img {
     width: 150px; /*이미지크기*/
@@ -24,10 +42,11 @@ body {
 }
 .sell .user {
     font-weight: bold;
-    flex: 1;
+    margin-right: 35px;
 }
-.sell.rating {
-    color: skyblue; /* 별점 색상 */
+.rating p{
+    color: skyblue;
+    display: flex;  
 }
 h2 {
     text-align: center;
@@ -35,22 +54,20 @@ h2 {
 }
 .line {
     border-top: 3px solid skyblue; /* 파란색 상단 경계선 */
-    width: 80%;
+    width: 90%;
 }
 * {
     box-sizing: border-box;
 }
 .topnav {
     overflow: hidden;
-    text-align: center;
 }
 .topnav a {
     display: inline-block;
     color: black;
     text-align: center;
     text-decoration: none;
-    padding: 10px;
-    margin: 5px;
+    padding: 5px;
 }
 .topnav a:hover {
     background-color: #ddd;
@@ -64,7 +81,9 @@ h2 {
     border-radius: 10px;
     width: 70px; 
     height: 35px;
-    font-size: 10px;
+    margin-top: 2%;
+    font-size: 11px;
+
 }
 .completed2 {
     background-color: palevioletred;
@@ -72,9 +91,10 @@ h2 {
     padding: 10px;
     border-color: beige;
     border-radius: 10px;
-    width: 45px; 
+    width: 47px; 
     height: 35px;
-    font-size: 10px;
+    margin-top: 2%;
+    font-size: 11px;
 }
 .pagination {
     display: flex;
@@ -94,5 +114,12 @@ h2 {
 .pagination a.active {
     background-color: #333;
     color: #fff;
+}
+.checkboxes {
+    display: flex;
+}
+.checkbox {
+    margin-right: 470px;
+    padding: 10px; 
 }
 
