@@ -1,3 +1,5 @@
+/*네비게이션 바 및 공통 부분 디자인 정의*/
+
 #navbar-gra {
   height: 10px;
   background-image: linear-gradient(to bottom, rgb(207, 207, 207), white);
