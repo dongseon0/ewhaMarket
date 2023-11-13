@@ -24,7 +24,7 @@ hr {
 
 .sell {
     padding: 10px;
-    border-bottom: 1px solid black;
+    border-bottom: 1.5px solid rgb(163, 223, 249);
     padding-bottom: 20px;
     margin-bottom: 20px;
     display: flex;
@@ -63,7 +63,7 @@ h2 {
 }
 
 .line {
-    border-top: 3px solid skyblue;
+    border-top: 1.5px solid rgb(163, 223, 249);
     /* 파란색 상단 경계선 */
     width: 90%;
 }
