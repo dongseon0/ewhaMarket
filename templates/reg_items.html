@@ -14,7 +14,7 @@
                         상품명
                     </h4>
                     <div class="inside">
-                        <input class="input-name" type="text" placeholder="상품명을 입력해주세요.">
+                        <input id="name" name="name" class="input-name" type="text" placeholder="상품명을 입력해주세요.">
                     </div>
                 </li>
                 <li class="image-section">
@@ -30,7 +30,7 @@
                         상품 상태
                     </h4>
                     <div class="inside">
-                        <div class="select-status">
+                        <!-- <div class="select-status">
                             <label for="중고 상품" class="used-product">
                                 <input id="중고 상품" type="radio" value="0">
                                 중고 상품
@@ -39,7 +39,12 @@
                                 <input id="새 상품" type="radio" value="0">
                                 새 상품
                             </label>
-                        </div>
+                        </div> -->
+                        <select id="status" class="select-status" name="status">
+                        <option value="new" selected>새 상품</option>
+                        <option value="lnew">거의 새 상품</option>
+                        <option value="used">중고 상품</option>
+                        </select>
                     </div>
                 </li>
                 <li class="description-section">
@@ -48,7 +53,7 @@
                     </h4>
                     <div class="inside">
                         <div class="input-description">
-                            <textarea rows="6" class="input-description-box"
+                            <textarea id="description" name="description" rows="6" class="input-description-box"
                                 placeholder="구매시기, 브랜드/모델명, 제품의 상태 (사용감, 하자 유무) 등을 입력해 주세요."></textarea>
                         </div>
                     </div>
@@ -58,7 +63,7 @@
                         거래 방식
                     </h4>
                     <div class="inside">
-                        <div class="select-transaction-method">
+                        <!-- <div class="select-transaction-method">
                             <label for="택배 거래" class="delivery-transaction">
                                 <input id="택배 거래" type="radio" value="0">
                                 택배 거래
@@ -67,7 +72,11 @@
                                 <input id="직거래" type="radio" value="0">
                                 직거래
                             </label>
-                        </div>
+                        </div> -->
+                        <select id="method" class="select-transaction-method" name="method">
+                        <option value="delivery" selected>택배 거래</option>
+                        <option value="direct">직거래</option>
+                        </select>
                     </div>
                 </li>
                 <li class="location-section">
@@ -76,14 +85,15 @@
                     </h4>
                     <div class="inside">
                         <div class="select-location-section">
-                            <div class="select-location-buttons">
+                            <!-- <div class="select-location-buttons">
                                 <button type="button" class="my-location">내 위치</button>
                                 <button type="button" class="recent-location">최근 위치</button>
                                 <button type="button" class="search-address">위치 검색</button>
                                 <button type="button" class="do-not-select-location">지역 설정 안함</button>
                             </div>
                             <input class="input-location" readonly placeholder="선호 지역을 설정해주세요."
-                                class="select-location-text" value="">
+                                class="select-location-text" value=""> -->
+                            <input id="location" name="location" class="input-location" type="text" placeholder="상품명을 입력해주세요.">
                         </div>
                     </div>
                 </li>
@@ -92,12 +102,9 @@
                         수량
                     </h4>
                     <div class="inside">
-                        <div class="input-quantity-box">
-                            <div class="input-quntity">
-                                <input type="text" class="input-quantity" placeholder="숫자만 입력해주세요."
-                                    class="input-quantity-text" value="">
-                                <span>개</span>
-                            </div>
+                        <div class="input-quntity">
+                            <input id="quantity" name="quantity" type="text" class="input-quantity" placeholder="숫자만 입력해주세요.">
+                            <span>개</span>
                         </div>
                     </div>
                 </li>
@@ -123,10 +130,10 @@
                         태그
                     </h4>
                     <div class="inside">
-                        <input class="input-tag" type="text" placeholder="태그를 입력해주세요.">
+                        <input id="tag" name="tag" class="input-tag" type="text" placeholder="태그를 입력해주세요.">
                     </div>
                 </li>
-                <li class="pricing-section">
+                <!-- <li class="pricing-section">
                     <h4 class="middle-title">
                         가격 책정
                     </h4>
@@ -191,16 +198,14 @@
                             </div>
                         </div>
                     </div>
-                </li>
+                </li> -->
                 <li class="contact-information-section">
                     <h4 class="middle-title">
                         연락처
                     </h4>
                     <div class="inside">
                         <div class="contact-information-box">
-                            <div class="input-information-contact">
-                                <input type="text" placeholder="연락처를 입력해주세요." class="contact-information-text" value="">
-                            </div>
+                            <input id="phone" name="phone" type="text" placeholder="연락처를 입력해주세요." class="contact-information-text">
                         </div>
                     </div>
                 </li>
