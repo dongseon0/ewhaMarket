@@ -37,12 +37,13 @@ def reg_review():
 @application.route("/submit_item")
 def reg_item_submit():
     name = request.args.get("name")
-    seller = request.args.get("seller")
-    addr = request.args.get("addr")
-    email = request.args.get("email")
-    category = request.args.get("category")
-    card = request.args.get("card")
     status = request.args.get("status")
+    description = request.args.get("description")
+    method = request.args.get("method")
+    location = request.args.get("location")
+    quantity = request.args.get("quantity")
+    category = request.args.get("category")
+    tag = request.args.get("tag")
     phone = request.args.get("phone")
 
     # print(name,addr,tel,category,park,time,site)

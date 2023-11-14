@@ -2,24 +2,40 @@
 
 {% block section %}
 <p>
-    sell {{data.name}} and its category is {{data.category}}.
-    The item is
+    상품명: {{data.name}}<br>
+    상품 이미지: 
+</p>
+<img src="{{img_path}}" /><br>
+<p>
+    상품 상태: 
     {% if data['status'] == "lnew" %}
-    likely new!
+    likely new!<br>
     {% endif %}
     {% if data['status'] == "new" %}
-    new!
+    new!<br>
     {% endif %}
     {% if data['status'] == "used" %}
-    used!
+    used!<br>
     {% endif %}
-</p>
-<img src="{{img_path}}" />
-<p>
-    Contact via {{data.phone}}
-    if you are interested!
-
-    The address is {{data.location}}
+    상품 설명: 
+    {{data.description}}<br>
+    거래 방식: 
+    {%if data['method'] == "delivery"%}
+    delivery<br>
+    {% endif %}
+    {%if data['method'] == "direct"%}
+    direct<br>
+    {% endif %}
+    거래 지역: 
+    {{data.location}}<br>
+    수량: 
+    {{data.quantity}}<br>
+    카테고리: 
+    {{data.category}}<br>
+    태그: 
+    {{data.tag}}<br>
+    연락처: 
+    {{data.phone}}<br>
 </p>
 <!--<p>
     For payment, the credit card is
