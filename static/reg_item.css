@@ -1,0 +1,71 @@
+.product-registration-section {
+    list-style: none;
+}
+
+.wrapper {
+    width: 800px;
+    cursor: default;
+    margin: auto;
+    margin-top: 7%;
+}
+
+.main-title {
+    margin: 5% 5% 5% 2%;
+}
+
+h4 {
+    width: 200px;
+    margin: 2% 10% 2% 0%;
+}
+
+li {
+    display: flex;
+}
+
+.inside {
+    margin: 2% 5% 2% 0%;
+}
+
+textarea {
+    width: 267%;
+    resize: none;
+    padding: 5%;
+}
+
+.product-registration-end {
+    float: right;
+}
+
+.input-name {
+    width: 50%;
+    padding: 1% 250px 1% 1%;
+}
+
+.input-location {
+    width: 50%;
+    padding: 1% 250px 1% 1%;
+}
+
+.input-tag {
+    width: 50%;
+    padding: 1% 250px 1% 1%;
+}
+
+.input-quantity {
+    width: 60%;
+    padding: 1% 50px 1% 1%;
+}
+
+.contact-information-text {
+    width: 70%;
+    padding: 1% 50px 1% 1%;
+}
+
+.fixed-pricing-text {
+    width: 60%;
+    padding: 1% 40px 1% 1%;
+}
+
+hr {
+    border: 1.5px solid rgb(163, 223, 249);
+}
