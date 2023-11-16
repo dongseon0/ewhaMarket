@@ -12,18 +12,30 @@
 <body>
   <nav class="navbar">
     <div class="navbar__logo">
-      <a href="/">EwhaMarket</a>
+      <!-- <a href="/">이화마켓</a> -->
+      <a href="/"><img src="../static/images/logo2.png" alt="이화마켓" height="40px"></a>
     </div>
     <ul class="navbar__menu">
-      <li><a href="/list">List</a></li>
-      <li><a href="/review">Review</a></li>
+      <!-- <li><a href="/list">모두의 마켓</a></li>
+      <li><a href="/review">Review</a></li> -->
       <li><a href="/reg_items">Register Items</a></li>
       <li><a href="/reg_reviews">Register Reviews</a></li>
     </ul>
     <ul class="navbar__login">
-      <li><a href="/login">Login</a></li>
+      <li><a href="/list">모두의 마켓</a></li>
+      <li><a href="/login" id="nav-login">로그인</a></li>
+      <li><a href="/signup" id="nav-signup">회원가입</a></li>
     </ul>
   </nav>
+  <div id="navbar-gra"></div>
+  <!-- <script>
+    var navLogin = document.getElementById("nav-login");
+    navLogin.innerHTML = "마이 페이지";
+    navLogin.href = "/mypage";
+    var navSignup = document.getElementById("nav-signup");
+    navSignup.innerHTML = "로그아웃";
+    navSignup.href = "";
+  </script> -->
   <section>
     {% block section %}
 
