@@ -1,6 +1,8 @@
 {% extends "index.html" %}
 
 {% block section %}
+<link rel="stylesheet" href="../static/reg_item.css" />
+<script src = "../static/reg_item.js"></script>
 <form method="post" enctype="multipart/form-data" action="/submit_item_post">
     <div class="wrapper">
         <main class="product-registration">
@@ -140,11 +142,11 @@
                     <div class="inside">
                         <div class="select-pricing-method">
                             <label for="고정 가격" class="fixed-price">
-                                <input id="고정 가격" name = "select-pricing-button" type="radio" value="0" onclick = "div_OnOff(this.value, 'fixed-pricing-box')">
+                                <input id="고정 가격" name = "select-pricing-button" type="radio" value="고정가격" onclick = "div_OnOff(this.value, 'fixed-pricing-box')">
                                 고정 가격
                             </label>
                             <label for="경매" class="auction">
-                                <input id="경매" name = "select-pricing-button" type="radio" value="0" onclick = "div_OnOff(this.value, 'auction-section')">
+                                <input id="경매" name = "select-pricing-button" type="radio" value="경매" onclick = "div_OnOff(this.value, 'auction-section')">
                                 경매
                             </label>
                         </div>
@@ -215,73 +217,4 @@
         </main>
     </div>
 </form>
-
-<script>
-    function div_OnOff(v, id) {
-        if(v == 0) {
-            document.getElementById(id).style.display = "";
-        }
-        else {
-            document.getElementById(id).style.display = "none";
-        }
-    }
-</script>
-
-<style>
-    /*여기부터 내코드~~~*/
-    .product-registration-section {
-        list-style: none;
-    }
-
-    .wrapper {
-        width: 800px;
-        cursor: default;
-        margin: auto;
-        margin-top: 7%;
-    }
-
-    .main-title {
-        margin: 5% 5% 5% 2%;
-    }
-
-    h4 {
-        width: 200px;
-        margin: 2% 10% 2% 0%;
-    }
-
-    li {
-        display: flex;
-    }
-
-    .inside {
-        margin: 2% 5% 2% 0%;
-    }
-
-    textarea {
-        width: 267%;
-        resize: none;
-        padding: 5%;
-    }
-
-    .product-registration-end {
-        float: right;
-    }
-
-    .input-name {
-        padding: 1% 280px 1% 1%;
-    }
-
-    .input-location {
-        padding: 1% 280px 1% 1%;
-        margin: 2% 0% 2% 0%;
-    }
-
-    .input-tag {
-        padding: 1% 280px 1% 1%;
-    }
-
-    hr {
-        border: 1.5px solid rgb(163, 223, 249);
-    }
-</style>
 {% endblock section %}
