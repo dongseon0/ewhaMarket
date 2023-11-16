@@ -54,7 +54,7 @@
                     <div class="inside">
                         <div class="input-description">
                             <textarea id="description" name="description" rows="6" class="input-description-box"
-                                placeholder="구매시기, 브랜드/모델명, 제품의 상태 (사용감, 하자 유무) 등을 입력해 주세요."></textarea>
+                                placeholder="구매시기, 브랜드/모델명, 제품의 상태 (사용감, 하자 유무) 등을 입력해주세요."></textarea>
                         </div>
                     </div>
                 </li>
@@ -133,28 +133,28 @@
                         <input id="tag" name="tag" class="input-tag" type="text" placeholder="태그를 입력해주세요.">
                     </div>
                 </li>
-                <!-- <li class="pricing-section">
+                <li class="pricing-section">
                     <h4 class="middle-title">
                         가격 책정
                     </h4>
                     <div class="inside">
                         <div class="select-pricing-method">
                             <label for="고정 가격" class="fixed-price">
-                                <input id="고정 가격" type="radio" value="0">
+                                <input id="고정 가격" name = "select-pricing-button" type="radio" value="0" onclick = "div_OnOff(this.value, 'fixed-pricing-box')">
                                 고정 가격
                             </label>
                             <label for="경매" class="auction">
-                                <input id="경매" type="radio" value="0">
+                                <input id="경매" name = "select-pricing-button" type="radio" value="0" onclick = "div_OnOff(this.value, 'auction-section')">
                                 경매
                             </label>
                         </div>
-                        <div class="fixed-pricing-box">
+                        <div class="fixed-pricing-box" id = "fixed-pricing-box" style="display: none;">
                             <div class="input-fixed-pricing">
                                 <input type="text" placeholder="가격을 입력해주세요." class="fixed-pricing-text" value="">
                                 <span>원</span>
                             </div>
                         </div>
-                        <div class="auction-section">
+                        <div class="auction-section" id = "auction-section" style = "display: none;">
                             <div class="start-price-box">
                                 <h5 class="small-title">
                                     시작가
@@ -198,7 +198,7 @@
                             </div>
                         </div>
                     </div>
-                </li> -->
+                </li>
                 <li class="contact-information-section">
                     <h4 class="middle-title">
                         연락처
@@ -216,6 +216,16 @@
     </div>
 </form>
 
+<script>
+    function div_OnOff(v, id) {
+        if(v == 0) {
+            document.getElementById(id).style.display = "";
+        }
+        else {
+            document.getElementById(id).style.display = "none";
+        }
+    }
+</script>
 
 <style>
     /*여기부터 내코드~~~*/
