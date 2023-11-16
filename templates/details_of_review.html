@@ -1,6 +1,3 @@
-{% extends "index.html" %}
-
-{% block section %}
 <!DOCTYPE html>
 <html>
 
@@ -97,6 +94,9 @@
 </head>
 
 <body>
+    {% extends "index.html" %}
+
+    {% block section %}
     <div class="review">
         <img src="../static/images/jungwha.jpeg" id="profile">
         <div id="user-id"></div>
@@ -156,7 +156,7 @@
         badBtn.value = "👎 " + bad;
         // 따봉, 우우~
     </script>
+    {% endblock section %}
 </body>
 
 </html>
-{% endblock section %}

@@ -1,5 +1,4 @@
-/*네비게이션 바 및 공통 부분 디자인 정의*/
-
+/* 네비게이션 바 디자인 정의 */
 #navbar-gra {
   height: 10px;
   background-image: linear-gradient(to bottom, rgb(207, 207, 207), white);
@@ -49,7 +48,7 @@
 
 /* 호버 효과 (마우스를 메뉴 위로 올릴 때) */
 .navbar__menu a:hover {
-  color: #31b8b6;
+  color: rgb(85, 172, 209);
   /* 호버 시 텍스트 색상 변경 */
 }
 
@@ -76,8 +75,14 @@
 
 /* 호버 효과 (마우스를 메뉴 위로 올릴 때) */
 .navbar__login a:hover {
-  color: #31b8b6;
+  color: rgb(85, 172, 209);
   /* 호버 시 텍스트 색상 변경 */
+}
+
+/* 공통 디자인 정의 */
+* {
+  cursor: default;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 hr {
