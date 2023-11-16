@@ -19,8 +19,13 @@ def view_list():
     return render_template("list.html")
 
 
+@application.route("/user_list")
+def view_user_list():
+    return render_template("user_list.html")
+
+
 @application.route("/user_reviews")
-def view_review():
+def view_user_review():
     return render_template("user_reviews.html")
 
 
@@ -80,12 +85,12 @@ def myreview():
 
 
 @application.route("/my_wish")
-def wish():
+def mywish():
     return render_template("my_wish.html")
 
 
 @application.route("/my_info")
-def personal():
+def myinfo():
     return render_template("my_info.html")
 
 
