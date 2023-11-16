@@ -26,7 +26,7 @@ def view_review():
 
 @application.route("/reg_items")
 def reg_item():
-    return render_template("reg_items.html")
+    return render_template("reg_item.html")
 
 
 @application.route("/reg_reviews")
