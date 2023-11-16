@@ -33,21 +33,35 @@ def reg_item():
 def reg_review():
     return render_template("reg_review.html")
 
+# def reg_review_submit():
+#     review_title = request.args.get("review-title")
+#     review_contents = request.args.get("review-contents")
+#     review_image = request.args.get("review-image")
+#     method = request.args.get("method")
+#     location = request.args.get("location")
+#     quantity = request.args.get("quantity")
+#     category = request.args.get("category")
+#     tag = request.args.get("tag")
+#     phone = request.args.get("phone")
 
-@application.route("/submit_item")
-def reg_item_submit():
-    name = request.args.get("name")
-    status = request.args.get("status")
-    description = request.args.get("description")
-    method = request.args.get("method")
-    location = request.args.get("location")
-    quantity = request.args.get("quantity")
-    category = request.args.get("category")
-    tag = request.args.get("tag")
-    phone = request.args.get("phone")
+#     # print(name,addr,tel,category,park,time,site)
+#     # return render_template("reg_item.html")
 
-    # print(name,addr,tel,category,park,time,site)
-    # return render_template("reg_item.html")
+
+# @application.route("/submit_item")
+# def reg_item_submit():
+#     name = request.args.get("name")
+#     status = request.args.get("status")
+#     description = request.args.get("description")
+#     method = request.args.get("method")
+#     location = request.args.get("location")
+#     quantity = request.args.get("quantity")
+#     category = request.args.get("category")
+#     tag = request.args.get("tag")
+#     phone = request.args.get("phone")
+
+#     # print(name,addr,tel,category,park,time,site)
+#     # return render_template("reg_item.html")
 
 
 @application.route("/submit_item_post", methods=['POST'])
