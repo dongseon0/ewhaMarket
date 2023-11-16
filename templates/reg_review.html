@@ -1,6 +1,3 @@
-{% extends "index.html" %}
-
-{% block section %}
 <!DOCTYPE html>
 <html>
 
@@ -78,6 +75,9 @@
 </head>
 
 <body>
+    {% extends "index.html" %}
+
+    {% block section %}
     <div class="review">
         <div class="text1">리뷰 작성</div>
         <hr>
@@ -151,7 +151,7 @@
         starFill();
         // 별
     </script>
+    {% endblock section %}
 </body>
 
 </html>
-{% endblock section %}

@@ -19,19 +19,19 @@ def view_list():
     return render_template("list.html")
 
 
-@application.route("/review")
+@application.route("/user_reviews")
 def view_review():
-    return render_template("review.html")
+    return render_template("user_reviews.html")
 
 
-@application.route("/reg_items")
+@application.route("/reg_item")
 def reg_item():
     return render_template("reg_item.html")
 
 
-@application.route("/reg_reviews")
+@application.route("/reg_review")
 def reg_review():
-    return render_template("reg_reviews.html")
+    return render_template("reg_review.html")
 
 
 @application.route("/submit_item")
@@ -69,24 +69,24 @@ def signup():
     return render_template("signup.html")
 
 
-@application.route("/mypage")
+@application.route("/my_page")
 def mypage():
-    return render_template("mypage.html")
+    return render_template("my_page.html")
 
 
-@application.route("/myreview")
+@application.route("/my_reviews")
 def myreview():
-    return render_template("myreview.html")
+    return render_template("myreviews.html")
 
 
-@application.route("/wish")
+@application.route("/my_wish")
 def wish():
-    return render_template("wish.html")
+    return render_template("my_wish.html")
 
 
-@application.route("/personal")
+@application.route("/my_info")
 def personal():
-    return render_template("personal.html")
+    return render_template("my_info.html")
 
 
 @application.route("/signup_post", methods=['POST'])
