@@ -19,9 +19,9 @@ def view_list():
     return render_template("list.html")
 
 
-@application.route("/user_review")
+@application.route("/user_reviews")
 def view_review():
-    return render_template("user_review.html")
+    return render_template("user_reviews.html")
 
 
 @application.route("/reg_item")
