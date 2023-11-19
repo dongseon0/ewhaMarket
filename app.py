@@ -118,7 +118,7 @@ def view_list():
             locals()['data_{}'.format(i)] = dict(list(data.item())[i*per_row])
     
 
-    return render_templete(
+    return render_template(
         "list.html"
         datas = data.items(),
         total = tot_count
