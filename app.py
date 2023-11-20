@@ -17,7 +17,7 @@ def hello():
 
 @application.route("/product_list")
 def view_list():
-    page = request.args.get("page", 0, type==int) #html에 페이지 인덱스 클릭할 때마다 get으로 받아옴
+    page = request.args.get("page", 0, type=int) #html에 페이지 인덱스 클릭할 때마다 get으로 받아옴
     per_page=6 #item count to display per page
     per_row=3 #item count to display per row
     row_count=int(per_page/per_row)
@@ -29,8 +29,9 @@ def view_list():
     tot_count = len(data)
     for i in range(row_count): #last row
         if(i == row_count-1) and (tot_count%per_row != 0):
-            locals()['data_{}'.format(i)] = dict(list(data.item())[i*per_row])
-    
+            locals()['data_{}'.format(i)] = dict(list(data.items())[i*per_row:])
+        else: 
+            locals()['data_{}'.format(i)] = dict(list(data.items())[i*per_row:(i+1)*per_row])
 
     return render_template(
         "product_list.html",
@@ -125,7 +126,7 @@ def register_user():
         flash("user id already exist!")
         return render_template("signup.html")
     
-@application.route('dynamicurl/<varible_name>/')
+@application.route("/dynamicurl/<varible_name>/")
 def DynamicUrl(variable_name):
     return str(variable_name)
 
@@ -134,7 +135,7 @@ def view_item_detail(name):
     print("###name:", name)
     data = DB.get_item_byname(str(name)) #get_item_byname 상품 이름으로 데이터 가져오는 함수 생성
     print("####data:", data)
-    return render_template("detail.html", name=name, data=data)
+    return render_template("details_of_item.html", name=name, data=data)
 
 if __name__ == "__main__":
     application.run(host='0.0.0.0', debug=True)
