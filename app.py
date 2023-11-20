@@ -93,7 +93,7 @@ def reg_item_submit_post():
     image_file.save("static/images/{}".format(image_file.filename))
     data = request.form
     DB.insert_item(data['name'], data, image_file.filename)
-    return render_template("submit_item_result.html", data=data, img_path="static/images/{}".format(image_file.filename))
+    return render_template("details_of_item.html", data=data, img_path="static/images/{}".format(image_file.filename))
 
 
 @application.route("/login")
@@ -149,7 +149,7 @@ def view_item_detail(name):
     # get_item_byname 상품 이름으로 데이터 가져오는 함수 생성
     data = DB.get_item_byname(str(name))
     print("####data:", data)
-    return render_template("detail.html", name=name, data=data)
+    return render_template("details_of_item.html", name=name, data=data)
 
 
 if __name__ == "__main__":
