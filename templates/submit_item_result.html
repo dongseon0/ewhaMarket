@@ -213,13 +213,13 @@
                     <tr>
                         <th>상품상태</th>
                         <td>{% if data['status'] == "lnew" %}
-                            likely new!<br>
+                            사용감 거의 없음<br>
                             {% endif %}
                             {% if data['status'] == "new" %}
-                            new!<br>
+                            사용감 아예 없음<br>
                             {% endif %}
                             {% if data['status'] == "used" %}
-                            used!<br>
+                            사용감 있음<br>
                             {% endif %}</td>
                     </tr>
                         <th>연락처</th>
@@ -227,10 +227,10 @@
                     <tr>
                         <th>거래방식</th>
                         <td>{%if data['method'] == "delivery"%}
-                            delivery<br>
+                            택배거래<br>
                             {% endif %}
                             {%if data['method'] == "direct"%}
-                            direct<br>
+                            직거래<br>
                             {% endif %}</td>
                     </tr>
                     <tr>

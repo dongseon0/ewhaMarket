@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+    <!--참조하는 부분 넣음-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
 
 <head>
     <meta charset="UTF-8">
@@ -55,7 +58,7 @@
             background-color: rgb(251, 251, 251);
             margin: 3% 0%;
             margin-left: 4%;
-            margin-right: 0.5%;
+            margin-right: 0.1%;
             padding: 2% 5%;
             border-radius: 10px 10px;
             box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
@@ -188,6 +191,9 @@
 </head>
 
 <body>
+    {% extends "index.html" %}
+
+    {% block section %}
 
     <div class="wrapper">
         <div class="text">상품 세부화면</div>
@@ -196,50 +202,55 @@
 
             <div class="columnleft">
                 <img style="border-radius: 10px 10px; box-shadow: 0 3px 3px rgba(0,0,0,0.2)"
-                    src="{{img_path}}" width="320" alt="item">
+                src="../../images/{{img_path}}" 
+                width="320" alt="item">
             </div>
 
             <div class="columnright">
-                <img src="../static/images/watch.jpeg" id="profile">
+                <img src="../../static/images/watch.jpeg" id="profile">
                 <div id="user-id"><a href="#"> 갤럭시벗<a><span class="star" style="color: orange"> ★ </span>
                             <span class="review" style="color: gray">5.0(12)</span></div>
-                <h2>{{data.name}}</h2>
+                <h2>{{name}}</h2>
 
                 <table style="float:left;">
                     <tr>
-                        <th>수량</th>
-                        <td>{{data.quantity}}</td>
+                        <th>상품상태</th>
+                        <td>{% if data['status'] == "lnew" %}
+                            사용감 거의 없음<br>
+                            {% endif %}
+                            {% if data['status'] == "new" %}
+                            사용감 아예 없음<br>
+                            {% endif %}
+                            {% if data['status'] == "used" %}
+                            사용감 있음<br>
+                            {% endif %}</td>
                     </tr>
-                    <th>상태</th>
-                    <td>
-                        {% if data['status'] == "lnew" %}
-                        사용감 거의 없음<br>
-                        {% endif %}
-                        {% if data['status'] == "new" %}
-                        사용감 없음<br>
-                        {% endif %}
-                        {% if data['status'] == "used" %}
-                        사용감 있음<br>
-                        {% endif %}</td>
+                        <th>연락처</th>
+                        <td>{{data.phone}}</td>
                     <tr>
                         <th>거래방식</th>
                         <td>{%if data['method'] == "delivery"%}
-                            택배<br>
+                            택배거래<br>
                             {% endif %}
                             {%if data['method'] == "direct"%}
-                            직거래</td>
-                    </tr>
-                    <tr>
-                        <th>카테고리</th>
-                        <td>{{data.category}}</td>
+                            직거래<br>
+                            {% endif %}</td>
                     </tr>
                     <tr>
                         <th>거래지역</th>
                         <td>{{data.location}}</td>
                     </tr>
                     <tr>
-                        <th>연락처</th>
-                        <td>{{data.phone}}</td>
+                        <th>수량</th>
+                        <td>{{data.quantity}}</td>
+                    </tr>
+                    <tr>
+                        <th>카테고리</th>
+                        <td>{{data.category}}</td>
+                    </tr>
+                    <tr>
+                        <th>태그</th>
+                        <td>{{data.tag}}</td>
                     </tr>
                 </table>
                 <div class="favorite-button">
@@ -262,7 +273,7 @@
 
             <div class="comment">
                 <p>
-                <div class="boldtext">사용자 추가 설명</div>
+                <div class="boldtext">상품설명</div>
                 {{data.description}}
                 </p>
             </div>
@@ -279,6 +290,7 @@
             </div>
         </div>
     </div>
+    {% endblock section %}
 </body>
 
 
