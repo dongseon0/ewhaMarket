@@ -17,7 +17,31 @@ def hello():
 
 @application.route("/product_list")
 def view_list():
-    return render_template("product_list.html")
+    page = request.args.get("page", 0, type==int) #html에 페이지 인덱스 클릭할 때마다 get으로 받아옴
+    per_page=6 #item count to display per page
+    per_row=3 #item count to display per row
+    row_count=int(per_page/per_row)
+    start_idx = per_page*page
+    end_idx = per_page*(page+1) #페이지 인덱스로 start_idx, end_idx 생성
+    data = DB.get_items() #read the table
+    item_counts = len(data)
+    data = dict(list(data.items())[start_idx:end_idx]) #한 페이지에 start_idx, end_idx 만큼 읽어오기
+    tot_count = len(data)
+    for i in range(row_count): #last row
+        if(i == row_count-1) and (tot_count%per_row != 0):
+            locals()['data_{}'.format(i)] = dict(list(data.item())[i*per_row])
+    
+
+    return render_template(
+        "product_list.html",
+        datas = data.items(),
+        row1 = locals()['data_0'].items(),
+        row2 = locals()['data_1'].items(),
+        limit = per_page,
+        page = page, #현재 페이지 인덱스
+        page_count = int((item_counts/per_page) + 1), #페이지 개수
+        total = item_counts 
+    )
 
 
 @application.route("/user_review")
@@ -100,34 +124,6 @@ def register_user():
     else:
         flash("user id already exist!")
         return render_template("signup.html")
-
-@application.route("/product_list")
-def view_list():
-    page = request.args.get("page", 0, type==int) #html에 페이지 인덱스 클릭할 때마다 get으로 받아옴
-    per_page=6 #item count to display per page
-    per_row=3 #item count to display per row
-    row_count=int(per_page/per_row)
-    start_idx = per_page*page
-    end_idx = per_page*(page+1) #페이지 인덱스로 start_idx, end_idx 생성
-    data = DB.get_items() #read the table
-    item_counts = len(data)
-    data = dict(list(data.items())[start_idx:end_idx]) #한 페이지에 start_idx, end_idx 만큼 읽어오기
-    tot_count = len(data)
-    for i in range(row_count): #last row
-        if(i == row_count-1) and (tot_count%per_row != 0):
-            locals()['data_{}'.format(i)] = dict(list(data.item())[i*per_row])
-    
-
-    return render_template(
-        "product_list.html",
-        datas = data.items(),
-        row1 = locals()['data_0'].items(),
-        row2 = locals()['data_1'].items(),
-        limit = per_page,
-        page = page, #현재 페이지 인덱스
-        page_count = int((item_counts/per_page) + 1), #페이지 개수
-        total = item_counts 
-    )
     
 @application.route('dynamicurl/<varible_name>/')
 def DynamicUrl(variable_name):
