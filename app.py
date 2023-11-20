@@ -12,7 +12,7 @@ DB = DBhandler()
 @application.route("/")
 def hello():
     #return render_template("index.html")
-    return redirected(url_for('view_list'))
+    return redirect(url_for('view_list'))
 
 
 @application.route("/product_list")
@@ -110,7 +110,7 @@ def view_list():
     start_idx = per_page*page
     end_idx = per_page*(page+1) #페이지 인덱스로 start_idx, end_idx 생성
     data = DB.get_items() #read the table
-    items_counts = len(data)
+    item_counts = len(data)
     data = dict(list(data.items())[start_idx:end_idx]) #한 페이지에 start_idx, end_idx 만큼 읽어오기
     tot_count = len(data)
     for i in range(row_count): #last row
@@ -119,12 +119,11 @@ def view_list():
     
 
     return render_template(
-        "list.html"
+        "product_list.html",
         datas = data.items(),
-        total = tot_count
-        row1 = locals()['data_0'].items()
-        row2 = locals()['data_1'].items()
-        limit = per.page,
+        row1 = locals()['data_0'].items(),
+        row2 = locals()['data_1'].items(),
+        limit = per_page,
         page = page, #현재 페이지 인덱스
         page_count = int((item_counts/per_page) + 1), #페이지 개수
         total = item_counts 
