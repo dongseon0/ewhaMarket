@@ -17,7 +17,7 @@ def hello():
 
 @application.route("/product_list")
 def view_list():
-    page = request.args.get("page", 0, type==int) #html에 페이지 인덱스 클릭할 때마다 get으로 받아옴
+    page = request.args.get("page", 0, type=int) #html에 페이지 인덱스 클릭할 때마다 get으로 받아옴
     per_page=6 #item count to display per page
     per_row=3 #item count to display per row
     row_count=int(per_page/per_row)
@@ -29,7 +29,7 @@ def view_list():
     tot_count = len(data)
     for i in range(row_count): #last row
         if(i == row_count-1) and (tot_count%per_row != 0):
-            locals()['data_{}'.format(i)] = dict(list(data.item())[i*per_row])
+            locals()['data_{}'.format(i)] = dict(list(data.items())[i*per_row])
     
 
     return render_template(
