@@ -51,11 +51,6 @@ def view_list():
     )
 
 
-@application.route("/user_review")
-def view_review():
-    return render_template("user_review.html")
-
-
 @application.route("/reg_item")
 def reg_item():
     return render_template("reg_item.html")
@@ -73,6 +68,11 @@ def submit_review_post():
     data = request.form
     DB.insert_review(data, image_file.filename)
     return render_template("details_of_review.html", data=data, img_path=image_file.filename)
+
+
+@application.route("/user_reviews")
+def view_review():
+    return render_template("user_reviews.html")
 
 
 @application.route("/submit_item")
