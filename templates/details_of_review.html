@@ -57,6 +57,10 @@
             padding: 2% 5%;
         }
 
+        #stars-variable {
+            display: none;
+        }
+
         #user-id {
             margin: 1%;
         }
@@ -102,6 +106,7 @@
         <div id="user-id">JUNGH150</div>
         <div id="review-title">{{data.reviewTitle}}</div>
         <div class="stars">
+            <div id="stars-variable">{{data.starsVariable}}</div>
             <span class="star" id="0">★</span>
             <span class="star" id="1">★</span>
             <span class="star" id="2">★</span>
@@ -121,9 +126,9 @@
 
     <script>
         // 별
-        star = 2;
-        stars = document.getElementsByClassName("star");
         function starFill() {
+            star = parseInt(document.getElementById("stars-variable").innerHTML);
+            stars = document.getElementsByClassName("star");
             for (i = 0; i < stars.length; i++) {
                 if (i > star) {
                     stars.item(i).innerHTML = "☆";

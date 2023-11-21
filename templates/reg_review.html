@@ -55,6 +55,10 @@
             margin-left: 12%;
         }
 
+        #stars-variable {
+            display: none;
+        }
+
         #ok {
             float: right;
             width: 14%;
@@ -86,6 +90,7 @@
             <textarea id="review-title" name="reviewTitle" cols="40" rows="1"></textarea>
             <div class="text3"><span class="asterisk">* </span>거래는 어떠셨나요?</div>
             <div class="stars">
+                <input type="range" id="stars-variable" name="starsVariable" min="0" max="4" value="0">
                 <span class="star" id="0">★</span>
                 <span class="star" id="1">★</span>
                 <span class="star" id="2">★</span>
@@ -106,6 +111,7 @@
             // 별
             star = 0;
             stars = document.getElementsByClassName("star");
+            starsVariable = document.getElementById("stars-variable");
 
             function starEvent() {
                 for (i = 0; i < stars.length; i++) {
@@ -135,6 +141,7 @@
 
             function starSet(i) {
                 star = i;
+                starsVariable.value = i;
                 starFill();
             }
 
