@@ -42,6 +42,8 @@ def view_list():
         datas=data.items(),
         row1=locals()['data_0'].items(),
         row2=locals()['data_1'].items(),
+        row3=locals()['data_2'].items(),
+        row4=locals()['data_3'].items(),
         limit=per_page,
         page=page,  # 현재 페이지 인덱스
         page_count=int((item_counts/per_page) + 1),  # 페이지 개수
