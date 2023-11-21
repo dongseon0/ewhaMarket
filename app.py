@@ -19,7 +19,7 @@ def hello():
 def view_list():
     # html에 페이지 인덱스 클릭할 때마다 get으로 받아옴
     page = request.args.get("page", 0, type=int)
-    per_page = 6  # item count to display per page
+    per_page = 12  # item count to display per page
     per_row = 3  # item count to display per row
     row_count = int(per_page/per_row)
     start_idx = per_page*page
