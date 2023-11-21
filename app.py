@@ -69,7 +69,7 @@ def submit_review_post():
     image_file = request.files["file"]
     image_file.save("static/images/{}".format(image_file.filename))
     data = request.form
-    # DB.insert_item(data['name'], data, image_file.filename)
+    # DB.review_item(data['name'], data, image_file.filename)
     return render_template("details_of_review.html", data=data, img_path=image_file.filename)
 
 
