@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../static/style.css?after">
     <style>
         * {
             font-family: Arial, Helvetica, sans-serif;
@@ -289,7 +288,12 @@
         </div>
     </div>
 
-    <script src="{{ url_for('static', filename='main.js') }}"></script>
+    <script>
+        css = document.getElementById("style-css");
+        css.href = "../../static/style.css";
+        logo = document.getElementById("navbar-logo");
+        logo.src = "../../static/images/logo2.png";
+    </script>
     {% endblock section %}
 </body>
 
