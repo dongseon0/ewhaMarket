@@ -11,22 +11,47 @@ DB = DBhandler()
 
 @application.route("/")
 def hello():
-    return render_template("index.html")
+    # return render_template("index.html")
+    return redirect(url_for('view_list'))
 
 
-@application.route("/list")
+@application.route("/product_list")
 def view_list():
-    return render_template("list.html")
+    # html에 페이지 인덱스 클릭할 때마다 get으로 받아옴
+    page = request.args.get("page", 0, type=int)
+    per_page = 6  # item count to display per page
+    per_row = 3  # item count to display per row
+    row_count = int(per_page/per_row)
+    start_idx = per_page*page
+    end_idx = per_page*(page+1)  # 페이지 인덱스로 start_idx, end_idx 생성
+    data = DB.get_items()  # read the table
+    item_counts = len(data)
+    # 한 페이지에 start_idx, end_idx 만큼 읽어오기
+    data = dict(list(data.items())[start_idx:end_idx])
+    tot_count = len(data)
+    for i in range(row_count):  # last row
+        if (i == row_count-1) and (tot_count % per_row != 0):
+            locals()['data_{}'.format(i)] = dict(
+                list(data.items())[i*per_row:])
+        else:
+            locals()['data_{}'.format(i)] = dict(
+                list(data.items())[i*per_row:(i+1)*per_row])
+
+    return render_template(
+        "product_list.html",
+        datas=data.items(),
+        row1=locals()['data_0'].items(),
+        row2=locals()['data_1'].items(),
+        limit=per_page,
+        page=page,  # 현재 페이지 인덱스
+        page_count=int((item_counts/per_page) + 1),  # 페이지 개수
+        total=item_counts
+    )
 
 
-@application.route("/user_list")
-def view_user_list():
-    return render_template("user_list.html")
-
-
-@application.route("/user_reviews")
-def view_user_review():
-    return render_template("user_reviews.html")
+@application.route("/user_review")
+def view_review():
+    return render_template("user_review.html")
 
 
 @application.route("/reg_item")
@@ -38,35 +63,21 @@ def reg_item():
 def reg_review():
     return render_template("reg_review.html")
 
-# def reg_review_submit():
-#     review_title = request.args.get("review-title")
-#     review_contents = request.args.get("review-contents")
-#     review_image = request.args.get("review-image")
-#     method = request.args.get("method")
-#     location = request.args.get("location")
-#     quantity = request.args.get("quantity")
-#     category = request.args.get("category")
-#     tag = request.args.get("tag")
-#     phone = request.args.get("phone")
 
-#     # print(name,addr,tel,category,park,time,site)
-#     # return render_template("reg_item.html")
+@application.route("/submit_item")
+def reg_item_submit():
+    name = request.args.get("name")
+    status = request.args.get("status")
+    description = request.args.get("description")
+    method = request.args.get("method")
+    location = request.args.get("location")
+    quantity = request.args.get("quantity")
+    category = request.args.get("category")
+    tag = request.args.get("tag")
+    phone = request.args.get("phone")
 
-
-# @application.route("/submit_item")
-# def reg_item_submit():
-#     name = request.args.get("name")
-#     status = request.args.get("status")
-#     description = request.args.get("description")
-#     method = request.args.get("method")
-#     location = request.args.get("location")
-#     quantity = request.args.get("quantity")
-#     category = request.args.get("category")
-#     tag = request.args.get("tag")
-#     phone = request.args.get("phone")
-
-#     # print(name,addr,tel,category,park,time,site)
-#     # return render_template("reg_item.html")
+    # print(name,addr,tel,category,park,time,site)
+    # return render_template("reg_item.html")
 
 
 @application.route("/submit_item_post", methods=['POST'])
@@ -130,13 +141,27 @@ def myreview():
 
 
 @application.route("/my_wish")
-def mywish():
+def wish():
     return render_template("my_wish.html")
 
 
 @application.route("/my_info")
-def myinfo():
+def personal():
     return render_template("my_info.html")
+
+
+@application.route("/dynamicurl/<varible_name>/")
+def DynamicUrl(variable_name):
+    return str(variable_name)
+
+
+@application.route("/view_detail/<name>/")
+def view_item_detail(name):
+    print("###name:", name)
+    # get_item_byname 상품 이름으로 데이터 가져오는 함수 생성
+    data = DB.get_item_byname(str(name))
+    print("####data:", data)
+    return render_template("details_of_item.html", name=name, data=data)
 
 
 if __name__ == "__main__":
