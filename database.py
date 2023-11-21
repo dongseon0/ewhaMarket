@@ -14,8 +14,8 @@ class DBhandler:
         review_info = {
             "reviewTitle": data["reviewTitle"],
             "reviewContents": data["reviewContents"],
+            "starsVariable": data["starsVariable"],
             "img_path": img_path
-            # "star":
         }
         self.db.child("review").child(name).set(review_info)
         print(data, img_path)
