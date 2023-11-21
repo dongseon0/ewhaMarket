@@ -82,7 +82,7 @@ def reg_item_submit_post():
     image_file.save("static/images/{}".format(image_file.filename))
     data = request.form
     DB.insert_item(data['name'], data, image_file.filename)
-    return render_template("submit_item_result.html", data=data, img_path="static/images/{}".format(image_file.filename))
+    return render_template("details_of_item.html", data=data, img_path="static/images/{}".format(image_file.filename))
 
 
 @application.route("/login")
