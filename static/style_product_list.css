@@ -71,10 +71,7 @@ hr {
 }
 
 .content {
-    display: flex;
-    /*text-align: center;
-    flex-wrap: wrap;*/
-    /* 열 대신 행으로 정렬 */
+    margin: auto;
 }
 
 .product {
