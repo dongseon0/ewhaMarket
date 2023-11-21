@@ -72,8 +72,8 @@ hr {
 
 .content {
     display: flex;
-    text-align: center;
-    flex-wrap: wrap;
+    /*text-align: center;
+    flex-wrap: wrap;*/
     /* 열 대신 행으로 정렬 */
 }
 
@@ -88,6 +88,7 @@ hr {
     vertical-align: middle;
 }
 
+/*
 .auction_product {
     background-color: rgba(178, 34, 34, 0.658);
     text-align: center;
@@ -101,6 +102,7 @@ hr {
     border-radius: 100%;
     font-size: 120%;
 }
+*/
 
 .desc {
     margin-top: 5%;
@@ -111,31 +113,30 @@ hr {
     border: 0.3px solid skyblue;
 }
 
-
-
-.pagination {
+.page-nation {
     display: flex;
     list-style: none;
     padding: 0;
     justify-content: center;
 }
 
-.pagination li {
+.page-nation li {
     margin: 0 5px;
 }
 
-.pagination a {
+.page-nation a {
     text-decoration: none;
     padding: 5px 10px;
     border: 1px solid #ccc;
     border-radius: 3px;
 }
 
-.pagination a.active {
+.page-nation a.active {
     background-color: #333;
     color: #fff;
 }
 
+/*
 .page-nation li{
     list-style: none;
 }
@@ -167,3 +168,4 @@ hr {
     text-decoration: none;
     font-weight: bold;
 }
+*/
