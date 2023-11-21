@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
     <!--참조하는 부분 넣음-->
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <script src="{{ url_for('static', filename='main.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css', _external=True) }}">
+    <script src="{{ url_for('static', filename='main.js', _external=True) }}"></script>
 
 <head>
     <meta charset="UTF-8">
@@ -65,7 +65,7 @@
 
         }
 
-        li a {
+        li a1 {
             float: left;
             display: block;
             text-align: left;
@@ -216,13 +216,13 @@
                     <tr>
                         <th>상품상태</th>
                         <td>{% if data['status'] == "lnew" %}
-                            사용감 거의 없음<br>
+                            거의 새 상품<br>
                             {% endif %}
                             {% if data['status'] == "new" %}
-                            사용감 아예 없음<br>
+                            새 상품<br>
                             {% endif %}
                             {% if data['status'] == "used" %}
-                            사용감 있음<br>
+                            중고 상품<br>
                             {% endif %}</td>
                     </tr>
                         <th>연락처</th>
@@ -263,9 +263,9 @@
             <div class="more">
                 <hr style="width:90%">
                 <ul>
-                    <li><a href="#" style="background-color:rgb(219, 236, 243);">추가정보</a></li>
-                    <li><a>|</a></li>
-                    <li><a href="#" style="background-color:rgb(219, 236, 243);">댓글(1)</a></li>
+                    <li><a1 href="#" style="background-color:rgb(219, 236, 243);">추가정보</a1></li>
+                    <li><a1>|</a1></li>
+                    <li><a1 href="#" style="background-color:rgb(219, 236, 243);">댓글(1)</a1></li>
                 </ul>
             </div>
 
