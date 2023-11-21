@@ -1,8 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-    <!--참조하는 부분 넣음-->
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css', _external=True) }}">
-    <script src="{{ url_for('static', filename='main.js', _external=True) }}"></script>
 
 <head>
     <meta charset="UTF-8">
@@ -11,6 +8,7 @@
         * {
             font-family: Arial, Helvetica, sans-serif;
         }
+
         .wrapper {
             width: 900px;
             cursor: default;
@@ -26,9 +24,9 @@
         }
 
         hr {
-             border: 1.5px solid rgb(163, 223, 249);
-             width: 100%;
-         }
+            border: 1.5px solid rgb(163, 223, 249);
+            width: 100%;
+        }
 
         table,
         th,
@@ -128,7 +126,7 @@
         }
 
         .btn-love {
-            background-color: aliceblue; 
+            background-color: aliceblue;
             color: #1e6b7b;
             border-radius: 5px;
             border: 3px solid aliceblue;
@@ -202,8 +200,7 @@
 
             <div class="columnleft">
                 <img style="border-radius: 10px 10px; box-shadow: 0 3px 3px rgba(0,0,0,0.2)"
-                src="../../static/images/{{data.img_path}}" 
-                width="320" alt="item">
+                    src="../../static/images/{{data.img_path}}" width="320" alt="item">
             </div>
 
             <div class="columnright">
@@ -225,8 +222,8 @@
                             중고 상품<br>
                             {% endif %}</td>
                     </tr>
-                        <th>연락처</th>
-                        <td>{{data.phone}}</td>
+                    <th>연락처</th>
+                    <td>{{data.phone}}</td>
                     <tr>
                         <th>거래방식</th>
                         <td>{%if data['method'] == "delivery"%}
@@ -290,6 +287,13 @@
             </div>
         </div>
     </div>
+
+    <script>
+        css = document.getElementById("style-css");
+        css.href = "../../static/style.css";
+        logo = document.getElementById("navbar-logo");
+        logo.src = "../../static/images/logo2.png";
+    </script>
     {% endblock section %}
 </body>
 
