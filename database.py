@@ -10,14 +10,14 @@ class DBhandler:
         firebase = pyrebase.initialize_app(config)
         self.db = firebase.database()
 
-    def insert_review(self, name, data, img_path):
+    def insert_review(self, data, img_path):
         review_info = {
             "reviewTitle": data["reviewTitle"],
             "reviewContents": data["reviewContents"],
             "starsVariable": data["starsVariable"],
             "img_path": img_path
         }
-        self.db.child("review").child(name).set(review_info)
+        self.db.child("review").child(data["reviewTitle"]).set(review_info)
         print(data, img_path)
         return True
 
