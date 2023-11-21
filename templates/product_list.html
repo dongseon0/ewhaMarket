@@ -20,7 +20,7 @@
         <tr>
             {% for key, value in row1 %}
             <td onclick="location.href='/view_detail/{{key}}/';" style="cursor:pointer;">
-                <img src="static/images/{{value.img_path}}", width = 140, height = 200>
+                <img src="static/images/{{value.img_path}}" , width=140, height=200>
             </td>
             {% endfor %}
         </tr>
@@ -32,7 +32,7 @@
         <tr>
             {% for key, value in row2 %}
             <td onclick="location.href='/view_detail/{{key}}/';" style="cursor:pointer;">
-                <img src="static/images/{{value.img_path}}", width = 140, height = 200>
+                <img src="static/images/{{value.img_path}}" , width=140, height=200>
             </td>
             {% endfor %}
         </tr>
@@ -50,11 +50,11 @@
         </div>
     </div>
     {% else %}
-        <p>
-            등록된 상품이 없습니다.
-        </p>
+    <p>
+        등록된 상품이 없습니다.
+    </p>
     {% endif %}
-    
+
     <div class="wrapper">
         <div class="text">상품 리스트</div>
         <hr>
@@ -69,7 +69,8 @@
         <div class="content">
             <div class="product">
                 <a target="_blank" href="">
-                    <img href="details_of_item.html" src="https://1801889e95b1f9bf.kinxzone.com/webfile/product/5/5231/209q2e90g00a.jpg"
+                    <img href="details_of_item.html"
+                        src="https://1801889e95b1f9bf.kinxzone.com/webfile/product/5/5231/209q2e90g00a.jpg"
                         alt="product1" width="200px" height="200px">
                 </a>
                 <div class="auction_product">

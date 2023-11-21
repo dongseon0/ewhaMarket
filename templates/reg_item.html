@@ -2,7 +2,7 @@
 
 {% block section %}
 <link rel="stylesheet" href="../static/reg_item.css" />
-<script src = "../static/reg_item.js"></script>
+<script src="../static/reg_item.js"></script>
 <form method="post" enctype="multipart/form-data" action="/submit_item_post">
     <div class="wrapper">
         <main class="product-registration">
@@ -43,9 +43,9 @@
                             </label>
                         </div> -->
                         <select id="status" class="select-status" name="status">
-                        <option value="new" selected>새 상품</option>
-                        <option value="lnew">거의 새 상품</option>
-                        <option value="used">중고 상품</option>
+                            <option value="new" selected>새 상품</option>
+                            <option value="lnew">거의 새 상품</option>
+                            <option value="used">중고 상품</option>
                         </select>
                     </div>
                 </li>
@@ -76,8 +76,8 @@
                             </label>
                         </div> -->
                         <select id="method" class="select-transaction-method" name="method">
-                        <option value="delivery" selected>택배 거래</option>
-                        <option value="direct">직거래</option>
+                            <option value="delivery" selected>택배 거래</option>
+                            <option value="direct">직거래</option>
                         </select>
                     </div>
                 </li>
@@ -95,7 +95,8 @@
                             </div>
                             <input class="input-location" readonly placeholder="선호 지역을 설정해주세요."
                                 class="select-location-text" value=""> -->
-                            <input id="location" name="location" class="input-location" type="text" placeholder="선호 거래 지역을 입력해주세요.">
+                            <input id="location" name="location" class="input-location" type="text"
+                                placeholder="선호 거래 지역을 입력해주세요.">
                         </div>
                     </div>
                 </li>
@@ -105,7 +106,8 @@
                     </h4>
                     <div class="inside">
                         <div class="input-quntity">
-                            <input id="quantity" name="quantity" type="text" class="input-quantity" placeholder="숫자만 입력해주세요.">
+                            <input id="quantity" name="quantity" type="text" class="input-quantity"
+                                placeholder="숫자만 입력해주세요.">
                             <span>개</span>
                         </div>
                     </div>
@@ -142,21 +144,23 @@
                     <div class="inside">
                         <div class="select-pricing-method">
                             <label for="고정 가격" class="fixed-price">
-                                <input id="고정 가격" name = "select-pricing-button" type="radio" value="고정가격" onclick = "div_OnOff(this.value, 'fixed-pricing-box')">
+                                <input id="고정 가격" name="select-pricing-button" type="radio" value="고정가격"
+                                    onclick="div_OnOff(this.value, 'fixed-pricing-box')">
                                 고정 가격
                             </label>
                             <label for="경매" class="auction">
-                                <input id="경매" name = "select-pricing-button" type="radio" value="경매" onclick = "div_OnOff(this.value, 'auction-section')">
+                                <input id="경매" name="select-pricing-button" type="radio" value="경매"
+                                    onclick="div_OnOff(this.value, 'auction-section')">
                                 경매
                             </label>
                         </div>
-                        <div class="fixed-pricing-box" id = "fixed-pricing-box" style="display: none;">
+                        <div class="fixed-pricing-box" id="fixed-pricing-box" style="display: none;">
                             <div class="input-fixed-pricing">
                                 <input type="text" placeholder="가격을 입력해주세요." class="fixed-pricing-text" value="">
                                 <span>원</span>
                             </div>
                         </div>
-                        <div class="auction-section" id = "auction-section" style = "display: none;">
+                        <div class="auction-section" id="auction-section" style="display: none;">
                             <div class="start-price-box">
                                 <h5 class="small-title">
                                     시작가
@@ -207,7 +211,8 @@
                     </h4>
                     <div class="inside">
                         <div class="contact-information-box">
-                            <input id="phone" name="phone" type="text" placeholder="연락처를 입력해주세요." class="contact-information-text">
+                            <input id="phone" name="phone" type="text" placeholder="연락처를 입력해주세요."
+                                class="contact-information-text">
                         </div>
                     </div>
                 </li>
