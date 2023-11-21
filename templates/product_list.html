@@ -26,23 +26,18 @@
             <div class="product">
                 <tr>
                     {% for key, value in row1 %}
-                    <td class="desc">상품이름: {{key}}</td>
+                    <td onclick="location.href='/view_detail/{{key}}/';" style="cursor:pointer;">
+                        <img src="static/images/{{value.img_path}}" , width=200px height=200px>
+                    </td>
                     {% endfor %}
                 </tr>
                 <tr>
                     {% for key, value in row1 %}
-                    <td onclick="location.href='/view_detail/{{key}}/';" style="cursor:pointer;">
-                        <img src="static/images/{{value.img_path}}" , width=200px height=200px>
-                    </td>
+                    <td class="desc">{{key}}</td>
                     {% endfor %}
                 </tr>
             </div>
             <div class="product">
-                <tr>
-                    {% for key, value in row2 %}
-                    <td class="desc">상품이름: {{key}}</td>
-                    {% endfor %}
-                </tr>
                 <tr>
                     {% for key, value in row2 %}
                     <td onclick="location.href='/view_detail/{{key}}/';" style="cursor:pointer;">
@@ -50,13 +45,13 @@
                     </td>
                     {% endfor %}
                 </tr>
-            </div>
-            <div class="product">
                 <tr>
-                    {% for key, value in row3 %}
-                    <td class="desc">상품이름: {{key}}</td>
+                    {% for key, value in row2 %}
+                    <td class="desc">{{key}}</td>
                     {% endfor %}
                 </tr>
+            </div>
+            <div class="product">
                 <tr>
                     {% for key, value in row3 %}
                     <td onclick="location.href='/view_detail/{{key}}/';" style="cursor:pointer;">
@@ -64,18 +59,23 @@
                     </td>
                     {% endfor %}
                 </tr>
-            </div>
-            <div class="product">
                 <tr>
-                    {% for key, value in row4 %}
-                    <td class="desc">상품이름: {{key}}</td>
+                    {% for key, value in row3 %}
+                    <td class="desc">{{key}}</td>
                     {% endfor %}
                 </tr>
+            </div>
+            <div class="product">
                 <tr>
                     {% for key, value in row4 %}
                     <td onclick="location.href='/view_detail/{{key}}/';" style="cursor:pointer;">
                         <img src="static/images/{{value.img_path}}" , width=200px height=200px>
                     </td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    {% for key, value in row4 %}
+                    <td class="desc">{{key}}</td>
                     {% endfor %}
                 </tr>
             </div>
