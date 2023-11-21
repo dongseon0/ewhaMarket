@@ -19,7 +19,7 @@ def hello():
 def view_list():
     # html에 페이지 인덱스 클릭할 때마다 get으로 받아옴
     page = request.args.get("page", 0, type=int)
-    per_page = 6  # item count to display per page
+    per_page = 12  # item count to display per page
     per_row = 3  # item count to display per row
     row_count = int(per_page/per_row)
     start_idx = per_page*page
@@ -42,6 +42,8 @@ def view_list():
         datas=data.items(),
         row1=locals()['data_0'].items(),
         row2=locals()['data_1'].items(),
+        row3=locals()['data_2'].items(),
+        row4=locals()['data_3'].items(),
         limit=per_page,
         page=page,  # 현재 페이지 인덱스
         page_count=int((item_counts/per_page) + 1),  # 페이지 개수
@@ -62,6 +64,15 @@ def reg_item():
 @application.route("/reg_review")
 def reg_review():
     return render_template("reg_review.html")
+
+
+@application.route("/submit_review_post", methods=['POST'])
+def submit_review_post():
+    image_file = request.files["file"]
+    image_file.save("static/images/{}".format(image_file.filename))
+    data = request.form
+    DB.insert_review(data, image_file.filename)
+    return render_template("details_of_review.html", data=data, img_path=image_file.filename)
 
 
 @application.route("/submit_item")

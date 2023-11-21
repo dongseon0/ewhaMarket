@@ -55,6 +55,10 @@
             margin-left: 12%;
         }
 
+        #stars-variable {
+            display: none;
+        }
+
         #ok {
             float: right;
             width: 14%;
@@ -78,79 +82,84 @@
     {% extends "index.html" %}
 
     {% block section %}
-    <div class="review">
-        <div class="text1">리뷰 작성</div>
-        <hr>
-        <div class="text2"><span class="asterisk">* </span>거래 제목을 입력해주세요</div>
-        <textarea name="review-title" id="review-title" name="review-title" cols="40" rows="1"></textarea>
-        <div class="text3"><span class="asterisk">* </span>거래는 어떠셨나요?</div>
-        <div class="stars">
-            <span class="star" id="0">★</span>
-            <span class="star" id="1">★</span>
-            <span class="star" id="2">★</span>
-            <span class="star" id="3">★</span>
-            <span class="star" id="4">★</span>
+    <form action="/submit_review_post" enctype="multipart/form-data" method="post">
+        <div class="review">
+            <div class="text1">리뷰 작성</div>
+            <hr>
+            <div class="text2"><span class="asterisk">* </span>거래 제목을 입력해주세요</div>
+            <textarea id="review-title" name="reviewTitle" cols="40" rows="1"></textarea>
+            <div class="text3"><span class="asterisk">* </span>거래는 어떠셨나요?</div>
+            <div class="stars">
+                <input type="range" id="stars-variable" name="starsVariable" min="0" max="4" value="0">
+                <span class="star" id="0">★</span>
+                <span class="star" id="1">★</span>
+                <span class="star" id="2">★</span>
+                <span class="star" id="3">★</span>
+                <span class="star" id="4">★</span>
+            </div>
+            <hr>
+            <div class="text2"><span class="asterisk">* </span>솔직한 리뷰를 남겨주세요</div>
+            <textarea id="review-contents" name="reviewContents" cols="75" rows="10"></textarea>
+            <br><br>
+            <input type="file" id="review-image" name="file" />
+            <br><br>
+            <hr>
+            <input type="submit" id="ok" name="ok" value="등록하기">
         </div>
-        <hr>
-        <div class="text2"><span class="asterisk">* </span>솔직한 리뷰를 남겨주세요</div>
-        <textarea name="review-contents" id="review-contents" name="review-contents" cols="75" rows="10"></textarea>
-        <br><br>
-        <input type="file" name="review-image" id="review-image" name="review-image">
-        <br><br>
-        <hr>
-        <input type="button" name="ok" id="ok" name="ok" value="등록하기">
-    </div>
-    <!--☆ ★-->
-    <script>
-        // 별
-        star = 0;
-        stars = document.getElementsByClassName("star");
+        <!--☆ ★-->
+        <script>
+            // 별
+            star = 0;
+            stars = document.getElementsByClassName("star");
+            starsVariable = document.getElementById("stars-variable");
 
-        function starEvent() {
-            for (i = 0; i < stars.length; i++) {
-                stars.item(i).addEventListener("mouseover", function () {
-                    starHoverOn(parseInt(this.id));
-                });
-                stars.item(i).addEventListener("mouseleave", starHoverOff);
-                stars.item(i).addEventListener("click", function () {
-                    starSet(parseInt(this.id));
-                });
-            }
-        }
-
-        function starHoverOn(h) {
-            for (i = 0; i < stars.length; i++) {
-                if (i > h) {
-                    stars.item(i).innerHTML = "☆";
-                } else {
-                    stars.item(i).innerHTML = "★";
+            function starEvent() {
+                for (i = 0; i < stars.length; i++) {
+                    stars.item(i).addEventListener("mouseover", function () {
+                        starHoverOn(parseInt(this.id));
+                    });
+                    stars.item(i).addEventListener("mouseleave", starHoverOff);
+                    stars.item(i).addEventListener("click", function () {
+                        starSet(parseInt(this.id));
+                    });
                 }
             }
-        }
 
-        function starHoverOff() {
-            starFill();
-        }
-
-        function starSet(i) {
-            star = i;
-            starFill();
-        }
-
-        function starFill() {
-            for (i = 0; i < stars.length; i++) {
-                if (i > star) {
-                    stars.item(i).innerHTML = "☆";
-                } else {
-                    stars.item(i).innerHTML = "★";
+            function starHoverOn(h) {
+                for (i = 0; i < stars.length; i++) {
+                    if (i > h) {
+                        stars.item(i).innerHTML = "☆";
+                    } else {
+                        stars.item(i).innerHTML = "★";
+                    }
                 }
             }
-        }
 
-        starEvent();
-        starFill();
-        // 별
-    </script>
+            function starHoverOff() {
+                starFill();
+            }
+
+            function starSet(i) {
+                star = i;
+                starsVariable.value = i;
+                starFill();
+            }
+
+            function starFill() {
+                for (i = 0; i < stars.length; i++) {
+                    if (i > star) {
+                        stars.item(i).innerHTML = "☆";
+                    } else {
+                        stars.item(i).innerHTML = "★";
+                    }
+                }
+            }
+
+            starEvent();
+            starFill();
+            // 별
+        </script>
+    </form>
     {% endblock section %}
 </body>
 
