@@ -99,8 +99,8 @@
     {% block section %}
     <div class="review">
         <img src="../static/images/jungwha.jpeg" id="profile">
-        <div id="user-id"></div>
-        <div id="review-title"></div>
+        <div id="user-id">JUNGH150</div>
+        <div id="review-title">{{data.reviewTitle}}</div>
         <div class="stars">
             <span class="star" id="0">★</span>
             <span class="star" id="1">★</span>
@@ -109,10 +109,10 @@
             <span class="star" id="4">★</span>
         </div>
         <hr>
-        <div id="product-title"></div>
-        <img src="../static/images/watch.jpeg" id="product-image">
+        <div id="product-title">갤럭시 워치4 LTE 모델 40인치</div>
+        <img src="../static/images/{{img_path}}" id="product-image">
         <br>
-        <div id="review-contents"></div>
+        <div id="review-contents">{{data.reviewContents}}</div>
         <br>
         <hr>
         <input type="button" name="good" id="good">
@@ -135,17 +135,17 @@
         starFill();
         // 별
 
-        userId = document.getElementById("user-id");
-        userId.innerHTML = "JUNGH150";
+        // userId = document.getElementById("user-id");
+        // userId.innerHTML = "JUNGH150";
 
-        reviewTitle = document.getElementById("review-title");
-        reviewTitle.innerHTML = "답장이 빠르고 친절해요!";
+        // reviewTitle = document.getElementById("review-title");
+        // reviewTitle.innerHTML = "답장이 빠르고 친절해요!";
 
-        productTitle = document.getElementById("product-title");
-        productTitle.innerHTML = "갤럭시 워치4 LTE 모델 40인치";
+        // productTitle = document.getElementById("product-title");
+        // productTitle.innerHTML = "갤럭시 워치4 LTE 모델 40인치";
 
-        reviewContents = document.getElementById("review-contents");
-        reviewContents.innerHTML = "경매는 처음이라 무서웠는데 벗의 물건으로 한다는 거 자체가 너무 안심됐어요! 꼭 갖고 싶었던 물건이었는데 작은 메모지도 챙겨주시고 너무 감사했습니다^^";
+        // reviewContents = document.getElementById("review-contents");
+        // reviewContents.innerHTML = "경매는 처음이라 무서웠는데 벗의 물건으로 한다는 거 자체가 너무 안심됐어요! 꼭 갖고 싶었던 물건이었는데 작은 메모지도 챙겨주시고 너무 감사했습니다^^";
 
         // 따봉, 우우~
         good = 0;
