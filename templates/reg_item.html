@@ -56,7 +56,7 @@
                     <div class="inside">
                         <div class="input-description">
                             <textarea id="description" name="description" rows="6" class="input-description-box"
-                                placeholder="구매시기, 브랜드/모델명, 제품의 상태 (사용감, 하자 유무) 등을 입력해주세요."></textarea>
+                                placeholder="구매시기, 브랜드/모델명, 제품의 상태(사용감, 하자 유무)등을 입력해주세요."></textarea>
                         </div>
                     </div>
                 </li>
@@ -145,12 +145,12 @@
                         <div class="select-pricing-method">
                             <label for="고정 가격" class="fixed-price">
                                 <input id="고정 가격" name="select-pricing-button" type="radio" value="고정가격"
-                                    onclick="div_OnOff(this.value, 'fixed-pricing-box')">
+                                    onclick="div_OnOff('fixed-pricing-box', 'auction-section')">
                                 고정 가격
                             </label>
                             <label for="경매" class="auction">
                                 <input id="경매" name="select-pricing-button" type="radio" value="경매"
-                                    onclick="div_OnOff(this.value, 'auction-section')">
+                                    onclick="div_OnOff('auction-section', 'fixed-pricing-box')">
                                 경매
                             </label>
                         </div>

@@ -23,11 +23,11 @@ li {
 }
 
 .inside {
-    margin: 2% 5% 2% 0%;
+    margin: 2% 10% 2% 0%;
 }
 
 textarea {
-    width: 267%;
+    width: 299%;
     resize: none;
     padding: 5%;
 }
@@ -62,8 +62,22 @@ textarea {
 }
 
 .fixed-pricing-text {
-    width: 60%;
+    width: 70%;
     padding: 1% 40px 1% 1%;
+    margin: 5% 1% 1% 1%;
+}
+
+.auction-section {
+    width: 200%;
+}
+
+.input-start-price-text{
+    width: 50%;
+    padding: 1% 1% 1% 1%;
+}
+
+.fixed-pricing-box {
+    width: 105%;
 }
 
 hr {
