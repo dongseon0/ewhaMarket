@@ -74,7 +74,7 @@
     {% extends "index.html" %}
 
     {% block section %}
-    <form action="/reg_review" enctype="multipart/form-data" method="post">
+    <form method="post" enctype="multipart/form-data" action="/submit_review_post">
         <div class="review">
             <input type="text" id="product-name" name="productName" value="{{name}}">
             <div class="text1">리뷰 작성</div>

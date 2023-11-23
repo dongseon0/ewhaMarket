@@ -55,33 +55,6 @@ def view_list():
 def reg_item():
     return render_template("reg_item.html")
 
-
-@application.route("/reg_review/<name>/")
-def reg_review_init(name):
-    return render_template("reg_review.html", name=name)
-
-
-@application.route("/reg_review", methods=['POST'])
-def reg_review():
-    image_file = request.files["file"]
-    image_file.save("static/images/{}".format(image_file.filename))
-    data = request.form
-    name = data.get('productName')
-    DB.reg_review(data, image_file.filename)
-    return redirect(url_for('view_review', name=name))
-
-
-@application.route("/details_of_review/<name>/")
-def view_review(name):
-    data = DB.get_review(str(name))
-    return render_template("details_of_review.html", name=name, data=data)
-
-
-@application.route("/user_reviews")
-def view_user_review():
-    return render_template("user_reviews.html")
-
-
 @application.route("/submit_item")
 def reg_item_submit():
     name = request.args.get("name")
@@ -172,12 +145,77 @@ def personal():
 def DynamicUrl(variable_name):
     return str(variable_name)
 
-
+#상품/리뷰 상세보기 
 @application.route("/view_detail/<name>/")
 def view_item_detail(name):
     # get_item_byname 상품 이름으로 데이터 가져오는 함수 생성
     data = DB.get_item_byname(str(name))
     return render_template("details_of_item.html", name=name, data=data)
+
+@application.route("/view_detail_review/<name>/")
+def view_review_detail(name):
+    data = DB.get_review_byname(str(name))
+    return render_template("details_of_review.html", name=name, data=data)
+
+
+#리뷰
+@application.route("/")
+def hello1():
+    # return render_template("index.html")
+    return redirect(url_for('view_reviews'))
+
+@application.route("/user_reviews")
+def view_reviews():
+    page = request.args.get("page", 0, type=int)
+    per_page = 5  # item count to display per page
+    per_row = 1  # item count to display per row
+    row_count = int(per_page/per_row)
+    start_idx = per_page*page
+    end_idx = per_page*(page+1)  # 페이지 인덱스로 start_idx, end_idx 생성
+    data = DB.get_reviews()  # read the table
+    item_counts = len(data)
+
+    # 한 페이지에 start_idx, end_idx 만큼 읽어오기
+    data = dict(list(data.items())[start_idx:end_idx])
+    tot_count = len(data)
+    for i in range(row_count):  # last row
+        if (i == row_count-1) and (tot_count % per_row != 0):
+            locals()['data_{}'.format(i)] = dict(
+                list(data.items())[i*per_row:])
+        else:
+            locals()['data_{}'.format(i)] = dict(
+                list(data.items())[i*per_row:(i+1)*per_row])
+
+    return render_template(
+        "user_reviews.html",
+        datas=data.items(),
+        row1=locals()['data_0'].items(),
+        row2=locals()['data_1'].items(),
+        row3=locals()['data_2'].items(),
+        row4=locals()['data_3'].items(),
+        row5=locals()['data_4'].items(),
+        limit=per_page,
+        page=page,  # 현재 페이지 인덱스
+        page_count=int((item_counts/per_page) + 1),  # 페이지 개수
+        total=item_counts
+    )
+
+@application.route("/reg_review/<name>/")
+def reg_review_init(name):
+    return render_template("reg_review.html", name=name)
+
+@application.route("/reg_review")
+def reg_review():
+    return render_template("reg_review.html")
+
+
+@application.route("/submit_review_post", methods=['POST'])
+def reg_review_submit_post():
+    image_file = request.files["file"]
+    image_file.save("static/images/{}".format(image_file.filename))
+    data = request.form
+    DB.insert_review(data['reviewTitle'], data, image_file.filename)
+    return render_template("user_reviews.html", data=data, img_path="static/images/{}".format(image_file.filename))
 
 
 if __name__ == "__main__":

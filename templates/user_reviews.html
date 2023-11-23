@@ -1,8 +1,6 @@
 {% extends "index.html" %}
 
 {% block section %}
-<!DOCTYPE html>
-<html>
 
 <head>
     <meta charset="UTF-8">
@@ -10,8 +8,9 @@
 </head>
 
 <body>
-    <div class="wrapper">
 
+
+    <div class="wrapper">
         <div class="text">USER0918 리뷰</div>
         <hr>
 
@@ -19,76 +18,207 @@
             <a href="/user_list">판매내역</a>
             <a href="/user_reviews">리뷰</a>
         </div>
-
         <hr>
+        {% if total > 0 %}
+        <p class="count_review">
+            {{total}}개의 리뷰
+        </p>
 
         <div class="review">
-            <img src="https://media.istockphoto.com/id/1314335932/vector/user-avatar-profile-icon-black-vector-illustration-website-or-app-member-ui-button.jpg?s=170667a&w=0&k=20&c=VpanApZWDaoSl_Q7cn3vw6tM8aG5Js4f9gGuo7F3N2A="
-                alt="리뷰 사진 1">
-            <div>
-                <p><b>사용자 아이디 1</b></p>
-                <p>답장이 빠르고 친절해요.</p>
-                <div class="rating">
-                    <p>별점: ★★★☆☆</p>
+            {% for key, value in row1 %}
+            <td onclick="location.href='/view_detail_review/{{key}}/';" style="cursor:pointer;">
+                <img src="static/images/{{value.img_path}}">
+                <div>
+                    <p><b>{{value.reviewTitle}}</b></p>
+                    <p>{{value.reviewContents}}</p>
+                    <div class="rating">
+                        {% for i in range(1, 6) %}
+                            {% if i <= value.starsVariable|default(0)|int %}
+                                <span class="filled-star">★</span>
+                            {% else %}
+                                <span class="empty-star">☆</span>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
                 </div>
-            </div>
+            </td>
+            {% endfor %}
         </div>
 
         <div class="review">
-            <img src="https://media.istockphoto.com/id/1314335932/vector/user-avatar-profile-icon-black-vector-illustration-website-or-app-member-ui-button.jpg?s=170667a&w=0&k=20&c=VpanApZWDaoSl_Q7cn3vw6tM8aG5Js4f9gGuo7F3N2A="
-                alt="리뷰 사진 2">
-            <div>
-                <p><b>사용자 아이디 2</b></p>
-                <p>약속 시간을 잘 지켜요.</p>
-                <div class="rating">
-                    <p>별점: ★★★★☆</p>
+            {% for key, value in row2 %}
+            <td onclick="location.href='/view_detail_review/{{key}}/';" style="cursor:pointer;">
+                <img src="static/images/{{value.img_path}}">
+                <div>
+                    <p><b>{{value.reviewTitle}}</b></p>
+                    <p>{{value.reviewContents}}</p>
+                    <div class="rating">
+                        {% for i in range(1, 6) %}
+                            {% if i <= value.starsVariable|default(0)|int %}
+                                <span class="filled-star">★</span>
+                            {% else %}
+                                <span class="empty-star">☆</span>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
                 </div>
-            </div>
+            </td>
+            {% endfor %}
         </div>
 
         <div class="review">
-            <img src="https://media.istockphoto.com/id/1314335932/vector/user-avatar-profile-icon-black-vector-illustration-website-or-app-member-ui-button.jpg?s=170667a&w=0&k=20&c=VpanApZWDaoSl_Q7cn3vw6tM8aG5Js4f9gGuo7F3N2A="
-                alt="리뷰 사진 3">
-            <div>
-                <p><b>사용자 아이디 3</b></p>
-                <p>쿨거래 했더니 가격 내려주셨어요.</p>
-                <div class="rating">
-                    <p>별점: ★★☆☆☆</p>
+            {% for key, value in row3 %}
+            <td onclick="location.href='/view_detail_review/{{key}}/';" style="cursor:pointer;">
+                <img src="static/images/{{value.img_path}}">
+                <div>
+                    <p><b>{{value.reviewTitle}}</b></p>
+                    <p>{{value.reviewContents}}</p>
+                    <div class="rating">
+                        {% for i in range(1, 6) %}
+                            {% if i <= value.starsVariable|default(0)|int %}
+                                <span class="filled-star">★</span>
+                            {% else %}
+                                <span class="empty-star">☆</span>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
                 </div>
-            </div>
+            </td>
+            {% endfor %}
         </div>
 
         <div class="review">
-            <img src="https://media.istockphoto.com/id/1314335932/vector/user-avatar-profile-icon-black-vector-illustration-website-or-app-member-ui-button.jpg?s=170667a&w=0&k=20&c=VpanApZWDaoSl_Q7cn3vw6tM8aG5Js4f9gGuo7F3N2A="
-                alt="리뷰 사진 4">
-            <div>
-                <p><b>사용자 아이디 4</b></p>
-                <p>늦은 시간에 연락드려도 확인 빠르세요.</p>
-                <div class="rating">
-                    <p>별점: ★★★★★</p>
+            {% for key, value in row4 %}
+            <td onclick="location.href='/view_detail_review/{{key}}/';" style="cursor:pointer;">
+                <img src="static/images/{{value.img_path}}">
+                <div>
+                    <p><b>{{value.reviewTitle}}</b></p>
+                    <p>{{value.reviewContents}}</p>
+                    <div class="rating">
+                        {% for i in range(1, 6) %}
+                            {% if i <= value.starsVariable|default(0)|int %}
+                                <span class="filled-star">★</span>
+                            {% else %}
+                                <span class="empty-star">☆</span>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
                 </div>
-            </div>
+            </td>
+            {% endfor %}
         </div>
 
         <div class="review">
-            <img src="https://media.istockphoto.com/id/1314335932/vector/user-avatar-profile-icon-black-vector-illustration-website-or-app-member-ui-button.jpg?s=170667a&w=0&k=20&c=VpanApZWDaoSl_Q7cn3vw6tM8aG5Js4f9gGuo7F3N2A="
-                alt="리뷰 사진 5">
-            <div>
-                <p><b>사용자 아이디 5</b></p>
-                <p>굿!</p>
-                <div class="rating">
-                    <p>별점: ★★☆☆☆</p>
+            {% for key, value in row5 %}
+            <td onclick="location.href='/view_detail_review/{{key}}/';" style="cursor:pointer;">
+                <img src="static/images/{{value.img_path}}">
+                <div>
+                    <p><b>{{value.reviewTitle}}</b></p>
+                    <p>{{value.reviewContents}}</p>
+                    <div class="rating">
+                        {% for i in range(1, 6) %}
+                            {% if i <= value.starsVariable|default(0)|int %}
+                                <span class="filled-star">★</span>
+                            {% else %}
+                                <span class="empty-star">☆</span>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
                 </div>
+            </td>
+            {% endfor %}
+        </div>
+
+        <div class="page-wrap">
+            <div class="page-nation">
+                <ul>
+                    <li>
+                        {% for i in range(page_count) %}
+                        <a href="{{url_for('view_reviews', page=i)}}" color="black">{{i+1}}</a>
+                        {% endfor %}
+                    </li>
+                </ul>
             </div>
         </div>
 
-        <ul class="pagination">
-            <li><a href="#" class="active">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-        </ul>
+        {% else %}
+        <p>
+            등록된 리뷰가 없습니다.
+        </p>
+        {% endif %}
     </div>
 </body>
 
-</html>
+
 {% endblock section %}
+<!---
+        <table class="content">
+            <div class="reviews">
+                <tr>
+                    {% for key, value in row1 %}
+                    <td onclick="location.href='/view_detail_review/{{key}}/';" style="cursor:pointer;">
+                        <img src="static/images/{{value.img_path}}" , width=150px height=150px >
+                        <p>{{value.reviewTitle}}</p>
+                        <hr>
+                    </td>
+                    {% endfor %}
+                </tr>
+            </div>
+            
+
+            <div class="reviews">
+                <tr>
+                    {% for key, value in row2 %}
+                    <td onclick="location.href='/view_detail_review/{{key}}/';" style="cursor:pointer;">
+                        <img src="static/images/{{value.img_path}}" , width=150px height=150px>
+                        <p>{{value.reviewTitle}}</p>
+                    </td>
+                    {% endfor %}
+                </tr>
+                
+            </div>
+
+            <div class="reviews">
+                <tr>
+                    {% for key, value in row3 %}
+                    <td onclick="location.href='/view_detail_review/{{key}}/';" style="cursor:pointer;">
+                        <img src="static/images/{{value.img_path}}" , width=200px height=200px>
+                    </td>
+                    {% endfor %}
+                </tr>
+               
+            </div>
+
+            <div class="reviews">
+                <tr>
+                    {% for key, value in row4 %}
+                    <td onclick="location.href='/view_detail_review/{{key}}/';" style="cursor:pointer;">
+                        <img src="static/images/{{value.img_path}}" , width=200px height=200px>
+                    </td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    {% for key, value in row4 %}
+                    <td class="desc">{{key}}</td>
+                    {% endfor %}
+                </tr>
+            </div>
+
+            <div class="reviews">
+                <tr>
+                    {% for key, value in row5 %}
+                    <td onclick="location.href='/view_detail_review/{{key}}/';" style="cursor:pointer;">
+                        <img src="static/images/{{value.img_path}}" , width=200px height=200px>
+                    </td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    {% for key, value in row5 %}
+                    <td class="desc">{{key}}</td>
+                    {% endfor %}
+                </tr>
+            </div>
+
+        </table>
+    -->
+<!--페이지네이션-->

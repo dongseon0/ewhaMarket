@@ -10,36 +10,7 @@ class DBhandler:
         firebase = pyrebase.initialize_app(config)
         self.db = firebase.database()
 
-    def reg_review(self, data, img_path):
-        review_info = {
-            "reviewTitle": data["reviewTitle"],
-            "reviewContents": data["reviewContents"],
-            "starsVariable": data["starsVariable"],
-            "img_path": img_path
-        }
-        self.db.child("review").child(data["productName"]).set(review_info)
-        return True
-
-    def get_review(self, name):
-        items = self.db.child("review").child(name).get().val()
-        return items
-
-    def insert_item(self, name, data, img_path):
-        item_info = {
-            "name": data["name"],
-            "status": data["status"],
-            "description": data["description"],
-            "method": data["method"],
-            "location": data["location"],
-            "quantity": data["quantity"],
-            "category": data["category"],
-            "tag": data["tag"],
-            "phone": data["phone"],
-            "img_path": img_path
-        }
-        self.db.child("item").push(item_info)
-        return True
-
+#user db
     def insert_user(self, data, pw):
         user_info = {
             "id": data['id'],
@@ -72,6 +43,24 @@ class DBhandler:
                 return True
         return False
 
+#상품db
+    def insert_item(self, name, data, img_path):
+        item_info = {
+            "name": data["name"],
+            "status": data["status"],
+            "description": data["description"],
+            "method": data["method"],
+            "location": data["location"],
+            "quantity": data["quantity"],
+            "category": data["category"],
+            "tag": data["tag"],
+            "phone": data["phone"],
+            "img_path": img_path
+        }
+        self.db.child("item").child(name).set(item_info)
+        print(data, img_path)
+        return True
+
     def get_items(self):
         items = self.db.child("item").get().val()
         return items
@@ -79,7 +68,35 @@ class DBhandler:
     def get_item_byname(self, name):
         items = self.db.child("item").get()
         target_value = ""
+        print("###########", name)
         for res in items.each():
+            key_value = res.key()
+
+            if key_value == name:
+                target_value = res.val()
+        return target_value
+
+
+#리뷰db
+    def insert_review(self, name, data, img_path):
+        review_info = {
+            "reviewTitle": data["reviewTitle"],
+            "reviewContents": data["reviewContents"],
+            "starsVariable": data["starsVariable"],
+            "img_path": img_path
+        }
+        self.db.child("review").child(name).set(review_info)
+        return True
+        
+    def get_reviews(self):
+        reviews = self.db.child("review").get().val()
+        return reviews
+
+    def get_review_byname(self, name):
+        reviews = self.db.child("review").get()
+        target_value = ""
+    
+        for res in reviews.each():
             key_value = res.key()
 
             if key_value == name:
