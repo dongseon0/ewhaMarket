@@ -56,18 +56,18 @@ def reg_item():
     return render_template("reg_item.html")
 
 
-@application.route("/reg_review")
+@application.route("/reg_review/<name>/")
+def reg_review_init(name):
+    return render_template("reg_review.html", name=name)
+
+
+@application.route("/reg_review", methods=['POST'])
 def reg_review():
-    return render_template("reg_review.html")
-
-
-@application.route("/submit_review_post", methods=['POST'])
-def submit_review_post():
     image_file = request.files["file"]
     image_file.save("static/images/{}".format(image_file.filename))
-    data = request.form
-    DB.insert_review(data, image_file.filename)
-    return render_template("details_of_review.html", data=data, img_path=image_file.filename)
+    data=request.form
+    DB.reg_review(data, image_file.filename)
+    return redirect(url_for('view_review'), data=data, img_path=image_file.filename)
 
 
 @application.route("/user_reviews")
