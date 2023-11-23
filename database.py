@@ -38,7 +38,6 @@ class DBhandler:
             "img_path": img_path
         }
         self.db.child("item").child(name).set(item_info)
-        print(data, img_path)
         return True
 
     def insert_user(self, data, pw):
@@ -49,14 +48,12 @@ class DBhandler:
         }
         if self.user_duplicate_check(str(data['id'])):
             self.db.child("user").push(user_info)
-            print(data)
             return True
         else:
             return False
 
     def user_duplicate_check(self, id_string):
         users = self.db.child("user").get()
-        print("users###", users.val())
         if str(users.val()) == "None":  # first registration
             return True
         else:
@@ -82,7 +79,6 @@ class DBhandler:
     def get_item_byname(self, name):
         items = self.db.child("item").get()
         target_value = ""
-        print("###########", name)
         for res in items.each():
             key_value = res.key()
 
