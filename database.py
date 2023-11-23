@@ -37,7 +37,7 @@ class DBhandler:
             "phone": data["phone"],
             "img_path": img_path
         }
-        self.db.child("item").child(name).set(item_info)
+        self.db.child("item").push(item_info)
         return True
 
     def insert_user(self, data, pw):
