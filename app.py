@@ -175,10 +175,8 @@ def DynamicUrl(variable_name):
 
 @application.route("/view_detail/<name>/")
 def view_item_detail(name):
-    print("###name:", name)
     # get_item_byname 상품 이름으로 데이터 가져오는 함수 생성
     data = DB.get_item_byname(str(name))
-    print("####data:", data)
     return render_template("details_of_item.html", name=name, data=data)
 
 
