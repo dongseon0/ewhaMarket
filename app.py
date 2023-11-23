@@ -58,7 +58,11 @@ def reg_item():
 
 @application.route("/reg_review/<name>/")
 def reg_review_init(name):
-    return render_template("reg_review.html", name=name)
+    if session.get('id') is None:
+        flash("로그인하쇼")
+        return render_template("login.html")
+    else:
+        return render_template("reg_review.html", id=session.get('id'), name=name)
 
 
 @application.route("/reg_review", methods=['POST'])
@@ -67,14 +71,15 @@ def reg_review():
     image_file.save("static/images/{}".format(image_file.filename))
     data = request.form
     name = data.get('productName')
-    DB.reg_review(data, image_file.filename)
+    id = session.get('id')
+    DB.reg_review(data, image_file.filename, id=id)
     return redirect(url_for('view_review', name=name))
 
 
 @application.route("/details_of_review/<name>/")
 def view_review(name):
     data = DB.get_review(str(name))
-    return render_template("details_of_review.html", name=name, data=data)
+    return render_template("details_of_review.html", id=session.get('id'), name=name, data=data)
 
 
 @application.route("/user_reviews")

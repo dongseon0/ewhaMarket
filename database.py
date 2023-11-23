@@ -10,8 +10,10 @@ class DBhandler:
         firebase = pyrebase.initialize_app(config)
         self.db = firebase.database()
 
-    def reg_review(self, data, img_path):
+    def reg_review(self, data, img_path, id):
         review_info = {
+            "buyerId": id,
+            "productName": data["productName"],
             "reviewTitle": data["reviewTitle"],
             "reviewContents": data["reviewContents"],
             "starsVariable": data["starsVariable"],
