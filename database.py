@@ -20,6 +20,10 @@ class DBhandler:
         self.db.child("review").child(data["productName"]).set(review_info)
         return True
 
+    def get_review(self, name):
+        items = self.db.child("review").child(name).get().val()
+        return items
+
     def insert_item(self, name, data, img_path):
         item_info = {
             "name": data["name"],
@@ -61,10 +65,10 @@ class DBhandler:
                 if value['id'] == id_string:
                     return False
         return True
-    
+
     def find_user(self, id_, pw_):
         users = self.db.child("user").get()
-        target_value=[]
+        target_value = []
         for res in users.each():
             value = res.val()
             if value['id'] == id_ and value['pw'] == pw_:

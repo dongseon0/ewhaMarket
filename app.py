@@ -65,13 +65,20 @@ def reg_review_init(name):
 def reg_review():
     image_file = request.files["file"]
     image_file.save("static/images/{}".format(image_file.filename))
-    data=request.form
+    data = request.form
+    name = data.get('productName')
     DB.reg_review(data, image_file.filename)
-    return redirect(url_for('view_review'), data=data, img_path=image_file.filename)
+    return redirect(url_for('view_review', name=name))
+
+
+@application.route("/details_of_review/<name>/")
+def view_review(name):
+    data = DB.get_review(str(name))
+    return render_template("details_of_review.html", name=name, data=data)
 
 
 @application.route("/user_reviews")
-def view_review():
+def view_user_review():
     return render_template("user_reviews.html")
 
 
@@ -107,11 +114,11 @@ def login():
 
 @application.route("/login_confirm", methods=['POST'])
 def login_user():
-    id_=request.form['id']
-    pw=request.form['pw']
+    id_ = request.form['id']
+    pw = request.form['pw']
     pw_hash = hashlib.sha256(pw.encode('utf-8')).hexdigest()
-    if DB.find_user(id_,pw_hash):
-        session['id']=id_
+    if DB.find_user(id_, pw_hash):
+        session['id'] = id_
         return redirect(url_for('view_list'))
     else:
         flash("Wrong ID or PW!")
@@ -131,10 +138,10 @@ def signup():
 
 @application.route("/signup_post", methods=['POST'])
 def register_user():
-    data=request.form
-    pw=request.form['pw']
+    data = request.form
+    pw = request.form['pw']
     pw_hash = hashlib.sha256(pw.encode('utf-8')).hexdigest()
-    if DB.insert_user(data,pw_hash):
+    if DB.insert_user(data, pw_hash):
         return render_template("login.html")
     else:
         flash("user id already exist!")
