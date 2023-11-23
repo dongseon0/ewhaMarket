@@ -42,13 +42,13 @@
             margin-top: 2%;
             margin-bottom: 1%;
         }
+        
+        #product-name, #stars-variable {
+            display: none;
+        }
 
         #review-image {
             margin-left: 12%;
-        }
-
-        #stars-variable {
-            display: none;
         }
 
         #ok {
@@ -74,8 +74,9 @@
     {% extends "index.html" %}
 
     {% block section %}
-    <form action="/submit_review_post" enctype="multipart/form-data" method="post">
+    <form action="/reg_review" enctype="multipart/form-data" method="post">
         <div class="review">
+            <input type="text" id="product-name" name="productName" value="{{name}}">
             <div class="text1">리뷰 작성</div>
             <hr>
             <div class="text2"><span class="asterisk">* </span>거래 제목을 입력해주세요</div>
