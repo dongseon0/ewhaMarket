@@ -20,104 +20,113 @@
         <p class="count_review">
             {{total}}개의 리뷰
         </p>
-
         <div class="review">
             {% for key, value in row1 %}
-            <td onclick="location.href='/details_of_review/{{value.sellerId}}/{{key}}/';" style="cursor:pointer;">
-                <img src="../../static/images/{{value.img_path}}">
-                <div>
-                    <p><b>{{value.buyerId}}</b></p>
-                    <p>{{value.reviewTitle}}</p>
-                    <div class="rating">
-                        {% for i in range(0, 5) %}
-                        {% if i <= value.starsVariable|default(0)|int %} <span class="filled-star">★</span>
-                            {% else %}
-                            <span class="empty-star">☆</span>
-                            {% endif %}
-                            {% endfor %}
+            <table>
+                <td onclick="location.href='/details_of_review/{{value.sellerId}}/{{key}}/';" style="cursor:pointer;">
+                    <img src="../../static/images/{{value.img_path}}">
+                    <div>
+                        <p><b>{{value.buyerId}}</b></p>
+                        <p>{{value.reviewTitle}}</p>
+                        <div class="rating">
+                            {% for i in range(0, 5) %}
+                            {% if i <= value.starsVariable|default(0)|int %} <span class="filled-star">★</span>
+                                {% else %}
+                                <span class="empty-star">☆</span>
+                                {% endif %}
+                                {% endfor %}
+                        </div>
                     </div>
-                </div>
-            </td>
+                </td>
+            </table>
             {% endfor %}
         </div>
 
         <div class="review">
             {% for key, value in row2 %}
-            <td onclick="location.href='/view_detail_review/{{key}}/';" style="cursor:pointer;">
-                <img src="../../static/images/{{value.img_path}}">
-                <div>
-                    <p><b>{{value.buyerId}}</b></p>
-                    <p>{{value.reviewTitle}}</p>
-                    <div class="rating">
-                        {% for i in range(0, 5) %}
-                        {% if i <= value.starsVariable|default(0)|int %} <span class="filled-star">★</span>
-                            {% else %}
-                            <span class="empty-star">☆</span>
-                            {% endif %}
-                            {% endfor %}
+            <table>
+                <td onclick="location.href='/details_of_review/{{value.sellerId}}/{{key}}/';" style="cursor:pointer;">
+                    <img src="../../static/images/{{value.img_path}}">
+                    <div>
+                        <p><b>{{value.buyerId}}</b></p>
+                        <p>{{value.reviewTitle}}</p>
+                        <div class="rating">
+                            {% for i in range(0, 5) %}
+                            {% if i <= value.starsVariable|default(0)|int %} <span class="filled-star">★</span>
+                                {% else %}
+                                <span class="empty-star">☆</span>
+                                {% endif %}
+                                {% endfor %}
+                        </div>
                     </div>
-                </div>
-            </td>
+                </td>
+            </table>
             {% endfor %}
         </div>
 
         <div class="review">
             {% for key, value in row3 %}
-            <td onclick="location.href='/view_detail_review/{{key}}/';" style="cursor:pointer;">
-                <img src="../../static/images/{{value.img_path}}">
-                <div>
-                    <p><b>{{value.buyerId}}</b></p>
-                    <p>{{value.reviewTitle}}</p>
-                    <div class="rating">
-                        {% for i in range(0, 5) %}
-                        {% if i <= value.starsVariable|default(0)|int %} <span class="filled-star">★</span>
-                            {% else %}
-                            <span class="empty-star">☆</span>
-                            {% endif %}
-                            {% endfor %}
+            <table>
+                <td onclick="location.href='/details_of_review/{{value.sellerId}}/{{key}}/';" style="cursor:pointer;">
+                    <img src="../../static/images/{{value.img_path}}">
+                    <div>
+                        <p><b>{{value.buyerId}}</b></p>
+                        <p>{{value.reviewTitle}}</p>
+                        <div class="rating">
+                            {% for i in range(0, 5) %}
+                            {% if i <= value.starsVariable|default(0)|int %} <span class="filled-star">★</span>
+                                {% else %}
+                                <span class="empty-star">☆</span>
+                                {% endif %}
+                                {% endfor %}
+                        </div>
                     </div>
-                </div>
-            </td>
+                </td>
+            </table>
             {% endfor %}
         </div>
 
         <div class="review">
             {% for key, value in row4 %}
-            <td onclick="location.href='/view_detail_review/{{key}}/';" style="cursor:pointer;">
-                <img src="../../static/images/{{value.img_path}}">
-                <div>
-                    <p><b>{{value.buyerId}}</b></p>
-                    <p>{{value.reviewTitle}}</p>
-                    <div class="rating">
-                        {% for i in range(0, 5) %}
-                        {% if i <= value.starsVariable|default(0)|int %} <span class="filled-star">★</span>
-                            {% else %}
-                            <span class="empty-star">☆</span>
-                            {% endif %}
-                            {% endfor %}
+            <table>
+                <td onclick="location.href='/details_of_review/{{value.sellerId}}/{{key}}/';" style="cursor:pointer;">
+                    <img src="../../static/images/{{value.img_path}}">
+                    <div>
+                        <p><b>{{value.buyerId}}</b></p>
+                        <p>{{value.reviewTitle}}</p>
+                        <div class="rating">
+                            {% for i in range(0, 5) %}
+                            {% if i <= value.starsVariable|default(0)|int %} <span class="filled-star">★</span>
+                                {% else %}
+                                <span class="empty-star">☆</span>
+                                {% endif %}
+                                {% endfor %}
+                        </div>
                     </div>
-                </div>
-            </td>
+                </td>
+            </table>
             {% endfor %}
         </div>
 
         <div class="review">
             {% for key, value in row5 %}
-            <td onclick="location.href='/view_detail_review/{{key}}/';" style="cursor:pointer;">
-                <img src="../../static/images/{{value.img_path}}">
-                <div>
-                    <p><b>{{value.buyerId}}</b></p>
-                    <p>{{value.reviewTitle}}</p>
-                    <div class="rating">
-                        {% for i in range(0, 5) %}
-                        {% if i <= value.starsVariable|default(0)|int %} <span class="filled-star">★</span>
-                            {% else %}
-                            <span class="empty-star">☆</span>
-                            {% endif %}
-                            {% endfor %}
+            <table>
+                <td onclick="location.href='/details_of_review/{{value.sellerId}}/{{key}}/';" style="cursor:pointer;">
+                    <img src="../../static/images/{{value.img_path}}">
+                    <div>
+                        <p><b>{{value.buyerId}}</b></p>
+                        <p>{{value.reviewTitle}}</p>
+                        <div class="rating">
+                            {% for i in range(0, 5) %}
+                            {% if i <= value.starsVariable|default(0)|int %} <span class="filled-star">★</span>
+                                {% else %}
+                                <span class="empty-star">☆</span>
+                                {% endif %}
+                                {% endfor %}
+                        </div>
                     </div>
-                </div>
-            </td>
+                </td>
+            </table>
             {% endfor %}
         </div>
 
