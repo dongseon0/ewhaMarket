@@ -9,12 +9,14 @@ application.config["SECRET_KEY"] = "helloosp"
 DB = DBhandler()
 
 
+# 메인
 @application.route("/")
 def hello():
     # return render_template("index.html")
     return redirect(url_for('view_list'))
 
 
+# 상품
 @application.route("/product_list")
 def view_list():
     # html에 페이지 인덱스 클릭할 때마다 get으로 받아옴
@@ -80,6 +82,7 @@ def view_item_detail(key):
     return render_template("details_of_item.html", key=key, data=data)
 
 
+# 리뷰
 @application.route("/reg_review/<id>/")
 def reg_review_init(id):
     if session.get('id') is None:
@@ -95,7 +98,8 @@ def reg_review():
     image_file.save("static/images/{}".format(image_file.filename))
     data = request.form
     sellerId = data.get('sellerId')
-    review_key = DB.reg_review(data, image_file.filename, buyerId=data.get('buyerId'), sellerId=sellerId)
+    review_key = DB.reg_review(
+        data, image_file.filename, buyerId=data.get('buyerId'), sellerId=sellerId)
     return redirect(url_for('view_review', key=review_key, sellerId=sellerId))
 
 
@@ -147,6 +151,7 @@ def view_reviews(id):
     )
 
 
+# 로그인
 @application.route("/login")
 def login():
     return render_template("login.html")
@@ -188,6 +193,7 @@ def register_user():
         return render_template("signup.html")
 
 
+# 마이페이지
 @application.route("/my_page")
 def mypage():
     return render_template("my_page.html")
@@ -208,6 +214,7 @@ def personal():
     return render_template("my_info.html")
 
 
+# 그외
 @application.route("/dynamicurl/<varible_name>/")
 def DynamicUrl(variable_name):
     return str(variable_name)

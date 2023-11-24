@@ -9,53 +9,9 @@ class DBhandler:
 
         firebase = pyrebase.initialize_app(config)
         self.db = firebase.database()
+    
 
-    def reg_review(self, data, img_path, buyerId, sellerId):
-        review_info = {
-            "sellerId": sellerId,
-            "buyerId": buyerId,
-            "reviewTitle": data["reviewTitle"],
-            "reviewContents": data["reviewContents"],
-            "starsVariable": data["starsVariable"],
-            "img_path": img_path
-        }
-        review_data = self.db.child("users").child(sellerId).child("user_reviews").push(review_info)
-        review_key = review_data['name']
-        return review_key
-
-    def get_review_bykey(self, key, sellerId):
-        reviews = self.db.child("users").child(sellerId).child("user_reviews").get()
-        target_value = ""
-        for res in reviews.each():
-            key_value = res.key()
-
-            if key_value == key:
-                target_value = res.val()
-        return target_value
-
-    def get_reviews(self, sellerId):
-        items = self.db.child("users").child(sellerId).child("user_reviews").get().val()
-        return items
-
-    def insert_item(self, data, img_path, id):
-        item_info = {
-            "sellerId": id,
-            "name": data["name"],
-            "status": data["status"],
-            "description": data["description"],
-            "method": data["method"],
-            "location": data["location"],
-            "quantity": data["quantity"],
-            "category": data["category"],
-            "tag": data["tag"],
-            "phone": data["phone"],
-            "img_path": img_path
-        }
-        item_data = self.db.child("users").child(id).child("user_list").push(str(data["name"]))
-        item_key = item_data['name']
-        self.db.child("items").child(item_key).set(item_info)
-        return item_key
-
+    # 로그인
     def insert_user(self, data, pw):
         user_info = {
             "pw": pw,
@@ -89,6 +45,27 @@ class DBhandler:
                 else:
                     return False
         return False
+    
+
+    # 상품
+    def insert_item(self, data, img_path, id):
+        item_info = {
+            "sellerId": id,
+            "name": data["name"],
+            "status": data["status"],
+            "description": data["description"],
+            "method": data["method"],
+            "location": data["location"],
+            "quantity": data["quantity"],
+            "category": data["category"],
+            "tag": data["tag"],
+            "phone": data["phone"],
+            "img_path": img_path
+        }
+        item_data = self.db.child("users").child(id).child("user_list").push(str(data["name"]))
+        item_key = item_data['name']
+        self.db.child("items").child(item_key).set(item_info)
+        return item_key
 
     def get_items(self):
         items = self.db.child("items").get().val()
@@ -104,3 +81,31 @@ class DBhandler:
                 target_value = res.val()
         return target_value
     
+
+    # 리뷰
+    def reg_review(self, data, img_path, buyerId, sellerId):
+        review_info = {
+            "sellerId": sellerId,
+            "buyerId": buyerId,
+            "reviewTitle": data["reviewTitle"],
+            "reviewContents": data["reviewContents"],
+            "starsVariable": data["starsVariable"],
+            "img_path": img_path
+        }
+        review_data = self.db.child("users").child(sellerId).child("user_reviews").push(review_info)
+        review_key = review_data['name']
+        return review_key
+
+    def get_review_bykey(self, key, sellerId):
+        reviews = self.db.child("users").child(sellerId).child("user_reviews").get()
+        target_value = ""
+        for res in reviews.each():
+            key_value = res.key()
+
+            if key_value == key:
+                target_value = res.val()
+        return target_value
+
+    def get_reviews(self, sellerId):
+        items = self.db.child("users").child(sellerId).child("user_reviews").get().val()
+        return items
