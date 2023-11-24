@@ -70,7 +70,7 @@ def view_list():
 @application.route("/reg_item")
 def reg_item():
     if session.get('id') is None:
-        flash("로그인하쇼")
+        flash("로그인 후 상품을 등록해주세요.")
         return render_template("login.html")
     else:
         return render_template("reg_item.html")
@@ -96,7 +96,7 @@ def view_details_of_item(key):
 @application.route("/reg_review/<id>/")
 def reg_review_init(id):
     if session.get('id') is None:
-        flash("로그인하쇼")
+        flash("로그인 후 리뷰를 작성해주세요.")
         return render_template("login.html")
     else:
         return render_template("reg_review.html", buyerId=session.get('id'), sellerId=id)
