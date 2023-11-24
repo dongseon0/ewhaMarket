@@ -1,12 +1,11 @@
-{% extends "index.html" %}
-
-{% block section %}
-
 <head>
     <link rel="stylesheet" type="text/css" href="../static/product_list.css">
 </head>
 
 <body>
+    {% extends "index.html" %}
+
+    {% block section %}
     <div class="wrapper">
         <div class="text">상품 리스트</div>
         <hr>
@@ -188,6 +187,5 @@
         <hr>
     -->
     </div>
+    {% endblock section %}
 </body>
-
-{% endblock section %}

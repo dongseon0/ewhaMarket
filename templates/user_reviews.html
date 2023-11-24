@@ -1,13 +1,12 @@
-{% extends "index.html" %}
-
-{% block section %}
-
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="../static/user_reviews.css">
 </head>
 
 <body>
+    {% extends "index.html" %}
+
+    {% block section %}
     <div class="wrapper">
         <div class="text">USER0918 리뷰</div>
         <hr>
@@ -140,5 +139,5 @@
         </p>
         {% endif %}
     </div>
+    {% endblock section %}
 </body>
-{% endblock section %}

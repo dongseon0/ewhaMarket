@@ -1,7 +1,3 @@
-{% extends "index.html" %}
-
-{% block section %}
-
 <head>
   <style>
     .mypage-wrapper {
@@ -62,6 +58,9 @@
 </head>
 
 <body>
+  {% extends "index.html" %}
+
+  {% block section %}
   <div class="mypage-wrapper">
     <br>
     <p id="mypage-title">마이 페이지</p>
@@ -76,5 +75,5 @@
     </div>
     <hr>
   </div>
+  {% endblock section %}
 </body>
-{% endblock section %}
