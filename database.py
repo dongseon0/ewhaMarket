@@ -76,7 +76,6 @@ class DBhandler:
                 target_value = res.val()
         return target_value
 
-
 #리뷰db
     def insert_review(self, name, data, img_path):
         review_info = {
