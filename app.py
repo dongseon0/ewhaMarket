@@ -53,7 +53,27 @@ def view_list():
 
 @application.route("/reg_item")
 def reg_item():
-    return render_template("reg_item.html")
+    if session.get('id') is None:
+        flash("로그인하쇼")
+        return render_template("login.html")
+    else:
+        return render_template("reg_item.html")
+
+
+@application.route("/submit_item_post", methods=['POST'])
+def reg_item_submit_post():
+    image_file = request.files["file"]
+    image_file.save("static/images/{}".format(image_file.filename))
+    data = request.form
+    data_key = DB.insert_item(data, image_file.filename, id=session.get('id'))
+    return redirect(url_for('view_item_detail', key=data_key))
+
+
+@application.route("/view_detail/<key>/")
+def view_item_detail(key):
+    # get_item_byname 상품 이름으로 데이터 가져오는 함수 생성
+    data = DB.get_item_bykey(str(key))
+    return render_template("details_of_item.html", key=key, data=data)
 
 
 @application.route("/reg_review/<name>/")
@@ -71,8 +91,7 @@ def reg_review():
     image_file.save("static/images/{}".format(image_file.filename))
     data = request.form
     name = data.get('productName')
-    id = session.get('id')
-    DB.reg_review(data, image_file.filename, id=id)
+    DB.reg_review(data, image_file.filename, id=session.get('id'))
     return redirect(url_for('view_review', name=name))
 
 
@@ -117,31 +136,6 @@ def view_reviews():
         page_count=int((item_counts/per_page) + 1),  # 페이지 개수
         total=item_counts
     )
-
-
-@application.route("/submit_item")
-def reg_item_submit():
-    name = request.args.get("name")
-    status = request.args.get("status")
-    description = request.args.get("description")
-    method = request.args.get("method")
-    location = request.args.get("location")
-    quantity = request.args.get("quantity")
-    category = request.args.get("category")
-    tag = request.args.get("tag")
-    phone = request.args.get("phone")
-
-    # print(name,addr,tel,category,park,time,site)
-    # return render_template("reg_item.html")
-
-
-@application.route("/submit_item_post", methods=['POST'])
-def reg_item_submit_post():
-    image_file = request.files["file"]
-    image_file.save("static/images/{}".format(image_file.filename))
-    data = request.form
-    DB.insert_item(data['name'], data, image_file.filename)
-    return render_template("submit_item_result.html", data=data, img_path="static/images/{}".format(image_file.filename))
 
 
 @application.route("/login")
@@ -208,13 +202,6 @@ def personal():
 @application.route("/dynamicurl/<varible_name>/")
 def DynamicUrl(variable_name):
     return str(variable_name)
-
-
-@application.route("/view_detail/<name>/")
-def view_item_detail(name):
-    # get_item_byname 상품 이름으로 데이터 가져오는 함수 생성
-    data = DB.get_item_byname(str(name))
-    return render_template("details_of_item.html", name=name, data=data)
 
 
 if __name__ == "__main__":

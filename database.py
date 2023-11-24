@@ -30,8 +30,9 @@ class DBhandler:
         items = self.db.child("review").get().val()
         return items
 
-    def insert_item(self, name, data, img_path):
+    def insert_item(self, data, img_path, id):
         item_info = {
+            "sellerId": id,
             "name": data["name"],
             "status": data["status"],
             "description": data["description"],
@@ -43,8 +44,10 @@ class DBhandler:
             "phone": data["phone"],
             "img_path": img_path
         }
-        self.db.child("item").push(item_info)
-        return True
+        item_data = self.db.child("users").child(id).child("user_item").push(str(data["name"]))
+        item_key = item_data['name']
+        self.db.child("items").child(item_key).set(item_info)
+        return item_key
 
     def insert_user(self, data, pw):
         user_info = {
@@ -81,15 +84,16 @@ class DBhandler:
         return False
 
     def get_items(self):
-        items = self.db.child("item").get().val()
+        items = self.db.child("items").get().val()
         return items
 
-    def get_item_byname(self, name):
-        items = self.db.child("item").get()
+    def get_item_bykey(self, key):
+        items = self.db.child("items").get()
         target_value = ""
         for res in items.each():
             key_value = res.key()
 
-            if key_value == name:
+            if key_value == key:
                 target_value = res.val()
         return target_value
+    

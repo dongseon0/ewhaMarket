@@ -27,6 +27,10 @@
     font-size: 135%;
 }
 
+hr {
+    width: 100%;
+}
+
 .review {
     padding: 10px;
     border-bottom: 1.5px solid rgb(163, 223, 249);
