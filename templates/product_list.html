@@ -11,9 +11,9 @@
         <hr>
         <div class="menubar">
             <ul class="menubar__menu">
-                <li><a href="product_list.html" style="text-decoration: underline;">전체 상품</a></li>
-                <li><a href="auction_list.html">경매</a></li>
-                <li><a href="list.html">일반 결제</a></li>
+                <li><a href="/product_list" style="text-decoration: underline;">전체 상품</a></li>
+                <li><a href="/auction_list">경매</a></li>
+                <li><a href="/list">일반 결제</a></li>
             </ul>
             <button onclick="document.location='/reg_item'" type="button">상품 등록하기</button>
         </div>
@@ -85,7 +85,7 @@
                 <ul>
                     <li>
                         {% for i in range(page_count) %}
-                        <a href="{{url_for('view_list', page=i)}}" color="black">{{i+1}}</a>
+                        <a href="{{url_for('view_product_list', page=i)}}" color="black">{{i+1}}</a>
                         {% endfor %}
                     </li>
                 </ul>

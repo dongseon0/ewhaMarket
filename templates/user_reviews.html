@@ -12,8 +12,8 @@
         <hr>
 
         <div class="topnav">
-            <a href="/user_list">판매내역</a>
-            <a href="/user_reviews">리뷰</a>
+            <a href="/user_list/{{id}}">판매내역</a>
+            <a href="/user_reviews/{{id}}">리뷰</a>
         </div>
         <hr>
         {% if total > 0 %}
@@ -135,7 +135,7 @@
                 <ul>
                     <li>
                         {% for i in range(page_count) %}
-                        <a href="{{url_for('view_reviews', id=id, page=i)}}" color="black">{{i+1}}</a>
+                        <a href="{{url_for('view_user_reviews', id=id, page=i)}}" color="black">{{i+1}}</a>
                         {% endfor %}
                     </li>
                 </ul>

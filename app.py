@@ -13,12 +13,12 @@ DB = DBhandler()
 @application.route("/")
 def hello():
     # return render_template("index.html")
-    return redirect(url_for('view_list'))
+    return redirect(url_for('view_product_list'))
 
 
 # 상품
 @application.route("/product_list")
-def view_list():
+def view_product_list():
     # html에 페이지 인덱스 클릭할 때마다 get으로 받아옴
     page = request.args.get("page", 0, type=int)
     per_page = 12  # item count to display per page
@@ -57,6 +57,16 @@ def view_list():
     )
 
 
+@application.route("/auction_list")
+def view_auction_list():
+    return render_template("auction_list.html")
+
+
+@application.route("/list")
+def view_list():
+    return render_template("list.html")
+
+
 @application.route("/reg_item")
 def reg_item():
     if session.get('id') is None:
@@ -72,11 +82,11 @@ def reg_item_submit_post():
     image_file.save("static/images/{}".format(image_file.filename))
     data = request.form
     data_key = DB.insert_item(data, image_file.filename, id=session.get('id'))
-    return redirect(url_for('view_item_detail', key=data_key))
+    return redirect(url_for('view_details_of_item', key=data_key))
 
 
 @application.route("/view_detail/<key>/")
-def view_item_detail(key):
+def view_details_of_item(key):
     # get_item_byname 상품 이름으로 데이터 가져오는 함수 생성
     data = DB.get_item_bykey(str(key))
     return render_template("details_of_item.html", key=key, data=data)
@@ -100,17 +110,17 @@ def reg_review():
     sellerId = data.get('sellerId')
     review_key = DB.reg_review(
         data, image_file.filename, buyerId=data.get('buyerId'), sellerId=sellerId)
-    return redirect(url_for('view_review', key=review_key, sellerId=sellerId))
+    return redirect(url_for('view_details_of_review', key=review_key, sellerId=sellerId))
 
 
 @application.route("/details_of_review/<sellerId>/<key>/")
-def view_review(key, sellerId):
+def view_details_of_review(key, sellerId):
     data = DB.get_review_bykey(key, sellerId)
     return render_template("details_of_review.html", data=data)
 
 
 @application.route("/user_reviews/<id>/")
-def view_reviews(id):
+def view_user_reviews(id):
     page = request.args.get("page", 0, type=int)
     per_page = 5  # item count to display per page
     per_row = 1  # item count to display per row
@@ -151,6 +161,11 @@ def view_reviews(id):
     )
 
 
+@application.route("/user_list/<id>/")
+def view_user_list(id):
+    return render_template("user_list.html")
+
+
 # 로그인
 @application.route("/login")
 def login():
@@ -164,7 +179,7 @@ def login_user():
     pw_hash = hashlib.sha256(pw.encode('utf-8')).hexdigest()
     if DB.find_user(id, pw_hash):
         session['id'] = id
-        return redirect(url_for('view_list'))
+        return redirect(url_for('hello'))
     else:
         flash("Wrong ID or PW!")
         return render_template("login.html")
@@ -173,7 +188,7 @@ def login_user():
 @application.route("/logout")
 def logout_user():
     session.clear()
-    return redirect(url_for('view_list'))
+    return redirect(url_for('hello'))
 
 
 @application.route("/signup")
