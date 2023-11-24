@@ -24,6 +24,7 @@
             {% for key, value in row1 %}
             <table>
                 <td onclick="location.href='/details_of_review/{{value.sellerId}}/{{key}}/';" style="cursor:pointer;">
+                    <div class="review-content">
                     <img src="../../static/images/{{value.img_path}}">
                     <div>
                         <p><b>{{value.buyerId}}</b></p>
@@ -36,6 +37,7 @@
                                 {% endif %}
                                 {% endfor %}
                         </div>
+                    </div>
                     </div>
                 </td>
             </table>
@@ -46,6 +48,7 @@
             {% for key, value in row2 %}
             <table>
                 <td onclick="location.href='/details_of_review/{{value.sellerId}}/{{key}}/';" style="cursor:pointer;">
+                    <div class="review-content">
                     <img src="../../static/images/{{value.img_path}}">
                     <div>
                         <p><b>{{value.buyerId}}</b></p>
@@ -59,6 +62,7 @@
                                 {% endfor %}
                         </div>
                     </div>
+                </div>
                 </td>
             </table>
             {% endfor %}
@@ -68,6 +72,7 @@
             {% for key, value in row3 %}
             <table>
                 <td onclick="location.href='/details_of_review/{{value.sellerId}}/{{key}}/';" style="cursor:pointer;">
+                    <div class="review-content">
                     <img src="../../static/images/{{value.img_path}}">
                     <div>
                         <p><b>{{value.buyerId}}</b></p>
@@ -81,6 +86,7 @@
                                 {% endfor %}
                         </div>
                     </div>
+                </div>
                 </td>
             </table>
             {% endfor %}
@@ -90,6 +96,7 @@
             {% for key, value in row4 %}
             <table>
                 <td onclick="location.href='/details_of_review/{{value.sellerId}}/{{key}}/';" style="cursor:pointer;">
+                    <div class="review-content">
                     <img src="../../static/images/{{value.img_path}}">
                     <div>
                         <p><b>{{value.buyerId}}</b></p>
@@ -102,6 +109,7 @@
                                 {% endif %}
                                 {% endfor %}
                         </div>
+                    </div>
                     </div>
                 </td>
             </table>
@@ -112,6 +120,7 @@
             {% for key, value in row5 %}
             <table>
                 <td onclick="location.href='/details_of_review/{{value.sellerId}}/{{key}}/';" style="cursor:pointer;">
+                    <div class="review-content">
                     <img src="../../static/images/{{value.img_path}}">
                     <div>
                         <p><b>{{value.buyerId}}</b></p>
@@ -124,6 +133,7 @@
                                 {% endif %}
                                 {% endfor %}
                         </div>
+                    </div>
                     </div>
                 </td>
             </table>
