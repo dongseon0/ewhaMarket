@@ -26,6 +26,10 @@ class DBhandler:
         items = self.db.child("review").child(name).get().val()
         return items
 
+    def get_reviews(self):
+        items = self.db.child("review").get().val()
+        return items
+
     def insert_item(self, name, data, img_path):
         item_info = {
             "name": data["name"],
@@ -48,7 +52,8 @@ class DBhandler:
             "nickname": data['nickname']
         }
         if self.user_duplicate_check(str(data['id'])):
-            self.db.child("users").child(data['id']).child("user_info").set(user_info)
+            self.db.child("users").child(data['id']).child(
+                "user_info").set(user_info)
             return True
         else:
             return False
@@ -70,7 +75,7 @@ class DBhandler:
                 user_data = user.val()
                 user_info = user_data.get("user_info")
                 if user_info.get("pw") == pw:
-                    return True 
+                    return True
                 else:
                     return False
         return False

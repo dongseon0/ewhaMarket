@@ -2,6 +2,18 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+.count_review {
+    font-size: 13px;
+    padding-right: 550px;
+}
+.text {
+    font-size: 135%;
+}
+
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 .wrapper {
     width: 700px;
     cursor: default;
@@ -40,9 +52,9 @@ hr {
 }
 
 .review img {
-    width: 50px;
+    width: 100px;
     /* 이미지 크기 */
-    height: 50px;
+    height: 100px;
     object-fit: cover;
     /* 이미지 비율 유지 */
     margin-right: 20px;

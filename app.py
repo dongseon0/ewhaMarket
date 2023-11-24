@@ -83,8 +83,40 @@ def view_review(name):
 
 
 @application.route("/user_reviews")
-def view_user_review():
-    return render_template("user_reviews.html")
+def view_reviews():
+    page = request.args.get("page", 0, type=int)
+    per_page = 5  # item count to display per page
+    per_row = 1  # item count to display per row
+    row_count = int(per_page/per_row)
+    start_idx = per_page*page
+    end_idx = per_page*(page+1)  # 페이지 인덱스로 start_idx, end_idx 생성
+    data = DB.get_reviews()  # read the table
+    item_counts = len(data)
+
+    # 한 페이지에 start_idx, end_idx 만큼 읽어오기
+    data = dict(list(data.items())[start_idx:end_idx])
+    tot_count = len(data)
+    for i in range(row_count):  # last row
+        if (i == row_count-1) and (tot_count % per_row != 0):
+            locals()['data_{}'.format(i)] = dict(
+                list(data.items())[i*per_row:])
+        else:
+            locals()['data_{}'.format(i)] = dict(
+                list(data.items())[i*per_row:(i+1)*per_row])
+
+    return render_template(
+        "user_reviews.html",
+        datas=data.items(),
+        row1=locals()['data_0'].items(),
+        row2=locals()['data_1'].items(),
+        row3=locals()['data_2'].items(),
+        row4=locals()['data_3'].items(),
+        row5=locals()['data_4'].items(),
+        limit=per_page,
+        page=page,  # 현재 페이지 인덱스
+        page_count=int((item_counts/per_page) + 1),  # 페이지 개수
+        total=item_counts
+    )
 
 
 @application.route("/submit_item")
