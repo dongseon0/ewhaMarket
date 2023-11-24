@@ -163,7 +163,7 @@ def view_user_reviews(id):
 
 @application.route("/user_list/<id>/")
 def view_user_list(id):
-    return render_template("user_list.html")
+    return render_template("user_list.html", id=id)
 
 
 # 로그인
