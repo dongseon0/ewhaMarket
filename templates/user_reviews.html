@@ -1,6 +1,6 @@
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="../static/user_reviews.css">
+    <link rel="stylesheet" type="text/css" href="../../static/user_reviews.css">
 </head>
 
 <body>
@@ -8,7 +8,7 @@
 
     {% block section %}
     <div class="wrapper">
-        <div class="text">USER0918 리뷰</div>
+        <div class="text">{{id}} 리뷰</div>
         <hr>
 
         <div class="topnav">
@@ -24,7 +24,7 @@
         <div class="review">
             {% for key, value in row1 %}
             <td onclick="location.href='/view_detail_review/{{key}}/';" style="cursor:pointer;">
-                <img src="static/images/{{value.img_path}}">
+                <img src="../../static/images/{{value.img_path}}">
                 <div>
                     <p><b>{{value.buyerId}}</b></p>
                     <p>{{value.reviewTitle}}</p>
@@ -44,7 +44,7 @@
         <div class="review">
             {% for key, value in row2 %}
             <td onclick="location.href='/view_detail_review/{{key}}/';" style="cursor:pointer;">
-                <img src="static/images/{{value.img_path}}">
+                <img src="../../static/images/{{value.img_path}}">
                 <div>
                     <p><b>{{value.buyerId}}</b></p>
                     <p>{{value.reviewTitle}}</p>
@@ -64,7 +64,7 @@
         <div class="review">
             {% for key, value in row3 %}
             <td onclick="location.href='/view_detail_review/{{key}}/';" style="cursor:pointer;">
-                <img src="static/images/{{value.img_path}}">
+                <img src="../../static/images/{{value.img_path}}">
                 <div>
                     <p><b>{{value.buyerId}}</b></p>
                     <p>{{value.reviewTitle}}</p>
@@ -84,7 +84,7 @@
         <div class="review">
             {% for key, value in row4 %}
             <td onclick="location.href='/view_detail_review/{{key}}/';" style="cursor:pointer;">
-                <img src="static/images/{{value.img_path}}">
+                <img src="../../static/images/{{value.img_path}}">
                 <div>
                     <p><b>{{value.buyerId}}</b></p>
                     <p>{{value.reviewTitle}}</p>
@@ -104,7 +104,7 @@
         <div class="review">
             {% for key, value in row5 %}
             <td onclick="location.href='/view_detail_review/{{key}}/';" style="cursor:pointer;">
-                <img src="static/images/{{value.img_path}}">
+                <img src="../../static/images/{{value.img_path}}">
                 <div>
                     <p><b>{{value.buyerId}}</b></p>
                     <p>{{value.reviewTitle}}</p>
@@ -126,7 +126,7 @@
                 <ul>
                     <li>
                         {% for i in range(page_count) %}
-                        <a href="{{url_for('view_reviews', page=i)}}" color="black">{{i+1}}</a>
+                        <a href="{{url_for('view_reviews', id=id, page=i)}}" color="black">{{i+1}}</a>
                         {% endfor %}
                     </li>
                 </ul>

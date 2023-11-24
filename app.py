@@ -101,8 +101,8 @@ def view_review(name):
     return render_template("details_of_review.html", id=session.get('id'), name=name, data=data)
 
 
-@application.route("/user_reviews")
-def view_reviews():
+@application.route("/user_reviews/<id>/")
+def view_reviews(id):
     page = request.args.get("page", 0, type=int)
     per_page = 5  # item count to display per page
     per_row = 1  # item count to display per row
@@ -134,7 +134,8 @@ def view_reviews():
         limit=per_page,
         page=page,  # 현재 페이지 인덱스
         page_count=int((item_counts/per_page) + 1),  # 페이지 개수
-        total=item_counts
+        total=item_counts,
+        id=id
     )
 
 
