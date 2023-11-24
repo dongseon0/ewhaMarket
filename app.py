@@ -209,24 +209,25 @@ def register_user():
 
 
 # 마이페이지
-@application.route("/my_page")
-def mypage():
-    return render_template("my_page.html")
+@application.route("/my_page/<id>/")
+def mypage(id):
+    return render_template("my_page.html", id=id)
 
 
-@application.route("/my_reviews")
-def myreview():
-    return render_template("my_reviews.html")
+@application.route("/my_reviews/<id>/")
+def myreview(id):
+    return render_template("my_reviews.html", id=id)
 
 
-@application.route("/my_wish")
-def wish():
-    return render_template("my_wish.html")
+@application.route("/my_wish/<id>/")
+def mywish(id):
+    return render_template("my_wish.html", id=id)
 
 
-@application.route("/my_info")
-def personal():
-    return render_template("my_info.html")
+@application.route("/my_info/<id>/")
+def mypersonal(id):
+    data = DB.get_user_info(id)
+    return render_template("my_info.html", id=id, data=data)
 
 
 # 그외

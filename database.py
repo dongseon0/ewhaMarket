@@ -11,7 +11,7 @@ class DBhandler:
         self.db = firebase.database()
     
 
-    # 로그인
+    # 회원가입
     def insert_user(self, data, pw):
         user_info = {
             "pw": pw,
@@ -24,6 +24,7 @@ class DBhandler:
         else:
             return False
 
+    # 회원가입 시 중복 체크
     def user_duplicate_check(self, id_string):
         users = self.db.child("users").get()
         if str(users.val()) == "None":  # 첫 회원가입
@@ -33,6 +34,7 @@ class DBhandler:
                 return False
         return True
 
+    # 로그인
     def find_user(self, id, pw):
         users = self.db.child("users").get()
         for user in users.each():
@@ -108,4 +110,9 @@ class DBhandler:
 
     def get_reviews(self, sellerId):
         items = self.db.child("users").child(sellerId).child("user_reviews").get().val()
+        return items
+
+    # 마이페이지
+    def get_user_info(self, id):
+        items = self.db.child("users").child(id).child("user_info").get().val()
         return items
