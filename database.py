@@ -11,51 +11,20 @@ class DBhandler:
         self.db = firebase.database()
     
 
-<<<<<<< HEAD
-#user db
-    def insert_user(self, data, pw):
-        user_info = {
-            "id": data['id'],
-=======
     # 로그인
     def insert_user(self, data, pw):
         user_info = {
->>>>>>> 6dfef73f44874d831798cbc920a458c9a2c0486b
             "pw": pw,
             "nickname": data['nickname']
         }
         if self.user_duplicate_check(str(data['id'])):
-<<<<<<< HEAD
-            self.db.child("user").push(user_info)
-=======
             self.db.child("users").child(data['id']).child(
                 "user_info").set(user_info)
->>>>>>> 6dfef73f44874d831798cbc920a458c9a2c0486b
             return True
         else:
             return False
 
     def user_duplicate_check(self, id_string):
-<<<<<<< HEAD
-        users = self.db.child("user").get()
-        if str(users.val()) == "None":  # first registration
-            return True
-        else:
-            for res in users.each():
-                value = res.val()
-                if value['id'] == id_string:
-                    return False
-        return True
-
-    def find_user(self, id_, pw_):
-        users = self.db.child("user").get()
-        target_value = []
-        for res in users.each():
-            value = res.val()
-            if value['id'] == id_ and value['pw'] == pw_:
-                return True
-        return False
-=======
         users = self.db.child("users").get()
         if str(users.val()) == "None":  # 첫 회원가입
             return True
@@ -97,25 +66,6 @@ class DBhandler:
         item_key = item_data['name']
         self.db.child("items").child(item_key).set(item_info)
         return item_key
->>>>>>> 6dfef73f44874d831798cbc920a458c9a2c0486b
-
-#상품db
-    def insert_item(self, name, data, img_path):
-        item_info = {
-            "name": data["name"],
-            "status": data["status"],
-            "description": data["description"],
-            "method": data["method"],
-            "location": data["location"],
-            "quantity": data["quantity"],
-            "category": data["category"],
-            "tag": data["tag"],
-            "phone": data["phone"],
-            "img_path": img_path
-        }
-        self.db.child("item").child(name).set(item_info)
-        print(data, img_path)
-        return True
 
     def get_items(self):
         items = self.db.child("items").get().val()
@@ -124,19 +74,12 @@ class DBhandler:
     def get_item_bykey(self, key):
         items = self.db.child("items").get()
         target_value = ""
-        print("###########", name)
         for res in items.each():
             key_value = res.key()
 
             if key_value == key:
                 target_value = res.val()
         return target_value
-<<<<<<< HEAD
-
-#리뷰db
-    def insert_review(self, name, data, img_path):
-        review_info = {
-=======
     
 
     # 리뷰
@@ -144,31 +87,11 @@ class DBhandler:
         review_info = {
             "sellerId": sellerId,
             "buyerId": buyerId,
->>>>>>> 6dfef73f44874d831798cbc920a458c9a2c0486b
             "reviewTitle": data["reviewTitle"],
             "reviewContents": data["reviewContents"],
             "starsVariable": data["starsVariable"],
             "img_path": img_path
         }
-<<<<<<< HEAD
-        self.db.child("review").child(name).set(review_info)
-        return True
-        
-    def get_reviews(self):
-        reviews = self.db.child("review").get().val()
-        return reviews
-
-    def get_review_byname(self, name):
-        reviews = self.db.child("review").get()
-        target_value = ""
-    
-        for res in reviews.each():
-            key_value = res.key()
-
-            if key_value == name:
-                target_value = res.val()
-        return target_value
-=======
         review_data = self.db.child("users").child(sellerId).child("user_reviews").push(review_info)
         review_key = review_data['name']
         return review_key
@@ -186,4 +109,3 @@ class DBhandler:
     def get_reviews(self, sellerId):
         items = self.db.child("users").child(sellerId).child("user_reviews").get().val()
         return items
->>>>>>> 6dfef73f44874d831798cbc920a458c9a2c0486b
