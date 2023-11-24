@@ -14,6 +14,15 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+.count_review {
+    font-size: 13px;
+    padding-right: 550px;
+}
+
+.text {
+    font-size: 135%;
+}
+
 .wrapper {
     width: 700px;
     cursor: default;
@@ -57,12 +66,25 @@ hr {
     height: 100px;
     object-fit: cover;
     /* 이미지 비율 유지 */
-    margin-right: 20px;
+   padding-right: 20px;
 }
 
 .review p {
     display: flex;
     text-align: left;
+    margin: 5px 0;
+}
+.review-content {
+    display: flex;
+    align-items: center;
+}
+.review-content div {
+    flex: 1;
+    text-align: left;
+}
+
+.review-content p {
+    margin: 5px 0;
 }
 
 .review .user {
@@ -127,6 +149,7 @@ h2 {
 
 .pagination a:hover {
     color: blue;
+<<<<<<< HEAD
 }
 /*
 .wrapper {
@@ -233,3 +256,6 @@ h2 {
 
 
 
+=======
+}
+>>>>>>> 6dfef73f44874d831798cbc920a458c9a2c0486b

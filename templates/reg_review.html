@@ -43,7 +43,7 @@
             margin-bottom: 1%;
         }
         
-        #product-name, #stars-variable {
+        #buyer-id, #product-name, #seller-id, #stars-variable {
             display: none;
         }
 
@@ -77,6 +77,8 @@
     <form method="post" enctype="multipart/form-data" action="/submit_review_post">
         <div class="review">
             <input type="text" id="product-name" name="productName" value="{{name}}">
+            <input type="text" id="seller-id" name="sellerId" value="{{sellerId}}">
+            <input type="text" id="buyer-id" name="buyerId" value="{{buyerId}}">
             <div class="text1">리뷰 작성</div>
             <hr>
             <div class="text2"><span class="asterisk">* </span>거래 제목을 입력해주세요</div>

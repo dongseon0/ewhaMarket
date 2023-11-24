@@ -1,23 +1,23 @@
-{% extends "index.html" %}
-
-{% block section %}
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="../static/user_list.css">
+    <link rel="stylesheet" type="text/css" href="../../static/user_list.css">
 
 </head>
 
 <body>
+    {% extends "index.html" %}
+
+    {% block section %}
     <div class="wrapper">
         <div class="text">USER0918 판매내역</div>
         <hr>
 
         <div class="topnav">
-            <a href="/user_list">판매내역</a>
-            <a href="/user_reviews">리뷰</a>
+            <a href="/user_list/{{id}}">판매내역</a>
+            <a href="/user_reviews/{{id}}">리뷰</a>
         </div>
 
         <hr>
@@ -81,7 +81,7 @@
     </div>
 
 
+    {% endblock section %}
 </body>
 
 </html>
-{% endblock section %}
