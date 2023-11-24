@@ -25,7 +25,11 @@ def view_list():
     start_idx = per_page*page
     end_idx = per_page*(page+1)  # 페이지 인덱스로 start_idx, end_idx 생성
     data = DB.get_items()  # read the table
-    item_counts = len(data)
+    if data is None:
+        data = {}  # 또는 [] 등 비어있는 데이터로 초기화
+        item_counts = 0
+    else:
+        item_counts = len(data)
     # 한 페이지에 start_idx, end_idx 만큼 읽어오기
     data = dict(list(data.items())[start_idx:end_idx])
     tot_count = len(data)
@@ -76,13 +80,13 @@ def view_item_detail(key):
     return render_template("details_of_item.html", key=key, data=data)
 
 
-@application.route("/reg_review/<name>/")
-def reg_review_init(name):
+@application.route("/reg_review/<id>/")
+def reg_review_init(id):
     if session.get('id') is None:
         flash("로그인하쇼")
         return render_template("login.html")
     else:
-        return render_template("reg_review.html", id=session.get('id'), name=name)
+        return render_template("reg_review.html", buyerId=session.get('id'), sellerId=id)
 
 
 @application.route("/reg_review", methods=['POST'])
@@ -90,15 +94,15 @@ def reg_review():
     image_file = request.files["file"]
     image_file.save("static/images/{}".format(image_file.filename))
     data = request.form
-    name = data.get('productName')
-    DB.reg_review(data, image_file.filename, id=session.get('id'))
-    return redirect(url_for('view_review', name=name))
+    sellerId = data.get('sellerId')
+    review_key = DB.reg_review(data, image_file.filename, buyerId=data.get('buyerId'), sellerId=sellerId)
+    return redirect(url_for('view_review', key=review_key, sellerId=sellerId))
 
 
-@application.route("/details_of_review/<name>/")
-def view_review(name):
-    data = DB.get_review(str(name))
-    return render_template("details_of_review.html", id=session.get('id'), name=name, data=data)
+@application.route("/details_of_review/<sellerId>/<key>/")
+def view_review(key, sellerId):
+    data = DB.get_review_bykey(key, sellerId)
+    return render_template("details_of_review.html", data=data)
 
 
 @application.route("/user_reviews/<id>/")
@@ -109,8 +113,12 @@ def view_reviews(id):
     row_count = int(per_page/per_row)
     start_idx = per_page*page
     end_idx = per_page*(page+1)  # 페이지 인덱스로 start_idx, end_idx 생성
-    data = DB.get_reviews()  # read the table
-    item_counts = len(data)
+    data = DB.get_reviews(id)  # read the table
+    if not data:
+        data = {}
+        item_counts = 0
+    else:
+        item_counts = len(data)
 
     # 한 페이지에 start_idx, end_idx 만큼 읽어오기
     data = dict(list(data.items())[start_idx:end_idx])

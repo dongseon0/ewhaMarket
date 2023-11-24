@@ -10,24 +10,31 @@ class DBhandler:
         firebase = pyrebase.initialize_app(config)
         self.db = firebase.database()
 
-    def reg_review(self, data, img_path, id):
+    def reg_review(self, data, img_path, buyerId, sellerId):
         review_info = {
-            "buyerId": id,
-            "productName": data["productName"],
+            "sellerId": sellerId,
+            "buyerId": buyerId,
             "reviewTitle": data["reviewTitle"],
             "reviewContents": data["reviewContents"],
             "starsVariable": data["starsVariable"],
             "img_path": img_path
         }
-        self.db.child("review").child(data["productName"]).set(review_info)
-        return True
+        review_data = self.db.child("users").child(sellerId).child("user_reviews").push(review_info)
+        review_key = review_data['name']
+        return review_key
 
-    def get_review(self, name):
-        items = self.db.child("review").child(name).get().val()
-        return items
+    def get_review_bykey(self, key, sellerId):
+        reviews = self.db.child("users").child(sellerId).child("user_reviews").get()
+        target_value = ""
+        for res in reviews.each():
+            key_value = res.key()
 
-    def get_reviews(self):
-        items = self.db.child("review").get().val()
+            if key_value == key:
+                target_value = res.val()
+        return target_value
+
+    def get_reviews(self, sellerId):
+        items = self.db.child("users").child(sellerId).child("user_reviews").get().val()
         return items
 
     def insert_item(self, data, img_path, id):
@@ -44,7 +51,7 @@ class DBhandler:
             "phone": data["phone"],
             "img_path": img_path
         }
-        item_data = self.db.child("users").child(id).child("user_item").push(str(data["name"]))
+        item_data = self.db.child("users").child(id).child("user_list").push(str(data["name"]))
         item_key = item_data['name']
         self.db.child("items").child(item_key).set(item_info)
         return item_key
