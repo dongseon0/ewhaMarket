@@ -11,8 +11,6 @@
   /* 요소를 가로로 정렬 */
   justify-content: space-between;
   /* 좌우에 요소를 분배 */
-  align-items: center;
-  /* 세로 중앙 정렬 */
   padding: 10px 40px;
 }
 
@@ -33,9 +31,7 @@
 }
 
 .navbar__menu li {
-  margin-left: 15px;
-  /* 메뉴 간격 설정 */
-  margin-right: 15px;
+  margin: 0px 15px;
   /* 메뉴 간격 설정 */
 }
 
