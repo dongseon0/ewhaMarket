@@ -77,7 +77,7 @@ def reg_item():
 
 
 @application.route("/submit_item_post", methods=['POST'])
-def reg_item_submit_post():
+def submit_item_post():
     image_file = request.files["file"]
     image_file.save("static/images/items/{}".format(image_file.filename))
     data = request.form
@@ -85,7 +85,7 @@ def reg_item_submit_post():
     return redirect(url_for('view_details_of_item', key=data_key))
 
 
-@application.route("/view_detail/<key>/")
+@application.route("/details_of_item/<key>/")
 def view_details_of_item(key):
     # get_item_byname 상품 이름으로 데이터 가져오는 함수 생성
     data = DB.get_item_bykey(str(key))
@@ -94,7 +94,7 @@ def view_details_of_item(key):
 
 # 리뷰
 @application.route("/reg_review/<id>/")
-def reg_review_init(id):
+def reg_review(id):
     if session.get('id') is None:
         flash("로그인 후 리뷰를 작성해주세요.")
         return render_template("login.html")
@@ -102,8 +102,8 @@ def reg_review_init(id):
         return render_template("reg_review.html", buyerId=session.get('id'), sellerId=id)
 
 
-@application.route("/reg_review", methods=['POST'])
-def reg_review():
+@application.route("/submit_review_post", methods=['POST'])
+def submit_review_post():
     image_file = request.files["file"]
     image_file.save("static/images/reviews/{}".format(image_file.filename))
     data = request.form
