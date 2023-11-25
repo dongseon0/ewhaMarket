@@ -79,7 +79,7 @@ def reg_item():
 @application.route("/submit_item_post", methods=['POST'])
 def reg_item_submit_post():
     image_file = request.files["file"]
-    image_file.save("static/images/{}".format(image_file.filename))
+    image_file.save("static/images/items/{}".format(image_file.filename))
     data = request.form
     data_key = DB.insert_item(data, image_file.filename, id=session.get('id'))
     return redirect(url_for('view_details_of_item', key=data_key))
@@ -105,7 +105,7 @@ def reg_review_init(id):
 @application.route("/reg_review", methods=['POST'])
 def reg_review():
     image_file = request.files["file"]
-    image_file.save("static/images/{}".format(image_file.filename))
+    image_file.save("static/images/reviews/{}".format(image_file.filename))
     data = request.form
     sellerId = data.get('sellerId')
     review_key = DB.reg_review(
