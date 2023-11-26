@@ -3,6 +3,11 @@
 
 <head>
     <style>
+        a {
+            color: black;
+            text-decoration: none;
+        }
+
         .stars {
             color: rgb(163, 223, 249);
             font-size: 150%;
@@ -83,8 +88,8 @@
 
     {% block section %}
     <div class="review">
-        <img src="/static/images/jungwha.jpeg" id="profile">
-        <div id="user-id">{{data.buyerId}}</div>
+        <a href="/user_reviews/{{data.buyerId}}/"><img src="/static/images/jungwha.jpeg" id="profile"></a>
+        <div id="user-id"><a href="/user_reviews/{{data.buyerId}}/">{{data.buyerId}}<a></div>
         <div id="review-title">{{data.reviewTitle}}</div>
         <div class="stars">
             <div id="stars-variable">{{data.starsVariable}}</div>
