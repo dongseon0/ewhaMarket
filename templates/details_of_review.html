@@ -63,28 +63,17 @@
             width: 10%;
             margin: 1%;
 
+            background-color: rgb(226, 226, 226);
             border: none;
             border-radius: 5px;
+            color: rgb(0, 0, 0);
             font-size: 90%;
             padding: 1% 0%;
         }
 
-        #bad {
-            background-color: pink;
-            color: rgb(156, 87, 87);
-        }
-
-        #bad:hover {
-            background-color: rgb(235, 180, 189);
-        }
-
-        #good {
-            background-color: rgb(163, 223, 249, 0.75);
-            color: rgb(61, 140, 174);
-        }
-
+        #bad:hover,
         #good:hover {
-            background-color: rgb(166, 208, 225);
+            background-color: rgb(198, 198, 198);
         }
     </style>
 </head>
@@ -113,13 +102,9 @@
         <hr>
         <button name="good" id="good">👍 {{good}}</button>
         <button name="bad" id="bad">👍 {{bad}}</button>
-        <!-- <input type="button" name="good" id="good">
-        <input type="button" name="bad" id="bad">
-        <i class="fa fa-heart" id="heart" >ss</i> -->
     </div>
 
     <script>
-        // 별
         function starFill() {
             star = parseInt(document.getElementById("stars-variable").innerHTML);
             stars = document.getElementsByClassName("star");
@@ -132,21 +117,32 @@
             }
         }
         starFill();
-        // 별
 
         function showHeart() {
             $.ajax({
                 type: 'GET',
-                url: '/show_heart/{{sellerId}}/{{key}}/',
+                url: '/show_review_heart/{{sellerId}}/{{key}}/',
                 data: {},
                 success: function (response) {
                     let heart = response['heart'];
                     if (heart['heart'] == "1") {
-                        $("#good").css("color", "red");
+                        $("#good").css("background-color", "rgb(163, 223, 249, 0.75)");
+                        $("#good").css("color", "rgb(61, 140, 174)");
+                        $("#good").mouseenter(function () {
+                            $(this).css("background-color", "rgb(166, 208, 225)");
+                        }).mouseleave(function () {
+                            $(this).css("background-color", "rgb(163, 223, 249, 0.75)")
+                        });
                         $("#good").attr("onclick", "cancel()");
                         $("#bad").attr("onclick", "bad()");
                     } else if (heart['heart'] == "-1") {
-                        $("#bad").css("color", "red");
+                        $("#bad").css("background-color", "pink");
+                        $("#bad").css("color", "rgb(156, 87, 87)");
+                        $("#bad").mouseenter(function () {
+                            $(this).css("background-color", "rgb(235, 180, 189)");
+                        }).mouseleave(function () {
+                            $(this).css("background-color", "pink")
+                        });
                         $("#good").attr("onclick", "good()");
                         $("#bad").attr("onclick", "cancel()");
                     } else {
@@ -160,7 +156,7 @@
         function good() {
             $.ajax({
                 type: 'POST',
-                url: '/update_heart/{{sellerId}}/{{key}}/1',
+                url: '/update_review_heart/{{sellerId}}/{{key}}/1',
                 data: {
                     heart: 1
                 },
@@ -174,7 +170,7 @@
         function bad() {
             $.ajax({
                 type: 'POST',
-                url: '/update_heart/{{sellerId}}/{{key}}/-1',
+                url: '/update_review_heart/{{sellerId}}/{{key}}/-1',
                 data: {
                     heart: -1
                 },
@@ -188,7 +184,7 @@
         function cancel() {
             $.ajax({
                 type: 'POST',
-                url: '/update_heart/{{sellerId}}/{{key}}/0',
+                url: '/update_review_heart/{{sellerId}}/{{key}}/0',
                 data: {
                     heart: 0
                 },

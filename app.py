@@ -121,16 +121,15 @@ def view_details_of_review(key, sellerId):
     return render_template("details_of_review.html", data=data, key=key, sellerId=sellerId, good=good, bad=bad)
 
 
-@application.route('/show_heart/<sellerId>/<key>/', methods=['GET'])
-def show_heart(key, sellerId):
+@application.route('/show_review_heart/<sellerId>/<key>/', methods=['GET'])
+def show_review_heart(key, sellerId):
     heart = DB.get_review_heart_bykey(session['id'], key, sellerId)
     return jsonify({'heart': heart})
 
 
-@application.route('/update_heart/<sellerId>/<key>/<heart>/', methods=['POST'])
-def update_heart(key, sellerId, heart):
-    update_heart = DB.update_review_heart(session['id'], key, sellerId, heart)
-    data = request.form
+@application.route('/update_review_heart/<sellerId>/<key>/<heart>/', methods=['POST'])
+def update_review_heart(key, sellerId, heart):
+    DB.update_review_heart(session['id'], key, sellerId, heart)
     return jsonify({'msg': '완료!'})
 
 
