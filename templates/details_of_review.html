@@ -111,8 +111,11 @@
         <div id="review-contents">{{data.reviewContents}}</div>
         <br>
         <hr>
-        <input type="button" name="good" id="good">
+        <button name="good" id="good">👍 {{good}}</button>
+        <button name="bad" id="bad">👍 {{bad}}</button>
+        <!-- <input type="button" name="good" id="good">
         <input type="button" name="bad" id="bad">
+        <i class="fa fa-heart" id="heart" >ss</i> -->
     </div>
 
     <script>
@@ -131,14 +134,72 @@
         starFill();
         // 별
 
-        // 따봉, 우우~
-        good = 0;
-        bad = 0;
-        goodBtn = document.getElementById("good");
-        badBtn = document.getElementById("bad");
-        goodBtn.value = "👍 " + good;
-        badBtn.value = "👎 " + bad;
-        // 따봉, 우우~
+        function showHeart() {
+            $.ajax({
+                type: 'GET',
+                url: '/show_heart/{{sellerId}}/{{key}}/',
+                data: {},
+                success: function (response) {
+                    let heart = response['heart'];
+                    if (heart['heart'] == "1") {
+                        $("#good").css("color", "red");
+                        $("#good").attr("onclick", "cancel()");
+                        $("#bad").attr("onclick", "bad()");
+                    } else if (heart['heart'] == "-1") {
+                        $("#bad").css("color", "red");
+                        $("#good").attr("onclick", "good()");
+                        $("#bad").attr("onclick", "cancel()");
+                    } else {
+                        $("#good").attr("onclick", "good()");
+                        $("#bad").attr("onclick", "bad()");
+                    }
+                }
+            });
+        }
+
+        function good() {
+            $.ajax({
+                type: 'POST',
+                url: '/update_heart/{{sellerId}}/{{key}}/1',
+                data: {
+                    heart: 1
+                },
+                success: function (response) {
+                    alert(response['msg']);
+                    window.location.reload()
+                }
+            });
+        }
+
+        function bad() {
+            $.ajax({
+                type: 'POST',
+                url: '/update_heart/{{sellerId}}/{{key}}/-1',
+                data: {
+                    heart: -1
+                },
+                success: function (response) {
+                    alert(response['msg']);
+                    window.location.reload()
+                }
+            });
+        }
+
+        function cancel() {
+            $.ajax({
+                type: 'POST',
+                url: '/update_heart/{{sellerId}}/{{key}}/0',
+                data: {
+                    heart: 0
+                },
+                success: function (response) {
+                    alert(response['msg']);
+                    window.location.reload()
+                }
+            });
+        }
+
+        showHeart();
     </script>
     {% endblock section %}
 </body>

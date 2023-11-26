@@ -9,7 +9,6 @@ class DBhandler:
 
         firebase = pyrebase.initialize_app(config)
         self.db = firebase.database()
-    
 
     # 회원가입
     def insert_user(self, data, pw):
@@ -47,7 +46,6 @@ class DBhandler:
                 else:
                     return False
         return False
-    
 
     # 상품
     def insert_item(self, data, img_path, id):
@@ -64,7 +62,8 @@ class DBhandler:
             "phone": data["phone"],
             "img_path": img_path
         }
-        item_data = self.db.child("users").child(id).child("user_list").push(str(data["name"]))
+        item_data = self.db.child("users").child(
+            id).child("user_list").push(str(data["name"]))
         item_key = item_data['name']
         self.db.child("items").child(item_key).set(item_info)
         return item_key
@@ -82,7 +81,6 @@ class DBhandler:
             if key_value == key:
                 target_value = res.val()
         return target_value
-    
 
     # 리뷰
     def reg_review(self, data, img_path, buyerId, sellerId):
@@ -94,12 +92,14 @@ class DBhandler:
             "starsVariable": data["starsVariable"],
             "img_path": img_path
         }
-        review_data = self.db.child("users").child(sellerId).child("user_reviews").push(review_info)
+        review_data = self.db.child("users").child(
+            sellerId).child("user_reviews").push(review_info)
         review_key = review_data['name']
         return review_key
 
     def get_review_bykey(self, key, sellerId):
-        reviews = self.db.child("users").child(sellerId).child("user_reviews").get()
+        reviews = self.db.child("users").child(
+            sellerId).child("user_reviews").get()
         target_value = ""
         for res in reviews.each():
             key_value = res.key()
@@ -109,8 +109,56 @@ class DBhandler:
         return target_value
 
     def get_reviews(self, sellerId):
-        items = self.db.child("users").child(sellerId).child("user_reviews").get().val()
+        items = self.db.child("users").child(
+            sellerId).child("user_reviews").get().val()
         return items
+
+    def get_review_good_bykey(self, key, sellerId):
+        hearts = self.db.child("users").child(
+            sellerId).child("user_reviews").child(key).child("hearts").get()
+
+        good = 0
+        if not hearts.each():
+            return good
+
+        for heart in hearts.each():
+            heart1 = heart.val().get("heart")
+
+            if heart1 == 1:
+                good += 1
+        return good
+
+    def get_review_bad_bykey(self, key, sellerId):
+        hearts = self.db.child("users").child(
+            sellerId).child("user_reviews").child(key).child("hearts").get()
+
+        bad = 0
+        if not hearts.each():
+            return bad
+
+        for heart in hearts.each():
+            heart1 = heart.val().get("heart")
+
+            if heart1 == -1:
+                bad += 1
+        return bad
+
+    def get_review_heart_bykey(self, id, key, sellerId):
+        heart = self.db.child("users").child(
+            sellerId).child("user_reviews").child(key).child("hearts").child(id).get()
+
+        if heart.val() == None:
+            return ""
+        else:
+            return heart.val()
+
+    def update_review_heart(self, id, key, sellerId, heart):
+        heart_info = {
+            "heart": int(heart)
+        }
+        self.db.child("users").child(sellerId).child("user_reviews").child(
+            key).child("hearts").child(id).set(heart_info)
+        return True
 
     # 마이페이지
     def get_user_info(self, id):

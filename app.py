@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, flash, redirect, url_for, session
+from flask import Flask, render_template, request, flash, redirect, url_for, session, jsonify
 from database import DBhandler
 import hashlib
 import sys
@@ -116,7 +116,22 @@ def submit_review_post():
 @application.route("/details_of_review/<sellerId>/<key>/")
 def view_details_of_review(key, sellerId):
     data = DB.get_review_bykey(key, sellerId)
-    return render_template("details_of_review.html", data=data)
+    good = DB.get_review_good_bykey(key, sellerId)
+    bad = DB.get_review_bad_bykey(key, sellerId)
+    return render_template("details_of_review.html", data=data, key=key, sellerId=sellerId, good=good, bad=bad)
+
+
+@application.route('/show_heart/<sellerId>/<key>/', methods=['GET'])
+def show_heart(key, sellerId):
+    heart = DB.get_review_heart_bykey(session['id'], key, sellerId)
+    return jsonify({'heart': heart})
+
+
+@application.route('/update_heart/<sellerId>/<key>/<heart>/', methods=['POST'])
+def update_heart(key, sellerId, heart):
+    update_heart = DB.update_review_heart(session['id'], key, sellerId, heart)
+    data = request.form
+    return jsonify({'msg': '완료!'})
 
 
 @application.route("/user_reviews/<id>/")
