@@ -230,15 +230,14 @@ def register_user():
         return render_template("signup.html")
 
 
-# 마이페이지
+# 마이페이지_내 상점
 @application.route("/my_page/<id>/")
 def mypage(id):
     return render_template("my_page.html", id=id)
 
 
+# 마이페이지_내 리뷰
 @application.route("/my_reviews/<id>/")
-# def myreview(id):
-#     return render_template("my_reviews.html", id=id)
 def my_reviews(id):
     page = request.args.get("page", 0, type=int)
     per_page = 5  # item count to display per page
@@ -280,11 +279,13 @@ def my_reviews(id):
     )
 
 
+# 마이페이지_찜
 @application.route("/my_wish/<id>/")
 def mywish(id):
     return render_template("my_wish.html", id=id)
 
 
+# 마이페이지_개인정보
 @application.route("/my_info/<id>/")
 def mypersonal(id):
     data = DB.get_user_info(id)
