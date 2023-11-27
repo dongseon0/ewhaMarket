@@ -35,14 +35,6 @@
             margin-left: 5%;
         }
 
-        #profile {
-            float: left;
-            width: 9%;
-
-            border-radius: 50%;
-            margin: 0% 5%;
-        }
-
         #review-contents {
             width: 80%;
 
@@ -80,6 +72,34 @@
         #good:hover {
             background-color: rgb(198, 198, 198);
         }
+
+        .square {
+            width: 63px;
+            height: 63px;
+            overflow: hidden;
+            border-radius: 50%;
+            margin: 0% 5%;
+            float: left;
+            position: relative;
+        }
+
+        .image-cropper {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .image-cropper img {
+            width: auto;
+            height: auto;
+            max-width: none;
+            max-height: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
     </style>
 </head>
 
@@ -88,7 +108,13 @@
 
     {% block section %}
     <div class="review">
-        <a href="/user_reviews/{{data.buyerId}}/"><img src="/static/images/profiles/{{profile_image_path}}" id="profile"></a>
+        <a href="/user_reviews/{{data.buyerId}}/">
+            <div class="square">
+                <div class="image-cropper">
+                    <img src="/static/images/profiles/{{profile_image_path}}" id="profile">
+                </div>
+            </div>
+        </a>
         <div id="user-id"><a href="/user_reviews/{{data.buyerId}}/">{{data.buyerId}}<a></div>
         <div id="review-title">{{data.reviewTitle}}</div>
         <div class="stars">
@@ -202,6 +228,26 @@
         }
 
         showHeart();
+
+        // 이미지 크기 맞추기
+        window.onload = function () {
+            var croppers = document.querySelectorAll('.image-cropper');
+            croppers.forEach(function (cropper) {
+                var img = cropper.querySelector('img');
+                var imgWidth = img.naturalWidth;
+                var imgHeight = img.naturalHeight;
+                var cropperWidth = cropper.offsetWidth;
+                var cropperHeight = cropper.offsetHeight;
+
+                if (imgWidth / imgHeight > cropperWidth / cropperHeight) {
+                    img.style.width = 'auto';
+                    img.style.height = '100%';
+                } else {
+                    img.style.width = '100%';
+                    img.style.height = 'auto';
+                }
+            });
+        };
     </script>
     {% endblock section %}
 </body>
