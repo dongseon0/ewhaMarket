@@ -99,6 +99,8 @@ def reg_review(id):
     if session.get('id') is None:
         flash("로그인 후 리뷰를 작성해주세요.")
         return render_template("login.html")
+    elif id == session.get('id'):
+        return redirect(url_for('view_user_reviews', id=id))
     else:
         return render_template("reg_review.html", buyerId=session.get('id'), sellerId=id)
 
