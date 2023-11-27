@@ -197,6 +197,55 @@
     {% extends "index.html" %}
 
     {% block section %}
+    <script>
+        function showHeart(){
+            $.ajax({
+                type : 'GET',
+                url: '/show_heart/{{data.name}}/',
+                data:{},
+                success: function(response){
+                    let my_heart = response['my_heart'];
+                    if(my_heart['interested'] === 'Y'){
+                        $(".btn-love").css("background-color", "red");
+                        $(".btn-love").attr("onclick", "unlike()");
+                    }
+                    else(my_heart['interested'] === 'N'){
+                        $(".btn-love").css("background-color", "grey");
+                        $(".btn-love").attr("onclick", "like()");
+                    }
+                }
+            });
+        }
+        function like() {
+            $.ajax({
+                type: 'POST',
+                url: '/like/{{data.name}}/',
+                data: {
+                    interested : "Y"
+            },
+            success: function (response) {
+                alert(response['msg']);
+                window.location.reload()
+            }
+        });
+    }
+        function unlike() {
+            $.ajax({
+                type: 'POST',
+                url: '/unlike/{{data.name}}/',
+                data: {
+                    interested : "N"
+            },
+            success: function (response) {
+                alert(response['msg']);
+                window.location.reload()
+            }
+        });
+    }
+    $(document).ready(function () {
+        showHeart();
+    });
+    </script>
 
     <div class="wrapper">
         <div class="text">상품 세부화면</div>
