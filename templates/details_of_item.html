@@ -206,11 +206,12 @@
                 success: function(response){
                     let my_heart = response['my_heart'];
                     if(my_heart['interested'] === 'Y'){
-                        $(".btn-love").css("background-color", "red");
+                        $(".btn-love").css("background-color", "#c1e6ff");
+                        $(".btn-love").css("color", "#003742");
+                        $(".btn-love").css("border", "3px solid #c1e6ff");
                         $(".btn-love").attr("onclick", "unlike()");
                     }
-                    else(my_heart['interested'] === 'N'){
-                        $(".btn-love").css("background-color", "grey");
+                    else{
                         $(".btn-love").attr("onclick", "like()");
                     }
                 }
