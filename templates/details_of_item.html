@@ -201,7 +201,7 @@
         function showHeart(){
             $.ajax({
                 type : 'GET',
-                url: '/show_heart/{{data.name}}/',
+                url: '/show_heart/{{key}}/',
                 data:{},
                 success: function(response){
                     let my_heart = response['my_heart'];
@@ -221,7 +221,7 @@
         function like() {
             $.ajax({
                 type: 'POST',
-                url: '/like/{{data.name}}/',
+                url: '/like/{{key}}/',
                 data: {
                     interested : "Y"
             },
@@ -234,7 +234,7 @@
         function unlike() {
             $.ajax({
                 type: 'POST',
-                url: '/unlike/{{data.name}}/',
+                url: '/unlike/{{key}}/',
                 data: {
                     interested : "N"
             },
