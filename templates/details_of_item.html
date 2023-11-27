@@ -114,10 +114,7 @@
         }
 
         .favorite-button {
-            margin-top: 100%;
-            /* 버튼과 테이블 간격 조절을 위한 여백 추가 */
-            margin-left: 35%;
-            margin-right: 65%;
+            margin: 125% 14%;
         }
 
         .btn-love {
@@ -126,10 +123,25 @@
             border-radius: 5px;
             border: 3px solid aliceblue;
             font-size: 100%;
-            padding: 4px 7px;
+            float : left;
         }
 
         .btn-love:hover {
+            background-color: #c1e6ff;
+            color: #003742;
+            border: 3px solid #c1e6ff;
+        }
+
+        .btn-review {
+            background-color: aliceblue;
+            color: #1e6b7b;
+            border-radius: 5px;
+            border: 3px solid aliceblue;
+            font-size: 100%;
+            float : right;
+        }
+
+        .btn-review:hover {
             background-color: #c1e6ff;
             color: #003742;
             border: 3px solid #c1e6ff;
@@ -198,8 +210,7 @@
 
             <div class="columnright">
                 <img src="/static/images/watch.jpeg" id="profile">
-                <div id="user-id"><a href="/user_reviews/{{data.sellerId}}/">{{data.sellerId}}<a><span class="star" style="color: orange"> ★ </span>
-                            <span class="review" style="color: gray">5.0(12)</span></div>
+                <div id="user-id"><a href="/user_reviews/{{data.sellerId}}/">{{data.sellerId}}<a></div>
                 <h2>{{data.name}}</h2>
 
                 <table style="float:left;">
@@ -245,6 +256,7 @@
                 </table>
                 <div class="favorite-button">
                     <input class="btn-love" type="button" value="♡ 찜하기">
+                    <input class="btn-review" type="button" value="✓ 리뷰쓰기">
                 </div>
             </div>
         </div>

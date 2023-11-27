@@ -87,7 +87,6 @@ def submit_item_post():
 
 @application.route("/details_of_item/<key>/")
 def view_details_of_item(key):
-    # get_item_byname 상품 이름으로 데이터 가져오는 함수 생성
     data = DB.get_item_bykey(str(key))
     return render_template("details_of_item.html", key=key, data=data)
 
