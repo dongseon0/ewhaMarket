@@ -66,13 +66,13 @@
         #bad {
             float: left;
             width: 10%;
-            margin: 1%;
 
             background-color: rgb(226, 226, 226);
             border: none;
             border-radius: 5px;
             color: rgb(91, 91, 91);
             font-size: 90%;
+            margin: 1%;
             padding: 1% 0%;
         }
 
@@ -123,6 +123,7 @@
         }
         starFill();
 
+        // -1은 bad, 0은 none, 1은 good
         function showHeart() {
             $.ajax({
                 type: 'GET',

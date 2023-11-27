@@ -93,6 +93,7 @@ def view_details_of_item(key):
 
 
 # 리뷰
+# 리뷰 작성하기
 @application.route("/reg_review/<id>/")
 def reg_review(id):
     if session.get('id') is None:
@@ -102,6 +103,7 @@ def reg_review(id):
         return render_template("reg_review.html", buyerId=session.get('id'), sellerId=id)
 
 
+# 리뷰 등록하기
 @application.route("/submit_review_post", methods=['POST'])
 def submit_review_post():
     image_file = request.files["file"]
@@ -113,6 +115,7 @@ def submit_review_post():
     return redirect(url_for('view_details_of_review', key=review_key, sellerId=sellerId))
 
 
+# 리뷰 상세보기
 @application.route("/details_of_review/<sellerId>/<key>/")
 def view_details_of_review(key, sellerId):
     data = DB.get_review_bykey(key, sellerId)
@@ -121,12 +124,14 @@ def view_details_of_review(key, sellerId):
     return render_template("details_of_review.html", data=data, key=key, sellerId=sellerId, good=good, bad=bad)
 
 
+# 리뷰 상세보기에서 하트 불러오기
 @application.route('/show_review_heart/<sellerId>/<key>/', methods=['GET'])
 def show_review_heart(key, sellerId):
     heart = DB.get_review_heart_bykey(session['id'], key, sellerId)
     return jsonify({'heart': heart})
 
 
+# 리뷰 상세보기에서 하트 업데이트하기
 @application.route('/update_review_heart/<sellerId>/<key>/<heart>/', methods=['POST'])
 def update_review_heart(key, sellerId, heart):
     DB.update_review_heart(session['id'], key, sellerId, heart)
