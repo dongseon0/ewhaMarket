@@ -14,8 +14,7 @@ class DBhandler:
     def insert_user(self, data, pw):
         user_info = {
             "pw": pw,
-            "nickname": data['nickname'],
-            "profile_img_path": ""
+            "nickname": data['nickname']
         }
         if self.user_duplicate_check(str(data['id'])):
             self.db.child("users").child(data['id']).child(
@@ -50,11 +49,11 @@ class DBhandler:
     
     # 특정 아이디의 프로필 사진 불러오기
     def get_profile_image_path_byid(self, id):
-        profile_image_path = self.db.child("users").child(id).child("user_info").get().val().get('profile_image_path')
-        if profile_image_path == None:
+        profile = self.db.child("users").child(id).child("user_info").get().val().get('profile')
+        if profile == None or profile == "":
             return "default.png"
         else:
-            return profile_image_path
+            return profile
 
     # 상품
     def insert_item(self, data, img_path, id):
