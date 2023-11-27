@@ -258,5 +258,26 @@ def DynamicUrl(variable_name):
     return str(variable_name)
 
 
+# 찜하기 기능
+@application.route('/show_heart/<name>/', methods=['GET'])
+def show_heart(name):
+    my_heart = DB.get_heart_byname(session['id'],name)
+    return jsonify({'my_heart': my_heart})
+
+# 찜하기 성공
+@application.route('/like/<name>/', methods=['POST'])
+def like(name):
+    my_heart = DB.update_heart(session['id'],'Y',name)
+    return jsonify({'msg': '찜하기를 눌렀어요.'})
+
+#찜하기 취소
+@application.route('/unlike/<name>/', methods=['POST'])
+def unlike(name):
+    my_heart = DB.update_heart(session['id'],'N',name)
+    return jsonify({'msg': '찜하기를 취소했어요.'})
+
+
+
+
 if __name__ == "__main__":
     application.run(host='0.0.0.0', debug=True)

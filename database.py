@@ -89,6 +89,30 @@ class DBhandler:
             if key_value == key:
                 target_value = res.val()
         return target_value
+    
+    # 찜하기 기능
+    def get_heart_byname(self, uid, name):
+        hearts = self.db.child("users").child(uid).child("user_wish").get()
+        
+        target_value=""
+        if hearts.val() == None:
+            return target_value
+
+        for res in hearts.each():
+            key_value = res.key()
+
+            if key_value == name:
+                target_value=res.val()
+        return target_value
+
+    def update_heart(self, uid, isHeart, item):
+        heart_info ={
+            "interested": isHeart
+        }
+        self.db.child("users").child(uid).child("user_wish").child(item).set(heart_info)
+        return True
+        
+    
 
     # 리뷰
     # 리뷰 데이터베이스에 등록하기
