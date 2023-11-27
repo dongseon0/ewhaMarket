@@ -83,6 +83,7 @@ class DBhandler:
         return target_value
 
     # 리뷰
+    # 리뷰 데이터베이스에 등록하기
     def reg_review(self, data, img_path, buyerId, sellerId):
         review_info = {
             "sellerId": sellerId,
@@ -97,6 +98,7 @@ class DBhandler:
         review_key = review_data['name']
         return review_key
 
+    # 키값으로 데이터베이스에서 특정 리뷰 불러오기
     def get_review_bykey(self, key, sellerId):
         reviews = self.db.child("users").child(
             sellerId).child("user_reviews").get()
@@ -108,11 +110,13 @@ class DBhandler:
                 target_value = res.val()
         return target_value
 
+    # 특정 아이디의 리뷰들을 데이터베이스에서 불러오기
     def get_reviews(self, sellerId):
         items = self.db.child("users").child(
             sellerId).child("user_reviews").get().val()
         return items
 
+    # 데이터베이스에서 특정 리뷰 하트 정보 불러오기
     def get_review_good_bykey(self, key, sellerId):
         hearts = self.db.child("users").child(
             sellerId).child("user_reviews").child(key).child("hearts").get()
@@ -128,6 +132,7 @@ class DBhandler:
                 good += 1
         return good
 
+    # 데이터베이스에서 특정 리뷰 하트 정보 불러오기
     def get_review_bad_bykey(self, key, sellerId):
         hearts = self.db.child("users").child(
             sellerId).child("user_reviews").child(key).child("hearts").get()
@@ -143,6 +148,7 @@ class DBhandler:
                 bad += 1
         return bad
 
+    # 데이터베이스에서 특정 아이디의 리뷰 하트 정보 불러오기
     def get_review_heart_bykey(self, id, key, sellerId):
         heart = self.db.child("users").child(
             sellerId).child("user_reviews").child(key).child("hearts").child(id).get()
@@ -152,6 +158,7 @@ class DBhandler:
         else:
             return heart.val()
 
+    # 데이터베이스에서 특정 아이디의 리뷰 하트 정보 업데이트하기
     def update_review_heart(self, id, key, sellerId, heart):
         heart_info = {
             "heart": int(heart)
