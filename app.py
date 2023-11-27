@@ -88,7 +88,8 @@ def submit_item_post():
 @application.route("/details_of_item/<key>/")
 def view_details_of_item(key):
     data = DB.get_item_bykey(str(key))
-    return render_template("details_of_item.html", key=key, data=data)
+    profile_image_path = DB.get_profile_image_path_byid(data.get('sellerId'))
+    return render_template("details_of_item.html", key=key, data=data, profile_image_path=profile_image_path)
 
 
 # 리뷰
@@ -122,7 +123,8 @@ def view_details_of_review(key, sellerId):
     data = DB.get_review_bykey(key, sellerId)
     good = DB.get_review_good_bykey(key, sellerId)
     bad = DB.get_review_bad_bykey(key, sellerId)
-    return render_template("details_of_review.html", data=data, key=key, sellerId=sellerId, good=good, bad=bad)
+    profile_image_path = DB.get_profile_image_path_byid(data.get('buyerId'))
+    return render_template("details_of_review.html", data=data, key=key, sellerId=sellerId, good=good, bad=bad, profile_image_path=profile_image_path)
 
 
 # 리뷰 상세보기에서 하트 불러오기
