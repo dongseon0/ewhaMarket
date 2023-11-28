@@ -319,7 +319,8 @@ def like(key):
         return jsonify({'msg': '찜하기를 눌렀어요.'})
 
     except KeyError:
-        response_data = {'error': '로그인이 필요합니다.'}
+        response_data = {'error': '로그인이 필요합니다.', 
+                         'redirect_url': url_for('login')}
         return jsonify(response_data), 401
 
 # 찜하기 취소
@@ -331,7 +332,8 @@ def unlike(key):
         return jsonify({'msg': '찜하기를 취소했어요.'})
 
     except KeyError:
-        response_data = {'error': '로그인이 필요합니다.'}
+        response_data = {'error': '로그인이 필요합니다.', 
+                         'redirect_url': url_for('login')}
         return jsonify(response_data), 401
 
 

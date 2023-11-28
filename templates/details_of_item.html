@@ -246,6 +246,9 @@
             var response = xhr.responseJSON;
             if (response && response.error) {
                 alert(response.error);
+                if (response.redirect_url) {
+                    window.location.href = response.redirect_url;
+                }
             } else {
                 alert('알 수 없는 오류가 발생했습니다.');
             }
