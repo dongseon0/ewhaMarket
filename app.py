@@ -88,7 +88,8 @@ def submit_item_post():
 @application.route("/details_of_item/<key>/")
 def view_details_of_item(key):
     data = DB.get_item_bykey(str(key))
-    return render_template("details_of_item.html", key=key, data=data)
+    profile_image_path = DB.get_profile_image_path_byid(data.get('sellerId'))
+    return render_template("details_of_item.html", key=key, data=data, profile_image_path=profile_image_path)
 
 
 # 리뷰
@@ -122,7 +123,8 @@ def view_details_of_review(key, sellerId):
     data = DB.get_review_bykey(key, sellerId)
     good = DB.get_review_good_bykey(key, sellerId)
     bad = DB.get_review_bad_bykey(key, sellerId)
-    return render_template("details_of_review.html", data=data, key=key, sellerId=sellerId, good=good, bad=bad)
+    profile_image_path = DB.get_profile_image_path_byid(data.get('buyerId'))
+    return render_template("details_of_review.html", data=data, key=key, sellerId=sellerId, good=good, bad=bad, profile_image_path=profile_image_path)
 
 
 # 리뷰 상세보기에서 하트 불러오기
@@ -228,22 +230,62 @@ def register_user():
         return render_template("signup.html")
 
 
-# 마이페이지
+# 마이페이지_내 상점
 @application.route("/my_page/<id>/")
 def mypage(id):
     return render_template("my_page.html", id=id)
 
 
+# 마이페이지_내 리뷰
 @application.route("/my_reviews/<id>/")
-def myreview(id):
-    return render_template("my_reviews.html", id=id)
+def my_reviews(id):
+    page = request.args.get("page", 0, type=int)
+    per_page = 5  # item count to display per page
+    per_row = 1  # item count to display per row
+    row_count = int(per_page/per_row)
+    start_idx = per_page*page
+    end_idx = per_page*(page+1)  # 페이지 인덱스로 start_idx, end_idx 생성
+    data = DB.get_reviews(id)  # read the table
+    if not data:
+        data = {}
+        item_counts = 0
+    else:
+        item_counts = len(data)
+
+    # 한 페이지에 start_idx, end_idx 만큼 읽어오기
+    data = dict(list(data.items())[start_idx:end_idx])
+    tot_count = len(data)
+    for i in range(row_count):  # last row
+        if (i == row_count-1) and (tot_count % per_row != 0):
+            locals()['data_{}'.format(i)] = dict(
+                list(data.items())[i*per_row:])
+        else:
+            locals()['data_{}'.format(i)] = dict(
+                list(data.items())[i*per_row:(i+1)*per_row])
+
+    return render_template(
+        "my_reviews.html",
+        datas=data.items(),
+        row1=locals()['data_0'].items(),
+        row2=locals()['data_1'].items(),
+        row3=locals()['data_2'].items(),
+        row4=locals()['data_3'].items(),
+        row5=locals()['data_4'].items(),
+        limit=per_page,
+        page=page,  # 현재 페이지 인덱스
+        page_count=int((item_counts/per_page) + 1),  # 페이지 개수
+        total=item_counts,
+        id=id
+    )
 
 
+# 마이페이지_찜
 @application.route("/my_wish/<id>/")
 def mywish(id):
     return render_template("my_wish.html", id=id)
 
 
+# 마이페이지_개인정보
 @application.route("/my_info/<id>/")
 def mypersonal(id):
     data = DB.get_user_info(id)

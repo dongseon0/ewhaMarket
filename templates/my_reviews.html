@@ -1,4 +1,6 @@
 <head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="/static/user_reviews.css">
   <style>
     .mypage-wrapper {
       width: 700px;
@@ -69,6 +71,147 @@
       </ul>
     </div>
     <hr>
+
+    {% if total > 0 %}
+    <p class="count_review">
+      {{total}}개의 리뷰
+    </p>
+
+    <div class="review">
+      {% for key, value in row1 %}
+      <table>
+        <td onclick="location.href='/details_of_review/{{value.sellerId}}/{{key}}/';" style="cursor:pointer;">
+          <div class="review-content">
+            <img src="/static/images/reviews/{{value.img_path}}">
+            <div>
+              <p><b>{{value.buyerId}}</b></p>
+              <p>{{value.reviewTitle}}</p>
+              <div class="rating">
+                {% for i in range(0, 5) %}
+                {% if i <= value.starsVariable|default(0)|int %} <span class="filled-star">★</span>
+                  {% else %}
+                  <span class="empty-star">☆</span>
+                  {% endif %}
+                  {% endfor %}
+              </div>
+            </div>
+          </div>
+        </td>
+      </table>
+      {% endfor %}
+    </div>
+
+    <div class="review">
+      {% for key, value in row2 %}
+      <table>
+        <td onclick="location.href='/details_of_review/{{value.sellerId}}/{{key}}/';" style="cursor:pointer;">
+          <div class="review-content">
+            <img src="/static/images/reviews/{{value.img_path}}">
+            <div>
+              <p><b>{{value.buyerId}}</b></p>
+              <p>{{value.reviewTitle}}</p>
+              <div class="rating">
+                {% for i in range(0, 5) %}
+                {% if i <= value.starsVariable|default(0)|int %} <span class="filled-star">★</span>
+                  {% else %}
+                  <span class="empty-star">☆</span>
+                  {% endif %}
+                  {% endfor %}
+              </div>
+            </div>
+          </div>
+        </td>
+      </table>
+      {% endfor %}
+    </div>
+
+    <div class="review">
+      {% for key, value in row3 %}
+      <table>
+        <td onclick="location.href='/details_of_review/{{value.sellerId}}/{{key}}/';" style="cursor:pointer;">
+          <div class="review-content">
+            <img src="/static/images/reviews/{{value.img_path}}">
+            <div>
+              <p><b>{{value.buyerId}}</b></p>
+              <p>{{value.reviewTitle}}</p>
+              <div class="rating">
+                {% for i in range(0, 5) %}
+                {% if i <= value.starsVariable|default(0)|int %} <span class="filled-star">★</span>
+                  {% else %}
+                  <span class="empty-star">☆</span>
+                  {% endif %}
+                  {% endfor %}
+              </div>
+            </div>
+          </div>
+        </td>
+      </table>
+      {% endfor %}
+    </div>
+
+    <div class="review">
+      {% for key, value in row4 %}
+      <table>
+        <td onclick="location.href='/details_of_review/{{value.sellerId}}/{{key}}/';" style="cursor:pointer;">
+          <div class="review-content">
+            <img src="/static/images/reviews/{{value.img_path}}">
+            <div>
+              <p><b>{{value.buyerId}}</b></p>
+              <p>{{value.reviewTitle}}</p>
+              <div class="rating">
+                {% for i in range(0, 5) %}
+                {% if i <= value.starsVariable|default(0)|int %} <span class="filled-star">★</span>
+                  {% else %}
+                  <span class="empty-star">☆</span>
+                  {% endif %}
+                  {% endfor %}
+              </div>
+            </div>
+          </div>
+        </td>
+      </table>
+      {% endfor %}
+    </div>
+
+    <div class="review">
+      {% for key, value in row5 %}
+      <table>
+        <td onclick="location.href='/details_of_review/{{value.sellerId}}/{{key}}/';" style="cursor:pointer;">
+          <div class="review-content">
+            <img src="/static/images/reviews/{{value.img_path}}">
+            <div>
+              <p><b>{{value.buyerId}}</b></p>
+              <p>{{value.reviewTitle}}</p>
+              <div class="rating">
+                {% for i in range(0, 5) %}
+                {% if i <= value.starsVariable|default(0)|int %} <span class="filled-star">★</span>
+                  {% else %}
+                  <span class="empty-star">☆</span>
+                  {% endif %}
+                  {% endfor %}
+              </div>
+            </div>
+          </div>
+        </td>
+      </table>
+      {% endfor %}
+
+      <div class="page-wrap">
+        <div class="page-nation">
+          <ul>
+            <li>
+              {% for i in range(page_count) %}
+              <a href="{{url_for('my_reviews', id=id, page=i)}}" color="black">{{i+1}}</a>
+              {% endfor %}
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      {% else %}
+        <p style="text-align:center">등록된 리뷰가 없습니다.</p>
+        {% endif %}
+    </div>
   </div>
   {% endblock section %}
 </body>

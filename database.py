@@ -46,6 +46,14 @@ class DBhandler:
                 else:
                     return False
         return False
+    
+    # 특정 아이디의 프로필 사진 불러오기
+    def get_profile_image_path_byid(self, id):
+        profile = self.db.child("users").child(id).child("user_info").get().val().get('profile')
+        if profile == None or profile == "":
+            return "default.png"
+        else:
+            return profile
 
     # 상품
     def insert_item(self, data, img_path, id):
