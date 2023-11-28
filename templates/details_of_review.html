@@ -3,6 +3,11 @@
 
 <head>
     <style>
+        a {
+            color: black;
+            text-decoration: none;
+        }
+
         .stars {
             color: rgb(163, 223, 249);
             font-size: 150%;
@@ -23,19 +28,11 @@
             padding: 1%;
         }
 
-        #product-title {
+        #product-name {
             font-size: 110%;
             margin-top: 3%;
             margin-bottom: 1%;
             margin-left: 5%;
-        }
-
-        #profile {
-            float: left;
-            width: 9%;
-
-            border-radius: 50%;
-            margin: 0% 5%;
         }
 
         #review-contents {
@@ -61,30 +58,47 @@
         #bad {
             float: left;
             width: 10%;
-            margin: 1%;
 
+            background-color: rgb(226, 226, 226);
             border: none;
             border-radius: 5px;
+            color: rgb(91, 91, 91);
             font-size: 90%;
+            margin: 1%;
             padding: 1% 0%;
         }
 
-        #bad {
-            background-color: pink;
-            color: rgb(156, 87, 87);
-        }
-
-        #bad:hover {
-            background-color: rgb(235, 180, 189);
-        }
-
-        #good {
-            background-color: rgb(163, 223, 249, 0.75);
-            color: rgb(61, 140, 174);
-        }
-
+        #bad:hover,
         #good:hover {
-            background-color: rgb(166, 208, 225);
+            background-color: rgb(198, 198, 198);
+        }
+
+        .square {
+            width: 63px;
+            height: 63px;
+            overflow: hidden;
+            border-radius: 50%;
+            margin: 0% 5%;
+            float: left;
+            position: relative;
+        }
+
+        .image-cropper {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .image-cropper img {
+            width: auto;
+            height: auto;
+            max-width: none;
+            max-height: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
     </style>
 </head>
@@ -94,8 +108,14 @@
 
     {% block section %}
     <div class="review">
-        <img src="../static/images/jungwha.jpeg" id="profile">
-        <div id="user-id">JUNGH150</div>
+        <a href="/user_reviews/{{data.buyerId}}/">
+            <div class="square">
+                <div class="image-cropper">
+                    <img src="/static/images/profiles/{{profile_image_path}}" id="profile">
+                </div>
+            </div>
+        </a>
+        <div id="user-id"><a href="/user_reviews/{{data.buyerId}}/">{{data.buyerId}}<a></div>
         <div id="review-title">{{data.reviewTitle}}</div>
         <div class="stars">
             <div id="stars-variable">{{data.starsVariable}}</div>
@@ -106,18 +126,16 @@
             <span class="star" id="4">★</span>
         </div>
         <hr>
-        <div id="product-title">갤럭시 워치4 LTE 모델 40인치</div>
-        <img src="../static/images/{{img_path}}" id="product-image">
+        <img src="/static/images/reviews/{{data.img_path}}" id="product-image">
         <br>
         <div id="review-contents">{{data.reviewContents}}</div>
         <br>
         <hr>
-        <input type="button" name="good" id="good">
-        <input type="button" name="bad" id="bad">
+        <button name="good" id="good">👍 {{good}}</button>
+        <button name="bad" id="bad">👎 {{bad}}</button>
     </div>
 
     <script>
-        // 별
         function starFill() {
             star = parseInt(document.getElementById("stars-variable").innerHTML);
             stars = document.getElementsByClassName("star");
@@ -130,16 +148,106 @@
             }
         }
         starFill();
-        // 별
 
-        // 따봉, 우우~
-        good = 0;
-        bad = 0;
-        goodBtn = document.getElementById("good");
-        badBtn = document.getElementById("bad");
-        goodBtn.value = "👍 " + good;
-        badBtn.value = "👎 " + bad;
-        // 따봉, 우우~
+        // -1은 bad, 0은 none, 1은 good
+        function showHeart() {
+            $.ajax({
+                type: 'GET',
+                url: '/show_review_heart/{{sellerId}}/{{key}}/',
+                data: {},
+                success: function (response) {
+                    let heart = response['heart'];
+                    if (heart['heart'] == "1") {
+                        $("#good").css("background-color", "rgb(163, 223, 249, 0.75)");
+                        $("#good").css("color", "rgb(61, 140, 174)");
+                        $("#good").mouseenter(function () {
+                            $(this).css("background-color", "rgb(166, 208, 225)");
+                        }).mouseleave(function () {
+                            $(this).css("background-color", "rgb(163, 223, 249, 0.75)")
+                        });
+                        $("#good").attr("onclick", "cancel()");
+                        $("#bad").attr("onclick", "bad()");
+                    } else if (heart['heart'] == "-1") {
+                        $("#bad").css("background-color", "pink");
+                        $("#bad").css("color", "rgb(156, 87, 87)");
+                        $("#bad").mouseenter(function () {
+                            $(this).css("background-color", "rgb(235, 180, 189)");
+                        }).mouseleave(function () {
+                            $(this).css("background-color", "pink")
+                        });
+                        $("#good").attr("onclick", "good()");
+                        $("#bad").attr("onclick", "cancel()");
+                    } else {
+                        $("#good").attr("onclick", "good()");
+                        $("#bad").attr("onclick", "bad()");
+                    }
+                }
+            });
+        }
+
+        function good() {
+            $.ajax({
+                type: 'POST',
+                url: '/update_review_heart/{{sellerId}}/{{key}}/1',
+                data: {
+                    heart: 1
+                },
+                success: function (response) {
+                    alert(response['msg']);
+                    window.location.reload()
+                }
+            });
+        }
+
+        function bad() {
+            $.ajax({
+                type: 'POST',
+                url: '/update_review_heart/{{sellerId}}/{{key}}/-1',
+                data: {
+                    heart: -1
+                },
+                success: function (response) {
+                    alert(response['msg']);
+                    window.location.reload()
+                }
+            });
+        }
+
+        function cancel() {
+            $.ajax({
+                type: 'POST',
+                url: '/update_review_heart/{{sellerId}}/{{key}}/0',
+                data: {
+                    heart: 0
+                },
+                success: function (response) {
+                    alert(response['msg']);
+                    window.location.reload()
+                }
+            });
+        }
+
+        showHeart();
+
+        // 이미지 크기 맞추기
+        window.onload = function () {
+            var croppers = document.querySelectorAll('.image-cropper');
+            croppers.forEach(function (cropper) {
+                var img = cropper.querySelector('img');
+                var imgWidth = img.naturalWidth; // 기본 이미지 가로
+                var imgHeight = img.naturalHeight; // 기본 이미지 세로
+                var cropperWidth = cropper.offsetWidth;
+                var cropperHeight = cropper.offsetHeight;
+
+                if (imgWidth / imgHeight > cropperWidth / cropperHeight) { // 가로가 세로보다 길면
+                    img.style.width = 'auto';
+                    img.style.height = '100%';
+                } else { // 세로가 가로보다 길면
+                    img.style.width = '100%';
+                    img.style.height = 'auto';
+                }
+            });
+        };
     </script>
     {% endblock section %}
 </body>

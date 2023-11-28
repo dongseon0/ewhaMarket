@@ -23,17 +23,13 @@ li {
 }
 
 .inside {
-    margin: 2% 5% 2% 0%;
+    margin: 2% 10% 2% 0%;
 }
 
 textarea {
-    width: 267%;
+    width: 299%;
     resize: none;
     padding: 5%;
-}
-
-.product-registration-end {
-    float: right;
 }
 
 .input-name {
@@ -57,13 +53,50 @@ textarea {
 }
 
 .contact-information-text {
-    width: 70%;
-    padding: 1% 50px 1% 1%;
+    width: 75%;
+    padding: 1.5% 50px 1.5% 1%;
 }
 
 .fixed-pricing-text {
-    width: 60%;
+    width: 70%;
     padding: 1% 40px 1% 1%;
+    margin: 5% 1% 1% 1%;
+}
+
+.auction-section {
+    width: 200%;
+}
+
+.input-start-price-text{
+    width: 50%;
+    padding: 1% 1% 1% 1%;
+}
+
+.fixed-pricing-box {
+    width: 105%;
+}
+
+.select-rising-price-section {
+    width: 75%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.select-rising-price {
+    width: 20%;
+    padding: 1.7% 0% 1.7% 0%;
+}
+
+.input-auction-time {
+    width: 55%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.product-registration-end-button {
+    float: right;
+    width: 12%;
+    padding: 1.3% 0% 1.3% 0%;
 }
 
 hr {

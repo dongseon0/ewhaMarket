@@ -1,20 +1,19 @@
-{% extends "index.html" %}
-
-{% block section %}
-
 <head>
-    <link rel="stylesheet" type="text/css" href="../static/product_list.css">
+    <link rel="stylesheet" type="text/css" href="/static/product_list.css">
 </head>
 
 <body>
+    {% extends "index.html" %}
+
+    {% block section %}
     <div class="wrapper">
         <div class="text">상품 리스트</div>
         <hr>
         <div class="menubar">
             <ul class="menubar__menu">
-                <li><a href="product_list.html">전체 상품</a></li>
-                <li><a href="auction_list.html">경매</a></li>
-                <li><a href="list.html" style="text-decoration: underline;">일반 결제</a></li>
+                <li><a href="/product_list" style="text-decoration: underline;">전체 상품</a></li>
+                <li><a href="/auction_list">경매</a></li>
+                <li><a href="/list">일반 결제</a></li>
             </ul>
             <button type="button">상품 등록하기</button>
         </div>
@@ -99,6 +98,5 @@
         </ul>
         <hr>
     </div>
+    {% endblock section %}
 </body>
-
-{% endblock section %}

@@ -5,27 +5,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home</title>
-  <link rel="stylesheet" type="text/css" href="../../../static/style.css?after" id="style-css">
-  <script src="../../../static/main.js" defer></script>
+  <link rel="stylesheet" type="text/css" href="/static/style.css?after" id="style-css">
+  <script src="/static/main.js" defer></script>
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 
 <body>
   <nav class="navbar">
     <div class="navbar__logo">
-      <!-- <a href="/">이화마켓</a> -->
-      <a href="/"><img src="../../../static/images/logo.png" id="navbar-logo" alt="이화마켓" height="40px"></a>
+      <a href="/"><img src="/static/images/logo.png" id="navbar-logo" alt="이화마켓" height="40px"></a>
     </div>
     <ul class="navbar__menu">
-      <!-- <li><a href="/list">모두의 마켓</a></li>
-      <li><a href="/review">Review</a></li> -->
       <li><a href="/reg_item">Register Items</a></li>
-      <li><a href="/reg_review">Register Reviews</a></li>
-      <li><a href="/user_reviews">User Review</a></li>
+      <li><a href="/user_reviews/{{session['id']}}/">My Reviews</a></li> <!--일단 누르면 현재 세션의 아이디로 들어가게 함-->
     </ul>
     <ul class="navbar__login">
-      <li><a href="/list">모두의 마켓</a></li>
+      <li><a href="/">모두의 마켓</a></li>
       {% if session['id'] %}
-      <li><a href="/my_page" id="nav-mypage">{{session['id']}}님의 마이 페이지</a></li>
+      <li><a href="/my_page/{{session['id']}}/" id="nav-mypage">{{session['id']}}님의 마이 페이지</a></li>
       <li><a href="/logout" id="nav-logout">로그아웃</a></li>
       {% else %}
       <li><a href="/login" id="nav-login">로그인</a></li>
@@ -34,14 +31,6 @@
     </ul>
   </nav>
   <div id="navbar-gra"></div>
-  <!-- <script>
-    var navLogin = document.getElementById("nav-login");
-    navLogin.innerHTML = "마이 페이지";
-    navLogin.href = "/mypage";
-    var navSignup = document.getElementById("nav-signup");
-    navSignup.innerHTML = "로그아웃";
-    navSignup.href = "";
-  </script> -->
   <section>
     {% block section %}
 

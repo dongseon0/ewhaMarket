@@ -1,22 +1,21 @@
-{% extends "index.html" %}
-
-{% block section %}
-
 <head>
-    <link rel="stylesheet" type="text/css" href="../static/product_list.css">
+    <link rel="stylesheet" type="text/css" href="/static/product_list.css">
 </head>
 
 <body>
+    {% extends "index.html" %}
+
+    {% block section %}
     <div class="wrapper">
         <div class="text">상품 리스트</div>
         <hr>
         <div class="menubar">
             <ul class="menubar__menu">
-                <li><a href="product_list.html" style="text-decoration: underline;">전체 상품</a></li>
-                <li><a href="auction_list.html">경매</a></li>
-                <li><a href="list.html">일반 결제</a></li>
+                <li><a href="/product_list" style="text-decoration: underline;">전체 상품</a></li>
+                <li><a href="/auction_list">경매</a></li>
+                <li><a href="/list">일반 결제</a></li>
             </ul>
-            <button onclick="document.location='../templates/reg_item.html'" type="button">상품 등록하기</button>
+            <button onclick="location.href='reg_item'" type="button">상품 등록하기</button>
         </div>
         {% if total > 0 %}
         <p>
@@ -26,56 +25,56 @@
             <div class="product">
                 <tr>
                     {% for key, value in row1 %}
-                    <td onclick="location.href='/view_detail/{{key}}/';" style="cursor:pointer;">
-                        <img src="static/images/{{value.img_path}}" , width=200px height=200px>
+                    <td onclick="location.href='/details_of_item/{{key}}/';" style="cursor:pointer;">
+                        <img src="static/images/items/{{value.img_path}}" , width=200px height=200px>
                     </td>
                     {% endfor %}
                 </tr>
                 <tr>
                     {% for key, value in row1 %}
-                    <td class="desc">{{key}}</td>
+                    <td class="desc">{{value.name}}</td>
                     {% endfor %}
                 </tr>
             </div>
             <div class="product">
                 <tr>
                     {% for key, value in row2 %}
-                    <td onclick="location.href='/view_detail/{{key}}/';" style="cursor:pointer;">
-                        <img src="static/images/{{value.img_path}}" , width=200px height=200px>
+                    <td onclick="location.href='/details_of_item/{{key}}/';" style="cursor:pointer;">
+                        <img src="static/images/items/{{value.img_path}}" , width=200px height=200px>
                     </td>
                     {% endfor %}
                 </tr>
                 <tr>
                     {% for key, value in row2 %}
-                    <td class="desc">{{key}}</td>
+                    <td class="desc">{{value.name}}</td>
                     {% endfor %}
                 </tr>
             </div>
             <div class="product">
                 <tr>
                     {% for key, value in row3 %}
-                    <td onclick="location.href='/view_detail/{{key}}/';" style="cursor:pointer;">
-                        <img src="static/images/{{value.img_path}}" , width=200px height=200px>
+                    <td onclick="location.href='/details_of_item/{{key}}/';" style="cursor:pointer;">
+                        <img src="static/images/items/{{value.img_path}}" , width=200px height=200px>
                     </td>
                     {% endfor %}
                 </tr>
                 <tr>
                     {% for key, value in row3 %}
-                    <td class="desc">{{key}}</td>
+                    <td class="desc">{{value.name}}</td>
                     {% endfor %}
                 </tr>
             </div>
             <div class="product">
                 <tr>
                     {% for key, value in row4 %}
-                    <td onclick="location.href='/view_detail/{{key}}/';" style="cursor:pointer;">
-                        <img src="static/images/{{value.img_path}}" , width=200px height=200px>
+                    <td onclick="location.href='/details_of_item/{{key}}/';" style="cursor:pointer;">
+                        <img src="static/images/items/{{value.img_path}}" , width=200px height=200px>
                     </td>
                     {% endfor %}
                 </tr>
                 <tr>
                     {% for key, value in row4 %}
-                    <td class="desc">{{key}}</td>
+                    <td class="desc">{{value.name}}</td>
                     {% endfor %}
                 </tr>
             </div>
@@ -86,7 +85,7 @@
                 <ul>
                     <li>
                         {% for i in range(page_count) %}
-                        <a href="{{url_for('view_list', page=i)}}" color="black">{{i+1}}</a>
+                        <a href="{{url_for('view_product_list', page=i)}}" color="black">{{i+1}}</a>
                         {% endfor %}
                     </li>
                 </ul>
@@ -188,6 +187,5 @@
         <hr>
     -->
     </div>
+    {% endblock section %}
 </body>
-
-{% endblock section %}

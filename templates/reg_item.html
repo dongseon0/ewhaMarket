@@ -1,8 +1,8 @@
 {% extends "index.html" %}
 
 {% block section %}
-<link rel="stylesheet" href="../static/reg_item.css" />
-<script src="../static/reg_item.js"></script>
+<link rel="stylesheet" href="/static/reg_item.css" />
+<script src="/static/reg_item.js"></script>
 <form method="post" enctype="multipart/form-data" action="/submit_item_post">
     <div class="wrapper">
         <main class="product-registration">
@@ -56,7 +56,7 @@
                     <div class="inside">
                         <div class="input-description">
                             <textarea id="description" name="description" rows="6" class="input-description-box"
-                                placeholder="구매시기, 브랜드/모델명, 제품의 상태 (사용감, 하자 유무) 등을 입력해주세요."></textarea>
+                                placeholder="구매시기, 브랜드/모델명, 제품의 상태(사용감, 하자 유무)등을 입력해주세요."></textarea>
                         </div>
                     </div>
                 </li>
@@ -145,12 +145,12 @@
                         <div class="select-pricing-method">
                             <label for="고정 가격" class="fixed-price">
                                 <input id="고정 가격" name="select-pricing-button" type="radio" value="고정가격"
-                                    onclick="div_OnOff(this.value, 'fixed-pricing-box')">
+                                    onclick="div_OnOff('fixed-pricing-box', 'auction-section')">
                                 고정 가격
                             </label>
                             <label for="경매" class="auction">
                                 <input id="경매" name="select-pricing-button" type="radio" value="경매"
-                                    onclick="div_OnOff(this.value, 'auction-section')">
+                                    onclick="div_OnOff('auction-section', 'fixed-pricing-box')">
                                 경매
                             </label>
                         </div>
@@ -176,30 +176,36 @@
                                     상승가
                                 </h5>
                                 <div class="select-rising-price-section">
-                                    <div class="select-rising-price-buttons">
-                                        <button type="button" class="50,000">5만원</button>
-                                        <button type="button" class="10,000">1만원</button>
-                                        <button type="button" class="5,000">5천원</button>
-                                        <button type="button" class="1,000">1천원</button>
+                                    <button type="button" class="select-rising-price">5만원</button>
+                                    <button type="button" class="select-rising-price">1만원</button>
+                                    <button type="button" class="select-rising-price">5천원</button>
+                                    <button type="button" class="select-rising-price">1천원</button>
+                                </div>
+                            </div>
+                            <div class="auction-start-box">
+                                <h5 class="small-title">
+                                    시작 시각
+                                </h5>
+                                <div class="input-auction-time">
+                                    <div class="input-start-date">
+                                        <input type="date" class="input-auction-time-text" value="">
+                                    </div>
+                                    <div class="input-start-time">
+                                        <input type="time" class="input-auction-time-text" value="">
                                     </div>
                                 </div>
                             </div>
-                            <div class="start-time-box">
+                            <div class="auction-end-box">
                                 <h5 class="small-title">
-                                    시작 시간
+                                    종료 시각
                                 </h5>
-                                <div class="input-start-time">
-                                    <input type="date" placeholder="경매 시작 시간을 입력해주세요." class="input-start-time-text"
-                                        value="">
-                                </div>
-                            </div>
-                            <div class="end-time-box">
-                                <h5 class="small-title">
-                                    종료 시간
-                                </h5>
-                                <div class="input-end-time">
-                                    <input type="date" placeholder="경매 종료 시간을 입력해주세요." class="input-end-time-text"
-                                        value="">
+                                <div class="input-auction-time">
+                                    <div class="input-end-date">
+                                        <input type="date" class="input-auction-time-text" value="">
+                                    </div>
+                                    <div class="input-end-time">
+                                        <input type="time" class="input-auction-time-text" value="">
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -218,7 +224,7 @@
                 </li>
             </ul>
             <hr>
-            <input type="submit" class="product-registration-end" value="등록하기"><br><br>
+            <input type="submit" class="product-registration-end-button" value="등록하기"><br><br>
         </main>
     </div>
 </form>
