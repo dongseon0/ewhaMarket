@@ -45,7 +45,7 @@
         }
 
         .columnleft {
-            margin: 1%;
+            margin: 3% 0%;
         }
 
         .columnright {
@@ -54,7 +54,7 @@
             margin: 3% 0%;
             margin-left: 4%;
             margin-right: 0.1%;
-            padding: 2% 5%;
+            padding: 5% 8%;
             border-radius: 10px 10px;
             box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
         }
@@ -114,7 +114,7 @@
         }
 
         .favorite-button {
-            margin: 125% 14%;
+            margin: 10% 18%;
         }
 
         .btn-love {
@@ -257,6 +257,11 @@
             <div class="columnleft">
                 <img style="border-radius: 10px 10px; box-shadow: 0 3px 3px rgba(0,0,0,0.2)"
                     src="/static/images/items/{{data.img_path}}" width="320" alt="item">
+                    <div class="favorite-button">
+                        <input class="btn-love" type="button" value="♡ 찜하기">
+                        <input class="btn-review" type="button" value="✓ 리뷰쓰기"
+                            onclick="location.href='/reg_review/{{data.sellerId}}/';">
+                    </div>
             </div>
 
             <div class="columnright">
@@ -306,11 +311,6 @@
                         <td>{{data.tag}}</td>
                     </tr>
                 </table>
-                <div class="favorite-button">
-                    <input class="btn-love" type="button" value="♡ 찜하기">
-                    <input class="btn-review" type="button" value="✓ 리뷰쓰기"
-                        onclick="location.href='/reg_review/{{data.sellerId}}/';">
-                </div>
             </div>
         </div>
 
