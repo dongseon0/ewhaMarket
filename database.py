@@ -111,8 +111,6 @@ class DBhandler:
         }
         self.db.child("users").child(uid).child("user_wish").child(item).set(heart_info)
         return True
-        
-    
 
     # 리뷰
     # 리뷰 데이터베이스에 등록하기
