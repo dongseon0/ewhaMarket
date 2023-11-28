@@ -192,6 +192,11 @@ class DBhandler:
 
     # 데이터베이스에서 특정 아이디의 리뷰 하트 정보 업데이트하기
     def update_review_heart(self, id, key, sellerId, heart):
+        if int(heart) == 0:
+            self.db.child("users").child(sellerId).child("user_reviews").child(
+            key).child("hearts").child(id).remove()
+            return True
+        
         heart_info = {
             "heart": int(heart)
         }
