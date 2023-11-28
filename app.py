@@ -308,14 +308,14 @@ def show_heart(key):
 # 찜하기 성공
 @application.route('/like/<key>/', methods=['POST'])
 def like(key):
-    my_heart = DB.update_heart(session['id'],'Y',key)
+    DB.update_heart(session['id'],'Y',key)
     return jsonify({'msg': '찜하기를 눌렀어요.'})
 
 
 #찜하기 취소
 @application.route('/unlike/<key>/', methods=['POST'])
 def unlike(key):
-    my_heart = DB.update_heart(session['id'],'N',key)
+    DB.update_heart(session['id'],'N',key)
     return jsonify({'msg': '찜하기를 취소했어요.'})
 
 
