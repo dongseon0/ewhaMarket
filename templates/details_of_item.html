@@ -201,7 +201,7 @@
         function showHeart() {
             $.ajax({
                 type: 'GET',
-                url: '/show_heart/{{data.name}}/',
+                url: '/show_heart/{{key}}/',
                 data: {},
                 success: function (response) {
                     let my_heart = response['my_heart'];
