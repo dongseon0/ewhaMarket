@@ -46,10 +46,11 @@ class DBhandler:
                 else:
                     return False
         return False
-    
+
     # 특정 아이디의 프로필 사진 불러오기
     def get_profile_image_path_byid(self, id):
-        profile = self.db.child("users").child(id).child("user_info").get().val().get('profile')
+        profile = self.db.child("users").child(id).child(
+            "user_info").get().val().get('profile')
         if profile == None or profile == "":
             return "default.png"
         else:
@@ -89,30 +90,29 @@ class DBhandler:
             if key_value == key:
                 target_value = res.val()
         return target_value
-    
+
     # 찜하기 기능
-    def get_heart_bykey(self, uid, name):
+    def get_heart_bykey(self, uid, key):
         hearts = self.db.child("users").child(uid).child("user_wish").get()
-        
-        target_value=""
+
+        target_value = ""
         if hearts.val() == None:
             return target_value
 
         for res in hearts.each():
             key_value = res.key()
 
-            if key_value == name:
-                target_value=res.val()
+            if key_value == key:
+                target_value = res.val()
         return target_value
 
     def update_heart(self, uid, isHeart, key):
-        heart_info ={
+        heart_info = {
             "interested": isHeart
         }
-        self.db.child("users").child(uid).child("user_wish").child(key).set(heart_info)
+        self.db.child("users").child(uid).child(
+            "user_wish").child(key).set(heart_info)
         return True
-        
-    
 
     # 리뷰
     # 리뷰 데이터베이스에 등록하기
@@ -192,6 +192,11 @@ class DBhandler:
 
     # 데이터베이스에서 특정 아이디의 리뷰 하트 정보 업데이트하기
     def update_review_heart(self, id, key, sellerId, heart):
+        if int(heart) == 0:
+            self.db.child("users").child(sellerId).child("user_reviews").child(
+            key).child("hearts").child(id).remove()
+            return True
+        
         heart_info = {
             "heart": int(heart)
         }

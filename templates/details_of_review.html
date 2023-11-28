@@ -73,7 +73,6 @@
             background-color: rgb(198, 198, 198);
         }
 
-        /* 내가 짠 게 아니라 뭔지 모르겠음... */
         .square {
             width: 63px;
             height: 63px;
@@ -101,8 +100,6 @@
             left: 50%;
             transform: translate(-50%, -50%);
         }
-
-        /* 내가 짠 게 아니라 뭔지 모르겠음... */
     </style>
 </head>
 
@@ -232,20 +229,20 @@
 
         showHeart();
 
-        // 이미지 크기 맞추기(내가 짠 게 아니라 뭔지 모르겠음ㅎ)
+        // 이미지 크기 맞추기
         window.onload = function () {
             var croppers = document.querySelectorAll('.image-cropper');
             croppers.forEach(function (cropper) {
                 var img = cropper.querySelector('img');
-                var imgWidth = img.naturalWidth;
-                var imgHeight = img.naturalHeight;
+                var imgWidth = img.naturalWidth; // 기본 이미지 가로
+                var imgHeight = img.naturalHeight; // 기본 이미지 세로
                 var cropperWidth = cropper.offsetWidth;
                 var cropperHeight = cropper.offsetHeight;
 
-                if (imgWidth / imgHeight > cropperWidth / cropperHeight) {
+                if (imgWidth / imgHeight > cropperWidth / cropperHeight) { // 가로가 세로보다 길면
                     img.style.width = 'auto';
                     img.style.height = '100%';
-                } else {
+                } else { // 세로가 가로보다 길면
                     img.style.width = '100%';
                     img.style.height = 'auto';
                 }

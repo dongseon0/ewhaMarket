@@ -301,22 +301,22 @@ def DynamicUrl(variable_name):
 # 찜하기 기능
 @application.route('/show_heart/<key>/', methods=['GET'])
 def show_heart(key):
-    my_heart = DB.get_heart_bykey(session['id'],key)
+    my_heart = DB.get_heart_bykey(session['id'], key)
     return jsonify({'my_heart': my_heart})
+
 
 # 찜하기 성공
 @application.route('/like/<key>/', methods=['POST'])
 def like(key):
-    my_heart = DB.update_heart(session['id'],'Y',key)
+    DB.update_heart(session['id'], 'Y', key)
     return jsonify({'msg': '찜하기를 눌렀어요.'})
 
-#찜하기 취소
+
+# 찜하기 취소
 @application.route('/unlike/<key>/', methods=['POST'])
 def unlike(key):
-    my_heart = DB.update_heart(session['id'],'N',key)
+    DB.update_heart(session['id'], 'N', key)
     return jsonify({'msg': '찜하기를 취소했어요.'})
-
-
 
 
 if __name__ == "__main__":
