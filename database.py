@@ -91,7 +91,7 @@ class DBhandler:
         return target_value
     
     # 찜하기 기능
-    def get_heart_byname(self, uid, name):
+    def get_heart_bykey(self, uid, name):
         hearts = self.db.child("users").child(uid).child("user_wish").get()
         
         target_value=""
@@ -105,11 +105,11 @@ class DBhandler:
                 target_value=res.val()
         return target_value
 
-    def update_heart(self, uid, isHeart, item):
+    def update_heart(self, uid, isHeart, key):
         heart_info ={
             "interested": isHeart
         }
-        self.db.child("users").child(uid).child("user_wish").child(item).set(heart_info)
+        self.db.child("users").child(uid).child("user_wish").child(key).set(heart_info)
         return True
 
     # 리뷰
