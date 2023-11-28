@@ -200,10 +200,10 @@
     <script>
         function showHeart() {
             $.ajax({
-                type: 'GET',
+                type : 'GET',
                 url: '/show_heart/{{key}}/',
-                data: {},
-                success: function (response) {
+                data:{},
+                success: function(response){
                     let my_heart = response['my_heart'];
                     if (my_heart['interested'] === 'Y') {
                         $(".btn-love").css("background-color", "#c1e6ff");
@@ -221,7 +221,7 @@
         function like() {
             $.ajax({
                 type: 'POST',
-                url: '/like/{{data.name}}/',
+                url: '/like/{{key}}/',
                 data: {
                     interested: "Y"
                 },
@@ -234,7 +234,7 @@
         function unlike() {
             $.ajax({
                 type: 'POST',
-                url: '/unlike/{{data.name}}/',
+                url: '/unlike/{{key}}/',
                 data: {
                     interested: "N"
                 },
