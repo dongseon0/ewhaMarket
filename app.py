@@ -297,26 +297,42 @@ def mypersonal(id):
 def DynamicUrl(variable_name):
     return str(variable_name)
 
+# 로그인 했는지 확인하는 기능
+@application.route('/check_login_status/', methods=['GET'])
+def check_login_status():
+    is_logged_in = 'id' in session
+    return jsonify({'is_logged_in': is_logged_in})
 
-# 찜하기 기능
+
+# 찜하기 했었는지 조회
 @application.route('/show_heart/<key>/', methods=['GET'])
 def show_heart(key):
-    my_heart = DB.get_heart_bykey(session['id'], key)
+    my_heart = DB.get_heart_bykey(session.get('id'), key)
     return jsonify({'my_heart': my_heart})
 
-
-# 찜하기 성공
+# 찜하기 기능
 @application.route('/like/<key>/', methods=['POST'])
 def like(key):
-    DB.update_heart(session['id'], 'Y', key)
-    return jsonify({'msg': '찜하기를 눌렀어요.'})
+    try:
+        user_id = session['id']
+        DB.update_heart(user_id, 'Y', key)
+        return jsonify({'msg': '찜하기를 눌렀어요.'})
 
+    except KeyError:
+        response_data = {'error': '로그인이 필요합니다.'}
+        return jsonify(response_data), 401
 
 # 찜하기 취소
 @application.route('/unlike/<key>/', methods=['POST'])
 def unlike(key):
-    DB.update_heart(session['id'], 'N', key)
-    return jsonify({'msg': '찜하기를 취소했어요.'})
+    try:
+        user_id = session['id']
+        DB.update_heart(user_id, 'N', key)
+        return jsonify({'msg': '찜하기를 취소했어요.'})
+
+    except KeyError:
+        response_data = {'error': '로그인이 필요합니다.'}
+        return jsonify(response_data), 401
 
 
 if __name__ == "__main__":
