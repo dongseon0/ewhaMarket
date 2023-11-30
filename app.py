@@ -15,7 +15,6 @@ def hello():
     # return render_template("index.html")
     return redirect(url_for('view_product_list'))
 
-
 # 상품
 @application.route("/product_list")
 def view_product_list():
@@ -56,17 +55,15 @@ def view_product_list():
         total=item_counts
     )
 
-
 @application.route("/auction_list")
 def view_auction_list():
     return render_template("auction_list.html")
-
 
 @application.route("/list")
 def view_list():
     return render_template("list.html")
 
-
+# 상품 등록하기
 @application.route("/reg_item")
 def reg_item():
     if session.get('id') is None:
@@ -74,7 +71,6 @@ def reg_item():
         return render_template("login.html")
     else:
         return render_template("reg_item.html")
-
 
 @application.route("/submit_item_post", methods=['POST'])
 def submit_item_post():
@@ -84,13 +80,11 @@ def submit_item_post():
     data_key = DB.insert_item(data, image_file.filename, id=session.get('id'))
     return redirect(url_for('view_details_of_item', key=data_key))
 
-
 @application.route("/details_of_item/<key>/")
 def view_details_of_item(key):
     data = DB.get_item_bykey(str(key))
     profile_image_path = DB.get_profile_image_path_byid(data.get('sellerId'))
     return render_template("details_of_item.html", key=key, data=data, profile_image_path=profile_image_path)
-
 
 # 리뷰
 # 리뷰 작성하기
@@ -104,7 +98,6 @@ def reg_review(id):
     else:
         return render_template("reg_review.html", buyerId=session.get('id'), sellerId=id)
 
-
 # 리뷰 등록하기
 @application.route("/submit_review_post", methods=['POST'])
 def submit_review_post():
@@ -116,7 +109,6 @@ def submit_review_post():
         data, image_file.filename, buyerId=data.get('buyerId'), sellerId=sellerId)
     return redirect(url_for('view_details_of_review', key=review_key, sellerId=sellerId))
 
-
 # 리뷰 상세보기
 @application.route("/details_of_review/<sellerId>/<key>/")
 def view_details_of_review(key, sellerId):
@@ -126,13 +118,11 @@ def view_details_of_review(key, sellerId):
     profile_image_path = DB.get_profile_image_path_byid(data.get('buyerId'))
     return render_template("details_of_review.html", data=data, key=key, sellerId=sellerId, good=good, bad=bad, profile_image_path=profile_image_path)
 
-
 # 리뷰 상세보기에서 하트 불러오기
 @application.route('/show_review_heart/<sellerId>/<key>/', methods=['GET'])
 def show_review_heart(key, sellerId):
     heart = DB.get_review_heart_bykey(session['id'], key, sellerId)
     return jsonify({'heart': heart})
-
 
 # 리뷰 상세보기에서 하트 업데이트하기
 @application.route('/update_review_heart/<sellerId>/<key>/<heart>/', methods=['POST'])
@@ -140,7 +130,7 @@ def update_review_heart(key, sellerId, heart):
     DB.update_review_heart(session['id'], key, sellerId, heart)
     return jsonify({'msg': '완료!'})
 
-
+# 유저 리뷰 목록
 @application.route("/user_reviews/<id>/")
 def view_user_reviews(id):
     page = request.args.get("page", 0, type=int)
@@ -182,12 +172,10 @@ def view_user_reviews(id):
         id=id
     )
 
-
 # 로그인
 @application.route("/login")
 def login():
     return render_template("login.html")
-
 
 @application.route("/login_confirm", methods=['POST'])
 def login_user():
@@ -201,17 +189,14 @@ def login_user():
         flash("Wrong ID or PW!")
         return render_template("login.html")
 
-
 @application.route("/logout")
 def logout_user():
     session.clear()
     return redirect(url_for('hello'))
 
-
 @application.route("/signup")
 def signup():
     return render_template("signup.html")
-
 
 @application.route("/signup_post", methods=['POST'])
 def register_user():
@@ -224,12 +209,10 @@ def register_user():
         flash("user id already exist!")
         return render_template("signup.html")
 
-
 # 마이페이지_내 상점
 @application.route("/my_page/<id>/")
 def mypage(id):
     return render_template("my_page.html", id=id)
-
 
 # 마이페이지_내 리뷰
 @application.route("/my_reviews/<id>/")
@@ -273,19 +256,16 @@ def my_reviews(id):
         id=id
     )
 
-
 # 마이페이지_찜
 @application.route("/my_wish/<id>/")
 def mywish(id):
     return render_template("my_wish.html", id=id)
-
 
 # 마이페이지_개인정보
 @application.route("/my_info/<id>/")
 def mypersonal(id):
     data = DB.get_user_info(id)
     return render_template("my_info.html", id=id, data=data)
-
 
 # 그외
 @application.route("/dynamicurl/<varible_name>/")
@@ -297,7 +277,6 @@ def DynamicUrl(variable_name):
 def check_login_status():
     is_logged_in = 'id' in session
     return jsonify({'is_logged_in': is_logged_in})
-
 
 # 찜하기 했었는지 조회
 @application.route('/show_heart/<key>/', methods=['GET'])
@@ -331,7 +310,7 @@ def unlike(key):
                          'redirect_url': url_for('login')}
         return jsonify(response_data), 401
 
-#판매내역
+# 유저 판매내역
 @application.route("/user_list/<id>/")
 def view_user_list(id):
     page = request.args.get("page", 0, type=int)
@@ -375,6 +354,3 @@ def view_user_list(id):
 
 if __name__ == "__main__":
     application.run(host='0.0.0.0', debug=True)
-
-
-
