@@ -269,7 +269,7 @@ def my_wish(id):
     start_idx = per_page*page
     end_idx = per_page*(page+1)  # 페이지 인덱스로 start_idx, end_idx 생성
     data = DB.get_items_byheart(id)  # read the table
-    #data = dict(data.items())
+    data = dict(data.items())
     item_counts = len(data)
     if item_counts<=per_page:
         data = dict(list(data.items())[:item_counts])

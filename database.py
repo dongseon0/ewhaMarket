@@ -102,8 +102,9 @@ class DBhandler:
             value = res.val()
             key_value = res.key()
             if value['interested'] == "Y":
-                target_value.append(value)
+                # target_value.append(value)
                 target_key.append(key_value)
+                target_value.append(self.db.child("items").child(key_value).get().val())
         print("######target_value",target_value)
         new_dict={}
         for k,v in zip(target_key,target_value):
