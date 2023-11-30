@@ -248,9 +248,14 @@ class DBhandler:
     # 판매내역
     def get_lists(self, id):
         user_list = self.db.child("users").child(id).child("user_list").get()
-        user_list_keys = [item.key() for item in user_list.each()]
-
+        
         matched_items = {}
+
+        if not user_list.each():
+            return matched_items
+        else:
+            user_list_keys = [item.key() for item in user_list.each()]
+
         items = self.db.child("items").get()
         for item in items.each():
             if item.key() in user_list_keys:
