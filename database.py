@@ -78,17 +78,17 @@ class DBhandler:
         self.db.child("items").child(item_key).set(item_info)
         if data["select-pricing-button"] == "경매":
             auction_info = {    
-                "start-price": data["start-price"],
-                "start-date": data["start-date"],
-                "start-time": data["start-time"],
-                "end-date": data["end-date"],
-                "end-time": data["end-time"],
-                "select-rising-price": data["select-rising-price"]
+                "startPrice": data["start-price"],
+                "startDate": data["start-date"],
+                "startTime": data["start-time"],
+                "endDate": data["end-date"],
+                "endTime": data["end-time"],
+                "selectRisingPrice": data["select-rising-price"]
             }
             self.db.child("items").child(item_key).update(auction_info)
         elif data["select-pricing-button"] == "고정가격":
             fixed_info = {
-                "fixed-price": data["fixed-price"]
+                "fixedPrice": data["fixed-price"]
             }
             self.db.child("items").child(item_key).update(fixed_info)
         return item_key
@@ -118,8 +118,9 @@ class DBhandler:
             value = res.val()
             key_value = res.key()
             if value['interested'] == "Y":
-                target_value.append(value)
+                # target_value.append(value)
                 target_key.append(key_value)
+                target_value.append(self.db.child("items").child(key_value).get().val())
         print("######target_value",target_value)
         new_dict={}
         for k,v in zip(target_key,target_value):
