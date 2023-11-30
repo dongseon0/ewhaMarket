@@ -16,6 +16,7 @@
 
 .text {
     font-size: 135%;
+    font-weight: bold !important;
 }
 
 hr {
@@ -40,43 +41,40 @@ hr {
     padding-right: 550px;
 }
 
-/*리뷰 사진*/
-.review img {
+/*상품 사진*/
+.sell img {
     width: 100px;
     height: 100px;
     object-fit: cover;
     padding-right: 20px;
 }
 
-/*리뷰 내용*/
-.review-content {
+/*내용*/
+.content {
     display: flex;
     align-items: center;
 }
-.review-content div {
+.content div {
     flex: 1;
     text-align: left;
 }
-.review-content p {
+.content p {
     margin: 5px 0;
 }
-.review p {
+.sell p {
     display: flex;
     text-align: left;
     margin: 5px 0;
 }
 
 /*유저 아이디*/
-.review .user {
+.sell .id_seller {
     font-weight: bold;
     flex: 1;
+    color:  rgb(163, 223, 249);
+    text-decoration: underline;
 }
 
-/* 별점 색상 */
-.review .rating {
-    color: skyblue;
-
-}
 
 /*내부 네비바*/
 .topnav {
@@ -211,28 +209,6 @@ h2 {
     font-size: 11px;
 }
 
-.pagination {
-    display: flex;
-    list-style: none;
-    padding: 0;
-    justify-content: center;
-}
-
-.pagination li {
-    margin: 0 5px;
-}
-
-.pagination a {
-    text-decoration: none;
-    padding: 5px 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-}
-
-.pagination a.active {
-    background-color: #333;
-    color: #fff;
-}
 
 .checkboxes {
     display: flex;
