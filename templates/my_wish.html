@@ -1,4 +1,5 @@
 <head>
+  <!-- <link rel="stylesheet" type="text/css" href="/static/user_list.css"> -->
   <style>
     .mypage-wrapper {
       width: 700px;
@@ -69,6 +70,85 @@
       </ul>
     </div>
     <hr>
+    {% if total > 0 %}
+    <p>
+      찜한 상품은 {{total}}개입니다.
+    </p>
+    <table class="content">
+      <div class="product">
+        <tr>
+          {% for key, value in row1 %}
+          <td onclick="location.href='/details_of_item/{{key}}/';" style="cursor:pointer;">
+            <img src="static/images/items/{{value.img_path}}" , width=200px height=200px>
+          </td>
+          {% endfor %}
+        </tr>
+        <tr>
+          {% for key, value in row1 %}
+          <td class="desc">{{value.name}}</td>
+          {% endfor %}
+        </tr>
+      </div>
+      <div class="product">
+        <tr>
+          {% for key, value in row2 %}
+          <td onclick="location.href='/details_of_item/{{key}}/';" style="cursor:pointer;">
+            <img src="static/images/items/{{value.img_path}}" , width=200px height=200px>
+          </td>
+          {% endfor %}
+        </tr>
+        <tr>
+          {% for key, value in row2 %}
+          <td class="desc">{{value.name}}</td>
+          {% endfor %}
+        </tr>
+      </div>
+      <div class="product">
+        <tr>
+          {% for key, value in row3 %}
+          <td onclick="location.href='/details_of_item/{{key}}/';" style="cursor:pointer;">
+              <img src="static/images/items/{{value.img_path}}" , width=200px height=200px>
+          </td>
+          {% endfor %}
+        </tr>
+        <tr>
+          {% for key, value in row3 %}
+          <td class="desc">{{value.name}}</td>
+          {% endfor %}
+        </tr>
+      </div>
+      <div class="product">
+        <tr>
+          {% for key, value in row4 %}
+          <td onclick="location.href='/details_of_item/{{key}}/';" style="cursor:pointer;">
+              <img src="static/images/items/{{value.img_path}}" , width=200px height=200px>
+          </td>
+          {% endfor %}
+        </tr>
+        <tr>
+          {% for key, value in row4 %}
+          <td class="desc">{{value.name}}</td>
+          {% endfor %}
+        </tr>
+      </div>
+    </table>
+    <!--페이지네이션을 위한 코드 시작-->
+    <div class="page-wrap">
+      <div class="page-nation">
+        <ul>
+          <li>
+            {% for i in range(page_count) %}
+            <a href="{{url_for('my_wish', id=id, page=i)}}" color="black">{{i+1}}</a>
+            {% endfor %}
+          </li>
+        </ul>
+      </div>
+    </div>
+    {% else %}
+    <p>
+      찜한 상품이 없습니다.
+    </p>
+    {% endif %}
   </div>
   {% endblock section %}
 </body>
