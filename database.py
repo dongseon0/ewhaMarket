@@ -71,10 +71,17 @@ class DBhandler:
             "phone": data["phone"],
             "img_path": img_path
         }
+
         item_data = self.db.child("users").child(
             id).child("user_list").push(str(data["name"]))
         item_key = item_data['name']
         self.db.child("items").child(item_key).set(item_info)
+        if data["select-pricing-button"] == "경매":
+            print("d")
+            auction_info = {
+                "auction_info": "auction_info"
+            }
+            self.db.child("items").child(item_key).update(auction_info)
         return item_key
 
     def get_items(self):
