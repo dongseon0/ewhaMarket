@@ -16,6 +16,7 @@
 
 .text {
     font-size: 135%;
+    font-weight: bold !important;
 }
 
 hr {
