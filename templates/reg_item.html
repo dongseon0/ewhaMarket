@@ -156,7 +156,8 @@
                         </div>
                         <div class="fixed-pricing-box" id="fixed-pricing-box" style="display: none;">
                             <div class="input-fixed-pricing">
-                                <input type="text" placeholder="가격을 입력해주세요." class="fixed-pricing-text" value="">
+                                <input type="text" name="fixed-price" placeholder="가격을 입력해주세요."
+                                    class="fixed-pricing-text" value="">
                                 <span>원</span>
                             </div>
                         </div>
@@ -166,8 +167,8 @@
                                     시작가
                                 </h5>
                                 <div class="input-start-price">
-                                    <input type="text" placeholder="경매 시작가를 입력해주세요." class="input-start-price-text"
-                                        value="">
+                                    <input type="text" name="start-price" placeholder="경매 시작가를 입력해주세요."
+                                        class="input-start-price-text" value="">
                                     <span>원</span>
                                 </div>
                             </div>
@@ -176,10 +177,18 @@
                                     상승가
                                 </h5>
                                 <div class="select-rising-price-section">
-                                    <button type="button" class="select-rising-price">5만원</button>
-                                    <button type="button" class="select-rising-price">1만원</button>
-                                    <button type="button" class="select-rising-price">5천원</button>
-                                    <button type="button" class="select-rising-price">1천원</button>
+                                    <label>
+                                        <input type="radio" name="select-rising-price" type="radio" value="50000">
+                                        5만원</label>
+                                    <label>
+                                        <input type="radio" name="select-rising-price" type="radio" value="10000">
+                                        1만원</label>
+                                    <label>
+                                        <input type="radio" name="select-rising-price" type="radio" value="5000">
+                                        5천원</label>
+                                    <label>
+                                        <input type="radio" name="select-rising-price" type="radio" value="1000">
+                                        1천원</label>
                                 </div>
                             </div>
                             <div class="auction-start-box">
@@ -188,10 +197,10 @@
                                 </h5>
                                 <div class="input-auction-time">
                                     <div class="input-start-date">
-                                        <input type="date" class="input-auction-time-text" value="">
+                                        <input type="date" name="start-date" class="input-auction-time-text" value="">
                                     </div>
                                     <div class="input-start-time">
-                                        <input type="time" class="input-auction-time-text" value="">
+                                        <input type="time" name="start-time" class="input-auction-time-text" value="">
                                     </div>
                                 </div>
                             </div>
@@ -201,10 +210,10 @@
                                 </h5>
                                 <div class="input-auction-time">
                                     <div class="input-end-date">
-                                        <input type="date" class="input-auction-time-text" value="">
+                                        <input type="date" name="end-date" class="input-auction-time-text" value="">
                                     </div>
                                     <div class="input-end-time">
-                                        <input type="time" class="input-auction-time-text" value="">
+                                        <input type="time" name="end-time" class="input-auction-time-text" value="">
                                     </div>
                                 </div>
                             </div>

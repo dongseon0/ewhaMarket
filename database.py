@@ -77,11 +77,20 @@ class DBhandler:
         item_key = item_data['name']
         self.db.child("items").child(item_key).set(item_info)
         if data["select-pricing-button"] == "경매":
-            print("d")
-            auction_info = {
-                "auction_info": "auction_info"
+            auction_info = {    
+                "start-price": data["start-price"],
+                "start-date": data["start-date"],
+                "start-time": data["start-time"],
+                "end-date": data["end-date"],
+                "end-time": data["end-time"],
+                "select-rising-price": data["select-rising-price"]
             }
             self.db.child("items").child(item_key).update(auction_info)
+        elif data["select-pricing-button"] == "고정가격":
+            fixed_info = {
+                "fixed-price": data["fixed-price"]
+            }
+            self.db.child("items").child(item_key).update(fixed_info)
         return item_key
 
     # 상품 가져오기
