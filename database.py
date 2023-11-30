@@ -194,9 +194,9 @@ class DBhandler:
     def update_review_heart(self, id, key, sellerId, heart):
         if int(heart) == 0:
             self.db.child("users").child(sellerId).child("user_reviews").child(
-            key).child("hearts").child(id).remove()
+                key).child("hearts").child(id).remove()
             return True
-        
+
         heart_info = {
             "heart": int(heart)
         }
@@ -208,24 +208,19 @@ class DBhandler:
     def get_user_info(self, id):
         items = self.db.child("users").child(id).child("user_info").get().val()
         return items
-    
-    # 판매내역 
+
+    # 판매내역
     def get_lists(self, id):
         user_list = self.db.child("users").child(id).child("user_list").get()
-
-        # 사용자 리스트의 키를 추출합니다.
         user_list_keys = [item.key() for item in user_list.each()]
 
-        # items에서 user_list_keys와 일치하는 값을 찾아 딕셔너리로 만듭니다.
-        matched_items_dict = {}
+        matched_items = {}
         items = self.db.child("items").get()
-
         for item in items.each():
             if item.key() in user_list_keys:
-                matched_items_dict[item.key()] = item.val()
+                matched_items[item.key()] = item.val()
 
-        return matched_items_dict
-
+        return matched_items
 
     def get_lists_bykey(self, key):
         items = self.db.child("users").child(id).child("user_lists").get()
@@ -236,11 +231,3 @@ class DBhandler:
             if key_value == key:
                 target_value = res.val()
         return target_value
-    
-    
-  
-
-
-
-    
-    
