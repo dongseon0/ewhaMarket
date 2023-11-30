@@ -208,3 +208,26 @@ class DBhandler:
     def get_user_info(self, id):
         items = self.db.child("users").child(id).child("user_info").get().val()
         return items
+    
+    # 판매내역 
+    def get_lists(self, id):
+        items = self.db.child("users").child(id).child("user_list").get().val()
+        return items
+
+    def get_lists_bykey(self, key,id):
+        items = self.db.child("users").child(id).child("user_lists").get()
+        target_value = ""
+        for res in items.each():
+            key_value = res.key()
+
+            if key_value == key:
+                target_value = res.val()
+        return target_value
+    
+    
+  
+
+
+
+    
+    

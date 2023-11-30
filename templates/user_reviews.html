@@ -12,8 +12,8 @@
         <hr>
         
         <div class="topnav">
-            <a href="/user_list/{{id}}">판매내역</a>
-            <a href="/user_reviews/{{id}}">리뷰</a>
+            <a href="/user_list/{{session['id']}}/">판매내역</a>
+            <a href="/user_reviews/{{session['id']}}/">리뷰</a>
         </div>
         <hr>
         {% if total > 0 %}
