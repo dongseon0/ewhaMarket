@@ -24,7 +24,7 @@
         <div class="sell">
             {% for key, value in row1 %}
             <table>
-                <td onclick="location.href='/details_of_item/{{value.sellerId}}/{{key}}/';" style="cursor:pointer;">
+                <td onclick="location.href='/details_of_item/{{key}}/';" style="cursor:pointer;">
                     <div class="content">
                         <img src="/static/images/items/{{value.img_path}}">
                         <div>
@@ -39,7 +39,7 @@
         <div class="sell">
             {% for key, value in row2 %}
             <table>
-                <td onclick="location.href='/details_of_item/{{value.sellerId}}/{{key}}/';" style="cursor:pointer;">
+                <td onclick="location.href='/details_of_item/{{key}}/';" style="cursor:pointer;">
                     <div class="content">
                         <img src="/static/images/items/{{value.img_path}}">
                         <div>
@@ -55,7 +55,7 @@
         <div class="sell">
             {% for key, value in row3 %}
             <table>
-                <td onclick="location.href='/details_of_review/{{value.sellerId}}/{{key}}/';" style="cursor:pointer;">
+                <td onclick="location.href='/details_of_review/{{key}}/';" style="cursor:pointer;">
                     <div class="content">
                         <img src="/static/images/items/{{value.img_path}}">
                         <div>
@@ -71,7 +71,7 @@
         <div class="sell">
             {% for key, value in row4 %}
             <table>
-                <td onclick="location.href='/details_of_review/{{value.sellerId}}/{{key}}/';" style="cursor:pointer;">
+                <td onclick="location.href='/details_of_review/{{key}}/';" style="cursor:pointer;">
                     <div class="content">
                         <img src="/static/images/items/{{value.img_path}}">
                         <div>
@@ -87,7 +87,7 @@
         <div class="sell">
             {% for key, value in row5 %}
             <table>
-                <td onclick="location.href='/details_of_review/{{value.sellerId}}/{{key}}/';" style="cursor:pointer;">
+                <td onclick="location.href='/details_of_review/{{key}}/';" style="cursor:pointer;">
                     <div class="content">
                         <img src="/static/images/items/{{value.img_path}}">
                         <div>
