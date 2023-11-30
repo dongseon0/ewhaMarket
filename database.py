@@ -211,10 +211,23 @@ class DBhandler:
     
     # 판매내역 
     def get_lists(self, id):
-        items = self.db.child("users").child(id).child("user_list").get().val()
-        return items
+        user_list = self.db.child("users").child(id).child("user_list").get()
 
-    def get_lists_bykey(self, key,id):
+        # 사용자 리스트의 키를 추출합니다.
+        user_list_keys = [item.key() for item in user_list.each()]
+
+        # items에서 user_list_keys와 일치하는 값을 찾아 딕셔너리로 만듭니다.
+        matched_items_dict = {}
+        items = self.db.child("items").get()
+
+        for item in items.each():
+            if item.key() in user_list_keys:
+                matched_items_dict[item.key()] = item.val()
+
+        return matched_items_dict
+
+
+    def get_lists_bykey(self, key):
         items = self.db.child("users").child(id).child("user_lists").get()
         target_value = ""
         for res in items.each():
