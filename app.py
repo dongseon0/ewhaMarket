@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, flash, redirect, url_for, session, jsonify
 from database import DBhandler
 import hashlib
-import sys
+import sys, math
 
 application = Flask(__name__)
 application.config["SECRET_KEY"] = "helloosp"
@@ -211,7 +211,7 @@ def register_user():
 
 # 마이페이지_내 상점
 @application.route("/my_page/<id>/")
-def mypage(id):
+def my_page(id):
     return render_template("my_page.html", id=id)
 
 # 마이페이지_내 리뷰
@@ -258,12 +258,47 @@ def my_reviews(id):
 
 # 마이페이지_찜
 @application.route("/my_wish/<id>/")
-def mywish(id):
-    return render_template("my_wish.html", id=id)
+#def my_wish(id):
+#    return render_template("my_wish.html", id=id)
+def my_wish(id):
+    # html에 페이지 인덱스 클릭할 때마다 get으로 받아옴
+    page = request.args.get("page", 0, type=int)
+    per_page = 12  # item count to display per page
+    per_row = 3  # item count to display per row
+    row_count = int(per_page/per_row)
+    start_idx = per_page*page
+    end_idx = per_page*(page+1)  # 페이지 인덱스로 start_idx, end_idx 생성
+    data = DB.get_items_byheart(id)  # read the table
+    #data = dict(data.items())
+    item_counts = len(data)
+    if item_counts<=per_page:
+        data = dict(list(data.items())[:item_counts])
+    else:
+        data = dict(list(data.items())[start_idx:end_idx])
+    tot_count = len(data)
+    for i in range(row_count):  # last row
+        if (i == row_count-1) and (tot_count % per_row != 0):
+            locals()['data_{}'.format(i)] = dict(list(data.items())[i*per_row:])
+        else:
+            locals()['data_{}'.format(i)] = dict(list(data.items())[i*per_row:(i+1)*per_row])
+
+    return render_template(
+        "my_wish.html",
+        datas=data.items(),
+        row1=locals()['data_0'].items(),
+        row2=locals()['data_1'].items(),
+        row3=locals()['data_2'].items(),
+        row4=locals()['data_3'].items(),
+        limit=per_page,
+        page=page,  # 현재 페이지 인덱스
+        page_count=int(math.ceil(item_counts/per_page)),  # 페이지 개수
+        total=item_counts,
+        id=id
+    )
 
 # 마이페이지_개인정보
 @application.route("/my_info/<id>/")
-def mypersonal(id):
+def my_personal(id):
     data = DB.get_user_info(id)
     return render_template("my_info.html", id=id, data=data)
 

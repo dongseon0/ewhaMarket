@@ -56,7 +56,7 @@ class DBhandler:
         else:
             return profile
 
-    # 상품
+    # 상품 추가
     def insert_item(self, data, img_path, id):
         item_info = {
             "sellerId": id,
@@ -77,10 +77,12 @@ class DBhandler:
         self.db.child("items").child(item_key).set(item_info)
         return item_key
 
+    # 상품 가져오기
     def get_items(self):
         items = self.db.child("items").get().val()
         return items
 
+    # 키값으로 상품 가져오기
     def get_item_bykey(self, key):
         items = self.db.child("items").get()
         target_value = ""
@@ -90,6 +92,23 @@ class DBhandler:
             if key_value == key:
                 target_value = res.val()
         return target_value
+
+    # 찜한 상품 가져오기
+    def get_items_byheart(self, id):
+        items = self.db.child("users").child(id).child("user_wish").get()
+        target_value=[]
+        target_key=[]
+        for res in items.each():
+            value = res.val()
+            key_value = res.key()
+            if value['interested'] == "Y":
+                target_value.append(value)
+                target_key.append(key_value)
+        print("######target_value",target_value)
+        new_dict={}
+        for k,v in zip(target_key,target_value):
+            new_dict[k]=v
+        return new_dict 
 
     # 찜하기 기능
     def get_heart_bykey(self, uid, key):
