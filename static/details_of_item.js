@@ -1,4 +1,4 @@
-if (document.getElementById("currentPrice") == "") {
+if (document.getElementById("currentPrice").innerHTML == "") {
     var get_current_price = document.getElementById("startPrice");
 } else {
     var get_current_price = document.getElementById("currentPrice");
@@ -16,7 +16,7 @@ function auction() {
 
         $.ajax({
             type: 'POST',
-            url: '/auction/{{key}}/' + current_price,
+            url: '/auction/' + document.getElementById("key").innerHTML + '/' + current_price,
             data: {},
             success: function (response) {
                 alert(response['msg']);
