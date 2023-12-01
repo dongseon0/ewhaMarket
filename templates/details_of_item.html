@@ -25,7 +25,7 @@
             <div class="columnright">
                 <div class="alignleft">
                     <a href="/user_reviews/{{data.sellerId}}/"><img src="/static/images/profiles/{{profile_image_path}}"
-                        id="profile"></a>
+                            id="profile"></a>
                     <div id="user-id"><a href="/user_reviews/{{data.sellerId}}/">{{data.sellerId}}<a></div>
                     <h2>{{data.name}}</h2>
 
@@ -74,8 +74,8 @@
                 </div>
                 <div class="favorite-button">
                     <input class="btn-love" type="button" value="♡ 찜하기">
-            </div>
-            
+                </div>
+
             </div>
         </div>
 
@@ -106,16 +106,17 @@
 
             <br>
 
-            <div class="none">
-                <div id="startPrice">{{data.startPrice}}</div>
-                <div id="selectRisingPrice">{{data.selectRisingPrice}}</div>
-            </div>
-
             <div class="auction">
                 <div class="boldtext">경매 참여하기</div>
                 <span style="color: red">종료시간 : 23.10.13 13:00</span><br>
                 현재 가격 : <span id="current" style="color: skyblue"></span>
                 <input class="btn-money" id="btnMoney" type="button" value="▲1만원">
+            </div>
+
+            <div id="auction-variable" class="none">
+                <div id="startPrice">{{data.startPrice}}</div>
+                <div id="currentPrice">{{data.currentPrice}}</div>
+                <div id="selectRisingPrice">{{data.selectRisingPrice}}</div>
             </div>
         </div>
     </div>

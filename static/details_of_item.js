@@ -1,26 +1,53 @@
-var get_current_price = document.getElementById("startPrice");
+if (document.getElementById("currentPrice") == "") {
+    var get_current_price = document.getElementById("startPrice");
+} else {
+    var get_current_price = document.getElementById("currentPrice");
+}
 var get_risingPrice = document.getElementById("selectRisingPrice");
 var current_price = parseInt(get_current_price.innerHTML, 10);
 var risingPrice = parseInt(get_risingPrice.innerHTML, 10);
 
 document.getElementById("current").innerHTML = current_price + "원";
 
-function click_btn_money(){
+function click_btn_money() {
     current_price = current_price + risingPrice;
     document.getElementById("current").innerHTML = current_price + "원";
 }
 
+function auction() {
+    // url = '/auction/{{key}}/' + current_price;
+    $.ajax({
+        type: 'POST',
+        url: '/auction/{{key}}/' + current_price,
+        data: {},
+        success: function (response) {
+            alert(response['msg']);
+        }
+    });
+}
+
 const btnMoney = document.getElementById("btnMoney");
 btnMoney.addEventListener("click", click_btn_money);
+btnMoney.addEventListener("click", auction);
 
+// 버튼 이름 바꾸기
+if (risingPrice == 1000) {
+    btnMoney.value = "▲천원"
+} else if (risingPrice == 5000) {
+    btnMoney.value = "▲5천원"
+} else if (risingPrice == 10000) {
+    btnMoney.value = "▲만원"
+} else if (risingPrice == 50000) {
+    btnMoney.value = "▲5만원"
+}
 
-
+// 기존 코드
 function showHeart() {
     $.ajax({
-        type : 'GET',
+        type: 'GET',
         url: '/show_heart/{{key}}/',
-        data:{},
-        success: function(response){
+        data: {},
+        success: function (response) {
             updateHeartButton(response['my_heart']);
         }
     });
@@ -45,15 +72,16 @@ function like() {
         data: {
             interested: "Y"
         },
-        success: function(response) {
+        success: function (response) {
             alert(response['msg']);
             window.location.reload();
         },
-        error: function(xhr, status, error) {
+        error: function (xhr, status, error) {
             handleRequestError(xhr);
         }
     });
 }
+
 function unlike() {
     $.ajax({
         type: 'POST',
@@ -61,11 +89,11 @@ function unlike() {
         data: {
             interested: "N"
         },
-        success: function(response) {
+        success: function (response) {
             alert(response['msg']);
             window.location.reload();
         },
-        error: function(xhr, status, error) {
+        error: function (xhr, status, error) {
             handleRequestError(xhr);
         }
     });

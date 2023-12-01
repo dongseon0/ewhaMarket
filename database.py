@@ -78,12 +78,13 @@ class DBhandler:
         self.db.child("items").child(item_key).set(item_info)
         if data["select-pricing-button"] == "경매":
             auction_info = {
-                "startPrice": data["start-price"],
+                "winner": "",
+                "startPrice": int(data["start-price"]),
                 "startDate": data["start-date"],
                 "startTime": data["start-time"],
                 "endDate": data["end-date"],
                 "endTime": data["end-time"],
-                "selectRisingPrice": data["select-rising-price"]
+                "selectRisingPrice": int(data["select-rising-price"])
             }
             self.db.child("items").child(item_key).update(auction_info)
         elif data["select-pricing-button"] == "고정가격":
@@ -108,6 +109,12 @@ class DBhandler:
             if key_value == key:
                 target_value = res.val()
         return target_value
+    
+    # 경매 가격, 입찰자 데베에 적용하기
+    def set_auction(self, key, currentPrice, id):
+        self.db.child("items").child(key).update({"winner": id})
+        self.db.child("items").child(key).update({"currentPrice": int(currentPrice)})
+        return True
 
     # 찜한 상품 가져오기
     def get_items_byheart(self, id):

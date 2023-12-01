@@ -1,7 +1,8 @@
 from flask import Flask, render_template, request, flash, redirect, url_for, session, jsonify
 from database import DBhandler
 import hashlib
-import sys, math
+import sys
+import math
 
 application = Flask(__name__)
 application.config["SECRET_KEY"] = "helloosp"
@@ -16,6 +17,8 @@ def hello():
     return redirect(url_for('view_product_list'))
 
 # 상품
+
+
 @application.route("/product_list")
 def view_product_list():
     # html에 페이지 인덱스 클릭할 때마다 get으로 받아옴
@@ -55,15 +58,19 @@ def view_product_list():
         total=item_counts
     )
 
+
 @application.route("/auction_list")
 def view_auction_list():
     return render_template("auction_list.html")
+
 
 @application.route("/list")
 def view_list():
     return render_template("list.html")
 
 # 상품 등록하기
+
+
 @application.route("/reg_item")
 def reg_item():
     if session.get('id') is None:
@@ -71,6 +78,7 @@ def reg_item():
         return render_template("login.html")
     else:
         return render_template("reg_item.html")
+
 
 @application.route("/submit_item_post", methods=['POST'])
 def submit_item_post():
@@ -84,11 +92,20 @@ def submit_item_post():
     else:
         return redirect(url_for('view_details_of_item_fixed', key=data_key))
 
+
 @application.route("/details_of_item/<key>/")
 def view_details_of_item(key):
     data = DB.get_item_bykey(str(key))
     profile_image_path = DB.get_profile_image_path_byid(data.get('sellerId'))
     return render_template("details_of_item.html", key=key, data=data, profile_image_path=profile_image_path)
+
+
+@application.route('/auction/<key>/<currentPrice>', methods=['POST'])
+def set_auction(key, currentPrice):
+    id = session['id']
+    DB.set_auction(key, currentPrice, id)
+    return jsonify({'msg': '입찰 완료했습니다!'})
+
 
 @application.route("/details_of_item_fixed/<key>/")
 def view_details_of_item_fixed(key):
@@ -98,6 +115,8 @@ def view_details_of_item_fixed(key):
 
 # 리뷰
 # 리뷰 작성하기
+
+
 @application.route("/reg_review/<id>/")
 def reg_review(id):
     if session.get('id') is None:
@@ -109,6 +128,8 @@ def reg_review(id):
         return render_template("reg_review.html", buyerId=session.get('id'), sellerId=id)
 
 # 리뷰 등록하기
+
+
 @application.route("/submit_review_post", methods=['POST'])
 def submit_review_post():
     image_file = request.files["file"]
@@ -120,6 +141,8 @@ def submit_review_post():
     return redirect(url_for('view_details_of_review', key=review_key, sellerId=sellerId))
 
 # 리뷰 상세보기
+
+
 @application.route("/details_of_review/<sellerId>/<key>/")
 def view_details_of_review(key, sellerId):
     data = DB.get_review_bykey(key, sellerId)
@@ -129,18 +152,24 @@ def view_details_of_review(key, sellerId):
     return render_template("details_of_review.html", data=data, key=key, sellerId=sellerId, good=good, bad=bad, profile_image_path=profile_image_path)
 
 # 리뷰 상세보기에서 하트 불러오기
+
+
 @application.route('/show_review_heart/<sellerId>/<key>/', methods=['GET'])
 def show_review_heart(key, sellerId):
     heart = DB.get_review_heart_bykey(session['id'], key, sellerId)
     return jsonify({'heart': heart})
 
 # 리뷰 상세보기에서 하트 업데이트하기
+
+
 @application.route('/update_review_heart/<sellerId>/<key>/<heart>/', methods=['POST'])
 def update_review_heart(key, sellerId, heart):
     DB.update_review_heart(session['id'], key, sellerId, heart)
     return jsonify({'msg': '완료!'})
 
 # 유저 리뷰 목록
+
+
 @application.route("/user_reviews/<id>/")
 def view_user_reviews(id):
     page = request.args.get("page", 0, type=int)
@@ -183,9 +212,12 @@ def view_user_reviews(id):
     )
 
 # 로그인
+
+
 @application.route("/login")
 def login():
     return render_template("login.html")
+
 
 @application.route("/login_confirm", methods=['POST'])
 def login_user():
@@ -199,14 +231,17 @@ def login_user():
         flash("Wrong ID or PW!")
         return render_template("login.html")
 
+
 @application.route("/logout")
 def logout_user():
     session.clear()
     return redirect(url_for('hello'))
 
+
 @application.route("/signup")
 def signup():
     return render_template("signup.html")
+
 
 @application.route("/signup_post", methods=['POST'])
 def register_user():
@@ -220,6 +255,8 @@ def register_user():
         return render_template("signup.html")
 
 # 마이페이지_내 상점
+
+
 @application.route("/my_page/<id>/")
 def my_page(id):
     page = request.args.get("page", 0, type=int)
@@ -240,9 +277,11 @@ def my_page(id):
     tot_count = len(data)
     for i in range(row_count):  # last row
         if (i == row_count-1) and (tot_count % per_row != 0):
-            locals()['data_{}'.format(i)] = dict(list(data.items())[i*per_row:])
+            locals()['data_{}'.format(i)] = dict(
+                list(data.items())[i*per_row:])
         else:
-            locals()['data_{}'.format(i)] = dict(list(data.items())[i*per_row:(i+1)*per_row])
+            locals()['data_{}'.format(i)] = dict(
+                list(data.items())[i*per_row:(i+1)*per_row])
 
     return render_template(
         "my_page.html",
@@ -260,6 +299,8 @@ def my_page(id):
     )
 
 # 마이페이지_내 리뷰
+
+
 @application.route("/my_reviews/<id>/")
 def my_reviews(id):
     page = request.args.get("page", 0, type=int)
@@ -302,6 +343,8 @@ def my_reviews(id):
     )
 
 # 마이페이지_찜
+
+
 @application.route("/my_wish/<id>/")
 def my_wish(id):
     # html에 페이지 인덱스 클릭할 때마다 get으로 받아옴
@@ -314,16 +357,18 @@ def my_wish(id):
     data = DB.get_items_byheart(id)  # read the table
     data = dict(data.items())
     item_counts = len(data)
-    if item_counts<=per_page:
+    if item_counts <= per_page:
         data = dict(list(data.items())[:item_counts])
     else:
         data = dict(list(data.items())[start_idx:end_idx])
     tot_count = len(data)
     for i in range(row_count):  # last row
         if (i == row_count-1) and (tot_count % per_row != 0):
-            locals()['data_{}'.format(i)] = dict(list(data.items())[i*per_row:])
+            locals()['data_{}'.format(i)] = dict(
+                list(data.items())[i*per_row:])
         else:
-            locals()['data_{}'.format(i)] = dict(list(data.items())[i*per_row:(i+1)*per_row])
+            locals()['data_{}'.format(i)] = dict(
+                list(data.items())[i*per_row:(i+1)*per_row])
 
     return render_template(
         "my_wish.html",
@@ -340,29 +385,39 @@ def my_wish(id):
     )
 
 # 마이페이지_개인정보
+
+
 @application.route("/my_info/<id>/")
 def my_personal(id):
     data = DB.get_user_info(id)
     return render_template("my_info.html", id=id, data=data)
 
 # 그외
+
+
 @application.route("/dynamicurl/<varible_name>/")
 def DynamicUrl(variable_name):
     return str(variable_name)
 
 # 로그인 했는지 확인하는 기능
+
+
 @application.route('/check_login_status/', methods=['GET'])
 def check_login_status():
     is_logged_in = 'id' in session
     return jsonify({'is_logged_in': is_logged_in})
 
 # 찜하기 했었는지 조회
+
+
 @application.route('/show_heart/<key>/', methods=['GET'])
 def show_heart(key):
     my_heart = DB.get_heart_bykey(session.get('id'), key)
     return jsonify({'my_heart': my_heart})
 
 # 찜하기 기능
+
+
 @application.route('/like/<key>/', methods=['POST'])
 def like(key):
     try:
@@ -371,11 +426,13 @@ def like(key):
         return jsonify({'msg': '찜하기를 눌렀어요.'})
 
     except KeyError:
-        response_data = {'error': '로그인이 필요합니다.', 
+        response_data = {'error': '로그인이 필요합니다.',
                          'redirect_url': url_for('login')}
         return jsonify(response_data), 401
 
 # 찜하기 취소
+
+
 @application.route('/unlike/<key>/', methods=['POST'])
 def unlike(key):
     try:
@@ -384,11 +441,13 @@ def unlike(key):
         return jsonify({'msg': '찜하기를 취소했어요.'})
 
     except KeyError:
-        response_data = {'error': '로그인이 필요합니다.', 
+        response_data = {'error': '로그인이 필요합니다.',
                          'redirect_url': url_for('login')}
         return jsonify(response_data), 401
 
 # 유저 판매내역
+
+
 @application.route("/user_list/<id>/")
 def view_user_list(id):
     page = request.args.get("page", 0, type=int)
@@ -409,9 +468,11 @@ def view_user_list(id):
     tot_count = len(data)
     for i in range(row_count):  # last row
         if (i == row_count-1) and (tot_count % per_row != 0):
-            locals()['data_{}'.format(i)] = dict(list(data.items())[i*per_row:])
+            locals()['data_{}'.format(i)] = dict(
+                list(data.items())[i*per_row:])
         else:
-            locals()['data_{}'.format(i)] = dict(list(data.items())[i*per_row:(i+1)*per_row])
+            locals()['data_{}'.format(i)] = dict(
+                list(data.items())[i*per_row:(i+1)*per_row])
 
     return render_template(
         "user_list.html",
@@ -427,6 +488,7 @@ def view_user_list(id):
         total=item_counts,
         id=id
     )
+
 
 if __name__ == "__main__":
     application.run(host='0.0.0.0', debug=True)
