@@ -10,7 +10,7 @@
     {% extends "index.html" %}
 
     {% block section %}
-    <link rel="stylesheet" href="/static/details_of_item.css" />
+    <link rel="stylesheet" href="/static/details_of_item_fixed.css" />
 
     <div class="wrapper">
         <div class="text">상품 세부화면</div>
@@ -31,6 +31,8 @@
 
                     <table>
                         <tr>
+                            <th>가격</th>
+                            <td>{{data.fixedPrice}}</td>
                             <th>상품상태</th>
                             <td>{% if data['status'] == "lnew" %}
                                 거의 새 상품<br>
@@ -105,18 +107,6 @@
             </div>
 
             <br>
-
-            <div class="none">
-                <div id="startPrice">{{data.startPrice}}</div>
-                <div id="selectRisingPrice">{{data.selectRisingPrice}}</div>
-            </div>
-
-            <div class="auction">
-                <div class="boldtext">경매 참여하기</div>
-                <span style="color: red">종료시간 : 23.10.13 13:00</span><br>
-                현재 가격 : <span id="current" style="color: skyblue"></span>
-                <input class="btn-money" id="btnMoney" type="button" value="▲1만원">
-            </div>
         </div>
     </div>
     <script src="/static/details_of_item.js"></script>
