@@ -16,9 +16,8 @@ def hello():
     # return render_template("index.html")
     return redirect(url_for('view_product_list'))
 
+
 # 상품
-
-
 @application.route("/product_list")
 def view_product_list():
     # html에 페이지 인덱스 클릭할 때마다 get으로 받아옴
@@ -68,9 +67,8 @@ def view_auction_list():
 def view_list():
     return render_template("list.html")
 
+
 # 상품 등록하기
-
-
 @application.route("/reg_item")
 def reg_item():
     if session.get('id') is None:
@@ -113,10 +111,9 @@ def view_details_of_item_fixed(key):
     profile_image_path = DB.get_profile_image_path_byid(data.get('sellerId'))
     return render_template("details_of_item_fixed.html", key=key, data=data, profile_image_path=profile_image_path)
 
+
 # 리뷰
 # 리뷰 작성하기
-
-
 @application.route("/reg_review/<id>/")
 def reg_review(id):
     if session.get('id') is None:
@@ -127,9 +124,8 @@ def reg_review(id):
     else:
         return render_template("reg_review.html", buyerId=session.get('id'), sellerId=id)
 
+
 # 리뷰 등록하기
-
-
 @application.route("/submit_review_post", methods=['POST'])
 def submit_review_post():
     image_file = request.files["file"]
@@ -140,9 +136,8 @@ def submit_review_post():
         data, image_file.filename, buyerId=data.get('buyerId'), sellerId=sellerId)
     return redirect(url_for('view_details_of_review', key=review_key, sellerId=sellerId))
 
+
 # 리뷰 상세보기
-
-
 @application.route("/details_of_review/<sellerId>/<key>/")
 def view_details_of_review(key, sellerId):
     data = DB.get_review_bykey(key, sellerId)
@@ -151,25 +146,22 @@ def view_details_of_review(key, sellerId):
     profile_image_path = DB.get_profile_image_path_byid(data.get('buyerId'))
     return render_template("details_of_review.html", data=data, key=key, sellerId=sellerId, good=good, bad=bad, profile_image_path=profile_image_path)
 
+
 # 리뷰 상세보기에서 하트 불러오기
-
-
 @application.route('/show_review_heart/<sellerId>/<key>/', methods=['GET'])
 def show_review_heart(key, sellerId):
     heart = DB.get_review_heart_bykey(session['id'], key, sellerId)
     return jsonify({'heart': heart})
 
+
 # 리뷰 상세보기에서 하트 업데이트하기
-
-
 @application.route('/update_review_heart/<sellerId>/<key>/<heart>/', methods=['POST'])
 def update_review_heart(key, sellerId, heart):
     DB.update_review_heart(session['id'], key, sellerId, heart)
     return jsonify({'msg': '완료!'})
 
+
 # 유저 리뷰 목록
-
-
 @application.route("/user_reviews/<id>/")
 def view_user_reviews(id):
     page = request.args.get("page", 0, type=int)
@@ -211,9 +203,8 @@ def view_user_reviews(id):
         id=id
     )
 
+
 # 로그인
-
-
 @application.route("/login")
 def login():
     return render_template("login.html")
@@ -254,9 +245,8 @@ def register_user():
         flash("user id already exist!")
         return render_template("signup.html")
 
+
 # 마이페이지_내 상점
-
-
 @application.route("/my_page/<id>/")
 def my_page(id):
     page = request.args.get("page", 0, type=int)
@@ -298,9 +288,8 @@ def my_page(id):
         id=id
     )
 
+
 # 마이페이지_내 리뷰
-
-
 @application.route("/my_reviews/<id>/")
 def my_reviews(id):
     page = request.args.get("page", 0, type=int)
@@ -342,9 +331,8 @@ def my_reviews(id):
         id=id
     )
 
+
 # 마이페이지_찜
-
-
 @application.route("/my_wish/<id>/")
 def my_wish(id):
     # html에 페이지 인덱스 클릭할 때마다 get으로 받아옴
@@ -384,40 +372,35 @@ def my_wish(id):
         id=id
     )
 
+
 # 마이페이지_개인정보
-
-
 @application.route("/my_info/<id>/")
 def my_personal(id):
     data = DB.get_user_info(id)
     return render_template("my_info.html", id=id, data=data)
 
+
 # 그외
-
-
 @application.route("/dynamicurl/<varible_name>/")
 def DynamicUrl(variable_name):
     return str(variable_name)
 
+
 # 로그인 했는지 확인하는 기능
-
-
 @application.route('/check_login_status/', methods=['GET'])
 def check_login_status():
     is_logged_in = 'id' in session
     return jsonify({'is_logged_in': is_logged_in})
 
+
 # 찜하기 했었는지 조회
-
-
 @application.route('/show_heart/<key>/', methods=['GET'])
 def show_heart(key):
     my_heart = DB.get_heart_bykey(session.get('id'), key)
     return jsonify({'my_heart': my_heart})
 
+
 # 찜하기 기능
-
-
 @application.route('/like/<key>/', methods=['POST'])
 def like(key):
     try:
@@ -430,9 +413,8 @@ def like(key):
                          'redirect_url': url_for('login')}
         return jsonify(response_data), 401
 
+
 # 찜하기 취소
-
-
 @application.route('/unlike/<key>/', methods=['POST'])
 def unlike(key):
     try:
@@ -445,9 +427,8 @@ def unlike(key):
                          'redirect_url': url_for('login')}
         return jsonify(response_data), 401
 
+
 # 유저 판매내역
-
-
 @application.route("/user_list/<id>/")
 def view_user_list(id):
     page = request.args.get("page", 0, type=int)
