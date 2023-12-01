@@ -108,8 +108,9 @@
 
             <div class="auction">
                 <div class="boldtext">경매 참여하기</div>
-                <span style="color: red">종료시간 : 23.10.13 13:00</span><br>
-                현재 가격 : <span id="current" style="color: skyblue"></span>
+                <span style="color: red"><span id="auction-state"></span><span id="remaining-hour"></span><span
+                        id="remaining-minute"></span><span id="remaining-second"></span></span><br>
+                현재 가격: <span id="current" style="color: skyblue"></span>
                 <input class="btn-money" id="btnMoney" type="button" value="▲1만원">
             </div>
 
@@ -117,10 +118,14 @@
                 <div id="startPrice">{{data.startPrice}}</div>
                 <div id="currentPrice">{{data.currentPrice}}</div>
                 <div id="selectRisingPrice">{{data.selectRisingPrice}}</div>
+                <div id="start-date">{{data.startDate}}</div>
+                <div id="start-time">{{data.startTime}}</div>
+                <div id="end-date">{{data.endDate}}</div>
+                <div id="end-time">{{data.endTime}}</div>
             </div>
         </div>
     </div>
-    <script src="/static/details_of_item.js"></script>
+    <script src="/static/details_of_item.js?after"></script>
     {% endblock section %}
 </body>
 
