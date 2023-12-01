@@ -10,7 +10,7 @@ document.getElementById("current").innerHTML = current_price + "원";
 
 var auctionState = false;
 function auction() {
-    if (auction == true) {
+    if (auctionState == true) {
         current_price = current_price + risingPrice;
         document.getElementById("current").innerHTML = current_price + "원";
 
@@ -75,6 +75,9 @@ function remaingTime() {
     } else if (parseInt(nt) > parseInt(et)) { // 마감
         auctionState = false;
         document.getElementById("auction-state").innerHTML = "종료되었습니다."
+        document.getElementById("remaining-hour").innerHTML = "";
+        document.getElementById("remaining-minute").innerHTML = "";
+        document.getElementById("remaining-second").innerHTML = "";
     } else { // 진행
         auctionState = true;
         sec = parseInt(et - nt) / 1000;
