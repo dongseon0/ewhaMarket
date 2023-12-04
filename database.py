@@ -117,23 +117,22 @@ class DBhandler:
         return True
 
     # 찜한 상품 가져오기
-    def get_items_byheart(self, id):
-        items = self.db.child("users").child(id).child("user_wish").get()
-        target_value = []
-        target_key = []
-        for res in items.each():
-            value = res.val()
+    def get_items_bycategory(self, cate): 
+        items = self.db.child("item").get() 
+        target_value=[]
+        target_key=[]
+        for res in items.each(): 
+            value = res.val() 
             key_value = res.key()
-            if value['interested'] == "Y":
-                # target_value.append(value)
+
+            if value['category'] == cate:
+                target_value.append(value)
                 target_key.append(key_value)
-                target_value.append(self.db.child(
-                    "items").child(key_value).get().val())
-        print("######target_value", target_value)
-        new_dict = {}
-        for k, v in zip(target_key, target_value):
-            new_dict[k] = v
-        return new_dict
+        print("######target_value",target_value)
+        new_dict={}
+
+        for k,v in zip(target_key,target_value): 
+            new_dict[k]=v
 
     # 찜하기 기능
     def get_heart_bykey(self, uid, key):
