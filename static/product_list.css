@@ -1,7 +1,3 @@
-* {
-    font-family: Arial, Helvetica, sans-serif;
-}
-
 .wrapper {
     width: 900px;
     cursor: default;
@@ -14,10 +10,6 @@
     text-align: center;
     font-size: 135%;
     margin-bottom: 1.5%;
-}
-
-hr {
-    border: 1.5px solid rgb(163, 223, 249);
 }
 
 .menubar {
@@ -70,19 +62,66 @@ hr {
     background-color: lightgray;
 }
 
+#category{
+    display: flex;
+}
+
+.total{
+    text-align: right;
+}
+
 .content {
     margin: auto;
 }
 
-.product {
-    width: calc(33.33% - 10px);
-    margin-bottom: 30px;
-    position: relative;
+/*table{
+    border-spacing: 5px;
+}*/
+
+.item-box {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 5px;
+    display: inline-block;
 }
 
-.product img {
+img {
     border: 0.3px solid black;
     vertical-align: middle;
+}
+
+
+.desc {
+    margin-top: 5%;
+    margin-bottom: 7%;
+}
+
+img:hover {
+    border: 0.3px solid skyblue;
+}
+
+.page-nation {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    justify-content: center;
+}
+
+.page-nation li {
+    margin: 0 5px;
+    list-style: none;
+}
+
+.page-nation a {
+    text-decoration: none;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.page-nation a.active {
+    background-color: #333;
+    color: #fff;
 }
 
 /*
@@ -101,68 +140,3 @@ hr {
 }
 */
 
-.desc {
-    margin-top: 5%;
-    margin-bottom: 7%;
-}
-
-.product img:hover {
-    border: 0.3px solid skyblue;
-}
-
-.page-nation {
-    display: flex;
-    list-style: none;
-    padding: 0;
-    justify-content: center;
-}
-
-.page-nation li {
-    margin: 0 5px;
-}
-
-.page-nation a {
-    text-decoration: none;
-    padding: 5px 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-}
-
-.page-nation a.active {
-    background-color: #333;
-    color: #fff;
-}
-
-/*
-.page-nation li{
-    list-style: none;
-}
-
-.page-wrap{
-    text-align: center;
-    font-size: 0;
-}
-
-.page-nation{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-}
-
-.page-nation a{
-    display: block;
-    margin: 0 3px;
-    float: left;
-    border: 1px solid #e6e6e6;
-    width: 28px;
-    height: 28px;
-    line-height: 28px;
-    text-align: center;
-    background-color: #fff;
-    font-size: 13px;
-    color: black;
-    text-decoration: none;
-    font-weight: bold;
-}
-*/
