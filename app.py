@@ -73,6 +73,8 @@ def view_product_list():
     )
 
 
+
+
 @application.route("/auction_list")
 def view_auction_list():
     return render_template("auction_list.html")
