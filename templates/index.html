@@ -20,7 +20,7 @@
       <li><a href="/user_reviews/{{session['id']}}/">My Reviews</a></li> <!--일단 누르면 현재 세션의 아이디로 들어가게 함-->
     </ul>
     <ul class="navbar__login">
-      <li><a href="/">모두의 마켓</a></li>
+      <li><a href="/product_list">모두의 마켓</a></li>
       {% if session['id'] %}
       <li><a href="/my_page/{{session['id']}}/" id="nav-mypage">{{session['id']}}님의 마이 페이지</a></li>
       <li><a href="/logout" id="nav-logout">로그아웃</a></li>
