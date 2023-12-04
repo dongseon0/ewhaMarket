@@ -73,8 +73,6 @@ def view_product_list():
     )
 
 
-
-
 @application.route("/auction_list")
 def view_auction_list():
     return render_template("auction_list.html")
@@ -227,6 +225,7 @@ def login():
     return render_template("login.html")
 
 
+# 로그인 버튼 클릭
 @application.route("/login_confirm", methods=['POST'])
 def login_user():
     id = request.form['id']
@@ -240,17 +239,20 @@ def login_user():
         return render_template("login.html")
 
 
+# 로그아웃
 @application.route("/logout")
 def logout_user():
     session.clear()
     return redirect(url_for('hello'))
 
 
+# 회원가입
 @application.route("/signup")
 def signup():
     return render_template("signup.html")
 
 
+# 회원가입 버튼 클릭
 @application.route("/signup_post", methods=['POST'])
 def register_user():
     data = request.form
@@ -394,7 +396,8 @@ def my_wish(id):
 @application.route("/my_info/<id>/")
 def my_infol(id):
     data = DB.get_user_info(id)
-    return render_template("my_info.html", id=id, data=data)
+    profile = DB.get_profile_image_path_byid(id)
+    return render_template("my_info.html", id=id, data=data, profile=profile)
 
 
 # 마이페이지_개인정보 수정
@@ -405,7 +408,8 @@ def change_my_info():
     image_file.save("static/images/profiles/{}".format(image_file.filename))
     DB.set_profile_image(id, image_file.filename)
     data = DB.get_user_info(id)
-    return render_template("my_info.html", id=id, data=data)
+    profile = DB.get_profile_image_path_byid(id)
+    return render_template("my_info.html", id=id, data=data, profile=profile)
 
 
 # 그외
