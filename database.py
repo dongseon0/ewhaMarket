@@ -134,6 +134,8 @@ class DBhandler:
         for k,v in zip(target_key,target_value): 
             new_dict[k]=v
 
+        return new_dict
+
     # 찜하기 기능
     def get_heart_bykey(self, uid, key):
         hearts = self.db.child("users").child(uid).child("user_wish").get()
