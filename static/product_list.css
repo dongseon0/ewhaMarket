@@ -1,5 +1,5 @@
 .wrapper {
-    width: 900px;
+    width: 1000px;
     cursor: default;
     margin: auto;
     margin-top: 7%;
@@ -50,11 +50,10 @@
     background-color: #fff;
     outline: none;
     font-size: 100%;
-
     margin-right: 8%;
     padding: 1%;
     cursor: pointer;
-    border-radius: 20%;
+    border-radius: 5px;
     box-shadow: 3% 3% 3%
 }
 
@@ -80,14 +79,15 @@
 
 .item-box {
     border: 1px solid #ccc;
-    padding: 10px;
-    margin: 5px;
+    padding: 5px;
+    margin: 2px;
     display: inline-block;
 }
 
-img {
+.item-box img {
     border: 0.3px solid black;
     vertical-align: middle;
+    object-fit:cover
 }
 
 
@@ -96,7 +96,7 @@ img {
     margin-bottom: 7%;
 }
 
-img:hover {
+.item-box img:hover {
     border: 0.3px solid skyblue;
 }
 
