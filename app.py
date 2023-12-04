@@ -24,27 +24,39 @@ def hello():
 def view_product_list():
     # html에 페이지 인덱스 클릭할 때마다 get으로 받아옴
     page = request.args.get("page", 0, type=int)
+    category = request.args.get("category", "all")
     per_page = 12  # item count to display per page
     per_row = 3  # item count to display per row
     row_count = int(per_page/per_row)
     start_idx = per_page*page
     end_idx = per_page*(page+1)  # 페이지 인덱스로 start_idx, end_idx 생성
-    data = DB.get_items()  # read the table
+    if category=="all":
+        data = DB.get_items() #read the table
+    else:
+        data = DB.get_items_bycategory(category)
+    #data = DB.get_items()   read the table 
+    data = dict(sorted(data.items(), key=lambda x: x[0], reverse=False))
+    item_counts = len(data)
+    """
     if data is None:
         data = {}  # 또는 [] 등 비어있는 데이터로 초기화
         item_counts = 0
     else:
         item_counts = len(data)
+    """
+    if item_counts <= per_page:
+        data = dict(list(data.items())[:item_counts])
+    else:
+        data = dict(list(data.items())[start_idx:end_idx])
     # 한 페이지에 start_idx, end_idx 만큼 읽어오기
-    data = dict(list(data.items())[start_idx:end_idx])
+    # data = dict(list(data.items())[start_idx:end_idx])
     tot_count = len(data)
     for i in range(row_count):  # last row
         if (i == row_count-1) and (tot_count % per_row != 0):
             locals()['data_{}'.format(i)] = dict(
                 list(data.items())[i*per_row:])
         else:
-            locals()['data_{}'.format(i)] = dict(
-                list(data.items())[i*per_row:(i+1)*per_row])
+            locals()['data_{}'.format(i)] = dict(list(data.items())[i*per_row:(i+1)*per_row])
 
     return render_template(
         "product_list.html",
@@ -55,8 +67,9 @@ def view_product_list():
         row4=locals()['data_3'].items(),
         limit=per_page,
         page=page,  # 현재 페이지 인덱스
-        page_count=int((item_counts/per_page) + 1),  # 페이지 개수
-        total=item_counts
+        page_count=int(math.ceil(item_counts/per_page)),  # 페이지 개수
+        total=item_counts,
+        category = category
     )
 
 
