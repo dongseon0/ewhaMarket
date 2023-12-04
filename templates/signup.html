@@ -7,7 +7,7 @@
 {% endif %}
 {% endwith %}
 <style>
-  .signup-wrapper {
+  .wrapper {
     width: 700px;
     height: 350px;
     padding: 40px;
@@ -15,8 +15,7 @@
     box-sizing: border-box;
   }
 
-  #signup-title {
-    font-size: 135%;
+  #title {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -39,9 +38,9 @@
     margin-top: 20px;
   }
 </style>
-<div class="signup-wrapper">
+<div class="wrapper">
   <br>
-  <p id="signup-title">회원가입</p>
+  <h2 id="title">회원가입</h2>
   <hr><br>
   <form method="post" action="/signup_post" id="signup-form" style="width: 70%; margin: auto;">
     <p>ID : </p>

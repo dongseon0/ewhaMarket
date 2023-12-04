@@ -7,7 +7,7 @@
 {% endif %}
 {% endwith %}
 <style>
-  .login-wrapper {
+  .wrapper {
     width: 700px;
     height: 350px;
     padding: 40px;
@@ -15,8 +15,7 @@
     box-sizing: border-box;
   }
 
-  #login-title {
-    font-size: 135%;
+  #title {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -51,9 +50,9 @@
     margin-top: 20px;
   }
 </style>
-<div class="login-wrapper">
+<div class="wrapper">
   <br>
-  <p id="login-title">로그인</p>
+  <h2 id="title">로그인</h2>
   <hr><br>
   <form action="/login_confirm" method="post" id="login-form" style="width: 70%; margin: auto;">
     <p>ID : </p>
