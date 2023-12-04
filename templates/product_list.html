@@ -14,7 +14,7 @@
     </script>
     <div class="wrapper">
         <div class="text">상품 리스트</div>
-        <hr>
+        <hr style="width:100%;">
         <div class="menubar">
             <ul class="menubar__menu">
                 <li><a href="" style="text-decoration: underline;">전체 상품</a></li>
@@ -38,6 +38,7 @@
                     <option value="{{url_for('view_product_list', page=i, category='ETC')}}"> ETC </option>
                 </select>
             </td>
+            <td></td>
             <td></td>
             <td>
                 {% if total > 0 %}
