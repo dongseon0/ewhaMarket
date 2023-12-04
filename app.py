@@ -25,8 +25,8 @@ def view_product_list():
     # html에 페이지 인덱스 클릭할 때마다 get으로 받아옴
     page = request.args.get("page", 0, type=int)
     category = request.args.get("category", "all")
-    per_page = 12  # item count to display per page
-    per_row = 3  # item count to display per row
+    per_page = 16  # item count to display per page
+    per_row = 4  # item count to display per row
     row_count = int(per_page/per_row)
     start_idx = per_page*page
     end_idx = per_page*(page+1)  # 페이지 인덱스로 start_idx, end_idx 생성
