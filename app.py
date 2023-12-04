@@ -35,7 +35,7 @@ def view_product_list():
     else:
         data = DB.get_items_bycategory(category)
     #data = DB.get_items()   read the table 
-    data = dict(sorted(data.items(), key=lambda x: x[0], reverse=False))
+    data = dict(sorted(data.items(), key=lambda x: x[0], reverse=True))
     item_counts = len(data)
     """
     if data is None:
