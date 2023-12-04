@@ -16,10 +16,12 @@
             <a href="/user_reviews/{{id}}/">리뷰</a>
         </div>
         <hr>
+        
         {% if total > 0 %}
         <p class="count_review">
             {{total}}개의 리뷰
         </p>
+
         <div class="review">
             {% for key, value in row1 %}
             <table>
