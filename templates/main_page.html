@@ -12,12 +12,25 @@
         hr {
           border: 1.5px solid rgb(163, 223, 249);
         }
+
+        .text {
+            width: 900px;
+            text-align: left;
+            margin-left: 20px;
+        }
+
+        #btn {
+            margin: 20px;
+            text-align: right;
+            margin-right: 20px;
+            font-size: 15pt;
+        }
         
         .wrapper {
             width: 1100px;
             cursor: default;
             margin: auto;
-            margin-top: 3%;
+            margin-top: 1%;
             text-align: center;
         }
 
@@ -29,6 +42,28 @@
             float :left;
         }
         
+        .item-box {
+            border: 1px solid #ccc;
+            padding: 5px;
+            margin: 2px;
+            display: inline-block;
+        }
+
+        .item-box img {
+            border: 0.3px solid black;
+            vertical-align: middle;
+            object-fit:cover
+        }
+
+
+        .desc {
+            margin-top: 5%;
+            margin-bottom: 7%;
+        }
+
+        .item-box img:hover {
+            border: 0.3px solid skyblue;
+        }
     </style>
 
 </head>
@@ -37,13 +72,27 @@
     {% extends "index.html" %}
 
     {% block section %}
-    <br><br><br>
+    <br><br>
     <div class="banner">
-        <img src="/static/images/banner.png" width = "1150" alt="banner">
+        <img src="/static/images/banner.png" width="1150" alt="banner">
     </div>
     <div class="wrapper">
         <h2 class="text">최근 올라온 상품</h2>
-        
+        <button onclick="location.href='view_product_list'" id="btn" type="button">상품 더 보기</button>
+        <div>
+            <tbody class="product">
+                <tr>
+                    {% for key, value in row1 %}
+                    <td>
+                        <div class="item-box" onclick="location.href='/details_of_item/{{key}}/';" style="cursor:pointer;">
+                            <img src="static/images/items/{{value.img_path}}" width="200px" height="200px">
+                            <div class="desc">{{value.name}}</div>
+                        </div>
+                    </td>
+                    {% endfor %}
+                </tr>
+            </tbody>
+        </div>
     </div>
     {% endblock section %}
 </body>

@@ -15,7 +15,15 @@ DB = DBhandler()
 def hello():
     # return render_template("index.html")
     # 메인페이지로 바꿉니다
-    return render_template("main_page.html")
+    data = DB.get_items()
+    data = dict(sorted(data.items(), key=lambda x: x[0], reverse=True))
+    for i in range(5):
+        locals()['data_{}'.format(0)] = dict(list(data.items())[0:5])
+    return render_template(
+        "main_page.html",
+        datas=data.items(),
+        row1=locals()['data_0'].items()
+    )
     #return redirect(url_for('view_product_list'))
 
 
@@ -53,8 +61,7 @@ def view_product_list():
     tot_count = len(data)
     for i in range(row_count):  # last row
         if (i == row_count-1) and (tot_count % per_row != 0):
-            locals()['data_{}'.format(i)] = dict(
-                list(data.items())[i*per_row:])
+            locals()['data_{}'.format(i)] = dict(list(data.items())[i*per_row:])
         else:
             locals()['data_{}'.format(i)] = dict(list(data.items())[i*per_row:(i+1)*per_row])
 
