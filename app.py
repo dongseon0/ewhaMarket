@@ -392,7 +392,18 @@ def my_wish(id):
 
 # 마이페이지_개인정보
 @application.route("/my_info/<id>/")
-def my_personal(id):
+def my_infol(id):
+    data = DB.get_user_info(id)
+    return render_template("my_info.html", id=id, data=data)
+
+
+# 마이페이지_개인정보 수정
+@application.route("/change_my_info", methods=['POST'])
+def change_my_info():
+    id = session['id']
+    image_file = request.files["file"]
+    image_file.save("static/images/profiles/{}".format(image_file.filename))
+    DB.set_profile_image(id, image_file.filename)
     data = DB.get_user_info(id)
     return render_template("my_info.html", id=id, data=data)
 

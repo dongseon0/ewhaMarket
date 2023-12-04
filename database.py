@@ -17,8 +17,7 @@ class DBhandler:
             "nickname": data['nickname']
         }
         if self.user_duplicate_check(str(data['id'])):
-            self.db.child("users").child(data['id']).child(
-                "user_info").set(user_info)
+            self.db.child("users").child(data['id']).child("user_info").set(user_info)
             return True
         else:
             return False
@@ -46,6 +45,11 @@ class DBhandler:
                 else:
                     return False
         return False
+    
+    # 프로필 사진 변경하기
+    def set_profile_image(self, id, img_path):
+        self.db.child("users").child(id).child("user_info").child("profile").set(img_path)
+        return True
 
     # 특정 아이디의 프로필 사진 불러오기
     def get_profile_image_path_byid(self, id):
