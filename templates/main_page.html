@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+        * {
+          cursor: default;
+          font-family: Arial, Helvetica, sans-serif;
+        }
+
+        hr {
+          border: 1.5px solid rgb(163, 223, 249);
+        }
+        
         .wrapper {
             width: 900px;
             cursor: default;
@@ -13,7 +22,7 @@
         }
 
         .banner{
-
+            text-align: center;
         }
 
         .text{
@@ -33,7 +42,7 @@
         <img src="/static/images/banner.png" width = "1150" alt="banner">
     </div>
     <div class="wrapper">
-        <h2 class="text">오늘의 상품</h2>
+        <h2 class="text">최근 올라온 상품</h2>
     </div>
     {% endblock section %}
 </body>

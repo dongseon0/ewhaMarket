@@ -1,4 +1,4 @@
-.mypage-wrapper {
+.wrapper {
   width: 700px;
   height: 350px;
   padding: 40px;
@@ -6,8 +6,7 @@
   box-sizing: border-box;
 }
 
-#mypage-title {
-  font-size: 135%;
+#title {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -38,7 +37,7 @@
 .menubar__menu a {
   text-decoration: none;
   /* 밑줄 제거 */
-  text-align: left;
+  text-align: center;
   font-size: 16px;
   color: #000;
 }
