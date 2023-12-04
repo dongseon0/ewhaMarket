@@ -15,7 +15,7 @@
 .menubar {
   display: flex;
   /* 메뉴 항목을 가로로 정렬 */
-  justify-content: space-between;
+  justify-content: center;
   /* 메뉴를 수평으로 가운데 정렬 */
   align-items: center;
   /* 메뉴를 수직으로 가운데 정렬 */
