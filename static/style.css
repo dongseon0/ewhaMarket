@@ -78,7 +78,8 @@
 /* 공통 디자인 정의 */
 * {
   cursor: default;
-  font-family: Arial, Helvetica, sans-serif;
+  /* font-family: Arial, Helvetica, sans-serif; */
+  font-family: 'NanumSquareBold', Arial;
 }
 
 hr {
