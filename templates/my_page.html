@@ -1,7 +1,8 @@
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" type="text/css" href="/static/my_page.css">
-  <style>
+  <link rel="stylesheet" type="text/css" href="/static/user_list.css">
+  <!--<style>
     .text {
       font-weight: bold !important;
     }
@@ -97,7 +98,7 @@
         text-decoration: none; 
         margin: 0 5px; 
     }
-  </style>
+  </style>-->
 </head>
 
 <body>
@@ -106,18 +107,20 @@
   {% block section %}
   <div class="wrapper">
     <h2 class="title">마이 페이지</h2>
-    <hr class="line1">
+    <hr>
     <div class="menubar">
       <a href="/my_page/{{session['id']}}/">내 상점</a>
       <a href="/my_reviews/{{session['id']}}/">내 리뷰</a>
       <a href="/my_wish/{{session['id']}}/">찜</a>
       <a href="/my_info/{{session['id']}}/">개인정보</a>
     </div>
-    <hr class="line1">
+    <hr>
+
     {% if total > 0 %}
       <p class="count_list">
         {{total}}개의 판매 내역
       </p>
+
       <div class="sell">
         {% for key, value in row1 %}
         <table>
