@@ -8,7 +8,6 @@
 
 .text {
     text-align: center;
-    font-size: 135%;
     margin-bottom: 1.5%;
 }
 
@@ -97,7 +96,7 @@
 }
 
 .item-box:hover {
-    border: 1px solid skyblue;
+    background-color: #8a8a8a68;
 }
 
 .page-nation {
