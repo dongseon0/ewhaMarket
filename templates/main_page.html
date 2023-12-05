@@ -17,13 +17,15 @@
             width: 900px;
             text-align: left;
             margin-left: 20px;
+            float :left;
         }
 
         #btn {
-            margin: 20px;
+            margin: 10px;
             text-align: right;
             margin-right: 20px;
-            font-size: 15pt;
+            margin-top: 15px;
+            font-size: 12pt;
         }
         
         .wrapper {
@@ -36,10 +38,6 @@
 
         .banner{
             text-align: center;
-        }
-
-        .text{
-            float :left;
         }
         
         .item-box {
@@ -54,7 +52,6 @@
             vertical-align: middle;
             object-fit:cover
         }
-
 
         .desc {
             margin-top: 5%;
@@ -77,7 +74,7 @@
         <img src="/static/images/banner.png" width="1150" alt="banner">
     </div>
     <div class="wrapper">
-        <h2 class="text">최근 올라온 상품</h2>
+        <h3 class="text">최근 올라온 상품</h3>
         <button onclick="location.href='view_product_list'" id="btn" type="button">상품 더 보기</button>
         <div>
             <tbody class="product">
