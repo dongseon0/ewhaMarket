@@ -68,6 +68,8 @@ def view_product_list():
             locals()['data_{}'.format(i)] = dict(
                 list(data.items())[i*per_row:(i+1)*per_row])
 
+    empty_cells = per_row - item_counts%per_row if per_row > item_counts%per_page else 0
+
     return render_template(
         "product_list.html",
         datas=data.items(),
@@ -79,7 +81,8 @@ def view_product_list():
         page=page,  # 현재 페이지 인덱스
         page_count=int(math.ceil(item_counts/per_page)),  # 페이지 개수
         total=item_counts,
-        category=category
+        category=category,
+        empty_cells = empty_cells
     )
 
 
@@ -473,20 +476,24 @@ def unlike(key):
 @application.route("/user_list/<id>/")
 def view_user_list(id):
     page = request.args.get("page", 0, type=int)
-    per_page = 5  # item count to display per page
-    per_row = 1  # item count to display per row
-    row_count = int(per_page/per_row)
-    start_idx = per_page*page
-    end_idx = per_page*(page+1)  # 페이지 인덱스로 start_idx, end_idx 생성
-    data = DB.get_lists(id)  # read the table
+    per_page = 6  # 페이지당 표시할 아이템 수
+    per_row = 3  # 한 행당 표시할 아이템 수
+    row_count = int(per_page / per_row)
+    start_idx = per_page * page
+    end_idx = per_page * (page + 1)
+    data = DB.get_lists(id)  # 테이블 읽기
     if not data:
         data = {}
         item_counts = 0
     else:
         item_counts = len(data)
 
-    # 한 페이지에 start_idx, end_idx 만큼 읽어오기
-    data = dict(list(data.items())[start_idx:end_idx])
+    # 페이지 당 start_idx부터 end_idx까지 읽기
+    if item_counts <= per_page:
+        data = dict(list(data.items())[:item_counts])
+    else:
+        data = dict(list(data.items())[start_idx:end_idx])
+    
     tot_count = len(data)
     for i in range(row_count):  # last row
         if (i == row_count-1) and (tot_count % per_row != 0):
@@ -495,21 +502,22 @@ def view_user_list(id):
         else:
             locals()['data_{}'.format(i)] = dict(
                 list(data.items())[i*per_row:(i+1)*per_row])
+    
+    empty_cells = per_row - item_counts if per_row > item_counts else 0
 
     return render_template(
         "user_list.html",
-        datas=data.items(),
+        per_row=per_row,
         row1=locals()['data_0'].items(),
         row2=locals()['data_1'].items(),
-        row3=locals()['data_2'].items(),
-        row4=locals()['data_3'].items(),
-        row5=locals()['data_4'].items(),
         limit=per_page,
-        page=page,  # 현재 페이지 인덱스
-        page_count=int((item_counts/per_page) + 1),  # 페이지 개수
+        page=page,
+        page_count=int((item_counts / per_page) + 1),
         total=item_counts,
-        id=id
+        id=id,
+        empty_cells = empty_cells
     )
+
 
 
 if __name__ == "__main__":

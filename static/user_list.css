@@ -24,7 +24,45 @@
     width: 90%;
 }
 
-.sell {
+table{
+    border-spacing: 7px;
+    table-layout: fixed;
+}
+
+.blank-box{
+    width: 200px; 
+    height: 270px;
+    display: inline-block;
+}
+
+.item-box {
+    width: 200px; 
+    height: 270px;
+    display: inline-block;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
+}
+
+.item-box img {
+    vertical-align: middle;
+    object-fit:cover;
+}
+
+
+.desc {
+    margin-top: 5%;
+    margin-bottom: 7%;
+    max-width: 95%; /* Adjust as needed */
+    margin-left: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.item-box:hover {
+    background-color: #8a8a8a68;
+}
+
+/*.sell {
     padding: 10px;
     padding-bottom: 5px;
     margin-bottom: 20px;
@@ -34,13 +72,15 @@
     width: 700px;
     max-width: 600px;
 }
+*/
+
 /*상품 개수 표시*/
 .count_list {
     font-size: 13px;
     padding-right: 550px;
 }
 
-/*상품 사진*/
+/*상품 사진
 .sell img {
     width: 100px;
     height: 100px;
@@ -48,7 +88,7 @@
     padding-right: 20px;
 }
 
-/*내용*/
+내용
 .content {
     display: flex;
     align-items: center;
@@ -66,13 +106,14 @@
     margin: 5px 0;
 }
 
-/*유저 아이디*/
+유저 아이디
 .sell .id_seller {
     font-weight: bold;
     flex: 1;
     color:  rgb(82, 155, 187);
     text-decoration: underline;
 }
+*/
 
 
 /*내부 네비바*/
@@ -96,10 +137,8 @@
     color: black;
 }
 
-/*페이지네이션*/
 .page-nation {
     display: flex;
-    list-style: none;
     padding: 0;
     justify-content: center;
 }
@@ -110,7 +149,11 @@
 
 .page-nation li {
     margin: 0 5px;
-    list-style: none;
+    list-style:none;
+}
+
+ul{
+    padding-left: 0px;
 }
 
 .page-nation a {

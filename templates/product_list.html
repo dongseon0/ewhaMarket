@@ -57,6 +57,11 @@
                         </div>
                     </td>
                     {% endfor %}
+                    {% for _ in range(empty_cells) %}
+                    <td>
+                        <div class="blank-box"></div>
+                    </td>
+                    {% endfor %}
                 </tr>
             </tbody>
             <tbody class="product">
