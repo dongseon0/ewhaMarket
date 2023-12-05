@@ -8,7 +8,7 @@
 
     {% block section %}
     <div class="wrapper">
-        <div class="text">{{id}} 리뷰</div>
+        <h2 class="text">{{id}} 리뷰</h2>
         <hr class="line1">
         
         <div class="topnav">
@@ -24,6 +24,7 @@
 
         <div class="review">
             {% for key, value in row1 %}
+            <table>
                 <td onclick="location.href='/details_of_review/{{value.sellerId}}/{{key}}/';" style="cursor:pointer;">
                     <div class="review-content">
                         <img src="/static/images/reviews/{{value.img_path}}">
@@ -41,6 +42,7 @@
                         </div>
                     </div>
                 </td>
+            </table>
             {% endfor %}
         </div>
         {% if row1|length > 0 %}<hr class="line2">{% endif %}
