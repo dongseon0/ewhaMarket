@@ -125,6 +125,15 @@ class DBhandler:
                 target_value = res.val()
         return target_value
     
+    def get_is_auction_status(self, key):
+        item_data = self.db.child("items").child(key).get().val()
+        if item_data:
+            is_auction = item_data.get("isAuction")
+            if is_auction is not None:
+                return is_auction
+        return None  # Or handle the case where isAuction is not found
+
+    
     # 경매 가격, 입찰자 데베에 적용하기
     def set_auction(self, key, selectRisingPrice, id):
         self.db.child("items").child(key).update({"winner": id})
