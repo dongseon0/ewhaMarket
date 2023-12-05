@@ -73,14 +73,14 @@
 }
 
 table{
-    border-spacing: 5px;
+    border-spacing: 7px;
 }
 
 .item-box {
     width: 200px; 
     height: 270px;
     display: inline-block;
-    border: 0.1px solid #333;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
 }
 
 .item-box img {
@@ -105,14 +105,17 @@ table{
 
 .page-nation {
     display: flex;
-    list-style: none;
     padding: 0;
     justify-content: center;
 }
 
 .page-nation li {
     margin: 0 5px;
-    list-style: none;
+    list-style:none;
+}
+
+ul{
+    padding-left: 0px;
 }
 
 .page-nation a {
