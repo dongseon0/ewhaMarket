@@ -3,7 +3,7 @@
 {% block section %}
 <link rel="stylesheet" href="/static/reg_item.css" />
 <script src="/static/reg_item.js"></script>
-<form method="post" enctype="multipart/form-data" action="/submit_item_post">
+<form method="post" enctype="multipart/form-data" action="/submit_item_post" onsubmit="return checkInput()">
     <div class="wrapper">
         <main class="product-registration">
             <h2 class="main-title">
@@ -220,7 +220,7 @@
                 </li>
             </ul>
             <hr>
-            <input type="submit" class="product-registration-end-button" value="등록하기"><br><br>
+            <input type="submit" class="product-registration-end-button" value="등록하기" onclick="checkInput()"><br><br>
         </main>
     </div>
 </form>
