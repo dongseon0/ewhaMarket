@@ -70,7 +70,12 @@ def view_product_list():
 
     page_count=int(math.ceil(item_counts/per_page))  # 페이지 개수
     empty_cell = per_row - item_counts % per_row if page + 1 == page_count else 0
+    
 
+    isAuction = {}
+    for item_key in data.keys():
+        is_auction_status = DB.get_is_auction_status(item_key)
+        isAuction[item_key] = is_auction_status
 
     return render_template(
         "product_list.html",
@@ -85,7 +90,8 @@ def view_product_list():
         total=item_counts,
         category=category,
         empty_cells = empty_cell,
-        per_row = per_row
+        per_row = per_row,
+        isAuction = isAuction
     )
 
 
