@@ -99,3 +99,34 @@
     background-color: #ddd;
     color: black;
 }
+
+/*페이지네이션*/
+.page-nation {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    justify-content: center;
+}
+
+.page-nation li {
+    margin: 0 5px;
+    list-style: none;
+}
+
+.page-nation a {
+    text-decoration: none;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.page-nation a.active {
+    background-color: #333;
+    color: #fff;
+}
+
+.page-nation a {
+    color: black; 
+    text-decoration: none; 
+    margin: 0 5px; 
+}
