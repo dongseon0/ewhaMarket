@@ -22,7 +22,6 @@
 .line2 {
     border: 0.5px solid rgb(38, 83, 103);
     width: 90%;
-
 }
 
 .sell {
@@ -103,6 +102,10 @@
     list-style: none;
     padding: 0;
     justify-content: center;
+}
+
+.page-nation ul {
+    padding-left: 0px;
 }
 
 .page-nation li {

@@ -1,7 +1,7 @@
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" type="text/css" href="/static/user_reviews.css">
   <link rel="stylesheet" type="text/css" href="/static/my_page.css">
+  <link rel="stylesheet" type="text/css" href="/static/user_reviews.css">
 </head>
 
 <body>
@@ -9,16 +9,13 @@
 
   {% block section %}
   <div class="wrapper">
-    <br>
-    <h2 id="title">마이 페이지</h2>
+    <h2 class="title">마이 페이지</h2>
     <hr>
     <div class="menubar">
-      <ul class="menubar__menu">
-        <li><a href="/my_page/{{session['id']}}/">내 상점</a></li>
-        <li><a href="/my_reviews/{{session['id']}}/">내 리뷰</a></li>
-        <li><a href="/my_wish/{{session['id']}}/">찜</a></li>
-        <li><a href="/my_info/{{session['id']}}/">개인정보</a></li>
-      </ul>
+      <a href="/my_page/{{session['id']}}/">내 상점</a>
+      <a style="text-decoration: underline;" href="/my_reviews/{{session['id']}}/">내 리뷰</a>
+      <a href="/my_wish/{{session['id']}}/">찜</a>
+      <a href="/my_info/{{session['id']}}/">개인정보</a>
     </div>
     <hr>
 
@@ -50,6 +47,7 @@
       </table>
       {% endfor %}
     </div>
+    {% if row1|length > 0 %}<hr class="line2">{% endif %}
 
     <div class="review">
       {% for key, value in row2 %}
@@ -74,6 +72,7 @@
       </table>
       {% endfor %}
     </div>
+    {% if row2|length > 0 %}<hr class="line2">{% endif %}
 
     <div class="review">
       {% for key, value in row3 %}
@@ -98,6 +97,7 @@
       </table>
       {% endfor %}
     </div>
+    {% if row3|length > 0 %}<hr class="line2">{% endif %}
 
     <div class="review">
       {% for key, value in row4 %}
@@ -122,6 +122,7 @@
       </table>
       {% endfor %}
     </div>
+    {% if row4|length > 0 %}<hr class="line2">{% endif %}
 
     <div class="review">
       {% for key, value in row5 %}
@@ -145,23 +146,23 @@
         </td>
       </table>
       {% endfor %}
-
-      <div class="page-wrap">
-        <div class="page-nation">
-          <ul>
-            <li>
-              {% for i in range(page_count) %}
-              <a href="{{url_for('my_reviews', id=id, page=i)}}" color="black">{{i+1}}</a>
-              {% endfor %}
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      {% else %}
-        <p style="text-align:center">등록된 리뷰가 없습니다.</p>
-        {% endif %}
     </div>
+    {% if row5|length > 0 %}<hr class="line2">{% endif %}
+
+    <div class="page-wrap">
+      <div class="page-nation">
+        <ul>
+          <li>
+            {% for i in range(page_count) %}
+            <a href="{{url_for('my_reviews', id=id, page=i)}}" color="black">{{i+1}}</a>
+            {% endfor %}
+          </li>
+        </ul>
+      </div>
+    </div>
+    {% else %}
+      <p style="text-align:center">등록된 리뷰가 없습니다.</p>
+    {% endif %}
   </div>
   {% endblock section %}
 </body>
