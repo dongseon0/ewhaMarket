@@ -24,7 +24,7 @@
                         상품 이미지
                     </h4>
                     <div class="inside">
-                        <input type="file" name="file" />
+                        <input type="file" name="file" required/>
                     </div>
                 </li>
                 <li class="status-section">
@@ -135,7 +135,7 @@
                         </div>
                         <div class="fixed-pricing-box" id="fixed-pricing-box" style="display: none;">
                             <div class="input-fixed-pricing">
-                                <input type="text" name="fixed-price" placeholder="가격을 입력해주세요."
+                                <input id="fixedPrice" type="text" name="fixed-price" placeholder="가격을 입력해주세요."
                                     class="fixed-pricing-text" value="">
                                 <span>원</span>
                             </div>
@@ -146,7 +146,7 @@
                                     시작가
                                 </h5>
                                 <div class="input-start-price">
-                                    <input type="text" name="start-price" placeholder="경매 시작가를 입력해주세요."
+                                    <input id="startPrice" type="text" name="start-price" placeholder="경매 시작가를 입력해주세요."
                                         class="input-start-price-text" value="">
                                     <span>원</span>
                                 </div>

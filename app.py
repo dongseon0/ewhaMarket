@@ -122,11 +122,15 @@ def view_details_of_item(key):
         return render_template("details_of_item.html", key=key, data=data, profile_image_path=profile_image_path)
 
 
-@application.route('/auction/<key>/<currentPrice>', methods=['POST'])
-def set_auction(key, currentPrice):
-    id = session['id']
-    DB.set_auction(key, currentPrice, id)
-    return jsonify({'msg': '입찰 완료했습니다!'})
+@application.route('/auction/<key>/<sellerId>/<selectRisingPrice>', methods=['POST'])
+def set_auction(key, sellerId, selectRisingPrice):
+    if session.get('id') is None:
+        return jsonify({'msg': '로그인 후 입찰할 수 있습니다.'})
+    elif sellerId == session.get('id'):
+        return jsonify({'msg': '내 상품에는 입찰할 수 없습니다.'})
+    else:
+        DB.set_auction(key, selectRisingPrice, session.get('id'))
+        return jsonify({'msg': '입찰 완료했습니다!'})
 
 
 # 리뷰
@@ -309,7 +313,7 @@ def my_page(id):
         page=page,  # 현재 페이지 인덱스
         page_count=int((item_counts/per_page) + 1),  # 페이지 개수
         total=item_counts,
-        id=id
+        id=id,
     )
 
 
@@ -393,7 +397,7 @@ def my_wish(id):
         page=page,  # 현재 페이지 인덱스
         page_count=int(math.ceil(item_counts/per_page)),  # 페이지 개수
         total=item_counts,
-        id=id
+        id=id,
     )
 
 

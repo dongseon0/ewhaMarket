@@ -1,7 +1,77 @@
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" type="text/css" href="/static/user_list.css">
   <link rel="stylesheet" type="text/css" href="/static/my_page.css">
+  <style>
+    .item-box {
+      width: 200px; 
+      height: 270px;
+      display: inline-block;
+      /* border: 1px solid #ccc; */
+      background-color: rgb(243, 243, 243);
+      padding: 15px;
+      margin: 2px;
+      border-radius: 10px;
+      box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .item-box img {
+      vertical-align: middle;
+      border: 0.3px solid #ccc;
+      border-radius: 10px;
+      object-fit:cover;
+    }
+
+    .desc {
+      margin-top: 5%;
+      margin-bottom: 7%;
+      max-width: 95%; /* Adjust as needed */
+      margin-left: 5px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .item-box:hover {
+      background-color: #8a8a8a68;
+    }
+
+    td {
+      padding: 5px;
+    }
+
+    .page-nation {
+      display: flex;
+      padding: 0;
+      justify-content: center;
+    }
+
+    .page-nation li {
+      margin: 0 5px;
+      list-style:none;
+    }
+
+    ul{
+      padding-left: 0px;
+    }
+
+    .page-nation a {
+      text-decoration: none;
+      padding: 5px 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+
+    .page-nation a.active {
+      background-color: #333;
+      color: #fff;
+    }
+
+    .page-nation a {
+      color: black; 
+      text-decoration: none; 
+      margin: 0 5px; 
+    }
+  </style>
 </head>
 
 <body>
@@ -9,79 +79,73 @@
 
   {% block section %}
   <div class="wrapper">
-    <br>
-    <h2 id="title">마이 페이지</h2>
+    <h2 class="title">마이 페이지</h2>
     <hr>
     <div class="menubar">
-      <ul class="menubar__menu">
-        <li><a href="/my_page/{{session['id']}}/">내 상점</a></li>
-        <li><a href="/my_reviews/{{session['id']}}/">내 리뷰</a></li>
-        <li><a href="/my_wish/{{session['id']}}/">찜</a></li>
-        <li><a href="/my_info/{{session['id']}}/">개인정보</a></li>
-      </ul>
+      <a href="/my_page/{{session['id']}}/">내 상점</a>
+      <a href="/my_reviews/{{session['id']}}/">내 리뷰</a>
+      <a style="text-decoration: underline;" href="/my_wish/{{session['id']}}/">찜</a>
+      <a href="/my_info/{{session['id']}}/">개인정보</a>
     </div>
     <hr>
+    
     {% if total > 0 %}
     <p>
       찜한 상품은 {{total}}개입니다.
     </p>
     <table class="content">
-      <div class="product">
+      <tbody class="product">
         <tr>
           {% for key, value in row1 %}
-          <td onclick="location.href='/details_of_item/{{key}}/';" style="cursor:pointer;">
-            <img src="/static/images/items/{{value.img_path}}" , width=200px height=200px>
+          <td>
+            <div class="item-box" onclick="location.href='/details_of_item/{{key}}/';"
+              style="cursor:pointer;">
+              <img src="/static/images/items/{{value.img_path}}" width="200px" height="200px">
+              <div class="desc">{{value.name}}</div>
+            </div>
           </td>
           {% endfor %}
         </tr>
-        <tr>
-          {% for key, value in row1 %}
-          <td class="desc">{{value.name}}</td>
-          {% endfor %}
-        </tr>
-      </div>
-      <div class="product">
+      </tbody>
+      <tbody class="product">
         <tr>
           {% for key, value in row2 %}
-          <td onclick="location.href='/details_of_item/{{key}}/';" style="cursor:pointer;">
-            <img src="/static/images/items/{{value.img_path}}" , width=200px height=200px>
+          <td>
+            <div class="item-box" onclick="location.href='/details_of_item/{{key}}/';"
+              style="cursor:pointer;">
+              <img src="/static/images/items/{{value.img_path}}" width="200px" height="200px">
+              <div class="desc">{{value.name}}</div>
+            </div>
           </td>
           {% endfor %}
         </tr>
-        <tr>
-          {% for key, value in row2 %}
-          <td class="desc">{{value.name}}</td>
-          {% endfor %}
-        </tr>
-      </div>
-      <div class="product">
+      </tbody>
+      <tbody class="product">
         <tr>
           {% for key, value in row3 %}
-          <td onclick="location.href='/details_of_item/{{key}}/';" style="cursor:pointer;">
-              <img src="/static/images/items/{{value.img_path}}" , width=200px height=200px>
+          <td>
+            <div class="item-box" onclick="location.href='/details_of_item/{{key}}/';"
+              style="cursor:pointer;">
+              <img src="/static/images/items/{{value.img_path}}" width="200px" height="200px">
+              <div class="desc">{{value.name}}</div>
+            </div>
           </td>
           {% endfor %}
         </tr>
-        <tr>
-          {% for key, value in row3 %}
-          <td class="desc">{{value.name}}</td>
-          {% endfor %}
-        </tr>
-      </div>
-      <div class="product">
+      </tbody>
+      <tbody class="product">
         <tr>
           {% for key, value in row4 %}
-          <td onclick="location.href='/details_of_item/{{key}}/';" style="cursor:pointer;">
-              <img src="/static/images/items/{{value.img_path}}" , width=200px height=200px>
+          <td>
+            <div class="item-box" onclick="location.href='/details_of_item/{{key}}/';"
+              style="cursor:pointer;">
+              <img src="/static/images/items/{{value.img_path}}" width="200px" height="200px">
+              <div class="desc">{{value.name}}</div>
+            </div>
           </td>
           {% endfor %}
         </tr>
-        <tr>
-          {% for key, value in row4 %}
-          <td class="desc">{{value.name}}</td>
-          {% endfor %}
-        </tr>
-      </div>
+      </tbody>
     </table>
     <!--페이지네이션을 위한 코드 시작-->
     <div class="page-wrap">

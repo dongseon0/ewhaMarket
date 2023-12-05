@@ -14,11 +14,6 @@
     align-items: center;
 }
 
-.text {
-   
-    font-weight: bold !important;
-}
-
 .line1 {
     border: 1.5px solid rgb(163, 223, 249);
     width: 100%;
@@ -100,6 +95,8 @@
     text-align: center;
     text-decoration: none;
     padding: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .topnav a:hover {
@@ -113,6 +110,10 @@
     list-style: none;
     padding: 0;
     justify-content: center;
+}
+
+.page-nation ul {
+    padding-left: 0px;
 }
 
 .page-nation li {

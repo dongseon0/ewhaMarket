@@ -4,45 +4,27 @@
   margin: auto;
   margin-top: 7%;
   text-align: center;
-}
-
-#title {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
 }
 
 .menubar {
-  display: flex;
-  /* 메뉴 항목을 가로로 정렬 */
-  justify-content: center;
-  /* 메뉴를 수평으로 가운데 정렬 */
-  align-items: center;
-  /* 메뉴를 수직으로 가운데 정렬 */
-}
-
-.menubar ul {
-  list-style: none;
-  display: flex;
-  /* 메뉴 항목을 가로로 정렬 */
-}
-
-.menubar__menu li {
-  margin-left: 20px;
-  /* 메뉴 간격 설정 */
-  margin-right: 20px;
-  /* margin-bottom: 20px; */
-}
-
-.menubar__menu a {
-  text-decoration: none;
-  /* 밑줄 제거 */
+  overflow: hidden;
   text-align: center;
-  font-size: 16px;
-  color: #000;
 }
 
-.menubar__menu a:hover {
-  text-decoration: underline;
-  background-color: skyblue;
+.menubar a {
+  display: inline-block;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  padding: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.menubar a:hover {
+  background-color: #ddd;
+  color: black;
 }
