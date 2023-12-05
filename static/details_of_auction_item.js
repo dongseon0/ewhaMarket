@@ -9,7 +9,7 @@ function auction() {
     if (auctionState == true) {
         $.ajax({
             type: 'POST',
-            url: '/auction/' + document.getElementById("key").innerHTML + '/' + risingPrice,
+            url: '/auction/' + document.getElementById("key").innerHTML + '/' + document.getElementById("seller-id").innerHTML + '/' + risingPrice,
             data: {},
             success: function (response) {
                 alert(response['msg']);
