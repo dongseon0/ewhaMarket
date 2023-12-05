@@ -77,6 +77,8 @@
 }*/
 
 .item-box {
+    width: 210px; 
+    height: 250px;
     border: 1px solid #ccc;
     padding: 5px;
     margin: 2px;
@@ -93,6 +95,10 @@
 .desc {
     margin-top: 5%;
     margin-bottom: 7%;
+    max-width: 100%; /* Adjust as needed */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .item-box:hover {
