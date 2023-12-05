@@ -76,6 +76,11 @@ table{
     border-spacing: 7px;
 }
 
+.blank-box{
+    width: 200px; 
+    height: 270px;
+}
+
 .item-box {
     width: 200px; 
     height: 270px;
