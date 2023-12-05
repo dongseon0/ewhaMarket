@@ -117,7 +117,7 @@ def view_details_of_item(key):
     data = DB.get_item_bykey(str(key))
     profile_image_path = DB.get_profile_image_path_byid(data.get('sellerId'))
     if data.get('isAuction') == True:
-        return render_template("details_of_auction_item.html", key=key, data=data, profile_image_path=profile_image_path)
+        return render_template("details_of_auction_item.html", key=key, data=data, profile_image_path=profile_image_path, winner=data.get('winner'))
     else:
         return render_template("details_of_item.html", key=key, data=data, profile_image_path=profile_image_path)
 

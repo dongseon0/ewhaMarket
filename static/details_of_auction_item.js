@@ -20,6 +20,7 @@ function auction() {
             data: {},
             success: function (response) {
                 alert(response['msg']);
+                window.location.reload();
             }
         });
     } else {
