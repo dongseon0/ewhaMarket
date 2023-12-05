@@ -19,22 +19,26 @@
     font-weight: bold !important;
 }
 
-hr {
+.line1 {
     border: 1.5px solid rgb(163, 223, 249);
     width: 100%;
 }
 
+.line2 {
+    border: 0.5px solid rgb(38, 83, 103);
+    width: 90%;
+}
+
 .review {
     padding: 10px;
-    border-bottom: 1.5px solid rgb(163, 223, 249);
-    padding-bottom: 20px;
+    padding-bottom: 5px;
     margin-bottom: 20px;
     display: flex;
-
     align-items: center;
     width: 700px;
     max-width: 600px;
 }
+
 
 /*리뷰 개수 표시*/
 .count_review {
