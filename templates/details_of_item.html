@@ -35,26 +35,13 @@
                             <td>{{data.fixedPrice}}</td>
                         </tr>
                             <th>상품상태</th>
-                            <td>{% if data['status'] == "lnew" %}
-                                거의 새 상품<br>
-                                {% endif %}
-                                {% if data['status'] == "new" %}
-                                새 상품<br>
-                                {% endif %}
-                                {% if data['status'] == "used" %}
-                                중고 상품<br>
-                                {% endif %}</td>
+                            <td>{{data.status}}</td>
                         </tr>
                         <th>연락처</th>
                         <td>{{data.phone}}</td>
                         <tr>
                             <th>거래방식</th>
-                            <td>{%if data['method'] == "delivery"%}
-                                택배거래<br>
-                                {% endif %}
-                                {%if data['method'] == "direct"%}
-                                직거래<br>
-                                {% endif %}</td>
+                            <td>{{data.method}}</td>
                         </tr>
                         <tr>
                             <th>거래지역</th>
