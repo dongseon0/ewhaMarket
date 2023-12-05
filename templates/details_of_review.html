@@ -100,6 +100,10 @@
             left: 50%;
             transform: translate(-50%, -50%);
         }
+
+        #product-image-check {
+            display: none;
+        }
     </style>
 </head>
 
@@ -127,6 +131,7 @@
         </div>
         <hr>
         <img src="/static/images/reviews/{{data.img_path}}" id="product-image">
+        <div id="product-image-check">{{data.img_path}}</div>
         <br>
         <div id="review-contents">{{data.reviewContents}}</div>
         <br>
@@ -248,6 +253,10 @@
                 }
             });
         };
+        
+        if (document.getElementById("product-image-check").innerHTML == "") {
+            document.getElementById("product-image").style.display = "none";
+        }
     </script>
     {% endblock section %}
 </body>
