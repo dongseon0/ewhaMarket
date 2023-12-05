@@ -10,7 +10,7 @@
     {% extends "index.html" %}
 
     {% block section %}
-    <link rel="stylesheet" href="/static/details_of_item_fixed.css" />
+    <link rel="stylesheet" href="/static/details_of_auction_item.css" />
 
     <div class="wrapper">
         <div class="text">상품 세부화면</div>
@@ -25,14 +25,12 @@
             <div class="columnright">
                 <div class="alignleft">
                     <a href="/user_reviews/{{data.sellerId}}/"><img src="/static/images/profiles/{{profile_image_path}}"
-                        id="profile"></a>
+                            id="profile"></a>
                     <div id="user-id"><a href="/user_reviews/{{data.sellerId}}/">{{data.sellerId}}<a></div>
                     <h2>{{data.name}}</h2>
 
                     <table>
                         <tr>
-                            <th>가격</th>
-                            <td>{{data.fixedPrice}}</td>
                             <th>상품상태</th>
                             <td>{% if data['status'] == "lnew" %}
                                 거의 새 상품<br>
@@ -76,8 +74,8 @@
                 </div>
                 <div class="favorite-button">
                     <input class="btn-love" type="button" value="♡ 찜하기">
-            </div>
-            
+                </div>
+
             </div>
         </div>
 
@@ -107,9 +105,28 @@
             </div>
 
             <br>
+
+            <div class="auction">
+                <div class="boldtext">경매 참여하기</div>
+                <span style="color: red"><span id="auction-state"></span><span id="remaining-hour"></span><span
+                        id="remaining-minute"></span><span id="remaining-second"></span></span><br>
+                현재 가격: <span id="current" style="color: skyblue"></span>
+                <input class="btn-money" id="btnMoney" type="button" value="▲1만원">
+            </div>
+
+            <div id="auction-variable" class="none">
+                <div id="key">{{key}}</div>
+                <div id="startPrice">{{data.startPrice}}</div>
+                <div id="currentPrice">{{data.currentPrice}}</div>
+                <div id="selectRisingPrice">{{data.selectRisingPrice}}</div>
+                <div id="start-date">{{data.startDate}}</div>
+                <div id="start-time">{{data.startTime}}</div>
+                <div id="end-date">{{data.endDate}}</div>
+                <div id="end-time">{{data.endTime}}</div>
+            </div>
         </div>
     </div>
-    <script src="/static/details_of_item.js"></script>
+    <script src="/static/details_of_auction_item.js?after"></script>
     {% endblock section %}
 </body>
 

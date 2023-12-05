@@ -106,18 +106,17 @@ def submit_item_post():
     image_file.save("static/images/items/{}".format(image_file.filename))
     data = request.form
     data_key = DB.insert_item(data, image_file.filename, id=session.get('id'))
-    # 가격 책정 방식에 따라서 서로 다른 페이지로 넘어감
-    if data["select-pricing-button"] == "경매":
-        return redirect(url_for('view_details_of_item', key=data_key))
-    else:
-        return redirect(url_for('view_details_of_item_fixed', key=data_key))
+    return redirect(url_for('view_details_of_item', key=data_key))
 
 
 @application.route("/details_of_item/<key>/")
 def view_details_of_item(key):
     data = DB.get_item_bykey(str(key))
     profile_image_path = DB.get_profile_image_path_byid(data.get('sellerId'))
-    return render_template("details_of_item.html", key=key, data=data, profile_image_path=profile_image_path)
+    if data.get('isAuction') == True:
+        return render_template("details_of_auction_item.html", key=key, data=data, profile_image_path=profile_image_path)
+    else:
+        return render_template("details_of_item.html", key=key, data=data, profile_image_path=profile_image_path)
 
 
 @application.route('/auction/<key>/<currentPrice>', methods=['POST'])
@@ -125,13 +124,6 @@ def set_auction(key, currentPrice):
     id = session['id']
     DB.set_auction(key, currentPrice, id)
     return jsonify({'msg': '입찰 완료했습니다!'})
-
-
-@application.route("/details_of_item_fixed/<key>/")
-def view_details_of_item_fixed(key):
-    data = DB.get_item_bykey(str(key))
-    profile_image_path = DB.get_profile_image_path_byid(data.get('sellerId'))
-    return render_template("details_of_item_fixed.html", key=key, data=data, profile_image_path=profile_image_path)
 
 
 # 리뷰
