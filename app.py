@@ -68,6 +68,8 @@ def view_product_list():
             locals()['data_{}'.format(i)] = dict(
                 list(data.items())[i*per_row:(i+1)*per_row])
 
+    empty_cells = per_row - item_counts%per_row if per_row > item_counts%per_page else 0
+
     return render_template(
         "product_list.html",
         datas=data.items(),
@@ -79,7 +81,8 @@ def view_product_list():
         page=page,  # 현재 페이지 인덱스
         page_count=int(math.ceil(item_counts/per_page)),  # 페이지 개수
         total=item_counts,
-        category=category
+        category=category,
+        empty_cells = empty_cells
     )
 
 
