@@ -24,7 +24,7 @@ def hello():
         datas=data.items(),
         row1=locals()['data_0'].items()
     )
-    #return redirect(url_for('view_product_list'))
+    # return redirect(url_for('view_product_list'))
 
 
 # 상품
@@ -38,12 +38,13 @@ def view_product_list():
     row_count = int(per_page/per_row)
     start_idx = per_page*page
     end_idx = per_page*(page+1)  # 페이지 인덱스로 start_idx, end_idx 생성
-    if category=="all":
-        data = DB.get_items() #read the table
+    if category == "all":
+        data = DB.get_items()  # read the table
     else:
         data = DB.get_items_bycategory(category)
-    #data = DB.get_items()   read the table 
-    data = dict(sorted(data.items(), key=lambda x: x[0], reverse=True)) # 최근 등록된 상품 순으로 보이게
+    # data = DB.get_items()   read the table
+    # 최근 등록된 상품 순으로 보이게
+    data = dict(sorted(data.items(), key=lambda x: x[0], reverse=True))
     item_counts = len(data)
     """
     if data is None:
@@ -61,9 +62,11 @@ def view_product_list():
     tot_count = len(data)
     for i in range(row_count):  # last row
         if (i == row_count-1) and (tot_count % per_row != 0):
-            locals()['data_{}'.format(i)] = dict(list(data.items())[i*per_row:])
+            locals()['data_{}'.format(i)] = dict(
+                list(data.items())[i*per_row:])
         else:
-            locals()['data_{}'.format(i)] = dict(list(data.items())[i*per_row:(i+1)*per_row])
+            locals()['data_{}'.format(i)] = dict(
+                list(data.items())[i*per_row:(i+1)*per_row])
 
     return render_template(
         "product_list.html",
@@ -76,7 +79,7 @@ def view_product_list():
         page=page,  # 현재 페이지 인덱스
         page_count=int(math.ceil(item_counts/per_page)),  # 페이지 개수
         total=item_counts,
-        category = category
+        category=category
     )
 
 
@@ -131,7 +134,6 @@ def set_auction(key, currentPrice):
 @application.route("/reg_review/<id>/")
 def reg_review(id):
     if session.get('id') is None:
-        flash("로그인 후 리뷰를 작성해주세요.")
         return render_template("login.html")
     elif id == session.get('id'):
         return redirect(url_for('view_user_reviews', id=id))
@@ -145,15 +147,13 @@ def submit_review_post():
     data = request.form
     image_file = request.files["file"]
     if data['reviewTitle'] == "":
-        flash("리뷰 제목을 작성해주세요.")
         return redirect(url_for('reg_review', id=data['sellerId']))
     elif data['reviewContents'] == "":
-        flash("리뷰 내용을 작성해주세요.")
         return redirect(url_for('reg_review', id=data['sellerId']))
-    
+
     if image_file:
         image_file.save("static/images/reviews/{}".format(image_file.filename))
-    
+
     sellerId = data.get('sellerId')
     review_key = DB.reg_review(
         data, image_file.filename, buyerId=data.get('buyerId'), sellerId=sellerId)
