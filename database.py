@@ -84,12 +84,14 @@ class DBhandler:
                 "startTime": data["start-time"],
                 "endDate": data["end-date"],
                 "endTime": data["end-time"],
-                "selectRisingPrice": int(data["select-rising-price"])
+                "selectRisingPrice": int(data["select-rising-price"]),
+                "isAuction": True
             }
             self.db.child("items").child(item_key).update(auction_info)
         elif data["select-pricing-button"] == "고정가격":
             fixed_info = {
-                "fixedPrice": data["fixed-price"]
+                "fixedPrice": data["fixed-price"],
+                "isAuction": False
             }
             self.db.child("items").child(item_key).update(fixed_info)
         return item_key
