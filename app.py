@@ -15,7 +15,15 @@ DB = DBhandler()
 def hello():
     # return render_template("index.html")
     # 메인페이지로 바꿉니다
-    return render_template("main_page.html")
+    data = DB.get_items()
+    data = dict(sorted(data.items(), key=lambda x: x[0], reverse=True))
+    for i in range(5):
+        locals()['data_{}'.format(0)] = dict(list(data.items())[0:5])
+    return render_template(
+        "main_page.html",
+        datas=data.items(),
+        row1=locals()['data_0'].items()
+    )
     #return redirect(url_for('view_product_list'))
 
 
@@ -35,7 +43,7 @@ def view_product_list():
     else:
         data = DB.get_items_bycategory(category)
     #data = DB.get_items()   read the table 
-    data = dict(sorted(data.items(), key=lambda x: x[0], reverse=False))
+    data = dict(sorted(data.items(), key=lambda x: x[0], reverse=True)) # 최근 등록된 상품 순으로 보이게
     item_counts = len(data)
     """
     if data is None:
@@ -53,8 +61,7 @@ def view_product_list():
     tot_count = len(data)
     for i in range(row_count):  # last row
         if (i == row_count-1) and (tot_count % per_row != 0):
-            locals()['data_{}'.format(i)] = dict(
-                list(data.items())[i*per_row:])
+            locals()['data_{}'.format(i)] = dict(list(data.items())[i*per_row:])
         else:
             locals()['data_{}'.format(i)] = dict(list(data.items())[i*per_row:(i+1)*per_row])
 
@@ -71,8 +78,6 @@ def view_product_list():
         total=item_counts,
         category = category
     )
-
-
 
 
 @application.route("/auction_list")
@@ -227,6 +232,7 @@ def login():
     return render_template("login.html")
 
 
+# 로그인 버튼 클릭
 @application.route("/login_confirm", methods=['POST'])
 def login_user():
     id = request.form['id']
@@ -240,17 +246,20 @@ def login_user():
         return render_template("login.html")
 
 
+# 로그아웃
 @application.route("/logout")
 def logout_user():
     session.clear()
     return redirect(url_for('hello'))
 
 
+# 회원가입
 @application.route("/signup")
 def signup():
     return render_template("signup.html")
 
 
+# 회원가입 버튼 클릭
 @application.route("/signup_post", methods=['POST'])
 def register_user():
     data = request.form
@@ -392,9 +401,22 @@ def my_wish(id):
 
 # 마이페이지_개인정보
 @application.route("/my_info/<id>/")
-def my_personal(id):
+def my_infol(id):
     data = DB.get_user_info(id)
-    return render_template("my_info.html", id=id, data=data)
+    profile = DB.get_profile_image_path_byid(id)
+    return render_template("my_info.html", id=id, data=data, profile=profile)
+
+
+# 마이페이지_개인정보 수정
+@application.route("/change_my_info", methods=['POST'])
+def change_my_info():
+    id = session['id']
+    image_file = request.files["file"]
+    image_file.save("static/images/profiles/{}".format(image_file.filename))
+    DB.set_profile_image(id, image_file.filename)
+    data = DB.get_user_info(id)
+    profile = DB.get_profile_image_path_byid(id)
+    return render_template("my_info.html", id=id, data=data, profile=profile)
 
 
 # 그외

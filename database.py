@@ -17,8 +17,7 @@ class DBhandler:
             "nickname": data['nickname']
         }
         if self.user_duplicate_check(str(data['id'])):
-            self.db.child("users").child(data['id']).child(
-                "user_info").set(user_info)
+            self.db.child("users").child(data['id']).child("user_info").set(user_info)
             return True
         else:
             return False
@@ -46,6 +45,11 @@ class DBhandler:
                 else:
                     return False
         return False
+    
+    # 프로필 사진 변경하기
+    def set_profile_image(self, id, img_path):
+        self.db.child("users").child(id).child("user_info").child("profile").set(img_path)
+        return True
 
     # 특정 아이디의 프로필 사진 불러오기
     def get_profile_image_path_byid(self, id):
@@ -119,6 +123,23 @@ class DBhandler:
         return True
 
     # 찜한 상품 가져오기
+    def get_items_byheart(self, id):
+        items = self.db.child("users").child(id).child("user_wish").get()
+        target_value=[]
+        target_key=[]
+        for res in items.each():
+            value = res.val()
+            key_value = res.key()
+            if value['interested'] == "Y":
+                target_value.append(value)
+                target_key.append(key_value)
+        print("######target_value",target_value)
+        new_dict={}
+        for k,v in zip(target_key,target_value):
+            new_dict[k]=v
+        return new_dict 
+
+    # 카테고리 별로 상품 가져오기
     def get_items_bycategory(self, cate): 
         items = self.db.child("item").get() 
         target_value=[]
@@ -135,6 +156,8 @@ class DBhandler:
 
         for k,v in zip(target_key,target_value): 
             new_dict[k]=v
+
+        return new_dict
 
     # 찜하기 기능
     def get_heart_bykey(self, uid, key):

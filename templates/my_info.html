@@ -1,6 +1,28 @@
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" type="text/css" href="/static/my_page.css">
+  <style>
+    .my-info-section {
+        list-style: none;
+    }
+
+    .main-title {
+        margin: 5% 5% 5% 2%;
+    }
+
+    h4 {
+        width: 200px;
+        margin: 2% 10% 2% 0%;
+    }
+
+    li {
+        display: flex;
+    }
+
+    .inside {
+        margin: 2% 10% 2% 0%;
+    }
+  </style>
 </head>
 
 <body>
@@ -20,12 +42,20 @@
       </ul>
     </div>
     <hr>
-    <div style="padding: 20px;">
-      <p>ID : {{id}}</p>
-      <p>Nickname : {{data['nickname']}}</p>
-      <p>Profile Image :</p>
-      <img src="/static/images/profiles/{{data['profile']}}" alt="프로필 사진" height="150px"></p>
-    </div>
+    <div style="padding: 20px; margin-left: 20px; margin-right: 20px;">
+      <p>아이디 : {{id}}</p>
+      <p>닉네임 : {{data['nickname']}}</p>
+      <p>프로필 사진 :</p>
+      <div style="display: flex;">
+        <img src="/static/images/profiles/{{profile}}" alt="프로필 사진" height="200px">
+        <form method="post" enctype="multipart/form-data" action="/change_my_info">
+          <div class="inside" style="margin-left: 30px;">
+            <input type="file" name="file"/>
+          </div>
+          <input type="submit" style="margin-left: 30px;" value="프로필 사진 변경하기"><br>
+        </form>
+      </div>
+    </div> 
   </div>
   {% endblock section %}
 </body>
