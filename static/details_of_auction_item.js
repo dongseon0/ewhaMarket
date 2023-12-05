@@ -1,8 +1,4 @@
-if (document.getElementById("currentPrice").innerHTML == "") {
-    var get_current_price = document.getElementById("startPrice");
-} else {
-    var get_current_price = document.getElementById("currentPrice");
-}
+var get_current_price = document.getElementById("currentPrice");
 var get_risingPrice = document.getElementById("selectRisingPrice");
 var current_price = parseInt(get_current_price.innerHTML, 10);
 var risingPrice = parseInt(get_risingPrice.innerHTML, 10);
@@ -11,12 +7,9 @@ document.getElementById("current").innerHTML = current_price + "원";
 var auctionState = false;
 function auction() {
     if (auctionState == true) {
-        current_price = current_price + risingPrice;
-        document.getElementById("current").innerHTML = current_price + "원";
-
         $.ajax({
             type: 'POST',
-            url: '/auction/' + document.getElementById("key").innerHTML + '/' + current_price,
+            url: '/auction/' + document.getElementById("key").innerHTML + '/' + document.getElementById("seller-id").innerHTML + '/' + risingPrice,
             data: {},
             success: function (response) {
                 alert(response['msg']);
