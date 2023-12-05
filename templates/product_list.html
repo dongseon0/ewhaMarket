@@ -11,9 +11,13 @@
             //alert("{{category}}");
             $('#category option:contains("{{category}}")').prop("selected", true);
         });
+
+
     </script>
     <div class="wrapper">
-        <div class="text"><h2>상품 리스트</h2></div>
+        <div class="text">
+            <h2>상품 리스트</h2>
+        </div>
         <hr style="width:100%;">
         <div class="menubar">
             <ul class="menubar__menu">
@@ -53,6 +57,11 @@
                         <div class="item-box" onclick="location.href='/details_of_item/{{key}}/';"
                             style="cursor:pointer;">
                             <img src="/static/images/items/{{value.img_path}}" width="200px" height="200px">
+                            {% if isAuction.get(key) %}
+                            <div class="auction_product">
+                                A
+                            </div>
+                            {% endif %}
                             <div class="desc">{{value.name}}</div>
                         </div>
                     </td>
@@ -70,8 +79,16 @@
                     <td>
                         <div class="item-box" onclick="location.href='/details_of_item/{{key}}/';"
                             style="cursor:pointer;">
+
                             <img src="/static/images/items/{{value.img_path}}" width="200px" height="200px">
+                            {% if isAuction.get(key) %}
+                            <div class="auction_product">
+                                A
+                            </div>
+                            {% endif %}
+
                             <div class="desc">{{value.name}}</div>
+
                         </div>
                     </td>
                     {% endfor %}
@@ -84,6 +101,11 @@
                         <div class="item-box" onclick="location.href='/details_of_item/{{key}}/';"
                             style="cursor:pointer;">
                             <img src="/static/images/items/{{value.img_path}}" width="200px" height="200px">
+                            {% if isAuction.get(key) %}
+                            <div class="auction_product">
+                                A
+                            </div>
+                            {% endif %}
                             <div class="desc">{{value.name}}</div>
                         </div>
                     </td>
@@ -96,6 +118,11 @@
                     <td>
                         <div class="item-box" onclick="location.href='/details_of_item/{{key}}/';"
                             style="cursor:pointer;">
+                            {% if isAuction.get(key) %}
+                            <div class="auction_product">
+                                A
+                            </div>
+                            {% endif %}
                             <img src="/static/images/items/{{value.img_path}}" width="200px" height="200px">
                             <div class="desc">{{value.name}}</div>
                         </div>
