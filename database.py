@@ -69,7 +69,6 @@ class DBhandler:
             "location": data["location"],
             "quantity": data["quantity"],
             "category": data["category"],
-            "tag": data["tag"],
             "phone": data["phone"],
             "img_path": img_path
         }
@@ -93,7 +92,7 @@ class DBhandler:
         if data["select-pricing-button"] == "경매":
             auction_info = {
                 "winner": "",
-                "startPrice": int(data["start-price"]),
+                "currentPrice": int(data["start-price"]),
                 "startDate": data["start-date"],
                 "startTime": data["start-time"],
                 "endDate": data["end-date"],
@@ -127,9 +126,10 @@ class DBhandler:
         return target_value
     
     # 경매 가격, 입찰자 데베에 적용하기
-    def set_auction(self, key, currentPrice, id):
+    def set_auction(self, key, selectRisingPrice, id):
         self.db.child("items").child(key).update({"winner": id})
-        self.db.child("items").child(key).update({"currentPrice": int(currentPrice)})
+        currentPrice = self.db.child("items").child(key).get().val().get("currentPrice")
+        self.db.child("items").child(key).update({"currentPrice": (int(currentPrice) + int(selectRisingPrice))})
         return True
 
     # 찜한 상품 가져오기

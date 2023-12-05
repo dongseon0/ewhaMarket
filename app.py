@@ -122,11 +122,14 @@ def view_details_of_item(key):
         return render_template("details_of_item.html", key=key, data=data, profile_image_path=profile_image_path)
 
 
-@application.route('/auction/<key>/<currentPrice>', methods=['POST'])
-def set_auction(key, currentPrice):
+@application.route('/auction/<key>/<selectRisingPrice>', methods=['POST'])
+def set_auction(key, selectRisingPrice):
     id = session['id']
-    DB.set_auction(key, currentPrice, id)
-    return jsonify({'msg': '입찰 완료했습니다!'})
+    if session.get('id') is None:
+        return jsonify({'msg': '로그인 후 상품을 등록해주세요.'})
+    else:
+        DB.set_auction(key, selectRisingPrice, id)
+        return jsonify({'msg': '입찰 완료했습니다!'})
 
 
 # 리뷰
