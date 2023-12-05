@@ -91,6 +91,7 @@ function remaingTime() {
         document.getElementById("remaining-second").innerHTML = sec + "초";
     }
 }
+remaingTime();
 setInterval(remaingTime, 1000);
 
 // 기존 코드
