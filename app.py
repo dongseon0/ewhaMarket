@@ -146,11 +146,6 @@ def reg_review(id):
 def submit_review_post():
     data = request.form
     image_file = request.files["file"]
-    if data['reviewTitle'] == "":
-        return redirect(url_for('reg_review', id=data['sellerId']))
-    elif data['reviewContents'] == "":
-        return redirect(url_for('reg_review', id=data['sellerId']))
-
     if image_file:
         image_file.save("static/images/reviews/{}".format(image_file.filename))
 
