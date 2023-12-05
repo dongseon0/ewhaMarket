@@ -33,14 +33,18 @@ td {
 .container {
     display: flex;
     padding: 20px 80px;
+    align-items: center;
 }
 
 .columnleft {
-    margin: 3% 0%;
+    width: calc(50% - 3%);
+    margin: 3% auto;
+    
 }
 
 .columnright {
     background-color: rgb(251, 251, 251);
+    width: calc(50% - 3%);
     margin: 2% 3%;
     padding: 4% 10%;
     border-radius: 10px 10px;
