@@ -1,9 +1,9 @@
 .wrapper {
   width: 700px;
-  height: 350px;
-  padding: 40px;
+  cursor: default;
   margin: auto;
-  box-sizing: border-box;
+  margin-top: 7%;
+  text-align: center;
 }
 
 #title {
