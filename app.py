@@ -313,7 +313,7 @@ def my_page(id):
         page=page,  # 현재 페이지 인덱스
         page_count=int((item_counts/per_page) + 1),  # 페이지 개수
         total=item_counts,
-        id=id
+        id=id,
     )
 
 
@@ -397,7 +397,7 @@ def my_wish(id):
         page=page,  # 현재 페이지 인덱스
         page_count=int(math.ceil(item_counts/per_page)),  # 페이지 개수
         total=item_counts,
-        id=id
+        id=id,
     )
 
 
