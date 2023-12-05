@@ -171,8 +171,10 @@ def show_review_heart(key, sellerId):
 # 리뷰 상세보기에서 하트 업데이트하기
 @application.route('/update_review_heart/<sellerId>/<key>/<heart>/', methods=['POST'])
 def update_review_heart(key, sellerId, heart):
-    DB.update_review_heart(session['id'], key, sellerId, heart)
-    return jsonify({'msg': '완료!'})
+    if sellerId == session['id']:
+        return jsonify({'msg': '자신의 리뷰에는 누를 수 없습니다.'})
+    msg = DB.update_review_heart(session['id'], key, sellerId, heart)
+    return jsonify({'msg': msg})
 
 
 # 유저 리뷰 목록

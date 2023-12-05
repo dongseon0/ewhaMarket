@@ -263,14 +263,18 @@ class DBhandler:
         if int(heart) == 0:
             self.db.child("users").child(sellerId).child("user_reviews").child(
                 key).child("hearts").child(id).remove()
-            return True
+            return '취소했습니다.'
 
         heart_info = {
             "heart": int(heart)
         }
         self.db.child("users").child(sellerId).child("user_reviews").child(
             key).child("hearts").child(id).set(heart_info)
-        return True
+        
+        if int(heart) == 1:
+            return '도움돼요!'
+        elif int(heart) == -1:
+            return '별로예요.'
 
     # 마이페이지
     def get_user_info(self, id):
