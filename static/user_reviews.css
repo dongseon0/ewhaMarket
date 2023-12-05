@@ -52,7 +52,11 @@
     height: 100px;
     object-fit: cover;
     padding-right: 20px;
+    
+    vertical-align: middle;
+    object-fit:cover
 }
+
 
 /*리뷰 내용*/
 .review-content {
