@@ -96,8 +96,8 @@
     margin-bottom: 7%;
 }
 
-.item-box img:hover {
-    border: 0.3px solid skyblue;
+.item-box:hover {
+    border: 1px solid skyblue;
 }
 
 .page-nation {
