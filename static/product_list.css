@@ -72,27 +72,31 @@
     margin: auto;
 }
 
-/*table{
+table{
     border-spacing: 5px;
-}*/
+}
 
 .item-box {
-    border: 1px solid #ccc;
-    padding: 5px;
-    margin: 2px;
+    width: 200px; 
+    height: 270px;
     display: inline-block;
+    border: 0.1px solid #333;
 }
 
 .item-box img {
-    border: 0.3px solid black;
     vertical-align: middle;
-    object-fit:cover
+    object-fit:cover;
 }
 
 
 .desc {
     margin-top: 5%;
     margin-bottom: 7%;
+    max-width: 95%; /* Adjust as needed */
+    margin-left: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .item-box:hover {
