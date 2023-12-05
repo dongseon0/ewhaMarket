@@ -13,6 +13,11 @@ function checkInput(){
     var locationValue = location.value;
     var phone = document.getElementById("phone");
     var phoneValue = phone.value;
+    var fixedPrice = document.getElementById("fixedPrice");
+    var fixedPriceValue = fixedPrice.value;
+    var startPrice = document.getElementById("startPrice");
+    var startPriceValue = startPrice.value;
+    var risingPrice = $('input:radio[name=select-rising-price]').is(':checked');
     var status = $('input:radio[name=select-status-button]').is(':checked');
     var method = $('input:radio[name=select-transaction-method-button]').is(':checked');
     var selectPricing = $('input:radio[name=select-pricing-button]').is(':checked');
@@ -50,6 +55,26 @@ function checkInput(){
     if(!selectPricing) {
         alert("가격 책정 방식을 선택해주세요");
         return false;
+    }
+
+    if(selectPricingValue == "고정가격") {
+        if(!fixedPriceValue) {
+            alert("가격을 입력해주세요.");
+            return false;
+        }
+    }
+
+    else {
+        if(!startPriceValue) {
+            alert("경매 시작가를 입력해주세요.");
+            return false;
+        }
+
+        if(!risingPrice) {
+            alert("경매 상승가를 선택해주세요.");
+            return false;
+        }
+
     }
 
     if(!phoneValue) {
