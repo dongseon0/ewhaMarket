@@ -131,7 +131,6 @@ def set_auction(key, currentPrice):
 @application.route("/reg_review/<id>/")
 def reg_review(id):
     if session.get('id') is None:
-        flash("로그인 후 리뷰를 작성해주세요.")
         return render_template("login.html")
     elif id == session.get('id'):
         return redirect(url_for('view_user_reviews', id=id))
@@ -145,10 +144,8 @@ def submit_review_post():
     data = request.form
     image_file = request.files["file"]
     if data['reviewTitle'] == "":
-        flash("리뷰 제목을 작성해주세요.")
         return redirect(url_for('reg_review', id=data['sellerId']))
     elif data['reviewContents'] == "":
-        flash("리뷰 내용을 작성해주세요.")
         return redirect(url_for('reg_review', id=data['sellerId']))
     
     if image_file:
