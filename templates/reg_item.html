@@ -3,11 +3,11 @@
 {% block section %}
 <link rel="stylesheet" href="/static/reg_item.css" />
 <script src="/static/reg_item.js"></script>
-<form method="post" enctype="multipart/form-data" action="/submit_item_post">
+<form method="post" enctype="multipart/form-data" action="/submit_item_post" onsubmit="return checkInput()">
     <div class="wrapper">
         <main class="product-registration">
             <h2 class="main-title">
-                상품 정보
+                상품 등록
             </h2>
             <hr>
             <ul class=product-registration-section>
@@ -32,21 +32,20 @@
                         상품 상태
                     </h4>
                     <div class="inside">
-                        <!-- <div class="select-status">
-                            <label for="중고 상품" class="used-product">
-                                <input id="중고 상품" type="radio" value="0">
-                                중고 상품
-                            </label>
-                            <label for="새 상품" class="new-product">
-                                <input id="새 상품" type="radio" value="0">
+                        <div class="select-status">
+                            <label for="new" class="new-product">
+                                <input id="new" name="select-status-button" type="radio" value="new">
                                 새 상품
                             </label>
-                        </div> -->
-                        <select id="status" class="select-status" name="status">
-                            <option value="new" selected>새 상품</option>
-                            <option value="lnew">거의 새 상품</option>
-                            <option value="used">중고 상품</option>
-                        </select>
+                            <label for="lnew" class="lnew-product">
+                                <input id="lnew" name="select-status-button" type="radio" value="lnew">
+                                거의 새 상품
+                            </label>
+                            <label for="used" class="used-product">
+                                <input id="used" name="select-status-button" type="radio" value="used">
+                                중고 상품
+                            </label>
+                        </div>
                     </div>
                 </li>
                 <li class="description-section">
@@ -65,20 +64,16 @@
                         거래 방식
                     </h4>
                     <div class="inside">
-                        <!-- <div class="select-transaction-method">
+                        <div class="select-transaction-method">
                             <label for="택배 거래" class="delivery-transaction">
-                                <input id="택배 거래" type="radio" value="0">
+                                <input id="택배 거래" name="select-transaction-method-button" type="radio" value="delivery">
                                 택배 거래
                             </label>
                             <label for="직거래" class="direct-transaction">
-                                <input id="직거래" type="radio" value="0">
+                                <input id="직거래" name="select-transaction-method-button" type="radio" value="direct">
                                 직거래
                             </label>
-                        </div> -->
-                        <select id="method" class="select-transaction-method" name="method">
-                            <option value="delivery" selected>택배 거래</option>
-                            <option value="direct">직거래</option>
-                        </select>
+                        </div>
                     </div>
                 </li>
                 <li class="location-section">
@@ -87,14 +82,6 @@
                     </h4>
                     <div class="inside">
                         <div class="select-location-section">
-                            <!-- <div class="select-location-buttons">
-                                <button type="button" class="my-location">내 위치</button>
-                                <button type="button" class="recent-location">최근 위치</button>
-                                <button type="button" class="search-address">위치 검색</button>
-                                <button type="button" class="do-not-select-location">지역 설정 안함</button>
-                            </div>
-                            <input class="input-location" readonly placeholder="선호 지역을 설정해주세요."
-                                class="select-location-text" value=""> -->
                             <input id="location" name="location" class="input-location" type="text"
                                 placeholder="선호 거래 지역을 입력해주세요.">
                         </div>
@@ -105,7 +92,7 @@
                         수량
                     </h4>
                     <div class="inside">
-                        <div class="input-quntity">
+                        <div class="input-quntity-box">
                             <input id="quantity" name="quantity" type="text" class="input-quantity"
                                 placeholder="숫자만 입력해주세요.">
                             <span>개</span>

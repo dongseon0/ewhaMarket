@@ -65,9 +65,7 @@ class DBhandler:
         item_info = {
             "sellerId": id,
             "name": data["name"],
-            "status": data["status"],
             "description": data["description"],
-            "method": data["method"],
             "location": data["location"],
             "quantity": data["quantity"],
             "category": data["category"],
@@ -75,6 +73,18 @@ class DBhandler:
             "phone": data["phone"],
             "img_path": img_path
         }
+        if data["select-status-button"] == "new":
+            item_info["status"] = "새 상품"
+        elif data["select-status-button"] == "lnew":
+            item_info["status"] = "거의 새 상품"
+        else:
+            item_info["status"] = "중고 상품"
+
+        if data["select-transaction-method-button"] == "delivery":
+            item_info["method"] = "택배 거래"
+        else:
+            item_info["method"] = "직거래"
+
 
         item_data = self.db.child("users").child(
             id).child("user_list").push(str(data["name"]))

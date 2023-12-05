@@ -124,6 +124,12 @@
     color: #fff;
 }
 
+.page-nation a {
+    color: black; 
+    text-decoration: none; 
+    margin: 0 5px; 
+}
+
 /*
 .auction_product {
     background-color: rgba(178, 34, 34, 0.658);

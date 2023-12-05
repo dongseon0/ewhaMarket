@@ -8,13 +8,13 @@
 
     {% block section %}
     <div class="wrapper">
-        <div class="text">{{id}} 판매 내역</div>
-        <hr>
+        <h2 class="text">{{id}} 판매 내역</h2>
+        <hr class="line1">
         <div class="topnav">
             <a href="/user_list/{{id}}/">판매내역</a>
             <a href="/user_reviews/{{id}}/">리뷰</a>
         </div>
-        <hr>
+        <hr class="line1">
 
         {% if total > 0 %}
         <p class="count_list">
@@ -38,6 +38,7 @@
             </table>
             {% endfor %}
         </div>
+        {% if row1|length > 0 %}<hr class="line2">{% endif %}
 
         <div class="sell">
             {% for key, value in row2 %}
@@ -56,6 +57,7 @@
             </table>
             {% endfor %}
         </div>
+        {% if row2|length > 0 %}<hr class="line2">{% endif %}
 
         <div class="sell">
             {% for key, value in row3 %}
@@ -63,7 +65,7 @@
                 <td onclick="location.href='/details_of_review/{{key}}/';" style="cursor:pointer;">
                     <div class="content">
                         <img src="/static/images/items/{{value.img_path}}">
-                        <div>
+                        <div>flqbrk 
                             <p class="id_seller"><b>{{value.sellerId}}</b></p>
                             <p><b>{{value.name}}</b></p>
                             <p>{{value.description}}</p>
@@ -74,10 +76,11 @@
             </table>
             {% endfor %}
         </div>
+        {% if row3|length > 0 %}<hr class="line2">{% endif %}
 
         <div class="sell">
             {% for key, value in row4 %}
-            <table>
+            </table>
                 <td onclick="location.href='/details_of_review/{{key}}/';" style="cursor:pointer;">
                     <div class="content">
                         <img src="/static/images/items/{{value.img_path}}">
@@ -92,10 +95,11 @@
             </table>
             {% endfor %}
         </div>
+        {% if row4|length > 0 %}<hr class="line2">{% endif %}
 
         <div class="sell">
             {% for key, value in row5 %}
-            <table>
+            </table>
                 <td onclick="location.href='/details_of_review/{{key}}/';" style="cursor:pointer;">
                     <div class="content">
                         <img src="/static/images/items/{{value.img_path}}">
@@ -110,7 +114,7 @@
             </table>
             {% endfor %}
         </div>
-
+       
         <div class="page-wrap">
             <div class="page-nation">
                 <ul>
