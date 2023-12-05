@@ -6,7 +6,7 @@
     width: 900px;
     cursor: default;
     margin: auto;
-    margin-top: 7%;
+    margin-top: 3%;
     text-align: center;
 }
 
@@ -16,7 +16,6 @@
 
 .text {
     text-align: center;
-    font-size: 150%;
     margin-bottom: 1.5%;
 }
 
