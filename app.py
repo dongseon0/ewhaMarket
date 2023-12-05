@@ -142,9 +142,18 @@ def reg_review(id):
 # 리뷰 등록하기
 @application.route("/submit_review_post", methods=['POST'])
 def submit_review_post():
-    image_file = request.files["file"]
-    image_file.save("static/images/reviews/{}".format(image_file.filename))
     data = request.form
+    image_file = request.files["file"]
+    if data['reviewTitle'] == "":
+        flash("리뷰 제목을 작성해주세요.")
+        return redirect(url_for('reg_review', id=data['sellerId']))
+    elif data['reviewContents'] == "":
+        flash("리뷰 내용을 작성해주세요.")
+        return redirect(url_for('reg_review', id=data['sellerId']))
+    
+    if image_file:
+        image_file.save("static/images/reviews/{}".format(image_file.filename))
+    
     sellerId = data.get('sellerId')
     review_key = DB.reg_review(
         data, image_file.filename, buyerId=data.get('buyerId'), sellerId=sellerId)
