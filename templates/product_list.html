@@ -3,6 +3,7 @@
 </head>
 
 <body>
+    
     {% extends "index.html" %}
 
     {% block section %}
@@ -70,8 +71,12 @@
                             <div class="auction_product">
                                 A
                             </div>
-                            {% endif %}
                             <div class="desc">{{value.name}}</div>
+                            {% else %}
+                            <div class="desc">{{value.name}}</div>
+                            <div class="price">{{value.fixedPrice}}</div>
+                            {% endif %}
+                            
                         </div>
                     </td>
                     {% endfor %}
