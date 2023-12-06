@@ -85,8 +85,7 @@ class DBhandler:
             item_info["method"] = "직거래"
 
 
-        item_data = self.db.child("users").child(
-            id).child("user_list").push(str(data["name"]))
+        item_data = self.db.child("users").child(id).child("user_list").push(str(data["name"]))
         item_key = item_data['name']
         self.db.child("items").child(item_key).set(item_info)
         if data["select-pricing-button"] == "경매":
@@ -133,7 +132,6 @@ class DBhandler:
                 return is_auction
         return None  # Or handle the case where isAuction is not found
 
-    
     # 경매 가격, 입찰자 데베에 적용하기
     def set_auction(self, key, selectRisingPrice, id):
         self.db.child("items").child(key).update({"winner": id})
