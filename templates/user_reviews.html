@@ -8,18 +8,20 @@
 
     {% block section %}
     <div class="wrapper">
-        <div class="text">{{id}} 리뷰</div>
-        <hr>
+        <h2 class="text">{{id}} 리뷰</h2>
+        <hr class="line1">
         
         <div class="topnav">
-            <a href="/user_list/{{id}}">판매내역</a>
-            <a href="/user_reviews/{{id}}">리뷰</a>
+            <a href="/user_list/{{id}}/">판매내역</a>
+            <a style="text-decoration: underline;" href="/user_reviews/{{id}}/">리뷰</a>
         </div>
-        <hr>
+        <hr class="line1">
+        
         {% if total > 0 %}
         <p class="count_review">
             {{total}}개의 리뷰
         </p>
+
         <div class="review">
             {% for key, value in row1 %}
             <table>
@@ -43,6 +45,8 @@
             </table>
             {% endfor %}
         </div>
+        {% if row1|length > 0 %}<hr class="line2">{% endif %}
+
 
         <div class="review">
             {% for key, value in row2 %}
@@ -67,6 +71,7 @@
             </table>
             {% endfor %}
         </div>
+        {% if row2|length > 0 %}<hr class="line2">{% endif %}
 
         <div class="review">
             {% for key, value in row3 %}
@@ -91,6 +96,7 @@
             </table>
             {% endfor %}
         </div>
+        {% if row3|length > 0 %}<hr class="line2">{% endif %}
 
         <div class="review">
             {% for key, value in row4 %}
@@ -115,6 +121,7 @@
             </table>
             {% endfor %}
         </div>
+        {% if row4|length > 0 %}<hr class="line2">{% endif %}
 
         <div class="review">
             {% for key, value in row5 %}
@@ -139,6 +146,7 @@
             </table>
             {% endfor %}
         </div>
+        {% if row5|length > 0 %}<hr class="line2">{% endif %}
 
         <div class="page-wrap">
             <div class="page-nation">

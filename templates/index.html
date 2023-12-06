@@ -4,8 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home</title>
+  <title>이화마켓</title>
   <link rel="stylesheet" type="text/css" href="/static/style.css?after" id="style-css">
+  <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square.css" rel="stylesheet">
   <script src="/static/main.js" defer></script>
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
@@ -16,11 +17,12 @@
       <a href="/"><img src="/static/images/logo.png" id="navbar-logo" alt="이화마켓" height="40px"></a>
     </div>
     <ul class="navbar__menu">
-      <li><a href="/reg_item">Register Items</a></li>
-      <li><a href="/user_reviews/{{session['id']}}/">My Reviews</a></li> <!--일단 누르면 현재 세션의 아이디로 들어가게 함-->
+      <!-- <li><a href="/reg_item">Register Items</a></li>
+      <li><a href="/user_reviews/{{session['id']}}/">My Reviews</a></li> 일단 누르면 현재 세션의 아이디로 들어가게 함
+      <li>이화인이라면 누구나 쉽고 편하게 거래하자!</li> -->
     </ul>
     <ul class="navbar__login">
-      <li><a href="/">모두의 마켓</a></li>
+      <li><a href="/product_list">모두의 마켓</a></li>
       {% if session['id'] %}
       <li><a href="/my_page/{{session['id']}}/" id="nav-mypage">{{session['id']}}님의 마이 페이지</a></li>
       <li><a href="/logout" id="nav-logout">로그아웃</a></li>
@@ -30,7 +32,7 @@
       {% endif %}
     </ul>
   </nav>
-  <div id="navbar-gra"></div>
+  <!-- <div id="navbar-gra"></div> -->
   <section>
     {% block section %}
 

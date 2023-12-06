@@ -27,29 +27,33 @@ li {
 }
 
 textarea {
-    width: 299%;
+    width: 275%;
     resize: none;
     padding: 5%;
 }
 
 .input-name {
-    width: 50%;
-    padding: 1% 250px 1% 1%;
+    width: 293%;
+    padding: 2% 1% 2% 1%;
 }
 
 .input-location {
-    width: 50%;
-    padding: 1% 250px 1% 1%;
+    width: 293%;
+    padding: 2% 1% 2% 1%;
 }
 
 .input-tag {
-    width: 50%;
-    padding: 1% 250px 1% 1%;
+    width: 293%;
+    padding: 2% 1% 2% 1%;
 }
 
 .input-quantity {
-    width: 60%;
-    padding: 1% 50px 1% 1%;
+    width: 57%;
+    padding: 1% 1% 1% 1%;
+}
+
+.input-quntity-box {
+    width: 200%;
 }
 
 .contact-information-text {
@@ -58,7 +62,7 @@ textarea {
 }
 
 .fixed-pricing-text {
-    width: 70%;
+    width: 69%;
     padding: 1% 40px 1% 1%;
     margin: 5% 1% 1% 1%;
 }
@@ -68,12 +72,12 @@ textarea {
 }
 
 .input-start-price-text{
-    width: 50%;
-    padding: 1% 1% 1% 1%;
+    width: 40%;
+    padding: 0.6% 0.6% 0.6% 0.6%;
 }
 
 .fixed-pricing-box {
-    width: 105%;
+    width: 110%;
 }
 
 .select-rising-price-section {

@@ -42,8 +42,10 @@
             margin-top: 2%;
             margin-bottom: 1%;
         }
-        
-        #buyer-id, #product-name, #seller-id, #stars-variable {
+
+        #buyer-id,
+        #seller-id,
+        #stars-variable {
             display: none;
         }
 
@@ -74,9 +76,8 @@
     {% extends "index.html" %}
 
     {% block section %}
-    <form method="post" enctype="multipart/form-data" action="/submit_review_post">
+    <form method="post" enctype="multipart/form-data" action="/submit_review_post" id="submit-review">
         <div class="review">
-            <input type="text" id="product-name" name="productName" value="{{name}}">
             <input type="text" id="seller-id" name="sellerId" value="{{sellerId}}">
             <input type="text" id="buyer-id" name="buyerId" value="{{buyerId}}">
             <div class="text1">리뷰 작성</div>
@@ -99,7 +100,7 @@
             <input type="file" id="review-image" name="file" />
             <br><br>
             <hr>
-            <input type="submit" id="ok" name="ok" value="등록하기">
+            <input type="button" id="ok" name="ok" value="등록하기" onclick="submit_review()">
         </div>
         <!--☆ ★-->
         <script>
@@ -153,6 +154,15 @@
             starEvent();
             starFill();
             // 별
+
+            function submit_review() {
+                if (document.getElementById("review-title").value == "")
+                    alert("거래 제목을 입력하세요");
+                else if (document.getElementById("review-contents").value == "")
+                    alert("거래 내용을 입력하세요");
+                else
+                    document.getElementById("submit-review").submit();
+            }
         </script>
     </form>
     {% endblock section %}

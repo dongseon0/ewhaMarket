@@ -1,5 +1,6 @@
 * {
     font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
 }
 
 .wrapper {
@@ -13,67 +14,112 @@
     align-items: center;
 }
 
-hr {
+.line1 {
     border: 1.5px solid rgb(163, 223, 249);
     width: 100%;
 }
 
-.text {
-    font-size: 135%;
-}
-
-.sell {
-    padding: 10px;
-    border-bottom: 1.5px solid rgb(163, 223, 249);
-    padding-bottom: 20px;
-    margin-bottom: 20px;
-    display: flex;
-
-    width: 700px;
-    max-width: 600px;
-}
-
-.sell p {
-    display: flex;
-    text-align: left;
-}
-
-.sell img {
-    width: 150px;
-    /*이미지크기*/
-    height: 150px;
-    object-fit: cover;
-    /* 이미지 비율 유지 */
-    margin-right: 20px;
-}
-
-.sell .user {
-    font-weight: bold;
-    margin-right: 35px;
-}
-
-.rating p {
-    color: skyblue;
-    display: flex;
-}
-
-h2 {
-    text-align: center;
-    padding: 10px;
-}
-
-.line {
-    border-top: 1.5px solid rgb(163, 223, 249);
-    /* 파란색 상단 경계선 */
+.line2 {
+    border: 0.5px solid rgb(38, 83, 103);
     width: 90%;
 }
 
-* {
-    box-sizing: border-box;
+table{
+    border-spacing: 7px;
+    table-layout: fixed;
 }
 
+.blank-box{
+    width: 200px; 
+    height: 270px;
+    display: inline-block;
+}
+
+.item-box {
+    width: 200px; 
+    height: 270px;
+    display: inline-block;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
+}
+
+.item-box img {
+    vertical-align: middle;
+    object-fit:cover;
+}
+
+
+.desc {
+    margin-top: 5%;
+    margin-bottom: 7%;
+    max-width: 95%; /* Adjust as needed */
+    margin-left: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.item-box:hover {
+    background-color: #8a8a8a68;
+}
+
+/*.sell {
+    padding: 10px;
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+    display: flex;
+
+    align-items: center;
+    width: 700px;
+    max-width: 600px;
+}
+*/
+
+/*상품 개수 표시*/
+.count_list {
+    font-size: 13px;
+    padding-right: 550px;
+}
+
+/*상품 사진
+.sell img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    padding-right: 20px;
+}
+
+내용
+.content {
+    display: flex;
+    align-items: center;
+}
+.content div {
+    flex: 1;
+    text-align: left;
+}
+.content p {
+    margin: 5px 0;
+}
+.sell p {
+    display: flex;
+    text-align: left;
+    margin: 5px 0;
+}
+
+유저 아이디
+.sell .id_seller {
+    font-weight: bold;
+    flex: 1;
+    color:  rgb(82, 155, 187);
+    text-decoration: underline;
+}
+*/
+
+
+/*내부 네비바*/
 .topnav {
     overflow: hidden;
+    text-align: center;
 }
 
 .topnav a {
@@ -82,6 +128,8 @@ h2 {
     text-align: center;
     text-decoration: none;
     padding: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .topnav a:hover {
@@ -89,59 +137,39 @@ h2 {
     color: black;
 }
 
-.completed1 {
-    background-color: rgb(113, 184, 220);
-    color: black;
-    padding: 10px;
-    border-color: beige;
-    border-radius: 10px;
-    width: 70px;
-    height: 35px;
-    margin-top: 2%;
-    font-size: 11px;
-
-}
-
-.completed2 {
-    background-color: palevioletred;
-    color: black;
-    padding: 10px;
-    border-color: beige;
-    border-radius: 10px;
-    width: 47px;
-    height: 35px;
-    margin-top: 2%;
-    font-size: 11px;
-}
-
-.pagination {
+.page-nation {
     display: flex;
-    list-style: none;
     padding: 0;
     justify-content: center;
 }
 
-.pagination li {
-    margin: 0 5px;
+.page-nation ul {
+    padding-left: 0px;
 }
 
-.pagination a {
+.page-nation li {
+    margin: 0 5px;
+    list-style:none;
+}
+
+ul{
+    padding-left: 0px;
+}
+
+.page-nation a {
     text-decoration: none;
     padding: 5px 10px;
     border: 1px solid #ccc;
     border-radius: 3px;
 }
 
-.pagination a.active {
+.page-nation a.active {
     background-color: #333;
     color: #fff;
 }
 
-.checkboxes {
-    display: flex;
-}
-
-.checkbox {
-    margin-right: 470px;
-    padding: 10px;
+.page-nation a {
+    color: black; 
+    text-decoration: none; 
+    margin: 0 5px; 
 }

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    {% extends "index.html" %}
+
+    {% block section %}
+    <link rel="stylesheet" href="/static/details_of_auction_item.css" />
+
+    <div class="wrapper">
+        <h2 class="text">상품 세부화면</h2>
+        <hr>
+        <div class="container">
+
+            <div class="columnleft">
+                <img 
+                    src="/static/images/items/{{data.img_path}}" width="320" alt="item">
+            </div>
+
+            <div class="columnright">
+                <div class="alignleft">
+                    <a href="/user_reviews/{{data.sellerId}}/"><img src="/static/images/profiles/{{profile_image_path}}"
+                            id="profile"></a>
+                    <div id="user-id"><a href="/user_reviews/{{data.sellerId}}/" id="seller-id">{{data.sellerId}}<a></div>
+                    <h2>{{data.name}}</h2>
+
+                    <table>
+                        <tr>
+                            <th>상품상태</th>
+                            <td>{{data.status}}</td>
+                        </tr>
+                        <th>연락처</th>
+                        <td>{{data.phone}}</td>
+                        <tr>
+                            <th>거래방식</th>
+                            <td>{{data.method}}</td>
+                        </tr>
+                        <tr>
+                            <th>거래지역</th>
+                            <td>{{data.location}}</td>
+                        </tr>
+                        <tr>
+                            <th>수량</th>
+                            <td>{{data.quantity}}</td>
+                        </tr>
+                        <tr>
+                            <th>카테고리</th>
+                            <td>{{data.category}}</td>
+                        </tr>
+                    </table>
+                    <br>
+                </div>
+                <div class="favorite-button">
+                    <input class="btn-love" type="button" value="♡ 찜하기">
+                </div>
+
+            </div>
+        </div>
+
+        <div class="down">
+            <div class="more">
+                <hr style="width:100%">
+            </div>
+
+            <br>
+
+            <div class="comment">
+                <p>
+                <div class="boldtext">상품설명</div>
+                {{data.description}}
+                </p>
+            </div>
+
+            <br>
+
+            <div class="auction">
+                <div class="boldtext">경매 참여하기</div>
+                <span style="color: red"><span id="auction-state"></span><span id="remaining-hour"></span><span
+                        id="remaining-minute"></span><span id="remaining-second"></span></span><br>
+                현재 가격: <span id="current" style="color: skyblue"></span>
+                <input class="btn-money" id="btnMoney" type="button" value="">
+                <span>{{winner}}</span>
+            </div>
+
+            <div id="auction-variable" class="none">
+                <div id="key">{{key}}</div>
+                <div id="startPrice">{{data.startPrice}}</div>
+                <div id="currentPrice">{{data.currentPrice}}</div>
+                <div id="selectRisingPrice">{{data.selectRisingPrice}}</div>
+                <div id="start-date">{{data.startDate}}</div>
+                <div id="start-time">{{data.startTime}}</div>
+                <div id="end-date">{{data.endDate}}</div>
+                <div id="end-time">{{data.endTime}}</div>
+            </div>
+        </div>
+    </div>
+    <script src="/static/details_of_auction_item.js?after"></script>
+    {% endblock section %}
+</body>
+
+</html>

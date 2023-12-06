@@ -6,78 +6,139 @@
     {% extends "index.html" %}
 
     {% block section %}
+    <script>
+        $(document).ready(function () {
+            //alert("{{category}}");
+            $('#category option:contains("{{category}}")').prop("selected", true);
+        });
+
+
+    </script>
     <div class="wrapper">
-        <div class="text">상품 리스트</div>
-        <hr>
+        <div class="text">
+            <h2>상품 리스트</h2>
+        </div>
+        <hr style="width:100%;">
         <div class="menubar">
             <ul class="menubar__menu">
-                <li><a href="/product_list" style="text-decoration: underline;">전체 상품</a></li>
-                <li><a href="/auction_list">경매</a></li>
-                <li><a href="/list">일반 결제</a></li>
+                <li><a href="" style="text-decoration: underline;">전체 상품</a></li>
+                <li><a href="">경매</a></li>
+                <li><a href="">일반 결제</a></li>
             </ul>
             <button onclick="location.href='reg_item'" type="button">상품 등록하기</button>
         </div>
-        {% if total > 0 %}
-        <p>
-            현재까지 {{total}}개 등록되었습니다.
-        </p>
+
+
         <table class="content">
-            <div class="product">
+            <td>
+                <div style="width: 200px;">
+                    <select id="category" name="category" onchange="location=this.value">>
+                        <option value="{{url_for('view_product_list', page=i, category='all')}}">All</option>
+                        <option value="{{url_for('view_product_list', page=i, category='Clothes')}}"> Clothes </option>
+                        <option value="{{url_for('view_product_list', page=i, category='Beauty')}}"> Beauty </option>
+                        <option value="{{url_for('view_product_list', page=i, category='Books')}}"> Books </option>
+                        <option value="{{url_for('view_product_list', page=i, category='Furniture')}}"> Furniture
+                        </option>
+                        <option value="{{url_for('view_product_list', page=i, category='Electronics')}}"> Electronics
+                        </option>
+                        <option value="{{url_for('view_product_list', page=i, category='ETC')}}"> ETC </option>
+                    </select>
+                </div>
+            </td>
+            <td>
+                <div style="width: 200px;"></div>
+            </td>
+            <td>
+                <div style="width: 200px;"></div>
+            </td>
+            <td>
+                <div style="width: 200px;">
+                    {% if total > 0 %}
+                    <p class=total>
+                        총 {{total}}개의 상품
+                    </p>
+                </div>
+            </td>
+            <tbody class="product">
                 <tr>
                     {% for key, value in row1 %}
-                    <td onclick="location.href='/details_of_item/{{key}}/';" style="cursor:pointer;">
-                        <img src="static/images/items/{{value.img_path}}" , width=200px height=200px>
+                    <td>
+                        <div class="item-box" onclick="location.href='/details_of_item/{{key}}/';"
+                            style="cursor:pointer;">
+                            <img src="/static/images/items/{{value.img_path}}" width="200px" height="200px">
+                            {% if isAuction.get(key) %}
+                            <div class="auction_product">
+                                A
+                            </div>
+                            {% endif %}
+                            <div class="desc">{{value.name}}</div>
+                        </div>
+                    </td>
+                    {% endfor %}
+                    {% for _ in range(empty_cells) %}
+                    <td>
+                        <div class="blank-box"></div>
                     </td>
                     {% endfor %}
                 </tr>
-                <tr>
-                    {% for key, value in row1 %}
-                    <td class="desc">{{value.name}}</td>
-                    {% endfor %}
-                </tr>
-            </div>
-            <div class="product">
+            </tbody>
+            <tbody class="product">
                 <tr>
                     {% for key, value in row2 %}
-                    <td onclick="location.href='/details_of_item/{{key}}/';" style="cursor:pointer;">
-                        <img src="static/images/items/{{value.img_path}}" , width=200px height=200px>
+                    <td>
+                        <div class="item-box" onclick="location.href='/details_of_item/{{key}}/';"
+                            style="cursor:pointer;">
+
+                            <img src="/static/images/items/{{value.img_path}}" width="200px" height="200px">
+                            {% if isAuction.get(key) %}
+                            <div class="auction_product">
+                                A
+                            </div>
+                            {% endif %}
+
+                            <div class="desc">{{value.name}}</div>
+
+                        </div>
                     </td>
                     {% endfor %}
                 </tr>
-                <tr>
-                    {% for key, value in row2 %}
-                    <td class="desc">{{value.name}}</td>
-                    {% endfor %}
-                </tr>
-            </div>
-            <div class="product">
+            </tbody>
+            <tbody class="product">
                 <tr>
                     {% for key, value in row3 %}
-                    <td onclick="location.href='/details_of_item/{{key}}/';" style="cursor:pointer;">
-                        <img src="static/images/items/{{value.img_path}}" , width=200px height=200px>
+                    <td>
+                        <div class="item-box" onclick="location.href='/details_of_item/{{key}}/';"
+                            style="cursor:pointer;">
+                            <img src="/static/images/items/{{value.img_path}}" width="200px" height="200px">
+                            {% if isAuction.get(key) %}
+                            <div class="auction_product">
+                                A
+                            </div>
+                            {% endif %}
+                            <div class="desc">{{value.name}}</div>
+                        </div>
                     </td>
                     {% endfor %}
                 </tr>
-                <tr>
-                    {% for key, value in row3 %}
-                    <td class="desc">{{value.name}}</td>
-                    {% endfor %}
-                </tr>
-            </div>
-            <div class="product">
+            </tbody>
+            <tbody class="product">
                 <tr>
                     {% for key, value in row4 %}
-                    <td onclick="location.href='/details_of_item/{{key}}/';" style="cursor:pointer;">
-                        <img src="static/images/items/{{value.img_path}}" , width=200px height=200px>
+                    <td>
+                        <div class="item-box" onclick="location.href='/details_of_item/{{key}}/';"
+                            style="cursor:pointer;">
+                            {% if isAuction.get(key) %}
+                            <div class="auction_product">
+                                A
+                            </div>
+                            {% endif %}
+                            <img src="/static/images/items/{{value.img_path}}" width="200px" height="200px">
+                            <div class="desc">{{value.name}}</div>
+                        </div>
                     </td>
                     {% endfor %}
                 </tr>
-                <tr>
-                    {% for key, value in row4 %}
-                    <td class="desc">{{value.name}}</td>
-                    {% endfor %}
-                </tr>
-            </div>
+            </tbody>
         </table>
         <!--페이지네이션을 위한 코드 시작-->
         <div class="page-wrap">
@@ -92,7 +153,7 @@
             </div>
         </div>
         {% else %}
-        <p>
+        <p class="total">
             등록된 상품이 없습니다.
         </p>
         {% endif %}

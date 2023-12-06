@@ -12,6 +12,7 @@
   justify-content: space-between;
   /* 좌우에 요소를 분배 */
   padding: 10px 40px;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
 }
 
 .navbar__logo a {
@@ -78,9 +79,11 @@
 /* 공통 디자인 정의 */
 * {
   cursor: default;
-  font-family: Arial, Helvetica, sans-serif;
+  /* font-family: Arial, Helvetica, sans-serif; */
+  font-family: 'NanumSquareBold', Arial;
 }
 
 hr {
   border: 1.5px solid rgb(163, 223, 249);
+  width:100%;
 }

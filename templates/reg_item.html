@@ -3,11 +3,11 @@
 {% block section %}
 <link rel="stylesheet" href="/static/reg_item.css" />
 <script src="/static/reg_item.js"></script>
-<form method="post" enctype="multipart/form-data" action="/submit_item_post">
+<form method="post" enctype="multipart/form-data" action="/submit_item_post" onsubmit="return checkInput()">
     <div class="wrapper">
         <main class="product-registration">
             <h2 class="main-title">
-                상품 정보
+                상품 등록
             </h2>
             <hr>
             <ul class=product-registration-section>
@@ -24,7 +24,7 @@
                         상품 이미지
                     </h4>
                     <div class="inside">
-                        <input type="file" name="file" />
+                        <input type="file" name="file" required/>
                     </div>
                 </li>
                 <li class="status-section">
@@ -32,21 +32,20 @@
                         상품 상태
                     </h4>
                     <div class="inside">
-                        <!-- <div class="select-status">
-                            <label for="중고 상품" class="used-product">
-                                <input id="중고 상품" type="radio" value="0">
-                                중고 상품
-                            </label>
-                            <label for="새 상품" class="new-product">
-                                <input id="새 상품" type="radio" value="0">
+                        <div class="select-status">
+                            <label for="new" class="new-product">
+                                <input id="new" name="select-status-button" type="radio" value="new">
                                 새 상품
                             </label>
-                        </div> -->
-                        <select id="status" class="select-status" name="status">
-                            <option value="new" selected>새 상품</option>
-                            <option value="lnew">거의 새 상품</option>
-                            <option value="used">중고 상품</option>
-                        </select>
+                            <label for="lnew" class="lnew-product">
+                                <input id="lnew" name="select-status-button" type="radio" value="lnew">
+                                거의 새 상품
+                            </label>
+                            <label for="used" class="used-product">
+                                <input id="used" name="select-status-button" type="radio" value="used">
+                                중고 상품
+                            </label>
+                        </div>
                     </div>
                 </li>
                 <li class="description-section">
@@ -65,20 +64,16 @@
                         거래 방식
                     </h4>
                     <div class="inside">
-                        <!-- <div class="select-transaction-method">
+                        <div class="select-transaction-method">
                             <label for="택배 거래" class="delivery-transaction">
-                                <input id="택배 거래" type="radio" value="0">
+                                <input id="택배 거래" name="select-transaction-method-button" type="radio" value="delivery">
                                 택배 거래
                             </label>
                             <label for="직거래" class="direct-transaction">
-                                <input id="직거래" type="radio" value="0">
+                                <input id="직거래" name="select-transaction-method-button" type="radio" value="direct">
                                 직거래
                             </label>
-                        </div> -->
-                        <select id="method" class="select-transaction-method" name="method">
-                            <option value="delivery" selected>택배 거래</option>
-                            <option value="direct">직거래</option>
-                        </select>
+                        </div>
                     </div>
                 </li>
                 <li class="location-section">
@@ -87,14 +82,6 @@
                     </h4>
                     <div class="inside">
                         <div class="select-location-section">
-                            <!-- <div class="select-location-buttons">
-                                <button type="button" class="my-location">내 위치</button>
-                                <button type="button" class="recent-location">최근 위치</button>
-                                <button type="button" class="search-address">위치 검색</button>
-                                <button type="button" class="do-not-select-location">지역 설정 안함</button>
-                            </div>
-                            <input class="input-location" readonly placeholder="선호 지역을 설정해주세요."
-                                class="select-location-text" value=""> -->
                             <input id="location" name="location" class="input-location" type="text"
                                 placeholder="선호 거래 지역을 입력해주세요.">
                         </div>
@@ -105,8 +92,8 @@
                         수량
                     </h4>
                     <div class="inside">
-                        <div class="input-quntity">
-                            <input id="quantity" name="quantity" type="text" class="input-quantity"
+                        <div class="input-quntity-box">
+                            <input id="quantity" name="quantity" type="number" class="input-quantity"
                                 placeholder="숫자만 입력해주세요.">
                             <span>개</span>
                         </div>
@@ -119,22 +106,14 @@
                     <div class="inside">
                         <div>
                             <select id="category" name="category">
-                                <option value="Clothes" selected> Clothes </option>
-                                <option value="Beauty"> Beauty </option>
-                                <option value="Books"> Books </option>
-                                <option value="Furniture"> Furniture </option>
-                                <option value="Electronics"> Electronics </option>
-                                <option value="ETC"> ETC </option>
+                                <option value="의류" selected> 의류 </option>
+                                <option value="화장품"> 화장품 </option>
+                                <option value="책"> 책 </option>
+                                <option value="가구"> 가구 </option>
+                                <option value="전자제품"> 전자제품 </option>
+                                <option value="기타"> 기타 </option>
                             </select><br><br>
                         </div>
-                    </div>
-                </li>
-                <li class="tag-section">
-                    <h4 class="middle-title">
-                        태그
-                    </h4>
-                    <div class="inside">
-                        <input id="tag" name="tag" class="input-tag" type="text" placeholder="태그를 입력해주세요.">
                     </div>
                 </li>
                 <li class="pricing-section">
@@ -156,7 +135,8 @@
                         </div>
                         <div class="fixed-pricing-box" id="fixed-pricing-box" style="display: none;">
                             <div class="input-fixed-pricing">
-                                <input type="text" placeholder="가격을 입력해주세요." class="fixed-pricing-text" value="">
+                                <input id="fixedPrice" type="text" name="fixed-price" placeholder="가격을 입력해주세요."
+                                    class="fixed-pricing-text" value="">
                                 <span>원</span>
                             </div>
                         </div>
@@ -166,8 +146,8 @@
                                     시작가
                                 </h5>
                                 <div class="input-start-price">
-                                    <input type="text" placeholder="경매 시작가를 입력해주세요." class="input-start-price-text"
-                                        value="">
+                                    <input id="startPrice" type="text" name="start-price" placeholder="경매 시작가를 입력해주세요."
+                                        class="input-start-price-text" value="">
                                     <span>원</span>
                                 </div>
                             </div>
@@ -176,10 +156,18 @@
                                     상승가
                                 </h5>
                                 <div class="select-rising-price-section">
-                                    <button type="button" class="select-rising-price">5만원</button>
-                                    <button type="button" class="select-rising-price">1만원</button>
-                                    <button type="button" class="select-rising-price">5천원</button>
-                                    <button type="button" class="select-rising-price">1천원</button>
+                                    <label>
+                                        <input type="radio" name="select-rising-price" type="radio" value="50000">
+                                        5만원</label>
+                                    <label>
+                                        <input type="radio" name="select-rising-price" type="radio" value="10000">
+                                        1만원</label>
+                                    <label>
+                                        <input type="radio" name="select-rising-price" type="radio" value="5000">
+                                        5천원</label>
+                                    <label>
+                                        <input type="radio" name="select-rising-price" type="radio" value="1000">
+                                        1천원</label>
                                 </div>
                             </div>
                             <div class="auction-start-box">
@@ -188,10 +176,10 @@
                                 </h5>
                                 <div class="input-auction-time">
                                     <div class="input-start-date">
-                                        <input type="date" class="input-auction-time-text" value="">
+                                        <input type="date" id="startDate" name="start-date" class="input-auction-time-text" value="">
                                     </div>
                                     <div class="input-start-time">
-                                        <input type="time" class="input-auction-time-text" value="">
+                                        <input type="time" id="startTime" name="start-time" class="input-auction-time-text" value="">
                                     </div>
                                 </div>
                             </div>
@@ -201,10 +189,10 @@
                                 </h5>
                                 <div class="input-auction-time">
                                     <div class="input-end-date">
-                                        <input type="date" class="input-auction-time-text" value="">
+                                        <input type="date" id="endDate" name="end-date" class="input-auction-time-text" value="">
                                     </div>
                                     <div class="input-end-time">
-                                        <input type="time" class="input-auction-time-text" value="">
+                                        <input type="time" id="endTime" name="end-time" class="input-auction-time-text" value="">
                                     </div>
                                 </div>
                             </div>
