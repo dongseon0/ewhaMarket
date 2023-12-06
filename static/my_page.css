@@ -1,17 +1,33 @@
+body {
+  background-image: url('/static/images/background.png');  /*이미지 넣기*/
+  background-repeat: repeat-x;  /*화면에 가득 찰 때까지 반복*/
+  background-size: 450px;
+  margin: 0px;
+}
+
 .wrapper {
   width: 700px;
   cursor: default;
   margin: auto;
-  margin-top: 7%;
+  margin-top: 40px;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+.top {
+  width: 100%;
+  /* background-color: rgb(243, 243, 243);
+  border-radius: 10px;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2); */
+}
+
 .menubar {
   overflow: hidden;
   text-align: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .menubar a {

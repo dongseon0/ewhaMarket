@@ -65,7 +65,7 @@
 }
 
 .total{
-    text-align: right;
+    text-align: end;
 }
 
 .content {
@@ -143,19 +143,19 @@ ul{
 
 
 .auction_product {
-    background-color: rgba(34, 132, 178, 0.658);
+    background-color: rgba(34, 132, 178, 0.758);
     width: 120%;
     text-align: center;
     position: absolute;
 
     border: 0;
     outline: none;
-    width: 5%;
-    height: 6%;
+    width: 55px;
+    height: 50px;
     border-radius: 100%;
     font-size: 35px;
-    margin-left: 140px;
-    margin-top: -60px;
+    margin-left: 135px;
+    margin-top: -65px;
     padding-top: 6px;
 }
 

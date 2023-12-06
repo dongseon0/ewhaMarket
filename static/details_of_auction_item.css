@@ -1,5 +1,5 @@
 .wrapper {
-    width: 900px;
+    width: 1000px;
     cursor: default;
     margin: auto;
     margin-top: 3%;
@@ -20,6 +20,45 @@ hr {
     width: 100%;
 }
 
+.container {
+    display: flex;
+    padding: 20px 80px;
+}
+
+.columnleft {
+    width: calc(50% - 3%);
+    margin: 3% 4%;
+    background-color: rgb(245, 245, 245); /* Set background color to gray */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Align content vertically center */
+    align-items: center; /* Align content horizontally center */
+
+    border-radius: 10px 10px;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+}
+
+.columnleft img {
+    min-width:100% ; /* Ensure the image fills the entire width of .columnleft */
+    height: auto; /* Maintain the aspect ratio */
+}
+
+.columnright {
+    background-color: rgb(251, 251, 251);
+    width: calc(50% - 3%);
+    margin: 2% auto;
+    padding: 4% 8%;
+    border-radius: 10px 10px;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);   
+    overflow-x: auto; 
+}
+
+.columnright table {
+    width: 100%; /* Ensure the table takes 100% width of its container */
+    table-layout: fixed; /* Set a fixed layout for the table */
+    border-spacing: 3px; /* Adjust the spacing between cells */
+}
+
 table,
 th,
 td {
@@ -28,28 +67,11 @@ td {
 
 td {
     padding: 10px;
-}
-
-.container {
-    display: flex;
-    padding: 20px 80px;
-    align-items: center;
-}
-
-.columnleft {
-    width: calc(50% - 3%);
-    margin: 3% auto;
     
 }
 
-.columnright {
-    background-color: rgb(251, 251, 251);
-    width: calc(50% - 3%);
-    margin: 2% 3%;
-    padding: 4% 10%;
-    border-radius: 10px 10px;
-    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
-}
+
+
 
 .alignleft{
     text-align: left;
@@ -57,18 +79,6 @@ td {
     display: block;
 }
 
-li a1 {
-    float: left;
-    display: block;
-    text-align: left;
-    padding: 0.8% 1%;
-    text-decoration: none;
-    border-radius: 10px 10px;
-}
-
-ul {
-    list-style: none;
-}
 
 @media screen and (max-width: 600px) {
 
@@ -159,18 +169,4 @@ p {
     padding-top: 2%;
     font-size: 110%;
     font-weight: bold;
-}
-
-.auction_product {
-    background-color: firebrick;
-    text-align: center;
-    float: right;
-    top: 20%;
-    right: 20%;
-    border: 0;
-    outline: none;
-    width: 60px;
-    height: 60px;
-    border-radius: 100px;
-    font-size: 20px;
 }

@@ -31,24 +31,33 @@
 
         <table class="content">
             <td>
-                <select id="category" name="category" onchange="location=this.value">>
-                    <option value="{{url_for('view_product_list', page=i, category='all')}}">All</option>
-                    <option value="{{url_for('view_product_list', page=i, category='Clothes')}}"> Clothes </option>
-                    <option value="{{url_for('view_product_list', page=i, category='Beauty')}}"> Beauty </option>
-                    <option value="{{url_for('view_product_list', page=i, category='Books')}}"> Books </option>
-                    <option value="{{url_for('view_product_list', page=i, category='Furniture')}}"> Furniture </option>
-                    <option value="{{url_for('view_product_list', page=i, category='Electronics')}}"> Electronics
-                    </option>
-                    <option value="{{url_for('view_product_list', page=i, category='ETC')}}"> ETC </option>
-                </select>
+                <div style="width: 200px;">
+                    <select id="category" name="category" onchange="location=this.value">>
+                        <option value="{{url_for('view_product_list', page=i, category='all')}}">All</option>
+                        <option value="{{url_for('view_product_list', page=i, category='Clothes')}}"> Clothes </option>
+                        <option value="{{url_for('view_product_list', page=i, category='Beauty')}}"> Beauty </option>
+                        <option value="{{url_for('view_product_list', page=i, category='Books')}}"> Books </option>
+                        <option value="{{url_for('view_product_list', page=i, category='Furniture')}}"> Furniture
+                        </option>
+                        <option value="{{url_for('view_product_list', page=i, category='Electronics')}}"> Electronics
+                        </option>
+                        <option value="{{url_for('view_product_list', page=i, category='ETC')}}"> ETC </option>
+                    </select>
+                </div>
             </td>
-            <td></td>
-            <td></td>
             <td>
-                {% if total > 0 %}
-                <p class=total>
-                    총 {{total}}개의 상품
-                </p>
+                <div style="width: 200px;"></div>
+            </td>
+            <td>
+                <div style="width: 200px;"></div>
+            </td>
+            <td>
+                <div style="width: 200px;">
+                    {% if total > 0 %}
+                    <p class=total>
+                        총 {{total}}개의 상품
+                    </p>
+                </div>
             </td>
             <tbody class="product">
                 <tr>
@@ -144,7 +153,7 @@
             </div>
         </div>
         {% else %}
-        <p>
+        <p class="total">
             등록된 상품이 없습니다.
         </p>
         {% endif %}
