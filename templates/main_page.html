@@ -34,6 +34,7 @@
     display: inline-block;
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
     padding-left: 10px;
+    margin-bottom: 20px;
 }
 
 .item-box img {
@@ -93,7 +94,7 @@
         }
         
         #btn{       
-           
+            content: attr(data-text); 
   transform: translate(-50%,-50%);
   width: 120px;
   height: 40px;
@@ -110,7 +111,8 @@
 }
 
 #btn:before{
-    content: attr(data-text) ;
+    content: attr(data-text);
+   
   position: absolute;
   top: 0;
   left: 0;
@@ -198,6 +200,7 @@
         </div>
         
     </div>
+   
     {% endblock section %}
 </body>
 
