@@ -1,6 +1,6 @@
 import pyrebase
 import json
-
+from datetime import datetime
 
 class DBhandler:
     def __init__(self):
@@ -324,3 +324,23 @@ class DBhandler:
             if key_value == key:
                 target_value = res.val()
         return target_value
+    
+    def get_auction_items(self):
+        response = self.db.child("items").get()
+        items = response.val()
+
+        auction_items = []
+
+        for key, item in items.items():
+            is_auction = self.get_is_auction_status(key)
+
+            if is_auction:
+                end_datetime = datetime.strptime(item['endDate'] + ' ' + item['endTime'], '%Y-%m-%d %H:%M')
+                current_datetime = datetime.now()
+
+                if current_datetime <= end_datetime:
+                    remaining_time = end_datetime - current_datetime
+                    item['remaining_time'] = str(remaining_time)
+                    auction_items.append(item)
+
+        return auction_items
