@@ -10,7 +10,7 @@
       background-color: rgb(243, 243, 243);
       padding: 15px;
       margin: 2px;
-      border-radius: 10px;
+      /* border-radius: 10px; */
       box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
     }
 
@@ -79,15 +79,17 @@
 
   {% block section %}
   <div class="wrapper">
-    <h2 class="title">마이 페이지</h2>
-    <hr>
-    <div class="menubar">
-      <a href="/my_page/{{session['id']}}/">내 상점</a>
-      <a href="/my_reviews/{{session['id']}}/">내 리뷰</a>
-      <a style="text-decoration: underline;" href="/my_wish/{{session['id']}}/">찜</a>
-      <a href="/my_info/{{session['id']}}/">개인정보</a>
+    <div class="top">
+      <h2 class="title">마이 페이지</h2>
+      <hr>
+      <div class="menubar">
+        <a href="/my_page/{{session['id']}}/">내 상점</a>
+        <a href="/my_reviews/{{session['id']}}/">내 리뷰</a>
+        <a style="text-decoration: underline;" href="/my_wish/{{session['id']}}/">찜</a>
+        <a href="/my_info/{{session['id']}}/">개인정보</a>
+      </div>
+      <hr>
     </div>
-    <hr>
     
     {% if total > 0 %}
     <p>

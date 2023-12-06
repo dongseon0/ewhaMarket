@@ -9,6 +9,13 @@
   align-items: center;
 }
 
+.top {
+  width: 100%;
+  /* background-color: rgb(243, 243, 243);
+  border-radius: 10px;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2); */
+}
+
 .menubar {
   overflow: hidden;
   text-align: center;
@@ -27,4 +34,8 @@
 .menubar a:hover {
   background-color: #ddd;
   color: black;
+}
+
+hr {
+  
 }
