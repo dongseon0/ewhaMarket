@@ -20,13 +20,6 @@
             float :left;
         }
 
-        #btn {
-            margin: 10px;
-            text-align: right;
-            margin-right: 20px;
-            margin-top: 15px;
-            font-size: 12pt;
-        }
         
         .wrapper {
             width: 1100px;
@@ -102,10 +95,42 @@
         .arrow-right {
             right: 20px;
         }
-        #btn{
-            background-color: rgb(223, 223, 217);
-            border-radius: 5px; 
-        }
+        
+        #btn{       
+           
+  transform: translate(-50%,-50%);
+  width: 120px;
+  height: 40px;
+  line-height: 20px;
+  font-size: 15px;
+  text-align: center;
+  letter-spacing: 2px;
+  background: #847d7d;
+  border: 0px;
+  border-radius: 5px;
+  margin-top: 30px;
+  margin-left: 60px;
+}
+
+#btn:before{
+    content: attr(data-text) ;
+  position: absolute;
+  top: 0;
+  left: 0;
+ 
+  width: 120px;
+  height: 40px;
+  border-radius: 5px;
+  background: #ffffff;
+  color: #000000;
+  transition: 0.5s;
+  transform-origin: bottom;
+  transform: translatey(-100%) rotatex(90deg);
+}
+
+#btn:hover:before{
+  transform: translatey(0) rotatex(0deg);
+}      
     </style>
 
     <script>
@@ -148,14 +173,15 @@
             <div class="banner-item">
                 <img src="/static/images/banner.png" width="1150" alt="banner">
             </div>
-            <!-- Add more banner items as needed -->
         </div>
         <button class="arrow arrow-left">&lt;</button>
         <button class="arrow arrow-right">&gt;</button>
     </div>
     <div class="wrapper">
         <h3 class="text">최근 올라온 상품</h3>
-        <button onclick="location.href='view_product_list'" id="btn" type="button">상품 더 보기</button>
+        
+        <button onclick="location.href='view_product_list'" id="btn" type="button"  data-text="상품 더 보기">상품 더 보기</button>
+        <hr class="line3">
         <div>
             <tbody class="product">
                 <tr>
@@ -173,6 +199,7 @@
                 </tr>
             </tbody>
         </div>
+        
     </div>
     {% endblock section %}
 </body>
