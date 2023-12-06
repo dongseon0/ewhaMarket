@@ -13,16 +13,21 @@ DB = DBhandler()
 # 메인
 @application.route("/")
 def hello():
-    # return render_template("index.html")
-    # 메인페이지로 바꿉니다
+    # Get recent items
+
     data = DB.get_items()
     data = dict(sorted(data.items(), key=lambda x: x[0], reverse=True))
     for i in range(5):
         locals()['data_{}'.format(0)] = dict(list(data.items())[0:5])
+    
+    # Get auction items
+    auction_items = DB.get_auction_items()
+    auction_items = sorted(auction_items, key=lambda x: x.get('key', ''), reverse=True)
     return render_template(
         "main_page.html",
-        datas=data.items(),
-        row1=locals()['data_0'].items()
+       data=data.items(),
+       row1=locals()['data_0'].items(),
+        auction_items=auction_items
     )
     # return redirect(url_for('view_product_list'))
 
