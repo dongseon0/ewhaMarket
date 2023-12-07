@@ -5,15 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        * {
-            cursor: default;
-            font-family: Arial, Helvetica, sans-serif;
-        }
-
-        hr {
-            border: 1.5px solid rgb(163, 223, 249);
-        }
-
         .text {
             width: 900px;
             text-align: left;
@@ -98,18 +89,20 @@
         #btn {
             content: attr(data-text);
             transform: translate(-50%, -50%);
-            width: 120px;
+            width: 150px;
             height: 40px;
             line-height: 20px;
             font-size: 15px;
-            text-align: center;
-            letter-spacing: 2px;
-            background: #847d7d;
+            align-items: right;
+            letter-spacing: 1.5px;
+            background: rgb(255, 255, 255);
             border: 0px;
-            border-radius: 5px;
+          
             margin-top: 30px;
             margin-left: 60px;
-            box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
+            text-decoration: underline;
+            left:1000px
+            
         }
 
 
@@ -129,9 +122,15 @@
             font-size: 12px;
             margin-bottom: 2400px;
             white-space: nowrap;
-
             text-overflow: ellipsis;
 
+        }
+
+        #banner {
+            width: 100%;
+            height: 300px;
+            
+            background-color: rgb(221, 227, 192);
         }
     </style>
 
@@ -165,12 +164,16 @@
     {% extends "index.html" %}
 
     {% block section %}
+    <div id="banner">
+
+    </div>
     <br><br>
 
     <div class="wrapper">
         <h3 class="text">최근 올라온 상품</h3>
 
-        <button onclick="location.href='view_product_list'" id="btn" type="button" >상품 더 보기</button>
+
+        <button onclick="location.href='view_product_list'" id="btn" type="button" >| 상품 더 보기 |</button>
         <hr class="line3">
 
 
@@ -280,4 +283,5 @@
     </script>
     {% endblock section %}
 </body>
+
 </html>
