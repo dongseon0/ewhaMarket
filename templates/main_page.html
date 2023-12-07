@@ -107,18 +107,6 @@
             color: rgb(105, 107, 93);
         }
 
-        .auction-list {
-            display: flex;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .auction-list li {
-            margin-right: 10px;
-            /* Adjust spacing between items as needed */
-        }
-
         .time {
             font-size: 12px;
             margin-bottom: 2400px;
@@ -172,54 +160,56 @@
         </ul>
         <hr class="line3">
 
-        <div>
-            <tbody class="product">
-                <tr>
-                    {% for key, value in row1 %}
-                    <td>
-                        <div class="item-box" onclick="location.href='/details_of_item/{{key}}/';"
-                            style="cursor:pointer;">
-                            <img src="static/images/items/{{value.img_path}}" width="200px" height="200px">
-                            <div class="desc">
-
-                                {{value.name}}
-                            </div>
+        <div class="product">
+            <tr>
+                {% for key, value in row1 %}
+                <td>
+                    <div class="item-box" onclick="location.href='/details_of_item/{{key}}/';" style="cursor:pointer;">
+                        <img src="static/images/items/{{value.img_path}}" width="200px" height="200px">
+                        <div class="desc">
+                            {{value.name}}
                         </div>
-                    </td>
-                    {% endfor %}
-                </tr>
-            </tbody>
+                    </div>
+                </td>
+                {% endfor %}
+            </tr>
         </div>
 
-        <div class="wrapper">
-            <h3 class="text">진행 중인 경매</h3>
-            <hr class="line3">
-            <ul class="auction-list">
-                <ul>
-                    {% for item in auction_items %}
-                    <li>
-                        <div class="item-box" onclick="location.href='/details_of_item/{{key}}/';"
-                            style="cursor:pointer;">
-                            <img src="{{ url_for('static', filename='images/items/' + item.img_path) }}"
-                                alt="{{ item.name }}" width="200px" height="200px">
-                            {{ item.name }}<br>
-                            <div class="text1">
-                                {% if item.auction_status == 'Auction Completed' %}
-                                경매 완료
-                                {% else %}
-                                경매 진행 중
-                                {% endif %}
-                            </div>
+        <br><br>
+
+        <ul class="header-list">
+            <li>
+                <h3 class="text">진행 중인 경매</h3>
+            </li>
+            <li>
+                <button onclick="location.href='/auction_list'" id="btn" type="button">상품 더보기</button>
+            </li>
+        </ul>
+        <hr class="line3">
+
+        <div class="auction-list">
+            <tr>
+                {% for item in auction_items %}
+                <td>
+                    <div class="item-box" onclick="location.href='/details_of_item/{{key}}/';" style="cursor:pointer;">
+                        <img src="{{ url_for('static', filename='images/items/' + item.img_path) }}"
+                            alt="{{ item.name }}" width="200px" height="200px">
+                        <div class="desc">
+                            {{item.name}}
                         </div>
-                    </li>
-                    {% endfor %}
-                </ul>
-            </ul>
+                        <div class="text1">
+                            {% if item.auction_status == 'Auction Completed' %}
+                            경매 완료
+                            {% else %}
+                            경매 진행 중
+                            {% endif %}
+                        </div>
+                    </div>
+                </td>
+                {% endfor %}
+            </tr>
         </div>
-
     </div>
-    </div>
-
     {% endblock section %}
 </body>
 
