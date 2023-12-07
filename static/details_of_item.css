@@ -20,8 +20,8 @@
 }
 
 .columnleft {
-    width: calc(50% - 3%);
-    margin: 3% 4%;
+    width: calc(50%);
+    margin:4%;
     display: flex;
     flex-direction: column;
     justify-content: center; /* Align content vertically center */
@@ -30,14 +30,17 @@
 
 .columnleft img {
     object-fit: cover;
-    width: 150%;
+    width: 120%;
     height: 100%;
+    
+    object-position: center; /* 이미지를 수평으로 가운데 정렬 */
 }
+
 
 .columnright {
     background-color: rgb(251, 251, 251);
-    width: calc(50% - 3%);
-    margin: 2% 3% 2% 8%;
+    width: calc(50%);
+    margin: 2% 2% 2% 4%;
     padding: 4% 8%;
     border-radius: 10px 10px;
     box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);   
