@@ -145,7 +145,7 @@ td {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    color: blue;
+    color: #757866;
 }
 
 .item-box:hover {
