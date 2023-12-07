@@ -47,14 +47,14 @@
 }
 
 .menubar button {
-    width: 110px;
-    height: 40px;
+    width: 100px;
+    height: 35px;
     float: right;
     background-color: rgb(221, 227, 192);
     border: none;
     border-radius: 5px;
     color: rgb(117, 120, 102);
-    font-size: 95%;
+    font-size: 100%;
     margin: 1%;
     padding: 0% 0%;
 }
