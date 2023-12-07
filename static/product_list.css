@@ -58,6 +58,11 @@
     padding: 0% 0%;
 }
 
+.menubar button:hover {
+    background-color: rgb(209, 215, 180);
+    color: rgb(105, 107, 93);
+}
+
 #category {
     display: flex;
 }
