@@ -47,15 +47,21 @@
 }
 
 .menubar button {
+    width: 110px;
+    height: 40px;
+    float: right;
+    background-color: rgb(221, 227, 192);
     border: none;
-    background-color: #fff;
-    outline: none;
-    font-size: 120%;
-    cursor: pointer;
+    border-radius: 5px;
+    color: rgb(117, 120, 102);
+    font-size: 95%;
+    margin: 1%;
+    padding: 0% 0%;
 }
 
 .menubar button:hover {
-    text-decoration: underline;
+    background-color: rgb(209, 215, 180);
+    color: rgb(105, 107, 93);
 }
 
 #category{
@@ -81,6 +87,12 @@ td {
 .blank-box{
     width: 200px; 
     height: 270px;
+    display: inline-block;
+    border: 1px solid;
+    padding: 6px;
+    margin: 2px;
+    border-radius: 10px;
+    box-shadow: 4px 4px 10px;
 }
 
 .item-box {
@@ -97,7 +109,7 @@ td {
 .item-box img {
     vertical-align: middle;
     border-radius: 10px;
-    object-fit:none;
+    object-fit:cover;
 }
 
 
@@ -111,15 +123,30 @@ td {
     text-overflow: ellipsis;
 }
 
+.auction_product {
+    background-color: #DEE3C3;
+    width: 120%;
+    text-align: center;
+    position: absolute;
+    border: 0;
+    outline: none;
+    width: 55px;
+    height: 50px;
+    border-radius: 100%;
+    font-size: 35px;
+    margin-left: 135px;
+    margin-top: -65px;
+    padding-top: 6px;
+}
+
 .price {
-    margin-top: 5%;
+    margin-top: 3%;
     margin-bottom: 7%;
     max-width: 95%; /* Adjust as needed */
     margin-left: 5px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    text-align: right;
     color: blue;
 }
 
@@ -159,23 +186,3 @@ ul{
     text-decoration: none; 
     margin: 0 5px; 
 }
-
-
-.auction_product {
-    background-color: rgba(34, 132, 178, 0.758);
-    width: 120%;
-    text-align: center;
-    position: absolute;
-
-    border: 0;
-    outline: none;
-    width: 55px;
-    height: 50px;
-    border-radius: 100%;
-    font-size: 35px;
-    margin-left: 135px;
-    margin-top: -65px;
-    padding-top: 6px;
-}
-
-

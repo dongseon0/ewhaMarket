@@ -157,7 +157,7 @@ class DBhandler:
 
     # 카테고리 별로 상품 가져오기
     def get_items_bycategory(self, cate): 
-        items = self.db.child("item").get() 
+        items = self.db.child("items").get() 
         target_value=[]
         target_key=[]
         for res in items.each(): 
@@ -329,8 +329,6 @@ class DBhandler:
         items = self.db.child("items").get().val()
         return items
     
-
-
     def get_items_with_status(self):
         items = self.db.child("items").get().val()
         result = []
@@ -350,26 +348,3 @@ class DBhandler:
             item['auction_status'] = None
         result.append(item)
         return result
-
-   
-    """
-    def get_auction_items(self):
-        response = self.db.child("items").get()
-        items = response.val()
-
-        auction_items_not_started = []
-        auction_items_started=[]
-
-        for key, item in items.items():
-            is_auction = self.get_is_auction_status(key)
-
-            if is_auction:
-                start_datetime = datetime.strptime(item['startDate'] + ' ' + item['startTime'], '%Y-%m-%d %H:%M')
-                current_datetime = datetime.now()
-
-                if current_datetime <= start_datetime:
-                    
-                    auction_items_not_started.append(item)
-
-        return auction_items
-        """
