@@ -124,18 +124,16 @@ td {
 }
 
 .auction_product {
-    background-color: #DEE3C3;
-    width: 120%;
+    background-color: #dee3c3;
     text-align: center;
     position: absolute;
     border: 0;
     outline: none;
-    width: 55px;
-    height: 50px;
-    border-radius: 100%;
-    font-size: 35px;
-    margin-left: 135px;
-    margin-top: -65px;
+    width: 45px;
+    border-radius: 20%;
+    font-size: 15px;
+    margin-left: 145px;
+    margin-top: 40px;
     padding-top: 6px;
 }
 
