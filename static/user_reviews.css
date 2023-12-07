@@ -1,8 +1,6 @@
 .wrapper {
     width: 700px;
-    cursor: default;
-    margin: auto;
-    margin-top: 7%;
+    margin: 75px auto;
     text-align: center;
     display: flex;
     flex-direction: column;

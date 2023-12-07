@@ -25,6 +25,7 @@
     list-style: none;
     display: flex;
     /* 메뉴 항목을 가로로 정렬 */
+    align-items: flex-end
 }
 
 .menubar__menu li {
@@ -39,7 +40,7 @@
     color: #000;
 }
 
-.menubar a:hover {
+.menubar__menu a:hover {
     background-color: #ddd;
     color: black;
 }
