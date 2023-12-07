@@ -5,15 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        * {
-            cursor: default;
-            font-family: Arial, Helvetica, sans-serif;
-        }
-
-        hr {
-            border: 1.5px solid rgb(163, 223, 249);
-        }
-
         .text {
             width: 900px;
             text-align: left;
@@ -104,7 +95,7 @@
             font-size: 15px;
             text-align: center;
             letter-spacing: 2px;
-            background: #847d7d;
+            background: rgb(221 227 192);
             border: 0px;
             border-radius: 5px;
             margin-top: 30px;
@@ -112,26 +103,6 @@
             box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
         }
 
-        #btn:before {
-            content: attr(data-text);
-
-            position: absolute;
-            top: 0;
-            left: 0;
-
-            width: 120px;
-            height: 40px;
-            border-radius: 5px;
-            background: #ffffff;
-            color: #000000;
-            transition: 0.5s;
-            transform-origin: bottom;
-            transform: translatey(-100%) rotatex(90deg);
-        }
-
-        #btn:hover:before {
-            transform: translatey(0) rotatex(0deg);
-        }
 
         .auction-list {
             display: flex;
@@ -149,9 +120,15 @@
             font-size: 12px;
             margin-bottom: 2400px;
             white-space: nowrap;
-
             text-overflow: ellipsis;
 
+        }
+
+        #banner {
+            width: 100%;
+            height: 300px;
+            
+            background-color: rgb(221, 227, 192);
         }
     </style>
 
@@ -185,24 +162,15 @@
     {% extends "index.html" %}
 
     {% block section %}
+    <div id="banner">
+
+    </div>
     <br><br>
 
-    <div class="banner-container">
-        <div class="banner-wrapper">
-            <div class="banner-item">
-                <img src="/static/images/banner3.png" width="1150" alt="banner3">
-            </div>
-            <div class="banner-item">
-                <img src="/static/images/banner.png" width="1150" alt="banner">
-            </div>
-        </div>
-        <button class="arrow arrow-left">&lt;</button>
-        <button class="arrow arrow-right">&gt;</button>
-    </div>
     <div class="wrapper">
         <h3 class="text">최근 올라온 상품</h3>
 
-        <button onclick="location.href='view_product_list'" id="btn" type="button" data-text="상품 더 보기">상품 더 보기</button>
+        <button onclick="location.href='view_product_list'" id="btn" type="button">상품 더 보기</button>
         <hr class="line3">
 
 
@@ -312,4 +280,5 @@
     </script>
     {% endblock section %}
 </body>
+
 </html>

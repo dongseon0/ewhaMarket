@@ -14,7 +14,6 @@
     text-align: center;
     margin-bottom: 1.5%;
 }
-
 .container {
     display: flex;
     padding: 20px 80px;
@@ -119,19 +118,18 @@ p {
 }
 
 .btn-love {
-    background-color: aliceblue;
-    color: #1e6b7b;
+    background-color:  rgb(221, 227, 192);
+    color: rgb(117, 120, 102);
     border-radius: 5px;
-    border: 3px solid aliceblue;
+    border: 3px solid  rgb(221, 227, 192);
     font-size: 100%;
 }
 
 .btn-love:hover {
-    background-color: #c1e6ff;
-    color: #003742;
-    border: 3px solid #c1e6ff;
+    background-color: rgb(192, 197, 166);
+    color: rgb(105, 107, 93);
+    border: 3px solid rgb(192, 197, 166);
 }
-
 
 .btn-money {
     background-color: rgb(223, 254, 227);
