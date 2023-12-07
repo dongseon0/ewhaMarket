@@ -39,9 +39,9 @@
     color: #000;
 }
 
-.menubar__menu a:hover {
-    text-decoration: underline;
-    background-color: skyblue;
+.menubar a:hover {
+    background-color: #ddd;
+    color: black;
 }
 
 .menubar button {
@@ -55,11 +55,6 @@
     font-size: 100%;
     margin: 1%;
     padding: 0% 0%;
-}
-
-.menubar button:hover {
-    background-color: rgb(209, 215, 180);
-    color: rgb(105, 107, 93);
 }
 
 #category {
