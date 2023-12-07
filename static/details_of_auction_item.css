@@ -110,10 +110,6 @@ p {
 }
 
 .auction {
-    position: fixed;
-    top: 100px;
-    overflow: visible; 
-    left : 700px;
     background-color: rgb(231, 235, 209);
     padding: 4% 2%;
     margin: 1% 25%;
