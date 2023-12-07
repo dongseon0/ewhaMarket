@@ -78,12 +78,9 @@
             border: none;
         }
 
-        .arrow-left {
-            left: 10px;
-        }
-
-        .arrow-right {
-            right: 20px;
+        ul{
+            display: flex;
+            list-style: none;
         }
 
         #btn {
@@ -104,8 +101,6 @@
             left:1000px
             
         }
-
-
         .auction-list {
             display: flex;
             list-style: none;
@@ -170,10 +165,11 @@
     <br><br>
 
     <div class="wrapper">
-        <h3 class="text">최근 올라온 상품</h3>
+        <ul>
+        <li><h3 class="text">최근 올라온 상품</h3></li>
 
-
-        <button onclick="location.href='view_product_list'" id="btn" type="button" >| 상품 더 보기 |</button>
+        <li><button onclick="location.href='/product_list'" id="btn" type="button" >| 상품 더 보기 |</button></li>
+    </ul>
         <hr class="line3">
 
 
