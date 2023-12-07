@@ -10,44 +10,49 @@
             text-align: left;
             margin-left: 20px;
             float: left;
+            font-size: 140%;
         }
 
         .wrapper {
             width: 1100px;
             cursor: default;
             margin: auto;
-            margin-top: 1%;
+            margin-top: 40px;
             text-align: center;
         }
 
         .item-box {
-            width: 200px;
-            height: 270px;
+            width: 180px;
+            height: 250px;
             display: inline-block;
-            box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
-            padding-left: 10px;
-            margin-bottom: 20px;
+            border: 1px solid #e4e4e4;
+            padding: 6px;
+            margin: 2px;
+            border-radius: 10px;
+            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
         }
 
         .item-box img {
-            vertical-align: middle;
             object-fit: cover;
+            vertical-align: middle;
+            border-radius: 10px;
+            width: 180px;
+            height: 180px;
         }
+
+        .item-box:hover {
+    background-color: #8a8a8a68;
+}
+
 
         /*상품 이름 길이 제한*/
         .desc {
             margin-top: 5%;
-
             max-width: 90%;
-            /* Adjust as needed */
             margin-left: 13px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-        }
-
-        .item-box img:hover {
-            border: 0.3px solid skyblue;
         }
 
         .banner-container {
@@ -78,29 +83,33 @@
             border: none;
         }
 
-        ul{
+        ul {
             display: flex;
             list-style: none;
         }
 
         #btn {
-            content: attr(data-text);
-            transform: translate(-50%, -50%);
-            width: 150px;
+
+            width: 110px;
             height: 40px;
-            line-height: 20px;
-            font-size: 15px;
-            align-items: right;
-            letter-spacing: 1.5px;
-            background: rgb(255, 255, 255);
-            border: 0px;
-          
-            margin-top: 30px;
-            margin-left: 60px;
-            text-decoration: underline;
-            left:1000px
-            
+            float: right;
+            background-color: rgb(221, 227, 192);
+            border: none;
+            border-radius: 5px;
+            color: rgb(117, 120, 102);
+            font-size: 95%;
+            margin: 1%;
+            padding: 0% 0%;
+
         }
+
+        #btn.hover {
+
+            background-color: rgb(209, 215, 180);
+            color: rgb(105, 107, 93);
+
+        }
+
         .auction-list {
             display: flex;
             list-style: none;
@@ -118,41 +127,32 @@
             margin-bottom: 2400px;
             white-space: nowrap;
             text-overflow: ellipsis;
-
         }
 
         #banner {
             width: 100%;
             height: 300px;
-            
             background-color: rgb(221, 227, 192);
+        }
+
+        .text1 {
+            color: rgb(117, 120, 102);
+        }
+
+        ul.header-list {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0;
+            margin: 0;
+        }
+
+        ul.header-list li {
+            list-style: none;
         }
     </style>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const bannerWrapper = document.querySelector('.banner-wrapper');
-            const bannerItems = document.querySelectorAll('.banner-item');
-            const arrowLeft = document.querySelector('.arrow-left');
-            const arrowRight = document.querySelector('.arrow-right');
-            let currentIndex = 0;
 
-            function showBanner(index) {
-                const newTransformValue = -index * 100 + '%';
-                bannerWrapper.style.transform = 'translateX(' + newTransformValue + ')';
-            }
-
-            arrowLeft.addEventListener('click', function () {
-                currentIndex = (currentIndex - 1 + bannerItems.length) % bannerItems.length;
-                showBanner(currentIndex);
-            });
-
-            arrowRight.addEventListener('click', function () {
-                currentIndex = (currentIndex + 1) % bannerItems.length;
-                showBanner(currentIndex);
-            });
-        });
-    </script>
 </head>
 
 <body>
@@ -165,13 +165,15 @@
     <br><br>
 
     <div class="wrapper">
-        <ul>
-        <li><h3 class="text">최근 올라온 상품</h3></li>
-
-        <li><button onclick="location.href='/product_list'" id="btn" type="button" >| 상품 더 보기 |</button></li>
-    </ul>
+        <ul class="header-list">
+            <li>
+                <h3 class="text">최근 올라온 상품</h3>
+            </li>
+            <li>
+                <button onclick="location.href='/product_list'" id="btn" type="button">상품 더 보기</button>
+            </li>
+        </ul>
         <hr class="line3">
-
 
         <div>
             <tbody class="product">
@@ -195,88 +197,32 @@
         <div class="wrapper">
             <h3 class="text">진행 중인 경매</h3>
             <hr class="line3">
-            <!-- Display auction items -->
             <ul class="auction-list">
-                {% for item in auction_items %}
-                <li>
-                    <div class="item-box" onclick="location.href='/details_of_auction_item/{{key}}/';"
-                        style="cursor:pointer;">
-                        <img src="{{ url_for('static', filename='images/items/' + item.img_path) }}"
-                            alt="{{ item.name }}" width="200px" height="200px">
-
-                        <p class="desc">{{ item.name }}</p>
-                        {% if item.remaining_time is not none %}
-                        <span style="color: red"><span id="remaining-time"></span>
-                            <br>
-                            {% else %}
-                            <p>Auction Completed</p>
-                            {% endif %}
-                    </div>
-                    <div id="auction-variable" class="none">
-                        <div id="key">{{key}}</div>
-                        <div id="start-date" style="display: none;">{{item.startDate}}</div>
-                        <div id="start-time" style="display: none;">{{item.startTime}}</div>
-                        <div id="end-date" style="display: none;">{{item.endDate}}</div>
-                        <div id="end-time" style="display: none;">{{item.endTime}}</div>
-                    </div>
-                </li>
-                {% endfor %}
+                <ul>
+                    {% for item in auction_items %}
+                    <li>
+                        <div class="item-box" onclick="location.href='/details_of_item/{{key}}/';"
+                            style="cursor:pointer;">
+                            <img src="{{ url_for('static', filename='images/items/' + item.img_path) }}"
+                                alt="{{ item.name }}" width="200px" height="200px">
+                            {{ item.name }}<br>
+                            <div class="text1">
+                                {% if item.auction_status == 'Auction Completed' %}
+                                경매 완료
+                                {% else %}
+                                경매 진행 중
+                                {% endif %}
+                            </div>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
             </ul>
         </div>
 
     </div>
     </div>
-    <script>
-        var startDate = document.getElementById("start-date").innerHTML.split("-");
-        var startTime = document.getElementById("start-time").innerHTML.split(":");
-        var endDate = document.getElementById("end-date").innerHTML.split("-");
-        var endTime = document.getElementById("end-time").innerHTML.split(":");
 
-        function remainingTime() {
-            var now = new Date();
-            var open = new Date(parseInt(startDate[0]), parseInt(startDate[1]) - 1, parseInt(startDate[2]), parseInt(startTime[0]), parseInt(startTime[1]));
-            var end = new Date(parseInt(endDate[0]), parseInt(endDate[1]) - 1, parseInt(endDate[2]), parseInt(endTime[0]), parseInt(endTime[1]));
-
-            var nt = now.getTime();
-            var ot = open.getTime();
-            var et = end.getTime();
-
-            var sec, day, hour, min;
-
-            if (nt < ot) { // Before opening
-                sec = parseInt((ot - nt) / 1000);
-                day = parseInt(sec / 60 / 60 / 24);
-                sec = (sec - (day * 60 * 60 * 24));
-                hour = parseInt(sec / 60 / 60);
-                sec = (sec - (hour * 60 * 60));
-                min = parseInt(sec / 60);
-                sec = parseInt(sec - (min * 60));
-                if (hour < 10) { hour = "0" + hour; }
-                if (min < 10) { min = "0" + min; }
-                if (sec < 10) { sec = "0" + sec; }
-
-                document.getElementById("remaining-time").innerHTML = hour + ":" + min + ":" + sec;
-            } else if (nt > et) { // Auction ended
-                document.getElementById("remaining-time").innerHTML = "Auction Completed";
-            } else { // In progress
-                sec = parseInt((et - nt) / 1000);
-                day = parseInt(sec / 60 / 60 / 24);
-                sec = (sec - (day * 60 * 60 * 24));
-                hour = parseInt(sec / 60 / 60);
-                sec = (sec - (hour * 60 * 60));
-                min = parseInt(sec / 60);
-                sec = parseInt(sec - (min * 60));
-                if (hour < 10) { hour = "0" + hour; }
-                if (min < 10) { min = "0" + min; }
-                if (sec < 10) { sec = "0" + sec; }
-
-                document.getElementById("remaining-time").innerHTML = hour + ":" + min + ":" + sec;
-            }
-        }
-
-        remainingTime();
-        setInterval(remainingTime, 1000);
-    </script>
     {% endblock section %}
 </body>
 

@@ -21,6 +21,7 @@
         <p class="count_review">
             {{total}}개의 리뷰
         </p>
+        <input type="button" onclick="location.href='/reg_review/{{id}}/';" id="reg-review" value="등록하기">
 
         <div class="review">
             {% for key, value in row1 %}
@@ -165,7 +166,6 @@
             등록된 리뷰가 없습니다.
         </p>
         {% endif %}
-        <button onclick="location.href='/reg_review/{{id}}/';" style="width: 100px; height: auto;">리뷰등록</button>
     </div>
     {% endblock section %}
 </body>

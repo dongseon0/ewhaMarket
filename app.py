@@ -21,20 +21,21 @@ def hello():
         locals()['data_{}'.format(0)] = dict(list(data.items())[0:5])
     
     # Get auction items
-    auction_items = DB.get_auction_items()
+    auction_items = DB.get_items_with_status()
     auction_items = sorted(auction_items, key=lambda x: x.get('key', ''), reverse=True)
+    
     return render_template(
         "main_page.html",
        data=data.items(),
        row1=locals()['data_0'].items(),
-        auction_items=auction_items
+       auction_items=auction_items
     )
     # return redirect(url_for('view_product_list'))
 
 
 # 상품
 @application.route("/product_list")
-def view_product_list():
+def view_product_list(): 
     # html에 페이지 인덱스 클릭할 때마다 get으로 받아옴
     page = request.args.get("page", 0, type=int)
     category = request.args.get("category", "all")

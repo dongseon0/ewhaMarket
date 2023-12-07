@@ -9,9 +9,7 @@
 <style>
   .wrapper {
     width: 700px;
-    height: 350px;
-    padding: 40px;
-    margin: auto;
+    margin: 75px auto;
     box-sizing: border-box;
   }
 
@@ -29,17 +27,22 @@
     border-radius: 10px;
     border: 1px solid #c4c4c4;
     background-color: #F8F8F8;
+    padding-left: 2%;
   }
 
   #login-form>input[type="submit"] {
     font-size: 16px;
-    background-color:  rgb(221, 227, 192);
+    background-color: rgb(221, 227, 192);
     color: rgb(117, 120, 102);
     border-radius: 10px;
-    border: 3px solid  rgb(221, 227, 192);
-    font-size: 110%;
-    padding : 2%;
-    margin-top: 20px;
+    border: 3px solid rgb(221, 227, 192);
+    margin-top: 15px;
+  }
+
+  #login-form>input[type="submit"]:hover {
+    background-color: rgb(209, 215, 180);
+    color: rgb(122, 125, 103);
+    border: 3px solid rgb(209, 215, 180);
   }
 
   #signup-btn {
@@ -51,11 +54,10 @@
     border: 1px solid #c4c4c4;
     background-color: #F8F8F8;
     font-size: 16px;
-    margin-top: 20px;
+    margin-top: 15px;
   }
 </style>
 <div class="wrapper">
-  <br>
   <h2 id="title">로그인</h2>
   <hr><br>
   <form action="/login_confirm" method="post" id="login-form" style="width: 70%; margin: auto;">

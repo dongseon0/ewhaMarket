@@ -95,6 +95,7 @@ th{
     margin: 2% 7% 0% 7%;
     text-align: left;
     box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+    
 }
 
 .boldtext {
@@ -112,7 +113,7 @@ p {
     background-color: rgb(231, 235, 209);
     padding: 4% 2%;
     margin: 1% 25%;
-    text-align: left;
+    text-align: center;
     line-height: 150%;
     font-size: 18px;
     border-radius: 10px 10px;
@@ -157,12 +158,17 @@ p {
     border: 3px solid rgb(181, 228, 187);
 }
 
+
 #profile {
     float: left;
-    width: 12%;
+    margin-top : 1%;
     margin-right: 4%;
-    border-radius: 70%;
+    border-radius: 50%; /* 50%로 설정하여 동그라미로 만듭니다 */
+    width: 40px; /* 이미지의 크기를 조절할 수 있습니다 */
+    height: 40px; /* 이미지의 크기를 조절할 수 있습니다 */
+    object-fit: cover;
 }
+
 
 #user-id {
     padding-top: 2%;

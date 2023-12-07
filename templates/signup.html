@@ -9,9 +9,7 @@
 <style>
   .wrapper {
     width: 700px;
-    height: 350px;
-    padding: 40px;
-    margin: auto;
+    margin: 75px auto;
     box-sizing: border-box;
   }
 
@@ -29,17 +27,25 @@
     border-radius: 6px;
     border: 1px solid #c4c4c4;
     background-color: #F8F8F8;
+    padding-left: 2%;
   }
 
   #signup-form>input[type="submit"] {
-    color: rgb(36, 81, 100);
     font-size: 16px;
-    background-color: rgb(163, 223, 249, 0.75);
-    margin-top: 20px;
+    background-color: rgb(221, 227, 192);
+    color: rgb(117, 120, 102);
+    border-radius: 10px;
+    border: 3px solid rgb(221, 227, 192);
+    margin-top: 15px;
+  }
+
+  #signup-form>input[type="submit"]:hover {
+    background-color: rgb(209, 215, 180);
+    color: rgb(122, 125, 103);
+    border: 3px solid rgb(209, 215, 180);
   }
 </style>
 <div class="wrapper">
-  <br>
   <h2 id="title">회원가입</h2>
   <hr><br>
   <form method="post" action="/signup_post" id="signup-form" style="width: 70%; margin: auto;">
