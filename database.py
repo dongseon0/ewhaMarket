@@ -323,22 +323,53 @@ class DBhandler:
                 target_value = res.val()
         return target_value
     
+
+     # 상품 가져오기
+    def get_items(self):
+        items = self.db.child("items").get().val()
+        return items
+    
+
+
+    def get_items_with_status(self):
+        items = self.db.child("items").get().val()
+        result = []
+        for key, item in items.items():
+            is_auction = item.get("isAuction")
+        if is_auction is not None:
+            if is_auction:
+                end_datetime = datetime.strptime(item['endDate'] + ' ' + item['endTime'], '%Y-%m-%d %H:%M')
+                current_datetime = datetime.now()
+                if current_datetime > end_datetime:
+                    item['auction_status'] = 'Auction Completed'
+                else:
+                    item['auction_status'] = 'Auction in progress'
+            else:
+                item['auction_status'] = None
+        else:
+            item['auction_status'] = None
+        result.append(item)
+        return result
+
+   
+    """
     def get_auction_items(self):
         response = self.db.child("items").get()
         items = response.val()
 
-        auction_items = []
+        auction_items_not_started = []
+        auction_items_started=[]
 
         for key, item in items.items():
             is_auction = self.get_is_auction_status(key)
 
             if is_auction:
-                end_datetime = datetime.strptime(item['endDate'] + ' ' + item['endTime'], '%Y-%m-%d %H:%M')
+                start_datetime = datetime.strptime(item['startDate'] + ' ' + item['startTime'], '%Y-%m-%d %H:%M')
                 current_datetime = datetime.now()
 
-                if current_datetime <= end_datetime:
-                    remaining_time = end_datetime - current_datetime
-                    item['remaining_time'] = str(remaining_time)
-                    auction_items.append(item)
+                if current_datetime <= start_datetime:
+                    
+                    auction_items_not_started.append(item)
 
         return auction_items
+        """

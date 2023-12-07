@@ -21,8 +21,9 @@ def hello():
         locals()['data_{}'.format(0)] = dict(list(data.items())[0:5])
     
     # Get auction items
-    auction_items = DB.get_auction_items()
+    auction_items = DB.get_items_with_status()
     auction_items = sorted(auction_items, key=lambda x: x.get('key', ''), reverse=True)
+    
     return render_template(
         "main_page.html",
        data=data.items(),
