@@ -12,8 +12,6 @@
             //alert("{{category}}");
             $('#category option:contains("{{category}}")').prop("selected", true);
         });
-
-
     </script>
     <div class="wrapper">
         <div class="text">
@@ -64,14 +62,19 @@
                 <tr>
                     {% for key, value in row1 %}
                     <td>
-                        <div class="item-box" onclick="location.href='/details_of_item/{{key}}/';"
-                            style="cursor:pointer;">
+                        <div class="item-box" onclick="location.href='/details_of_item/{{key}}/';" style="cursor:pointer;">
                             <img src="/static/images/items/{{value.img_path}}" width="200px" height="200px">
                             {% if isAuction.get(key) %}
                             <div class="auction_product">
                                 A
                             </div>
                             <div class="desc">{{value.name}}</div>
+                            {% if value.remaining_time is not none %}
+                            <span style="color: red"><span id="remaining-time"></span>
+                            <br>
+                            {% else %}
+                            <p>Auction Completed</p>
+                            {% endif %}
                             {% else %}
                             <div class="desc">{{value.name}}</div>
                             <div class="price">{{value.fixedPrice}}</div>
@@ -91,8 +94,7 @@
                 <tr>
                     {% for key, value in row2 %}
                     <td>
-                        <div class="item-box" onclick="location.href='/details_of_item/{{key}}/';"
-                            style="cursor:pointer;">
+                        <div class="item-box" onclick="location.href='/details_of_item/{{key}}/';" style="cursor:pointer;">
 
                             <img src="/static/images/items/{{value.img_path}}" width="200px" height="200px">
                             {% if isAuction.get(key) %}
@@ -113,14 +115,14 @@
                 <tr>
                     {% for key, value in row3 %}
                     <td>
-                        <div class="item-box" onclick="location.href='/details_of_item/{{key}}/';"
-                            style="cursor:pointer;">
+                        <div class="item-box" onclick="location.href='/details_of_item/{{key}}/';" style="cursor:pointer;">
                             <img src="/static/images/items/{{value.img_path}}" width="200px" height="200px">
                             {% if isAuction.get(key) %}
                             <div class="auction_product">
                                 A
                             </div>
                             <div class="desc">{{value.name}}</div>
+                            <div class="time">{{value.time}}</div>
                             {% else %}
                             <div class="desc">{{value.name}}</div>
                             <div class="price">{{value.fixedPrice}}</div>
@@ -134,8 +136,8 @@
                 <tr>
                     {% for key, value in row4 %}
                     <td>
-                        <div class="item-box" onclick="location.href='/details_of_item/{{key}}/';"
-                            style="cursor:pointer;">
+                        <div class="item-box" onclick="location.href='/details_of_item/{{key}}/';" style="cursor:pointer;">
+                            <img src="/static/images/items/{{value.img_path}}" width="200px" height="200px">
                             {% if isAuction.get(key) %}
                             <div class="auction_product">
                                 A
