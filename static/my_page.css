@@ -1,10 +1,3 @@
-body {
-  background-image: url('/static/images/background.png');  /*이미지 넣기*/
-  background-repeat: repeat-x;  /*화면에 가득 찰 때까지 반복*/
-  background-size: 450px;
-  margin: 0px;
-}
-
 .wrapper {
   width: 700px;
   cursor: default;
