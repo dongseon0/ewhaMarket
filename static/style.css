@@ -14,6 +14,10 @@
 
 /* 네비게이션 바 디자인 정의 */
 .navbar {
+  position: fixed;
+  top: 0;
+  width: 94%;
+  z-index: 100;
   background-color: rgb(221, 227, 192);
   /* 네비게이션 바 배경색 설정 */
   display: flex;
@@ -21,6 +25,10 @@
   justify-content: space-between;
   /* 좌우에 요소를 분배 */
   padding: 15px 50px;
+}
+
+.empty {
+  padding: 1.5%;
 }
 
 .navbar__logo {
