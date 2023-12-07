@@ -81,6 +81,12 @@ td {
 .blank-box{
     width: 200px; 
     height: 270px;
+    display: inline-block;
+    border: 1px solid;
+    padding: 6px;
+    margin: 2px;
+    border-radius: 10px;
+    box-shadow: 4px 4px 10px;
 }
 
 .item-box {
