@@ -20,7 +20,7 @@
   /* 요소를 가로로 정렬 */
   justify-content: space-between;
   /* 좌우에 요소를 분배 */
-  padding: 15px 50px;
+  padding: 18px 50px;
 }
 
 .navbar__logo {
@@ -59,14 +59,13 @@
 
 /* 호버 효과 (마우스를 메뉴 위로 올릴 때) */
 .navbar__login a:hover {
-  color: rgb(255, 152, 152)
+  color: rgb(255, 161, 117)
   /* 호버 시 텍스트 색상 변경 */
 }
 
 /* 공통 디자인 정의 */
 * {
   cursor: default;
-  /* font-family: Arial, Helvetica, sans-serif; */
   font-family: 'GmarketSansMedium';
 }
 
