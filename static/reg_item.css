@@ -5,8 +5,7 @@
 .wrapper {
     width: 800px;
     cursor: default;
-    margin: auto;
-    margin-top: 7%;
+    margin: 75px auto;
 }
 
 .main-title {
@@ -27,23 +26,18 @@ li {
 }
 
 textarea {
-    width: 275%;
+    width: 231%;
     resize: none;
     padding: 5%;
 }
 
 .input-name {
-    width: 293%;
+    width: 250%;
     padding: 2% 1% 2% 1%;
 }
 
 .input-location {
-    width: 293%;
-    padding: 2% 1% 2% 1%;
-}
-
-.input-tag {
-    width: 293%;
+    width: 250%;
     padding: 2% 1% 2% 1%;
 }
 
@@ -101,8 +95,9 @@ textarea {
     float: right;
     width: 12%;
     padding: 1.3% 0% 1.3% 0%;
+    margin: 2.5% 0% 0% 0%;
 }
 
 hr {
-    border: 1.5px solid rgb(163, 223, 249);
+    border: 1.5px solid rgb(221, 227, 192);
 }
