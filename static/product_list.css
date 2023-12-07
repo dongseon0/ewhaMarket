@@ -47,19 +47,15 @@
 }
 
 .menubar button {
-    border: 1px solid;
+    border: none;
     background-color: #fff;
     outline: none;
-    font-size: 100%;
-    margin-right: 8%;
-    padding: 1%;
+    font-size: 120%;
     cursor: pointer;
-    border-radius: 5px;
-    box-shadow: 3% 3% 3%
 }
 
 .menubar button:hover {
-    background-color: lightgray;
+    text-decoration: underline;
 }
 
 #category{
