@@ -153,10 +153,14 @@ p {
 
 #profile {
     float: left;
-    width: 12%;
+    margin-top : 1%;
     margin-right: 4%;
-    border-radius: 70%;
+    border-radius: 50%; /* 50%로 설정하여 동그라미로 만듭니다 */
+    width: 40px; /* 이미지의 크기를 조절할 수 있습니다 */
+    height: 40px; /* 이미지의 크기를 조절할 수 있습니다 */
+    object-fit: cover;
 }
+
 
 #user-id {
     padding-top: 2%;
