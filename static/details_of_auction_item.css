@@ -95,6 +95,7 @@ th{
     margin: 2% 7% 0% 7%;
     text-align: left;
     box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+    
 }
 
 .boldtext {
@@ -112,7 +113,7 @@ p {
     background-color: rgb(231, 235, 209);
     padding: 4% 2%;
     margin: 1% 25%;
-    text-align: left;
+    text-align: center;
     line-height: 150%;
     font-size: 18px;
     border-radius: 10px 10px;

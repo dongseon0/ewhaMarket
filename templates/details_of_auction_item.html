@@ -27,7 +27,7 @@
                     <a href="/user_reviews/{{data.sellerId}}/"><img src="/static/images/profiles/{{profile_image_path}}"
                             id="profile"></a>
                         <div id="user-id"><a href="/user_reviews/{{data.sellerId}}/" style=" color: rgb(91, 100, 47);
-                                text-decoration: none;">{{data.sellerId}}<a></div> 
+                                text-decoration: none;" id="seller-id">{{data.sellerId}}<a></div> 
                                     <br>
                         <h2>{{data.name}}</h2>
 
@@ -65,26 +65,20 @@
         </div>
 
         <div class="down">
-            <div class="more">
-                <hr style="width:100%">
-            </div>
-
-            <br>
+            <hr>
 
             <div class="comment">
                 <p>
-                <div class="boldtext">상품설명</div>
+                    <div class="boldtext">상품설명</div>
                 {{data.description}}
                 </p>
             </div>
-
             <br>
-
             <div class="auction">
                 <div class="boldtext">경매 참여하기</div>
                 <span style="color: red"><span id="auction-state"></span><span id="remaining-hour"></span><span
                         id="remaining-minute"></span><span id="remaining-second"></span></span><br>
-                현재 가격: <span id="current" style="color: skyblue"></span>
+                현재 가격: <span id="current" style="color: blue"></span>
                 <input class="btn-money" id="btnMoney" type="button" value="">
                 <span>{{winner}}</span>
             </div>
