@@ -32,15 +32,13 @@
             <td>
                 <div style="width: 200px;">
                     <select id="category" name="category" onchange="location=this.value">>
-                        <option value="{{url_for('view_product_list', page=i, category='all')}}">All</option>
-                        <option value="{{url_for('view_product_list', page=i, category='Clothes')}}"> Clothes </option>
-                        <option value="{{url_for('view_product_list', page=i, category='Beauty')}}"> Beauty </option>
-                        <option value="{{url_for('view_product_list', page=i, category='Books')}}"> Books </option>
-                        <option value="{{url_for('view_product_list', page=i, category='Furniture')}}"> Furniture
-                        </option>
-                        <option value="{{url_for('view_product_list', page=i, category='Electronics')}}"> Electronics
-                        </option>
-                        <option value="{{url_for('view_product_list', page=i, category='ETC')}}"> ETC </option>
+                        <option value="{{url_for('view_product_list', page=i, category='all')}}">전체</option>
+                        <option value="{{url_for('view_product_list', page=i, category='Clothes')}}"> 의류 </option>
+                        <option value="{{url_for('view_product_list', page=i, category='Beauty')}}"> 화장품 </option>
+                        <option value="{{url_for('view_product_list', page=i, category='Books')}}"> 책 </option>
+                        <option value="{{url_for('view_product_list', page=i, category='Furniture')}}"> 가구 </option>
+                        <option value="{{url_for('view_product_list', page=i, category='Electronics')}}"> 전자제품 </option>
+                        <option value="{{url_for('view_product_list', page=i, category='ETC')}}"> 기타 </option>
                     </select>
                 </div>
             </td>
