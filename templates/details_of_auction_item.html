@@ -69,15 +69,16 @@
 
             <div class="comment">
                 <p>
-                    <h2>상품설명<h2>
+                    <div class="boldtext">상품설명</div>
                 {{data.description}}
                 </p>
             </div>
+            <br>
             <div class="auction">
-                <h2>경매 참여하기</h2>
+                <div class="boldtext">경매 참여하기</div>
                 <span style="color: red"><span id="auction-state"></span><span id="remaining-hour"></span><span
                         id="remaining-minute"></span><span id="remaining-second"></span></span><br>
-                현재 가격: <span id="current" style="color: skyblue"></span>
+                현재 가격: <span id="current" style="color: blue"></span>
                 <input class="btn-money" id="btnMoney" type="button" value="">
                 <span>{{winner}}</span>
             </div>
