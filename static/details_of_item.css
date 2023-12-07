@@ -1,8 +1,7 @@
 .wrapper {
     width: 1000px;
     cursor: default;
-    margin: auto;
-    margin-top: 3%;
+    margin: 75px auto;
     text-align: center;
 }
 
@@ -63,9 +62,9 @@ td {
     
 }
 
-
-
-
+th{
+    color:  rgb(145, 145, 145);
+ }
 
 .alignleft{
     text-align: left;
