@@ -30,6 +30,32 @@ li {
 }
 
 .file-upload-button {
+    width: 200px;
+    height: 200px;
+    border: solid rgb(208, 208, 208);
+    background-repeat : no-repeat;
+    background-position : 50% 38%;
+    background-size : 40% 40%;
+    background-image: url("/static/images/camera_icon.png");
+    opacity: 0.5;
+    position: relative;
+    float: left;
+}
+
+
+
+.file-upload-text {
+    font-size: 85%;
+    position: absolute;
+    left: 32%;
+    top: 56%;
+}
+
+.input-image {
+    width: 200px;
+    height: 200px;
+    border: solid rgb(208, 208, 208);
+    background-repeat : no-repeat;
 
 }
 
