@@ -120,15 +120,16 @@ p {
 .btn-love {
     background-color:  rgb(221, 227, 192);
     color: rgb(117, 120, 102);
-    border-radius: 5px;
+    border-radius: 10px;
     border: 3px solid  rgb(221, 227, 192);
-    font-size: 100%;
+    font-size: 110%;
+    padding : 2%;
 }
 
 .btn-love:hover {
-    background-color: rgb(192, 197, 166);
-    color: rgb(105, 107, 93);
-    border: 3px solid rgb(192, 197, 166);
+    background-color: rgb(209, 215, 180);
+    color: rgb(122, 125, 103);
+    border: 3px solid rgb(209, 215, 180);
 }
 
 .btn-money {
