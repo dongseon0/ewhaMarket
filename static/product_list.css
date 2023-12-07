@@ -6,8 +6,6 @@
     text-align: center;
 }
 
-
-
 .text {
     text-align: center;
     margin-bottom: 1.5%;
@@ -27,6 +25,7 @@
     list-style: none;
     display: flex;
     /* 메뉴 항목을 가로로 정렬 */
+    align-items: flex-end
 }
 
 .menubar__menu li {
@@ -42,8 +41,8 @@
 }
 
 .menubar__menu a:hover {
-    text-decoration: underline;
-    background-color: skyblue;
+    background-color: #ddd;
+    color: black;
 }
 
 .menubar button {
