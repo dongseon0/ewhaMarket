@@ -157,7 +157,7 @@ class DBhandler:
 
     # 카테고리 별로 상품 가져오기
     def get_items_bycategory(self, cate): 
-        items = self.db.child("item").get() 
+        items = self.db.child("items").get() 
         target_value=[]
         target_key=[]
         for res in items.each(): 

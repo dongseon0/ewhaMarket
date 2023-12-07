@@ -137,10 +137,8 @@
                         <div class="item-box" onclick="location.href='/details_of_item/{{key}}/';" style="cursor:pointer;">
                             <img src="/static/images/items/{{value.img_path}}" width="200px" height="200px">
                             {% if isAuction.get(key) %}
-                            <div class="auction_product">
-                                A
-                            </div>
                             <div class="desc">{{value.name}}</div>
+                            <div class="auction_product">A</div>
                             {% else %}
                             <div class="desc">{{value.name}}</div>
                             <div class="price">{{value.fixedPrice}}</div>
@@ -167,96 +165,6 @@
             등록된 상품이 없습니다.
         </p>
         {% endif %}
-
-
-
-        <!--        <div class="content">
-            <div class="product">
-                <a target="_blank" href="">
-                    <img href="details_of_item.html"
-                        src="https://1801889e95b1f9bf.kinxzone.com/webfile/product/5/5231/209q2e90g00a.jpg"
-                        alt="product1" width="200px" height="200px">
-                </a>
-                <div class="auction_product">
-                    <p>경매</p>
-                </div>
-                <div class="desc">Product 1</div>
-            </div>
-            <div class="product">
-                <a target="_blank" href="">
-                    <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/MTJV3?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=1694014871985"
-                        alt="product2" width="200px" height="200px">
-                </a>
-                <div class="desc">Product 2</div>
-            </div>
-            <div class="product">
-                <a target="_blank" href="">
-                    <img src="img_5terre.jpg" alt="product3" width="200px" height="200px">
-                </a>
-                <div class="desc">Product 3</div>
-            </div>
-            <div class="product">
-                <a target="_blank" href="">
-                    <img src="img_5terre.jpg" alt="product4" width="200px" height="200px">
-                </a>
-                <div class="desc">Product 4</div>
-            </div>
-            <div class="product">
-                <a target="_blank" href="">
-                    <img src="img_5terre.jpg" alt="product5" width="200px" height="200px">
-                </a>
-                <div class="desc">Product 5</div>
-            </div>
-            <div class="product">
-                <a target="_blank" href="">
-                    <img src="img_5terre.jpg" alt="product6" width="200px" height="200px">
-                </a>
-                <div class="desc">Product 6</div>
-            </div>
-            <div class="product">
-                <a target="_blank" href="">
-                    <img src="img_5terre.jpg" alt="product7" width="200px" height="200px">
-                </a>
-                <div class="desc">Product 7</div>
-            </div>
-            <div class="product">
-                <a target="_blank" href="">
-                    <img src="img_5terre.jpg" alt="product8" width="200px" height="200px">
-                </a>
-                <div class="desc">Product 8</div>
-            </div>
-            <div class="product">
-                <a target="_blank" href="">
-                    <img src="img_5terre.jpg" alt="product9" width="200px" height="200px">
-                </a>
-                <div class="desc">Product 9</div>
-            </div>
-            <div class="product">
-                <a target="_blank" href="">
-                    <img src="img_5terre.jpg" alt="product10" width="200px" height="200px">
-                </a>
-                <div class="desc">Product 10</div>
-            </div>
-            <div class="product">
-                <a target="_blank" href="">
-                    <img src="img_5terre.jpg" alt="product11" width="200px" height="200px">
-                </a>
-                <div class="desc">Product 11</div>
-            </div>
-            <div class="product">
-                <a target="_blank" href="">
-                    <img src="img_5terre.jpg" alt="product12" width="200px" height="200px">
-                </a>
-                <div class="desc">Product 12</div>
-            </div>
-        </div>
-        <ul class="pagination">
-            <li><a href="#" class="active">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-        </ul>
-        <hr>
-    -->
     </div>
     {% endblock section %}
 </body>
