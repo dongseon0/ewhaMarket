@@ -28,7 +28,7 @@ def hello():
         "main_page.html",
        data=data.items(),
        row1=locals()['data_0'].items(),
-        auction_items=auction_items
+       auction_items=auction_items
     )
     # return redirect(url_for('view_product_list'))
 
