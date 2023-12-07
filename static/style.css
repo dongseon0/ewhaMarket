@@ -1,52 +1,41 @@
-/* 네비게이션 바 디자인 정의 */
-#navbar-gra {
-  height: 10px;
-  background-image: linear-gradient(to bottom, rgb(207, 207, 207), white);
+@font-face {
+  font-family: 'GmarketSansBold';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
 
+@font-face {
+  font-family: 'GmarketSansMedium';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* 네비게이션 바 디자인 정의 */
 .navbar {
-  background-color: white;
+  background-color: rgb(221, 227, 192);
   /* 네비게이션 바 배경색 설정 */
   display: flex;
   /* 요소를 가로로 정렬 */
   justify-content: space-between;
   /* 좌우에 요소를 분배 */
-  padding: 10px 40px;
-  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
+  padding: 15px 50px;
+}
+
+.navbar__logo {
+  display: flex;
+  align-items: center;
+  /* 수직 가운데 정렬 */
 }
 
 .navbar__logo a {
-  font-size: 20px;
-  /* 폰트 크기 설정 */
   text-decoration: none;
   /* 밑줄 제거 */
-  color: black;
+  color: rgb(117, 120, 102);
   /* 텍스트 색상 설정 */
-}
-
-.navbar__menu {
-  list-style: none;
-  /* 점 제거 */
-  display: flex;
-  /* 요소를 가로로 정렬 */
-}
-
-.navbar__menu li {
-  margin: 0px 15px;
-  /* 메뉴 간격 설정 */
-}
-
-.navbar__menu a {
-  text-decoration: none;
-  /* 밑줄 제거 */
-  color: black;
-  /* 텍스트 색상 설정 */
-}
-
-/* 호버 효과 (마우스를 메뉴 위로 올릴 때) */
-.navbar__menu a:hover {
-  color: rgb(85, 172, 209);
-  /* 호버 시 텍스트 색상 변경 */
+  font-size: 140%;
+  font-family: 'GmarketSansBold';
 }
 
 .navbar__login {
@@ -57,22 +46,20 @@
 }
 
 .navbar__login li {
-  margin-left: 15px;
-  /* 메뉴 간격 설정 */
-  margin-right: 15px;
+  margin: 0px 15px;
   /* 메뉴 간격 설정 */
 }
 
 .navbar__login a {
   text-decoration: none;
   /* 밑줄 제거 */
-  color: black;
+  color: rgb(117, 120, 102);
   /* 텍스트 색상 설정 */
 }
 
 /* 호버 효과 (마우스를 메뉴 위로 올릴 때) */
 .navbar__login a:hover {
-  color: rgb(85, 172, 209);
+  color: rgb(255, 152, 152)
   /* 호버 시 텍스트 색상 변경 */
 }
 
@@ -80,10 +67,14 @@
 * {
   cursor: default;
   /* font-family: Arial, Helvetica, sans-serif; */
-  font-family: 'NanumSquareBold', Arial;
+  font-family: 'GmarketSansMedium';
 }
 
 hr {
-  border: 1.5px solid rgb(163, 223, 249);
-  width:100%;
+  border: 3px solid rgb(208, 208, 208);
+  width: 100%;
+}
+
+body {
+  margin: 0px;
 }

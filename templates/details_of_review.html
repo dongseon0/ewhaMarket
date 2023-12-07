@@ -9,7 +9,7 @@
         }
 
         .stars {
-            color: rgb(163, 223, 249);
+            color: rgb(117, 120, 102);
             font-size: 150%;
             padding-left: 15%;
         }
@@ -39,7 +39,7 @@
         #review-contents {
             width: 80%;
 
-            background-color: rgb(226, 226, 226);
+            background-color: rgb(236, 236, 236);
             border-radius: 10px;
             color: rgb(91, 91, 91);
             margin: auto;
@@ -60,7 +60,7 @@
             float: left;
             width: 10%;
 
-            background-color: rgb(226, 226, 226);
+            background-color: rgb(236, 236, 236);
             border: none;
             border-radius: 5px;
             color: rgb(91, 91, 91);
@@ -130,13 +130,11 @@
             <span class="star" id="3">★</span>
             <span class="star" id="4">★</span>
         </div>
-        <hr>
         <img src="/static/images/reviews/{{data.img_path}}" id="product-image">
         <div id="product-image-check">{{data.img_path}}</div>
         <br>
         <div id="review-contents">{{data.reviewContents}}</div>
         <br>
-        <hr>
         <button name="good" id="good">👍 {{good}}</button>
         <button name="bad" id="bad">👎 {{bad}}</button>
     </div>
@@ -254,7 +252,7 @@
                 }
             });
         };
-        
+
         if (document.getElementById("product-image-check").innerHTML == "") {
             document.getElementById("product-image").style.display = "none";
         }
