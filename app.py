@@ -67,11 +67,9 @@ def view_product_list():
     tot_count = len(data)
     for i in range(row_count):  # last row
         if (i == row_count-1) and (tot_count % per_row != 0):
-            locals()['data_{}'.format(i)] = dict(
-                list(data.items())[i*per_row:])
+            locals()['data_{}'.format(i)] = dict(list(data.items())[i*per_row:])
         else:
-            locals()['data_{}'.format(i)] = dict(
-                list(data.items())[i*per_row:(i+1)*per_row])
+            locals()['data_{}'.format(i)] = dict(list(data.items())[i*per_row:(i+1)*per_row])
 
     empty_cells = per_row - item_counts%per_row if per_row > item_counts%per_page else 0
     

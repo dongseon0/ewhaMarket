@@ -6,6 +6,8 @@
     text-align: center;
 }
 
+
+
 .text {
     text-align: center;
     margin-bottom: 1.5%;
@@ -102,6 +104,18 @@ table{
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.price {
+    margin-top: 5%;
+    margin-bottom: 7%;
+    max-width: 95%; /* Adjust as needed */
+    margin-left: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: right;
+    color: blue;
 }
 
 .item-box:hover {
