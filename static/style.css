@@ -17,7 +17,6 @@
   position: fixed;
   top: 0;
   width: 94%;
-  z-index: 100;
   background-color: rgb(221, 227, 192);
   /* 네비게이션 바 배경색 설정 */
   display: flex;
