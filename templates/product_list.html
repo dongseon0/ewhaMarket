@@ -81,7 +81,7 @@
                         </div>
                     </td>
                     {% endfor %}
-                    {% if page == page_count + 1 %}
+                    {% if page_count == page + 1 %}
                     {% for _ in range(empty_cells) %}
                     <td>
                         <div class="blank-box"></div>
