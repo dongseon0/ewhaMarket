@@ -10,13 +10,8 @@
 }
 
 .line1 {
-    border: 1.5px solid rgb(163, 223, 249);
+    border: 1.5px solid rgb(208, 208, 208);
     width: 100%;
-}
-
-.line2 {
-    border: 0.5px solid rgb(38, 83, 103);
-    width: 90%;
 }
 
 table{
