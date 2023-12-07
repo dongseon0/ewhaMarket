@@ -101,10 +101,10 @@
 
     {% block section %}
     <div class="review">
-        <a href="/user_reviews/{{data.buyerId}}/" id="profile-link">
+        <a href="/user_list/{{data.buyerId}}/" id="profile-link">
             <img src="/static/images/profiles/{{profile_image_path}}" id="profile">
         </a>
-        <div id="user-id"><a href="/user_reviews/{{data.buyerId}}/">{{data.buyerId}}<a></div>
+        <div id="user-id"><a href="/user_list/{{data.buyerId}}/">{{data.buyerId}}<a></div>
         <div id="review-title">{{data.reviewTitle}}</div>
         <div class="stars">
             <div id="stars-variable">{{data.starsVariable}}</div>
