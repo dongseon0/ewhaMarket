@@ -34,7 +34,7 @@
   /* 밑줄 제거 */
   color: rgb(117, 120, 102);
   /* 텍스트 색상 설정 */
-  font-size: 140%;
+  font-size: 160%;
   font-family: 'GmarketSansBold';
 }
 
@@ -55,6 +55,7 @@
   /* 밑줄 제거 */
   color: rgb(117, 120, 102);
   /* 텍스트 색상 설정 */
+  font-size: 110%;
 }
 
 /* 호버 효과 (마우스를 메뉴 위로 올릴 때) */
