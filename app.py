@@ -13,9 +13,7 @@ DB = DBhandler()
 @application.route("/")
 def hello():
     # return render_template("index.html")
-    # 메인페이지로 바꿉니다
-    return render_template("mainpage.html")
-    #return redirect(url_for('view_product_list'))
+    return redirect(url_for('view_product_list'))
 
 
 # 상품
