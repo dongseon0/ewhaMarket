@@ -24,7 +24,7 @@
                 <li><a href="">경매</a></li>
                 <li><a href="">일반 결제</a></li>
             </ul>
-            <button onclick="location.href='reg_item'" type="button">| 상품 등록하기 |</button>
+            <button onclick="location.href='reg_item'" type="button"> 상품 등록하기 </button>
         </div>
 
 
@@ -81,11 +81,13 @@
                         </div>
                     </td>
                     {% endfor %}
+                    {% if page == page_count + 1 %}
                     {% for _ in range(empty_cells) %}
                     <td>
                         <div class="blank-box"></div>
                     </td>
                     {% endfor %}
+                    {% endif %}
                 </tr>
             </tbody>
             <tbody class="product">
