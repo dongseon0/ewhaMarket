@@ -136,9 +136,11 @@
 }
 
 #reg-review {
-    float: right;
     width: 11%;
     height: 30px;
+    position: relative;
+    right: -275px;
+    bottom: 45px;
 
     background-color: rgb(221, 227, 192);
     border: none;
