@@ -130,8 +130,8 @@ p {
     color: rgb(117, 120, 102);
     border-radius: 10px;
     border: 3px solid rgb(221, 227, 192);
-    font-size: 110%;
-    padding: 2%;
+    font-size: 16px;
+    padding: 1% 2%;
     box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
 }
 
@@ -180,6 +180,7 @@ p {
 }
 
 #delete {
+    height: 30px;
     width: 10%;
     background-color: rgb(221, 227, 192);
     border: none;
@@ -187,7 +188,7 @@ p {
     color: rgb(117, 120, 102);
     font-size: 95%;
     margin: 4%;
-    padding: 0.5% 0%;
+    padding-top: 6px;
     box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
 }
 
