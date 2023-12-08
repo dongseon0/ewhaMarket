@@ -81,6 +81,16 @@ td {
     padding: 5px;
 }
 
+.table-head td{
+    width: 200px;
+    display: inline-block;
+    border: 1px solid;
+    padding: 6px;
+    margin: 2px;
+    box-shadow: 4px 4px 10px;
+    visibility: hidden;
+}
+
 .blank-box {
     width: 200px;
     height: 270px;
@@ -119,6 +129,14 @@ td {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.status{
+    margin-top: 9px;
+    margin-bottom: 7px;
+    max-width: 95%;
+    margin-left: 5px;
+    color: #757866;
 }
 
 .auction_product {
