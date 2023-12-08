@@ -13,29 +13,33 @@ DB = DBhandler()
 # 메인
 @application.route("/")
 def hello():
-    # Get recent items
-    data = DB.get_items()
+    # 최근 등록된 상품(경매 제외)
+    data = DB.get_non_auction_items()
     data = dict(sorted(data.items(), key=lambda x: x[0], reverse=True))
     for i in range(5):
         locals()['data_{}'.format(0)] = dict(list(data.items())[0:5])
     
-    # Get auction items
+    
+    # 경매 상품
     auction_items = DB.get_items_with_status()
     auction_items = sorted(auction_items, key=lambda x: x.get('key', ''), reverse=True)
-    
+
     item_counts = len(data)
     auction_item_counts = len(auction_items)
 
     empty_cells = 5 - item_counts if 5 > item_counts else 0
     auction_empty_cells = 5 - auction_item_counts if 5 > auction_item_counts else 0
 
+    # Extract only the first row of auction items
+    row1_auction_items = auction_items[-5:]
+
     return render_template(
         "main_page.html",
-       data=data.items(),
-       row1=locals()['data_0'].items(),
-       auction_items=auction_items,
-       empty_cells = empty_cells,
-       auction_empty_cells = auction_empty_cells
+        data=data.items(),
+        row1=locals()['data_0'].items(),
+        row1_auction_items=row1_auction_items,  # Display only the first row of auction items
+        empty_cells=empty_cells,
+        auction_empty_cells=auction_empty_cells
     )
 
 

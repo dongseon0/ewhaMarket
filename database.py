@@ -73,7 +73,7 @@ class DBhandler:
             "quantity": data["quantity"],
             "category": data["category"],
             "phone": data["phone"],
-            "img_path": img_path
+            "img_path": img_path,
         }
         if data["select-status-button"] == "new":
             item_info["status"] = "새 상품"
@@ -351,29 +351,20 @@ class DBhandler:
                 target_value = res.val()
         return target_value
 
-     # 상품 가져오기
 
-    def get_items(self):
-        items = self.db.child("items").get().val()
-        return items
+    def get_non_auction_items(self):
+        # Get items excluding those with auction status
+        items = self.get_items()
+        non_auction_items = {key: value for key, value in items.items() if not self.get_is_auction_status(key)}
+        return non_auction_items
 
     def get_items_with_status(self):
-        items = self.db.child("items").get().val()
-        result = []
-        for key, item in items.items():
-            is_auction = item.get("isAuction")
-        if is_auction is not None:
-            if is_auction:
-                end_datetime = datetime.strptime(
-                    item['endDate'] + ' ' + item['endTime'], '%Y-%m-%d %H:%M')
-                current_datetime = datetime.now()
-                if current_datetime > end_datetime:
-                    item['auction_status'] = 'Auction Completed'
-                else:
-                    item['auction_status'] = 'Auction in progress'
-            else:
-                item['auction_status'] = None
-        else:
-            item['auction_status'] = None
-        result.append(item)
-        return result
+        # Get items with auction status
+        items = self.get_items()
+        auction_items = [value for key, value in items.items() if self.get_is_auction_status(key)]
+        
+        return auction_items
+    
+    
+  
+  
