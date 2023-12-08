@@ -282,7 +282,7 @@ def set_auction(key, sellerId, selectRisingPrice):
 
 @application.route("/delete_item/<key>/<sellerId>/")
 def delete_item(key, sellerId):
-    DB.delete_bykey(key, sellerId)
+    DB.delete_item_bykey(key, sellerId)
     return redirect(url_for('view_product_list'))
 
 
@@ -320,6 +320,13 @@ def view_details_of_review(key, sellerId):
     bad = DB.get_review_bad_bykey(key, sellerId)
     profile_image_path = DB.get_profile_image_path_byid(data.get('buyerId'))
     return render_template("details_of_review.html", data=data, key=key, sellerId=sellerId, good=good, bad=bad, profile_image_path=profile_image_path)
+
+
+# 리뷰 삭제하기
+@application.route("/delete_review/<key>/<sellerId>/")
+def delete_review(key, sellerId):
+    DB.delete_review_bykey(key, sellerId)
+    return redirect(url_for('view_user_reviews', id=sellerId))
 
 
 # 리뷰 상세보기에서 하트 불러오기

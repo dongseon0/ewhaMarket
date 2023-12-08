@@ -128,7 +128,7 @@ class DBhandler:
         return target_value
 
     # 상품 삭제
-    def delete_bykey(self, key, sellerId):
+    def delete_item_bykey(self, key, sellerId):
         self.db.child("users").child(sellerId).child(
             "user_list").child(key).remove()
         hearts = self.db.child("items").child(key).child("hearts").get()
@@ -256,6 +256,11 @@ class DBhandler:
             if key_value == key:
                 target_value = res.val()
         return target_value
+    
+    # 특정 리뷰 삭제하기
+    def delete_review_bykey(self, key, sellerId):
+        self.db.child("users").child(sellerId).child("user_reviews").child(key).remove()
+        return True
 
     # 특정 아이디의 리뷰들을 데이터베이스에서 불러오기
     def get_reviews(self, sellerId):

@@ -90,6 +90,24 @@
         #good:hover {
             background-color: rgb(198, 198, 198);
         }
+
+        #delete {
+            float: right;
+            width: 10%;
+
+            background-color: rgb(221, 227, 192);
+            border: none;
+            border-radius: 5px;
+            color: rgb(117, 120, 102);
+            font-size: 95%;
+            margin: 1%;
+            padding: 1% 0%;
+        }
+
+        #delete:hover {
+            background-color: rgb(209, 215, 180);
+            color: rgb(105, 107, 93);
+        }
     </style>
 </head>
 
@@ -118,6 +136,8 @@
         <br>
         <button name="good" id="good">👍 {{good}}</button>
         <button name="bad" id="bad">👎 {{bad}}</button>
+        <input type="button" onclick="location.href='/delete_review/{{key}}/{{data.sellerId}}/';" value="삭제하기"
+            id="delete">
     </div>
 
     <script>
@@ -216,6 +236,10 @@
 
         if ("{{data.img_path}}" == "empty.jpeg") {
             document.getElementById("product-image").style.display = "none";
+        }
+
+        if ("{{session['id']}}" != "{{data.buyerId}}") {
+            document.getElementById("delete").style.display = "none";
         }
     </script>
     {% endblock section %}
