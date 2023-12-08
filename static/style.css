@@ -76,6 +76,10 @@
 }
 
 /* 공통 디자인 정의 */
+body {
+  overflow-x: hidden;
+}
+
 * {
   cursor: default;
   font-family: 'GmarketSansMedium';
