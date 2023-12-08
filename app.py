@@ -14,7 +14,6 @@ DB = DBhandler()
 @application.route("/")
 def hello():
     # Get recent items
-
     data = DB.get_items()
     data = dict(sorted(data.items(), key=lambda x: x[0], reverse=True))
     for i in range(5):
@@ -30,7 +29,6 @@ def hello():
        row1=locals()['data_0'].items(),
        auction_items=auction_items
     )
-    # return redirect(url_for('view_product_list'))
 
 
 # 상품
@@ -387,7 +385,7 @@ def my_wish(id):
     row_count = int(per_page / per_row)
     start_idx = per_page * page
     end_idx = per_page * (page + 1)
-    data = DB.get_lists(id)  # 테이블 읽기
+    data = DB.get_items_byheart(id)  # 테이블 읽기
     if not data:
         data = {}
         item_counts = 0
