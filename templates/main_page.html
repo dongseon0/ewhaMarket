@@ -166,7 +166,88 @@
             color: #757866;
 
         }
+        .price1 {
+            margin-top: 2px;
+            margin-bottom: 7%;
+            max-width: 95%;
+            /* Adjust as needed */
+            margin-left: 14px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: #757866;
+            font-size: 10px;
+
+        }
     </style>
+ <script>
+    function remainingTime(element) {
+        var startDate = element.getAttribute('data-start-date').split("-");
+        var startTime = element.getAttribute('data-start-time').split(":");
+        var endDate = element.getAttribute('data-end-date').split("-");
+        var endTime = element.getAttribute('data-end-time').split(":");
+        
+        var now = new Date();
+        var open = new Date(Number(startDate[0]), Number(startDate[1]) - 1, Number(startDate[2]), Number(startTime[0]), Number(startTime[1]));
+        var end = new Date(Number(endDate[0]), Number(endDate[1]) - 1, Number(endDate[2]), Number(endTime[0]), Number(endTime[1]));
+       
+            var nt = now.getTime();
+            var ot = open.getTime();
+            var et = end.getTime();
+
+            if (parseInt(nt) < parseInt(ot)) { // 오픈 전
+            
+                sec = parseInt(ot - nt) / 1000;
+                day = parseInt(sec / 60 / 60 / 24);
+                sec = (sec - (day * 60 * 60 * 24));
+                hour = parseInt(sec / 60 / 60);
+                sec = (sec - (hour * 60 * 60));
+                min = parseInt(sec / 60);
+                sec = parseInt(sec - (min * 60));
+                if (hour < 10) { hour = "0" + hour; }
+                if (min < 10) { min = "0" + min; }
+                if (sec < 10) { sec = "0" + sec; }
+
+                if (day > 0)
+                    element.innerHTML = "오픈까지 " + day + "일 " + hour + "시간 " + min + "분 " + sec + "초";
+                else
+                    element.innerHTML = "오픈까지 " + hour + "시간 " + min + "분 " + sec + "초";
+            } else if (parseInt(nt) > parseInt(et)) { // 종료
+                auctionState = false;
+                element.innerHTML = "종료되었습니다."
+            } else { // 진행 중
+                auctionState = true;
+                sec = parseInt(et - nt) / 1000;
+                day = parseInt(sec / 60 / 60 / 24);
+                sec = (sec - (day * 60 * 60 * 24));
+                hour = parseInt(sec / 60 / 60);
+                sec = (sec - (hour * 60 * 60));
+                min = parseInt(sec / 60);
+                sec = parseInt(sec - (min * 60));
+                if (hour < 10) { hour = "0" + hour; }
+                if (min < 10) { min = "0" + min; }
+                if (sec < 10) { sec = "0" + sec; }
+
+                if (day > 0)
+                    element.innerHTML = "남은 시간: " + day + "일 " + hour + "시간 " + min + "분 " + sec + "초";
+                else
+                    element.innerHTML = "남은 시간: " + hour + "시간 " + min + "분 " + sec + "초";
+            }
+        }
+        
+    document.addEventListener("DOMContentLoaded", function() {
+        var auctionStates = document.querySelectorAll('.auction-state');
+        auctionStates.forEach(function(element) {
+            remainingTime(element);
+            setInterval(function() {
+                remainingTime(element);
+            }, 1000);
+        });
+    });
+</script>
+
+
+
 </head>
 
 <body>
@@ -218,32 +299,23 @@
         </ul>
         <hr class="line3">
 
-        <div class="auction-list">
+        <div class="product">
             <tr>
-                {% for item in row1_auction_items|reverse %}
-                <td>
-                    <div class="item-box" onclick="location.href='/details_of_item/{{key}}/';" style="cursor:pointer;">
-                        <img src="{{ url_for('static', filename='images/items/' + item.img_path) }}"
-                            alt="{{ item.name }}" width="200px" height="200px">
-                        <div class="desc">
-                            {{item.name}}
-                        </div>
-                        <div class="text1">
-                            {% if item.auctionDescribe == 'pre' %}
-                            경매 시작 전
-                            {% elif item.auctionDescribe == 'cont' %}
-                            경매 진행 중
-                            {% else %}
-                            경매 완료
-                            {% endif %}
-                        </div>
-                    </div>
-                </td>
-                {% endfor %}
-
-            </tr>
-        </div>
-
+                    {% for item in row1_auction_items | reverse %}
+                        <td>
+                            <div class="item-box" onclick="location.href='/details_of_auction_item/{{item.key}}/';" style="cursor: pointer;">
+                                <img src="{{ url_for('static', filename='images/items/' + item.img_path) }}" alt="{{ item.name }}" width="200px" height="200px">
+                                <div class="desc">
+                                    {{ item.name }}
+                                </div>
+                                <div class="price1">
+                                <span class="auction-state" data-start-date="{{ item.startDate }}" data-start-time="{{ item.startTime }}" data-end-date="{{ item.endDate }}" data-end-time="{{ item.endTime }}"></span>
+                            </div>
+                            </div>
+                        </td>
+                    {% endfor %}
+                </tr>
+            </div>
     </div>
     {% endblock section %}
 
