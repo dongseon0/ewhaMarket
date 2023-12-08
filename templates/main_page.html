@@ -149,10 +149,21 @@
         ul.header-list li {
             list-style: none;
         }
+        .price {
+    margin-top: 2px;
+    margin-bottom: 7%;
+    max-width: 95%;
+    /* Adjust as needed */
+    margin-left: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #757866;
+    
+}
+
     </style>
-
-
-</head>
+    </head>
 
 <body>
     {% extends "index.html" %}
@@ -182,58 +193,55 @@
                         <div class="desc">
                             {{value.name}}
                         </div>
+                        <div class="price">{{value.fixedPrice}}원</div>
+                            
                     </div>
                 </td>
                 {% endfor %}
-                {% for _ in range(empty_cells) %}
-                <td>
-                    <div class="blank-box"></div>
-                </td>
-                {% endfor %}
+               
             </tr>
         </div>
-
+        
         <br><br>
-
+        
         <ul class="header-list">
             <li>
-                <h3 class="text">진행 중인 경매</h3>
+                <h3 class="text">경매 list</h3>
             </li>
             <li>
-                <button onclick="location.href='/auction_list'" id="btn" type="button">상품 더보기</button>
+                <button onclick="location.href='/auction_list'" id="btn" type="button">경매 더보기</button>
             </li>
         </ul>
         <hr class="line3">
-
+        
         <div class="auction-list">
             <tr>
-                {% for item in auction_items %}
+                {% for item in row1_auction_items|reverse %}
                 <td>
-                    <div class="item-box" onclick="location.href='/details_of_item/{{key}}/';" style="cursor:pointer;">
-                        <img src="{{ url_for('static', filename='images/items/' + item.img_path) }}"
-                            alt="{{ item.name }}" width="200px" height="200px">
+                    <div class="item-box" onclick="location.href='/details_of_item/{{key}}/';"  style="cursor:pointer;">
+                        <img src="{{ url_for('static', filename='images/items/' + item.img_path) }}" alt="{{ item.name }}" width="200px" height="200px">
                         <div class="desc">
                             {{item.name}}
                         </div>
                         <div class="text1">
-                            {% if item.auction_status == 'Auction Completed' %}
-                            경매 완료
+                            {% if item.auctionDescribe == 'pre' %}
+                                경매 시작 전
+                            {% elif item.auctionDescribe == 'cont' %}
+                                경매 진행 중
                             {% else %}
-                            경매 진행 중
+                                경매 완료
                             {% endif %}
                         </div>
                     </div>
                 </td>
                 {% endfor %}
-                {% for _ in range(auction_empty_cells) %}
-                <td>
-                    <div class="blank-box"></div>
-                </td>
-                {% endfor %}
+                
             </tr>
         </div>
+        
     </div>
     {% endblock section %}
+    
 </body>
 
 </html>
