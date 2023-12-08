@@ -75,8 +75,8 @@
             <br>
             <div class="auction">
                 <div class="boldtext">경매 참여하기</div>
-                <span style="color: red"><span id="auction-state"></span><span id="remaining-hour"></span><span
-                        id="remaining-minute"></span><span id="remaining-second"></span></span><br>
+                <span style="color: red"><span id="auction-state"></span></span>
+                <br>
                 현재 가격: <span id="current" style="color: blue"></span>
                 <input class="btn-money" id="btnMoney" type="button" value="">
                 <span>{{winner}}</span>
@@ -113,7 +113,6 @@
 
         btnMoney = document.getElementById("btnMoney");
         btnMoney.addEventListener("click", auction);
-
         // 버튼 이름 바꾸기
         if (risingPrice == 1000) {
             btnMoney.value = "▲천원"
@@ -151,16 +150,13 @@
                 if (min < 10) { min = "0" + min; }
                 if (sec < 10) { sec = "0" + sec; }
 
-                document.getElementById("auction-state").innerHTML = "오픈까지 "
-                document.getElementById("remaining-hour").innerHTML = hour + "시간 ";
-                document.getElementById("remaining-minute").innerHTML = min + "분 ";
-                document.getElementById("remaining-second").innerHTML = sec + "초";
+                if (day > 0)
+                    document.getElementById("auction-state").innerHTML = "남은 시간: " + day + "일 " + hour + "시간 " + min + "분 " + sec + "초";
+                else
+                    document.getElementById("auction-state").innerHTML = "남은 시간: " + hour + "시간 " + min + "분 " + sec + "초";
             } else if (parseInt(nt) > parseInt(et)) { // 종료
                 auctionState = false;
                 document.getElementById("auction-state").innerHTML = "종료되었습니다."
-                document.getElementById("remaining-hour").innerHTML = "";
-                document.getElementById("remaining-minute").innerHTML = "";
-                document.getElementById("remaining-second").innerHTML = "";
             } else { // 진행 중
                 auctionState = true;
                 sec = parseInt(et - nt) / 1000;
@@ -174,10 +170,10 @@
                 if (min < 10) { min = "0" + min; }
                 if (sec < 10) { sec = "0" + sec; }
 
-                document.getElementById("auction-state").innerHTML = "남은 시간: "
-                document.getElementById("remaining-hour").innerHTML = hour + "시간 ";
-                document.getElementById("remaining-minute").innerHTML = min + "분 ";
-                document.getElementById("remaining-second").innerHTML = sec + "초";
+                if (day > 0)
+                    document.getElementById("auction-state").innerHTML = "남은 시간: " + day + "일 " + hour + "시간 " + min + "분 " + sec + "초";
+                else
+                    document.getElementById("auction-state").innerHTML = "남은 시간: " + hour + "시간 " + min + "분 " + sec + "초";
             }
         }
         remaingTime();
