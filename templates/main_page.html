@@ -69,7 +69,6 @@
             visibility: hidden;
         }
 
-
         /*상품 이름 길이 제한*/
         .desc {
             margin-top: 5%;
@@ -154,21 +153,21 @@
         ul.header-list li {
             list-style: none;
         }
-        .price {
-    margin-top: 2px;
-    margin-bottom: 7%;
-    max-width: 95%;
-    /* Adjust as needed */
-    margin-left: 14px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    color: #757866;
-    
-}
 
+        .price {
+            margin-top: 2px;
+            margin-bottom: 7%;
+            max-width: 95%;
+            /* Adjust as needed */
+            margin-left: 14px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: #757866;
+
+        }
     </style>
-    </head>
+</head>
 
 <body>
     {% extends "index.html" %}
@@ -199,16 +198,16 @@
                             {{value.name}}
                         </div>
                         <div class="price">{{value.fixedPrice}}원</div>
-                            
+
                     </div>
                 </td>
                 {% endfor %}
-               
+
             </tr>
         </div>
-        
+
         <br><br>
-        
+
         <ul class="header-list">
             <li>
                 <h3 class="text">최근 올라온 경매</h3>
@@ -218,35 +217,36 @@
             </li>
         </ul>
         <hr class="line3">
-        
+
         <div class="auction-list">
             <tr>
                 {% for item in row1_auction_items|reverse %}
                 <td>
-                    <div class="item-box" onclick="location.href='/details_of_item/{{key}}/';"  style="cursor:pointer;">
-                        <img src="{{ url_for('static', filename='images/items/' + item.img_path) }}" alt="{{ item.name }}" width="200px" height="200px">
+                    <div class="item-box" onclick="location.href='/details_of_item/{{key}}/';" style="cursor:pointer;">
+                        <img src="{{ url_for('static', filename='images/items/' + item.img_path) }}"
+                            alt="{{ item.name }}" width="200px" height="200px">
                         <div class="desc">
                             {{item.name}}
                         </div>
                         <div class="text1">
                             {% if item.auctionDescribe == 'pre' %}
-                                경매 시작 전
+                            경매 시작 전
                             {% elif item.auctionDescribe == 'cont' %}
-                                경매 진행 중
+                            경매 진행 중
                             {% else %}
-                                경매 완료
+                            경매 완료
                             {% endif %}
                         </div>
                     </div>
                 </td>
                 {% endfor %}
-                
+
             </tr>
         </div>
-        
+
     </div>
     {% endblock section %}
-    
+
 </body>
 
 </html>
