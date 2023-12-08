@@ -21,7 +21,7 @@
         <p class="count_review">
             {{total}}개의 리뷰
         </p>
-        <input type="button" onclick="location.href='/reg_review/{{id}}/';" id="reg-review" value="등록하기">
+        <input type="button" onclick="regReview()" id="reg-review" value="등록하기">
 
         <div class="review">
             {% for key, value in row1 %}
@@ -167,5 +167,16 @@
         </p>
         {% endif %}
     </div>
+
+    <script>
+        function regReview() {
+            if ("{{session['id']}}" == "{{id}}")
+            {
+                alert("나에게는 리뷰를 달 수 없습니다.")
+            } else {
+                location.href = '/reg_review/{{id}}/'
+            }
+        }
+    </script>
     {% endblock section %}
 </body>
