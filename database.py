@@ -163,13 +163,14 @@ class DBhandler:
         items = self.db.child("users").child(id).child("user_wish").get()
         target_value = []
         target_key = []
-        for res in items.each():
-            value = res.val()
-            key_value = res.key()
-            if value['interested'] == "Y":
-                target_key.append(key_value)
-                target_value.append(self.db.child(
-                    "items").child(key_value).get().val())
+        if items.each():
+            for res in items.each():
+                value = res.val()
+                key_value = res.key()
+                if value['interested'] == "Y":
+                    target_key.append(key_value)
+                    target_value.append(self.db.child(
+                        "items").child(key_value).get().val())
         new_dict = {}
         for k, v in zip(target_key, target_value):
             new_dict[k] = v
