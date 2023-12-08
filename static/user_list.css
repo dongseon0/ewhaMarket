@@ -70,7 +70,8 @@ table{
 /*상품 개수 표시*/
 .count_list {
     font-size: 13px;
-    padding-right: 550px;
+    width: 100px;
+    padding-right: 500px;
 }
 
 /*상품 사진
