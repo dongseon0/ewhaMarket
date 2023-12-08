@@ -229,6 +229,9 @@ class DBhandler:
     # 리뷰
     # 리뷰 데이터베이스에 등록하기
     def reg_review(self, data, img_path, buyerId, sellerId):
+        if img_path == "":
+            img_path = "empty.jpeg"
+        
         review_info = {
             "sellerId": sellerId,
             "buyerId": buyerId,

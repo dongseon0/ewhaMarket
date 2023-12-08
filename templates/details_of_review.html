@@ -47,10 +47,6 @@
             object-fit: cover;
         }
 
-        #product-image-check {
-            display: none;
-        }
-
         #review-contents {
             width: 80%;
 
@@ -117,7 +113,6 @@
         </div>
         <hr>
         <img src="/static/images/reviews/{{data.img_path}}" id="product-image">
-        <div id="product-image-check">{{data.img_path}}</div>
         <br>
         <div id="review-contents">{{data.reviewContents}}</div>
         <br>
@@ -219,7 +214,7 @@
 
         showHeart();
 
-        if (document.getElementById("product-image-check").innerHTML == "") {
+        if ("{{data.img_path}}" == "empty.jpeg") {
             document.getElementById("product-image").style.display = "none";
         }
     </script>
