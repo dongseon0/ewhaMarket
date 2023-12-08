@@ -151,9 +151,9 @@
                 if (sec < 10) { sec = "0" + sec; }
 
                 if (day > 0)
-                    document.getElementById("auction-state").innerHTML = "남은 시간: " + day + "일 " + hour + "시간 " + min + "분 " + sec + "초";
+                    document.getElementById("auction-state").innerHTML = "오픈까지 " + day + "일 " + hour + "시간 " + min + "분 " + sec + "초";
                 else
-                    document.getElementById("auction-state").innerHTML = "남은 시간: " + hour + "시간 " + min + "분 " + sec + "초";
+                    document.getElementById("auction-state").innerHTML = "오픈까지 " + hour + "시간 " + min + "분 " + sec + "초";
             } else if (parseInt(nt) > parseInt(et)) { // 종료
                 auctionState = false;
                 document.getElementById("auction-state").innerHTML = "종료되었습니다."
