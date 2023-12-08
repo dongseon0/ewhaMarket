@@ -64,21 +64,12 @@
                             style="cursor:pointer;">
                             <img src="/static/images/items/{{value.img_path}}" width="200px" height="200px">
                             {% if isAuction.get(key) %}
-                            <div class="auction_product">
-                                경매
-                            </div>
+                            <div class="auction_product">경매</div>
                             <div class="desc">{{value.name}}</div>
-                            {% if value.remaining_time is not none %}
-                            <span style="color: red"><span id="remaining-time"></span>
-                                <br>
-                                {% else %}
-                                <p>Auction Completed</p>
-                                {% endif %}
-                                {% else %}
-                                <div class="desc">{{value.name}}</div>
-                                <div class="price">{{value.fixedPrice}}</div>
-                                {% endif %}
-
+                            {% else %}
+                            <div class="desc">{{value.name}}</div>
+                            <div class="price">{{value.fixedPrice}}</div>
+                            {% endif %}
                         </div>
                     </td>
                     {% endfor %}

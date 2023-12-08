@@ -98,14 +98,134 @@ def view_product_list():
 
 # 경매 상품 리스트
 @application.route("/auction_list")
-def view_auction_list():
-    return render_template("auction_list.html")
+def view_auction_list(): 
+    # html에 페이지 인덱스 클릭할 때마다 get으로 받아옴
+    page = request.args.get("page", 0, type=int)
+    category = request.args.get("category", "all")
+    per_page = 16  # item count to display per page
+    per_row = 4  # item count to display per row
+    row_count = int(per_page/per_row)
+    start_idx = per_page * page
+    end_idx = per_page * (page + 1)  # 페이지 인덱스로 start_idx, end_idx 생성
+
+    if category == "all":
+        data = DB.get_items()  # read the table
+    else:
+        data = DB.get_items_bycategory(category)
+    
+    # 최근 등록된 상품 순으로 정렬
+    data = dict(sorted(data.items(), key=lambda x: x[0], reverse=True))
+    
+    isAuction = {}
+    for item_key in data.keys():
+        is_auction_status = DB.get_is_auction_status(item_key)
+        isAuction[item_key] = is_auction_status
+
+    # TRUE인 상품만 필터링하여 새로운 딕셔너리에 추가
+    filtered_data = {}
+    for item_key, auction_status in isAuction.items():
+        if auction_status == True:  # TRUE인 경우에만 추가
+            filtered_data[item_key] = data[item_key]
+
+    item_counts = len(filtered_data)  # 필터링된 상품 개수 업데이트
+
+    # 페이지에 맞게 데이터 슬라이싱
+    if item_counts <= per_page:
+        filtered_data = dict(list(filtered_data.items())[:item_counts])
+    else:
+        filtered_data = dict(list(filtered_data.items())[start_idx:end_idx])
+
+    # 각 행 별 데이터 생성
+    tot_count = len(filtered_data)
+    for i in range(row_count):  # last row
+        if (i == row_count-1) and (tot_count % per_row != 0):
+            locals()['data_{}'.format(i)] = dict(list(filtered_data.items())[i * per_row:])
+        else:
+            locals()['data_{}'.format(i)] = dict(list(filtered_data.items())[i * per_row:(i + 1) * per_row])
+
+    empty_cells = per_row - item_counts % per_row if per_row > item_counts % per_page else 0
+
+    return render_template(
+        "auction_list.html",
+        datas=filtered_data.items(),  # 필터링된 데이터 전달
+        row1=locals()['data_0'].items(),
+        row2=locals()['data_1'].items(),
+        row3=locals()['data_2'].items(),
+        row4=locals()['data_3'].items(),
+        limit=per_page,
+        page=page,  # 현재 페이지 인덱스
+        page_count=int(math.ceil(item_counts / per_page)),  # 페이지 개수
+        total=item_counts,
+        category=category,
+        empty_cells=empty_cells,
+        isAuction=isAuction
+    )
 
 
 # 일반 상품 리스트
 @application.route("/list")
-def view_list():
-    return render_template("list.html")
+def view_list(): 
+    # html에 페이지 인덱스 클릭할 때마다 get으로 받아옴
+    page = request.args.get("page", 0, type=int)
+    category = request.args.get("category", "all")
+    per_page = 16  # item count to display per page
+    per_row = 4  # item count to display per row
+    row_count = int(per_page/per_row)
+    start_idx = per_page * page
+    end_idx = per_page * (page + 1)  # 페이지 인덱스로 start_idx, end_idx 생성
+
+    if category == "all":
+        data = DB.get_items()  # read the table
+    else:
+        data = DB.get_items_bycategory(category)
+    
+    # 최근 등록된 상품 순으로 정렬
+    data = dict(sorted(data.items(), key=lambda x: x[0], reverse=True))
+    
+    isAuction = {}
+    for item_key in data.keys():
+        is_auction_status = DB.get_is_auction_status(item_key)
+        isAuction[item_key] = is_auction_status
+
+    # TRUE인 상품만 필터링하여 새로운 딕셔너리에 추가
+    filtered_data = {}
+    for item_key, auction_status in isAuction.items():
+        if auction_status == False:  # False인 경우에만 추가
+            filtered_data[item_key] = data[item_key]
+
+    item_counts = len(filtered_data)  # 필터링된 상품 개수 업데이트
+
+    # 페이지에 맞게 데이터 슬라이싱
+    if item_counts <= per_page:
+        filtered_data = dict(list(filtered_data.items())[:item_counts])
+    else:
+        filtered_data = dict(list(filtered_data.items())[start_idx:end_idx])
+
+    # 각 행 별 데이터 생성
+    tot_count = len(filtered_data)
+    for i in range(row_count):  # last row
+        if (i == row_count-1) and (tot_count % per_row != 0):
+            locals()['data_{}'.format(i)] = dict(list(filtered_data.items())[i * per_row:])
+        else:
+            locals()['data_{}'.format(i)] = dict(list(filtered_data.items())[i * per_row:(i + 1) * per_row])
+
+    empty_cells = per_row - item_counts % per_row if per_row > item_counts % per_page else 0
+
+    return render_template(
+        "list.html",
+        datas=filtered_data.items(),  # 필터링된 데이터 전달
+        row1=locals()['data_0'].items(),
+        row2=locals()['data_1'].items(),
+        row3=locals()['data_2'].items(),
+        row4=locals()['data_3'].items(),
+        limit=per_page,
+        page=page,  # 현재 페이지 인덱스
+        page_count=int(math.ceil(item_counts / per_page)),  # 페이지 개수
+        total=item_counts,
+        category=category,
+        empty_cells=empty_cells,
+        isAuction=isAuction
+    )
 
 
 # 상품 등록하기

@@ -1,12 +1,18 @@
-{% extends "index.html" %}
-
-{% block section %}
-
 <head>
     <link rel="stylesheet" type="text/css" href="/static/product_list.css">
 </head>
 
 <body>
+
+    {% extends "index.html" %}
+
+    {% block section %}
+    <script>
+        $(document).ready(function () {
+            //alert("{{category}}");
+            $('#category option:contains("{{category}}")').prop("selected", true);
+        });
+    </script>
     <div class="wrapper">
         <div class="text">
             <h2>상품 리스트</h2>
@@ -18,89 +24,119 @@
                 <li><a href="/auction_list" style="text-decoration: underline;">경매</a></li>
                 <li><a href="/list">일반 결제</a></li>
             </ul>
-            <button type="button">상품 등록하기</button>
+            <button onclick="location.href='reg_item'" type="button">등록하기</button>
         </div>
-        <div class="content">
-            <div class="product">
-                <a target="_blank" href="">
-                    <img src="img_5terre.jpg" alt="product1" width="200px" height="200px">
-                </a>
-                <div class="desc">Product 1</div>
-            </div>
-            <div class="product">
-                <a target="_blank" href="">
-                    <img src="img_5terre.jpg" alt="product2" width="200px" height="200px">
-                </a>
-                <div class="desc">Product 2</div>
-            </div>
-            <div class="product">
-                <a target="_blank" href="">
-                    <img src="img_5terre.jpg" alt="product3" width="200px" height="200px">
-                </a>
-                <div class="desc">Product 3</div>
-            </div>
-            <div class="product">
-                <a target="_blank" href="">
-                    <img src="img_5terre.jpg" alt="product4" width="200px" height="200px">
-                </a>
-                <div class="desc">Product 4</div>
-            </div>
-            <div class="product">
-                <a target="_blank" href="">
-                    <img src="img_5terre.jpg" alt="product5" width="200px" height="200px">
-                </a>
-                <div class="desc">Product 5</div>
-            </div>
-            <div class="product">
-                <a target="_blank" href="">
-                    <img src="img_5terre.jpg" alt="product6" width="200px" height="200px">
-                </a>
-                <div class="desc">Product 6</div>
-            </div>
-            <div class="product">
-                <a target="_blank" href="">
-                    <img src="img_5terre.jpg" alt="product7" width="200px" height="200px">
-                </a>
-                <div class="desc">Product 7</div>
-            </div>
-            <div class="product">
-                <a target="_blank" href="">
-                    <img src="img_5terre.jpg" alt="product8" width="200px" height="200px">
-                </a>
-                <div class="desc">Product 8</div>
-            </div>
-            <div class="product">
-                <a target="_blank" href="">
-                    <img src="img_5terre.jpg" alt="product9" width="200px" height="200px">
-                </a>
-                <div class="desc">Product 9</div>
-            </div>
-            <div class="product">
-                <a target="_blank" href="">
-                    <img src="img_5terre.jpg" alt="product10" width="200px" height="200px">
-                </a>
-                <div class="desc">Product 10</div>
-            </div>
-            <div class="product">
-                <a target="_blank" href="">
-                    <img src="img_5terre.jpg" alt="product11" width="200px" height="200px">
-                </a>
-                <div class="desc">Product 11</div>
-            </div>
-            <div class="product">
-                <a target="_blank" href="">
-                    <img src="img_5terre.jpg" alt="product12" width="200px" height="200px">
-                </a>
-                <div class="desc">Product 12</div>
-            </div>
-        </div>
-        <ul class="pagination">
-            <li><a href="#" class="active">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-        </ul>
-        <hr>
-    </div>
-</body>
 
-{% endblock section %}
+
+        <table class="content">
+            <td>
+                <div style="width: 200px;">
+                    <select id="category" name="category" onchange="location=this.value">>
+                        <option value="{{url_for('view_product_list', page=i, category='all')}}">전체</option>
+                        <option value="{{url_for('view_product_list', page=i, category='Clothes')}}"> 의류 </option>
+                        <option value="{{url_for('view_product_list', page=i, category='Beauty')}}"> 화장품 </option>
+                        <option value="{{url_for('view_product_list', page=i, category='Books')}}"> 책 </option>
+                        <option value="{{url_for('view_product_list', page=i, category='Furniture')}}"> 가구 </option>
+                        <option value="{{url_for('view_product_list', page=i, category='Electronics')}}"> 전자제품 </option>
+                        <option value="{{url_for('view_product_list', page=i, category='ETC')}}"> 기타 </option>
+                    </select>
+                </div>
+            </td>
+            <td>
+                <div style="width: 200px;"></div>
+            </td>
+            <td>
+                <div style="width: 200px;"></div>
+            </td>
+            <td>
+                <div style="width: 200px;">
+                    {% if total > 0 %}
+                    <p class=total>
+                        총 {{total}}개의 상품
+                    </p>
+                </div>
+            </td>
+            <tbody class="product">
+                <tr>
+                    {% for key, value in row1 %}
+                    <td>
+                        <div class="item-box" onclick="location.href='/details_of_item/{{key}}/';"
+                            style="cursor:pointer;">
+                            <img src="/static/images/items/{{value.img_path}}" width="200px" height="200px">
+                            <div class="auction_product">경매</div>
+                            <div class="desc">{{value.name}}</div>
+                        </div>
+                    </td>
+                    {% endfor %}
+                    {% if page_count == page + 1 %}
+                    {% for _ in range(empty_cells) %}
+                    <td>
+                        <div class="blank-box"></div>
+                    </td>
+                    {% endfor %}
+                    {% endif %}
+                </tr>
+            </tbody>
+            <tbody class="product">
+                <tr>
+                    {% for key, value in row2 %}
+                    <td>
+                        <div class="item-box" onclick="location.href='/details_of_item/{{key}}/';"
+                            style="cursor:pointer;">
+                            <img src="/static/images/items/{{value.img_path}}" width="200px" height="200px">
+                            <div class="auction_product">경매</div>
+                            <div class="desc">{{value.name}}</div>
+                        </div>
+                    </td>
+                    {% endfor %}
+                </tr>
+            </tbody>
+            <tbody class="product">
+                <tr>
+                    {% for key, value in row3 %}
+                    <td>
+                        <div class="item-box" onclick="location.href='/details_of_item/{{key}}/';"
+                            style="cursor:pointer;">
+                            <img src="/static/images/items/{{value.img_path}}" width="200px" height="200px">
+                            <div class="auction_product">경매</div>
+                            <div class="desc">{{value.name}}</div>
+                        </div>
+                    </td>
+                    {% endfor %}
+                </tr>
+            </tbody>
+            <tbody class="product">
+                <tr>
+                    {% for key, value in row4 %}
+                    <td>
+                        <div class="item-box" onclick="location.href='/details_of_item/{{key}}/';"
+                            style="cursor:pointer;">
+                            <img src="/static/images/items/{{value.img_path}}" width="200px" height="200px">
+                            <div class="auction_product">경매</div>
+                            <div class="desc">{{value.name}}</div>
+                        </div>
+                    </td>
+                    {% endfor %}
+                </tr>
+            </tbody>
+        </table>
+        <!--페이지네이션을 위한 코드 시작-->
+        <div class="page-wrap">
+            <div class="page-nation">
+                <ul>
+                    <li>
+                        {% for i in range(page_count) %}
+                        <a href="{{url_for('view_auction_list', page=i)}}" color="black">{{i+1}}</a>
+                        {% endfor %}
+                    </li>
+                </ul>
+            </div>
+        </div>
+        {% else %}
+        <p class="total">
+            등록된 상품이 없습니다.
+        </p>
+        {% endif %}
+    </div>
+    {% endblock section %}
+</body>
