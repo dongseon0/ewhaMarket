@@ -68,6 +68,21 @@
             background-color: rgb(209, 215, 180);
             color: rgb(105, 107, 93);
         }
+
+        #review-image {
+            display: none;
+        }
+
+        .file-upload-button {
+            font-size: 95%;
+            margin: 0 auto;
+            width: 100px;
+            height: 50px;
+            border: solid rgb(208, 208, 208);
+            border-radius: 5px;
+        }
+
+        
     </style>
 </head>
 
@@ -94,7 +109,12 @@
             </div>
             <textarea id="review-contents" name="reviewContents" cols="75" rows="10"></textarea>
             <br><br>
-            <input type="file" id="review-image" name="file" />
+            <label for="file">
+                <div class="file-upload-button">
+                    <p class="file-upload-text">이미지등록</p>
+                </div>
+            </label>
+            <input type="file" name="file" id="review-image" />
             <br><br>
             <hr>
             <input type="button" id="ok" name="ok" value="등록하기" onclick="submit_review()">
