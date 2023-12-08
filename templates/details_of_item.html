@@ -83,10 +83,12 @@
 
             <br>
         </div>
+        <input type="button" onclick="location.href='/delete_item/{{key}}/{{data.sellerId}}/';" value="삭제하기" id="delete">    
     </div>
-    <input type="button" onclick="location.href='/delete_item/{{key}}/{{data.sellerId}}/';" value="삭제하기">
-
     <script>
+        if ("{{data.sellerId}}" != "{{session['id']}}")
+            document.getElementById("delete").style.display = none;
+
         function showHeart() {
             $.ajax({
                 type: 'GET',
