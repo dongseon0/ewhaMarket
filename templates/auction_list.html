@@ -30,26 +30,26 @@
 
         <table class="content">
             <td>
-                <div style="width: 200px;">
+                <div style="width: 200px; padding: 6px 6px 6px 8px; margin: 2px;">
                     <select id="category" name="category" onchange="location=this.value">>
-                        <option value="{{url_for('view_product_list', page=i, category='all')}}">전체</option>
-                        <option value="{{url_for('view_product_list', page=i, category='Clothes')}}"> 의류 </option>
-                        <option value="{{url_for('view_product_list', page=i, category='Beauty')}}"> 화장품 </option>
-                        <option value="{{url_for('view_product_list', page=i, category='Books')}}"> 책 </option>
-                        <option value="{{url_for('view_product_list', page=i, category='Furniture')}}"> 가구 </option>
-                        <option value="{{url_for('view_product_list', page=i, category='Electronics')}}"> 전자제품 </option>
-                        <option value="{{url_for('view_product_list', page=i, category='ETC')}}"> 기타 </option>
+                        <option value="{{url_for('view_auction_list', page=i, category='all')}}">전체</option>
+                        <option value="{{url_for('view_auction_list', page=i, category='의류')}}"> 의류 </option>
+                        <option value="{{url_for('view_auction_list', page=i, category='화장품')}}"> 화장품 </option>
+                        <option value="{{url_for('view_auction_list', page=i, category='책')}}"> 책 </option>
+                        <option value="{{url_for('view_auction_list', page=i, category='가구')}}"> 가구 </option>
+                        <option value="{{url_for('view_auction_list', page=i, category='전자제품')}}"> 전자제품 </option>
+                        <option value="{{url_for('view_auction_list', page=i, category='기타')}}"> 기타 </option>
                     </select>
                 </div>
             </td>
             <td>
-                <div style="width: 200px;"></div>
+                <div style="width: 200px; padding: 6px; margin: 2px; border: 1px solid; visibility: hidden;"></div>
             </td>
             <td>
-                <div style="width: 200px;"></div>
+                <div style="width: 200px; padding: 6px; margin: 2px; border: 1px solid; visibility: hidden;"></div>
             </td>
             <td>
-                <div style="width: 200px;">
+                <div style="width: 200px; padding: 6px; margin: 2px;">
                     {% if total > 0 %}
                     <p class=total>
                         총 {{total}}개의 상품
