@@ -56,21 +56,20 @@
             {% endfor %}
           </tr>
         </tbody>
+      </table>
 
-    </table>
-
-    <!--페이지네이션을 위한 코드 시작-->
-    <div class="page-wrap">
-      <div class="page-nation">
-        <ul>
-          <li>
-            {% for i in range(page_count) %}
-            <a href="{{url_for('my_page', id=id, page=i)}}" color="black">{{i+1}}</a>
-            {% endfor %}
-          </li>
-        </ul>
+      <!--페이지네이션을 위한 코드 시작-->
+      <div class="page-wrap">
+        <div class="page-nation">
+          <ul>
+            <li>
+              {% for i in range(page_count) %}
+              <a href="{{url_for('my_page', id=id, page=i)}}" color="black">{{i+1}}</a>
+              {% endfor %}
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
     {% else %}
       <p>
         등록된 판매내역이 없습니다.
@@ -78,6 +77,4 @@
     {% endif %}
   </div>
   {% endblock section %}
-
-  
 </body>
