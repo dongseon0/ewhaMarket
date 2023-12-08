@@ -39,15 +39,15 @@
 }
 
 .top button {
-  width: 60px;
+  width: 70px;
   height: 28px;
   float: right;
   background-color: rgb(221, 227, 192);
   border: none;
   border-radius: 5px;
+  padding-top: 3px;
   color: rgb(117, 120, 102);
-  
-  
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
 }
 
 .top button:hover {
