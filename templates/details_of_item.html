@@ -81,8 +81,7 @@
         </div>
 
         <br>
-    </div>
-    <input type="button" onclick="location.href='/delete_item/{{key}}/{{data.sellerId}}/';" value="삭제하기" id="delete">
+        <input type="button" onclick="location.href='/delete_item/{{key}}/{{data.sellerId}}/';" value="삭제하기" id="delete">
     </div>
     <script>
         if ("{{session['id']}}" != "{{data.sellerId}}") {

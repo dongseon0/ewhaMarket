@@ -142,6 +142,7 @@ textarea {
     color: rgb(117, 120, 102);
     border-radius: 10px;
     border: 3px solid  rgb(221, 227, 192);
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
 }
 
 .product-registration-end-button:hover {
