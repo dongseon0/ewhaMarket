@@ -27,3 +27,30 @@
   background-color: #ddd;
   color: black;
 }
+
+.top {
+  display: flex;
+  /* 메뉴 항목을 가로로 정렬 */
+  justify-content: space-between;
+  /* 메뉴를 수평으로 가운데 정렬 */
+  align-items: center;
+  /* 메뉴를 수직으로 가운데 정렬 */
+  margin-bottom: 3%;
+}
+
+.top button {
+  width: 60px;
+  height: 28px;
+  float: right;
+  background-color: rgb(221, 227, 192);
+  border: none;
+  border-radius: 5px;
+  color: rgb(117, 120, 102);
+  
+  
+}
+
+.top button:hover {
+  background-color: rgb(209, 215, 180);
+  color: rgb(105, 107, 93);
+}
