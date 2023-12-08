@@ -211,6 +211,7 @@ class DBhandler:
         heart_info = {
             "interested": isHeart
         }
+        self.db.child("items").child(key).child("hearts").child(uid).set(heart_info)
         self.db.child("users").child(uid).child(
             "user_wish").child(key).set(heart_info)
         return True
