@@ -148,6 +148,12 @@ def set_auction(key, sellerId, selectRisingPrice):
         return jsonify({'msg': '입찰 완료했습니다!'})
 
 
+@application.route("/delete_item/<key>/<sellerId>/")
+def delete_item(key, sellerId):
+    DB.delete_bykey(key, sellerId)
+    return redirect(url_for('view_product_list'))
+
+
 # 리뷰
 # 리뷰 작성하기
 @application.route("/reg_review/<id>/")
