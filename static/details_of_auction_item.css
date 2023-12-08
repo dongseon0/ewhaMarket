@@ -22,7 +22,7 @@
 
 .columnleft {
     width: calc(50%);
-    margin:4%;
+    margin: 4%;
     display: flex;
     flex-direction: column;
     justify-content: center; /* Align content vertically center */
@@ -31,8 +31,9 @@
 
 .columnleft img {
     object-fit: cover;
-    width: 120%;
+    width: 135%;
     height: 100%;
+    margin-right: 6%;
     
     object-position: center; /* 이미지를 수평으로 가운데 정렬 */
 }
