@@ -303,7 +303,7 @@
             <tr>
                     {% for item in row1_auction_items | reverse %}
                         <td>
-                            <div class="item-box" onclick="location.href='/details_of_auction_item/{{item.key}}/';" style="cursor: pointer;">
+                            <div class="item-box" onclick="location.href='/details_of_auction_item/{{item.name}}/';" style="cursor: pointer;">
                                 <img src="{{ url_for('static', filename='images/items/' + item.img_path) }}" alt="{{ item.name }}" width="200px" height="200px">
                                 <div class="desc">
                                     {{ item.name }}

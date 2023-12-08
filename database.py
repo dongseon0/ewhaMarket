@@ -373,6 +373,18 @@ class DBhandler:
         
         return auction_items
     
+    def get_auction_item_by_name(self, item_name):
+        items = self.db.child("items").get()
+        target_value = None
+        for res in items.each():
+            key_value = res.key()
+            item_data = res.val()
+
+            if item_data["name"] == item_name and self.get_is_auction_status(key_value):
+                target_value = item_data
+                break
+
+        return target_value
     
   
   

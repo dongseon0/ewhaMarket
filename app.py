@@ -30,18 +30,25 @@ def hello():
     empty_cells = 5 - item_counts if 5 > item_counts else 0
     auction_empty_cells = 5 - auction_item_counts if 5 > auction_item_counts else 0
 
-    # Extract only the first row of auction items
     row1_auction_items = auction_items[-5:]
 
     return render_template(
         "main_page.html",
         data=data.items(),
         row1=locals()['data_0'].items(),
-        row1_auction_items=row1_auction_items,  # Display only the first row of auction items
+        row1_auction_items=row1_auction_items,  
         empty_cells=empty_cells,
         auction_empty_cells=auction_empty_cells
     )
 
+@application.route("/details_of_auction_item/<item_name>/")
+def details_of_auction_item(item_name):
+    item = DB.get_auction_item_by_name(item_name)
+
+    if item:
+        return render_template("details_of_auction_item.html", data=item)
+    else:
+        return render_template("error.html", message="Item not found")
 
 # 상품
 # 전체 상품 리스트
