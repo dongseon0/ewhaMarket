@@ -66,6 +66,13 @@
                             {% if isAuction.get(key) %}
                             <div class="auction_product">경매</div>
                             <div class="desc">{{value.name}}</div>
+                            <div class="status">
+                                {% if value.auction_status == 'Auction Completed' %}
+                                경매 완료
+                                {% else %}
+                                경매 진행 중
+                                {% endif %}
+                            </div>
                             {% else %}
                             <div class="desc">{{value.name}}</div>
                             <div class="price">{{value.fixedPrice}}원</div>
@@ -93,6 +100,13 @@
                             {% if isAuction.get(key) %}
                             <div class="auction_product">경매</div>
                             <div class="desc">{{value.name}}</div>
+                            <div class="status">
+                                {% if value.auction_status == 'Auction Completed' %}
+                                경매 완료
+                                {% else %}
+                                경매 진행 중
+                                {% endif %}
+                            </div>
                             {% else %}
                             <div class="desc">{{value.name}}</div>
                             <div class="price">{{value.fixedPrice}}원</div>
@@ -112,7 +126,13 @@
                             {% if isAuction.get(key) %}
                             <div class="auction_product">경매</div>
                             <div class="desc">{{value.name}}</div>
-                            <div class="time">{{value.time}}</div>
+                            <div class="status">
+                                {% if value.auction_status == 'Auction Completed' %}
+                                경매 완료
+                                {% else %}
+                                경매 진행 중
+                                {% endif %}
+                            </div>
                             {% else %}
                             <div class="desc">{{value.name}}</div>
                             <div class="price">{{value.fixedPrice}}원</div>
@@ -132,6 +152,13 @@
                             {% if isAuction.get(key) %}
                             <div class="desc">{{value.name}}</div>
                             <div class="auction_product">경매</div>
+                            <div class="status">
+                                {% if value.auction_status == 'Auction Completed' %}
+                                경매 완료
+                                {% else %}
+                                경매 진행 중
+                                {% endif %}
+                            </div>
                             {% else %}
                             <div class="desc">{{value.name}}</div>
                             <div class="price">{{value.fixedPrice}}원</div>
