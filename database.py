@@ -124,6 +124,22 @@ class DBhandler:
                 target_value = res.val()
         return target_value
     
+    # 상품 삭제
+    def delete_bykey(self, key):
+        items = self.db.child("items").get()
+        target_value = ""
+        for res in items.each():
+            key_value = res.key()
+            if key_value == key:
+                target_value = res.val()
+        
+        if target_value != "":
+            sellerId = target_value.get("sellerId")
+            self.db.child("users").child(sellerId).child("user_list").child(key).remove()
+            return True
+        else:
+            return False
+    
     # 경매 상품 가져오기
     def get_is_auction_status(self, key):
         item_data = self.db.child("items").child(key).get().val()
