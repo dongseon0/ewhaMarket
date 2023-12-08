@@ -21,8 +21,8 @@
                                 <p class="file-upload-text">이미지 등록</p>
                             </div>
                         </label>
-                        <input type="file" name="file" id="file" required/>
-                        <div class="input-image"></div>
+                        <input type="file" name="file" id="file" onchange="loadFile(this)"/>
+                        <div class="image-show" id="image-show"></div>
                     </div>
                 </li>
                 <hr class="middle-hr">
