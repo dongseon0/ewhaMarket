@@ -32,6 +32,7 @@ def hello():
 
 
 # 상품
+# 전체 상품 리스트
 @application.route("/product_list")
 def view_product_list(): 
     # html에 페이지 인덱스 클릭할 때마다 get으로 받아옴
@@ -95,11 +96,13 @@ def view_product_list():
     )
 
 
+# 경매 상품 리스트
 @application.route("/auction_list")
 def view_auction_list():
     return render_template("auction_list.html")
 
 
+# 일반 상품 리스트
 @application.route("/list")
 def view_list():
     return render_template("list.html")

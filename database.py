@@ -124,6 +124,7 @@ class DBhandler:
                 target_value = res.val()
         return target_value
     
+    # 경매 상품 가져오기
     def get_is_auction_status(self, key):
         item_data = self.db.child("items").child(key).get().val()
         if item_data:
