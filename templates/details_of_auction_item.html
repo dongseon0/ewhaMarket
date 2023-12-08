@@ -93,13 +93,13 @@
                 <div id="end-time">{{data.endTime}}</div>
             </div>
         </div>
-        <input type="button" onclick="location.href='/delete_item/{{key}}/{{data.sellerId}}/';" value="삭제하기" id="delete">
+        <input type="button" onclick="location.href='/delete_item/{{key}}/{{data.sellerId}}/';" value="삭제하기"
+            id="delete">
     </div>
     <script src="/static/details_of_auction_item.js?after"></script>
     <script>
-        document.getElementById("delete").value = "{{session['id']}}";
-        if ('{{data.sellerId}}' != "{{session['id']}}") {
-            document.getElementById("delete").style.display = none;
+        if ("{{session['id']}}" != '{{data.sellerId}}') {
+            document.getElementById("delete").style.display = "none";
         }
 
         function showHeart() {

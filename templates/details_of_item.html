@@ -18,8 +18,7 @@
         <div class="container">
 
             <div class="columnleft">
-                <img 
-                    src="/static/images/items/{{data.img_path}}" width="320" alt="item">
+                <img src="/static/images/items/{{data.img_path}}" width="320" alt="item">
             </div>
 
             <div class="columnright">
@@ -29,15 +28,15 @@
                     <div id="user-id"><a href="/user_list/{{data.sellerId}}/" style=" color: rgb(91, 100, 47); font-size : 110%;
                         text-decoration: none;">{{data.sellerId}}<a></div>
                     <br>
-                        <h2>{{data.name}}</h2>
+                    <h2>{{data.name}}</h2>
 
                     <table>
                         <tr>
                             <th>가격</th>
                             <td>{{data.fixedPrice}} 원</td>
                         </tr>
-                            <th>상품상태</th>
-                            <td>{{data.status}}</td>
+                        <th>상품상태</th>
+                        <td>{{data.status}}</td>
                         </tr>
                         <th>연락처</th>
                         <td>{{data.phone}}</td>
@@ -68,26 +67,27 @@
         </div>
 
         <div class="down">
-                <hr style="width:100%">
-                
-            </div>
+            <hr style="width:100%">
 
-            <br>
-
-            <div class="comment">
-                <p>
-                <div class="boldtext" >상품설명</div>
-                {{data.description}}
-                </p>
-            </div>
-
-            <br>
         </div>
-        <input type="button" onclick="location.href='/delete_item/{{key}}/{{data.sellerId}}/';" value="삭제하기" id="delete">    
+
+        <br>
+
+        <div class="comment">
+            <p>
+            <div class="boldtext">상품설명</div>
+            {{data.description}}
+            </p>
+        </div>
+
+        <br>
+    </div>
+    <input type="button" onclick="location.href='/delete_item/{{key}}/{{data.sellerId}}/';" value="삭제하기" id="delete">
     </div>
     <script>
-        if ("{{data.sellerId}}" != "{{session['id']}}")
-            document.getElementById("delete").style.display = none;
+        if ("{{session['id']}}" != '{{data.sellerId}}') {
+            document.getElementById("delete").style.display = "none";
+        }
 
         function showHeart() {
             $.ajax({
