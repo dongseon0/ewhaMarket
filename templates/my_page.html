@@ -18,62 +18,62 @@
       <a href="/my_info/{{session['id']}}/">개인정보</a>
     </div>
     <hr>
-
-    {% if total > 0 %}
+    <div class="top">
+      {% if total > 0 %}
       <p class="count_list">
         {{total}}개의 판매 내역
       </p>
+      <button onclick="location.href='reg_item'" type="button">등록하기</button>
+    </div>
 
-      <table>
-        <tbody class="sell">
-          <tr>
-            {% for key, value in row1 %}
-            <td>
-              <div class="item-box" onclick="location.href='/details_of_item/{{ key }}/'"
-                style="cursor:pointer;">
-                <img src="/static/images/items/{{ value.img_path }}" width="200px" height="200px">
-                <div class="desc">{{ value.name }}</div>
-              </div>
-            </td>
-            {% endfor %}
-            {% for _ in range(empty_cells) %}
-            <td>
-              <div class="blank-box"></div>
-            </td>
-            {% endfor %}
-          </tr>
-        </tbody>
-        <tbody class="sell">
-          <tr>
-            {% for key, value in row2 %}
-            <td>
-              <div class="item-box" onclick="location.href='/details_of_item/{{ key }}/'"
-                style="cursor:pointer;">
-                <img src="/static/images/items/{{ value.img_path }}" width="200px" height="200px">
-                <div class="desc">{{ value.name }}</div>
-              </div>
-            </td>
-            {% endfor %}
-          </tr>
-        </tbody>
-      </table>
+    <table>
+      <tbody class="sell">
+        <tr>
+          {% for key, value in row1 %}
+          <td>
+            <div class="item-box" onclick="location.href='/details_of_item/{{ key }}/'" style="cursor:pointer;">
+              <img src="/static/images/items/{{ value.img_path }}" width="200px" height="200px">
+              <div class="desc">{{ value.name }}</div>
+            </div>
+          </td>
+          {% endfor %}
+          {% for _ in range(empty_cells) %}
+          <td>
+            <div class="blank-box"></div>
+          </td>
+          {% endfor %}
+        </tr>
+      </tbody>
+      <tbody class="sell">
+        <tr>
+          {% for key, value in row2 %}
+          <td>
+            <div class="item-box" onclick="location.href='/details_of_item/{{ key }}/'" style="cursor:pointer;">
+              <img src="/static/images/items/{{ value.img_path }}" width="200px" height="200px">
+              <div class="desc">{{ value.name }}</div>
+            </div>
+          </td>
+          {% endfor %}
+        </tr>
+      </tbody>
+    </table>
 
-      <!--페이지네이션을 위한 코드 시작-->
-      <div class="page-wrap">
-        <div class="page-nation">
-          <ul>
-            <li>
-              {% for i in range(page_count) %}
-              <a href="{{url_for('my_page', id=id, page=i)}}" color="black">{{i+1}}</a>
-              {% endfor %}
-            </li>
-          </ul>
-        </div>
+    <!--페이지네이션을 위한 코드 시작-->
+    <div class="page-wrap">
+      <div class="page-nation">
+        <ul>
+          <li>
+            {% for i in range(page_count) %}
+            <a href="{{url_for('my_page', id=id, page=i)}}" color="black">{{i+1}}</a>
+            {% endfor %}
+          </li>
+        </ul>
       </div>
+    </div>
     {% else %}
-      <p>
-        등록된 판매내역이 없습니다.
-      </p>
+    <p>
+      등록된 판매내역이 없습니다.
+    </p>
     {% endif %}
   </div>
   {% endblock section %}
