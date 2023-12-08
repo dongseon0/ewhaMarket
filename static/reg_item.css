@@ -39,10 +39,12 @@ li {
     background-image: url("/static/images/camera_icon.png");
     opacity: 0.5;
     position: relative;
-    float: left;
 }
 
-
+.reg-file-box {
+    width: 200%;
+    display: flex;
+}
 
 .file-upload-text {
     font-size: 85%;
@@ -52,11 +54,11 @@ li {
 }
 
 .image-show {
+    margin: 0% 0% 0% 5%;
     width: 200px;
     height: 200px;
-    border: solid rgb(208, 208, 208);
-    background-repeat : no-repeat;
-
+    border: solid #E7E7E7;
+    overflow:hidden;
 }
 
 #file {

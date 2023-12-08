@@ -11,9 +11,9 @@ function loadFile(input) {
 
     image.src = URL.createObjectURL(file);
 
-    image.style.width = "70%";
-    image.style.height = "70%";
-    image.style.objectFit = "contain";
+    image.style.width = "100%";
+    image.style.height = "100%";
+    image.style.objectFit = "cover";
 
     var container = document.getElementById('image-show');
     container.appendChild(image);
