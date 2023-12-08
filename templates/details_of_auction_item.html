@@ -81,26 +81,107 @@
                 <input class="btn-money" id="btnMoney" type="button" value="">
                 <span>{{winner}}</span>
             </div>
-
-            <div id="auction-variable" class="none">
-                <div id="key">{{key}}</div>
-                <div id="startPrice">{{data.startPrice}}</div>
-                <div id="currentPrice">{{data.currentPrice}}</div>
-                <div id="selectRisingPrice">{{data.selectRisingPrice}}</div>
-                <div id="start-date">{{data.startDate}}</div>
-                <div id="start-time">{{data.startTime}}</div>
-                <div id="end-date">{{data.endDate}}</div>
-                <div id="end-time">{{data.endTime}}</div>
-            </div>
         </div>
         <input type="button" onclick="location.href='/delete_item/{{key}}/{{data.sellerId}}/';" value="삭제하기"
             id="delete">
     </div>
-    <script src="/static/details_of_auction_item.js?after"></script>
     <script>
-        if ("{{session['id']}}" != '{{data.sellerId}}') {
+        if ("{{session['id']}}" != "{{data.sellerId}}") {
             document.getElementById("delete").style.display = "none";
         }
+
+        currentPrice = Number("{{data.currentPrice}}");
+        risingPrice = Number("{{data.selectRisingPrice}}");
+        document.getElementById("current").innerHTML = currentPrice + "원";
+
+        auctionState = false;
+        function auction() {
+            if (auctionState == true) {
+                $.ajax({
+                    type: 'POST',
+                    url: '/auction/{{key}}/{{data.sellerId}}/{{data.selectRisingPrice}}/',
+                    data: {},
+                    success: function (response) {
+                        alert(response['msg']);
+                        window.location.reload();
+                    }
+                });
+            } else {
+                alert("입찰할 수 없습니다.");
+            }
+        }
+
+        btnMoney = document.getElementById("btnMoney");
+        btnMoney.addEventListener("click", auction);
+
+        // 버튼 이름 바꾸기
+        if (risingPrice == 1000) {
+            btnMoney.value = "▲천원"
+        } else if (risingPrice == 5000) {
+            btnMoney.value = "▲5천원"
+        } else if (risingPrice == 10000) {
+            btnMoney.value = "▲만원"
+        } else if (risingPrice == 50000) {
+            btnMoney.value = "▲5만원"
+        }
+
+        startDate = ("{{data.startDate}}").split("-");
+        startTime = ("{{data.startTime}}").split(":");
+        endDate = ("{{data.endDate}}").split("-");
+        endTime = ("{{data.endTime}}").split(":");
+        function remaingTime() {
+            var now = new Date();
+            var open = new Date(Number(startDate[0]), Number(startDate[1]) - 1, Number(startDate[2]), Number(startTime[0]), Number(startTime[1]));
+            var end = new Date(Number(endDate[0]), Number(endDate[1]) - 1, Number(endDate[2]), Number(endTime[0]), Number(endTime[1]));
+
+            var nt = now.getTime();
+            var ot = open.getTime();
+            var et = end.getTime();
+
+            if (parseInt(nt) < parseInt(ot)) { // 오픈 전
+                auctionState = false;
+                sec = parseInt(ot - nt) / 1000;
+                day = parseInt(sec / 60 / 60 / 24);
+                sec = (sec - (day * 60 * 60 * 24));
+                hour = parseInt(sec / 60 / 60);
+                sec = (sec - (hour * 60 * 60));
+                min = parseInt(sec / 60);
+                sec = parseInt(sec - (min * 60));
+                if (hour < 10) { hour = "0" + hour; }
+                if (min < 10) { min = "0" + min; }
+                if (sec < 10) { sec = "0" + sec; }
+
+                document.getElementById("auction-state").innerHTML = "오픈까지 "
+                document.getElementById("remaining-hour").innerHTML = hour + "시간 ";
+                document.getElementById("remaining-minute").innerHTML = min + "분 ";
+                document.getElementById("remaining-second").innerHTML = sec + "초";
+            } else if (parseInt(nt) > parseInt(et)) { // 종료
+                auctionState = false;
+                document.getElementById("auction-state").innerHTML = "종료되었습니다."
+                document.getElementById("remaining-hour").innerHTML = "";
+                document.getElementById("remaining-minute").innerHTML = "";
+                document.getElementById("remaining-second").innerHTML = "";
+            } else { // 진행 중
+                auctionState = true;
+                sec = parseInt(et - nt) / 1000;
+                day = parseInt(sec / 60 / 60 / 24);
+                sec = (sec - (day * 60 * 60 * 24));
+                hour = parseInt(sec / 60 / 60);
+                sec = (sec - (hour * 60 * 60));
+                min = parseInt(sec / 60);
+                sec = parseInt(sec - (min * 60));
+                if (hour < 10) { hour = "0" + hour; }
+                if (min < 10) { min = "0" + min; }
+                if (sec < 10) { sec = "0" + sec; }
+
+                document.getElementById("auction-state").innerHTML = "남은 시간: "
+                document.getElementById("remaining-hour").innerHTML = hour + "시간 ";
+                document.getElementById("remaining-minute").innerHTML = min + "분 ";
+                document.getElementById("remaining-second").innerHTML = sec + "초";
+            }
+        }
+        remaingTime();
+        setInterval(remaingTime, 1000);
 
         function showHeart() {
             $.ajax({
