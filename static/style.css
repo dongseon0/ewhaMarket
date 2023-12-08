@@ -24,7 +24,8 @@
   /* 요소를 가로로 정렬 */
   justify-content: space-between;
   /* 좌우에 요소를 분배 */
-  padding: 18px 0px;
+  padding : 18px 0px;
+  
 }
 
 .empty {
@@ -35,6 +36,7 @@
   display: flex;
   align-items: center;
   /* 수직 가운데 정렬 */
+  padding-left: 50px;
 }
 
 .navbar__logo a {
