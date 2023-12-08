@@ -24,7 +24,8 @@
     margin: 4%;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Align content vertically center */
+    justify-content: center;
+    /* Align content vertically center */
     align-items: center;
 }
 
@@ -33,7 +34,8 @@
     width: 135%;
     height: 100%;
     margin-right: 6%;
-    object-position: center; /* 이미지를 수평으로 가운데 정렬 */
+    object-position: center;
+    /* 이미지를 수평으로 가운데 정렬 */
 }
 
 
@@ -43,15 +45,18 @@
     margin: 2% 2% 2% 4%;
     padding: 4% 8%;
     border-radius: 10px 10px;
-    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);   
-    overflow-x: auto; 
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+    overflow-x: auto;
 }
 
 
 .columnright table {
-    width: 100%; /* Ensure the table takes 100% width of its container */
-    table-layout: fixed; /* Set a fixed layout for the table */
-    border-spacing: 3px; /* Adjust the spacing between cells */
+    width: 100%;
+    /* Ensure the table takes 100% width of its container */
+    table-layout: fixed;
+    /* Set a fixed layout for the table */
+    border-spacing: 3px;
+    /* Adjust the spacing between cells */
 }
 
 table,
@@ -64,13 +69,13 @@ td {
     padding: 10px;
 }
 
-th{
-   color:  rgb(145, 145, 145);
+th {
+    color: rgb(145, 145, 145);
 }
 
 
 
-.alignleft{
+.alignleft {
     text-align: left;
     margin: 0 auto;
     display: block;
@@ -94,7 +99,7 @@ th{
     margin: 2% 7% 0% 7%;
     text-align: left;
     box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
-    
+
 }
 
 .boldtext {
@@ -119,18 +124,19 @@ p {
     box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
 }
 
-.favorite-button { 
+.favorite-button {
     margin: 0 auto;
     display: block;
 }
 
 .btn-love {
-    background-color:  rgb(221, 227, 192);
+    background-color: rgb(221, 227, 192);
     color: rgb(117, 120, 102);
     border-radius: 10px;
-    border: 3px solid  rgb(221, 227, 192);
+    border: 3px solid rgb(221, 227, 192);
     font-size: 110%;
-    padding : 1%;
+    padding: 1%;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
 }
 
 .btn-love:hover {
@@ -141,30 +147,34 @@ p {
 
 
 .btn-money {
-    background-color: rgb(223, 254, 227);
-    color: rgb(30, 123, 75);
+    background-color: rgb(181, 228, 187);
+    color: rgb(8, 86, 46);
     border-radius: 10px;
-    border: 3px solid rgb(223, 254, 227);
+    border: 1px solid  rgb(125, 190, 133);
     font-size: 100%;
-    padding : 1%;
+    padding: 1%;
     left: 40%;
     top: 40%;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
 }
 
 .btn-money:hover {
-    background-color: rgb(181, 228, 187);
+    background-color: rgb(140, 210, 148);
     color: rgb(8, 86, 46);
-    border: 3px solid rgb(181, 228, 187);
+    border: 1px solid rgb(125, 190, 133);
 }
 
 
 #profile {
     float: left;
-    margin-top : 1%;
+    margin-top: 1%;
     margin-right: 4%;
-    border-radius: 50%; /* 50%로 설정하여 동그라미로 만듭니다 */
-    width: 40px; /* 이미지의 크기를 조절할 수 있습니다 */
-    height: 40px; /* 이미지의 크기를 조절할 수 있습니다 */
+    border-radius: 50%;
+    /* 50%로 설정하여 동그라미로 만듭니다 */
+    width: 40px;
+    /* 이미지의 크기를 조절할 수 있습니다 */
+    height: 40px;
+    /* 이미지의 크기를 조절할 수 있습니다 */
     object-fit: cover;
 }
 
@@ -173,4 +183,21 @@ p {
     padding-top: 2%;
     font-size: 110%;
     font-weight: bold;
+}
+
+#delete {
+    width: 10%;
+    background-color: rgb(221, 227, 192);
+    border: none;
+    border-radius: 5px;
+    color: rgb(117, 120, 102);
+    font-size: 95%;
+    margin: 4%;
+    padding: 0.5% 0%;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+}
+
+#delete:hover {
+    background-color: rgb(209, 215, 180);
+    color: rgb(105, 107, 93);
 }

@@ -255,7 +255,7 @@ def submit_item_post():
     image_file = request.files["file"]
     image_file.save("static/images/items/{}".format(image_file.filename))
     data = request.form
-    data_key = DB.insert_item(data, image_file.filename, id=session.get('id'))
+    data_key = DB.insert_item(data, image_file.filename, session.get('id'))
     return redirect(url_for('view_details_of_item', key=data_key))
 
 
@@ -269,7 +269,7 @@ def view_details_of_item(key):
         return render_template("details_of_item.html", key=key, data=data, profile_image_path=profile_image_path)
 
 
-@application.route('/auction/<key>/<sellerId>/<selectRisingPrice>', methods=['POST'])
+@application.route('/auction/<key>/<sellerId>/<selectRisingPrice>/', methods=['POST'])
 def set_auction(key, sellerId, selectRisingPrice):
     if session.get('id') is None:
         return jsonify({'msg': '로그인 후 입찰할 수 있습니다.'})
@@ -295,7 +295,7 @@ def reg_review(id):
     elif id == session.get('id'):
         return redirect(url_for('view_user_reviews', id=id))
     else:
-        return render_template("reg_review.html", buyerId=session.get('id'), sellerId=id)
+        return render_template("reg_review.html", sellerId=id)
 
 
 # 리뷰 등록하기

@@ -80,9 +80,7 @@
             height: 50px;
             border: solid rgb(208, 208, 208);
             border-radius: 5px;
-        }
-
-        
+        }    
     </style>
 </head>
 
@@ -93,7 +91,7 @@
     <form method="post" enctype="multipart/form-data" action="/submit_review_post" id="submit-review">
         <div class="wrapper">
             <input type="text" id="seller-id" name="sellerId" value="{{sellerId}}">
-            <input type="text" id="buyer-id" name="buyerId" value="{{buyerId}}">
+            <input type="text" id="buyer-id" name="buyerId" value="{{session['id']}}">
             <h2 class="text1">리뷰 작성</h2>
             <hr>
             <div class="text2"><span class="asterisk">* </span>거래 제목을 입력해주세요</div>

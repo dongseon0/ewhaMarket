@@ -51,7 +51,7 @@ li {
     top: 56%;
 }
 
-.input-image {
+.image-show {
     width: 200px;
     height: 200px;
     border: solid rgb(208, 208, 208);
@@ -142,6 +142,7 @@ textarea {
     color: rgb(117, 120, 102);
     border-radius: 10px;
     border: 3px solid  rgb(221, 227, 192);
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
 }
 
 .product-registration-end-button:hover {
