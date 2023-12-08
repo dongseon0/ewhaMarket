@@ -46,6 +46,19 @@
             background-color: #8a8a8a68;
         }
 
+        .blank-box {
+            width: 180px;
+            height: 250px;
+            display: inline-block;
+            border: 1px solid #e4e4e4;
+            padding: 6px;
+            margin: 2px;
+            border-radius: 10px;
+            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: left;
+            visibility: hidden;
+        }
+
 
         /*상품 이름 길이 제한*/
         .desc {
@@ -160,7 +173,6 @@
             </li>
         </ul>
         <hr class="line3">
-
         <div class="product">
             <tr>
                 {% for key, value in row1 %}
@@ -171,6 +183,11 @@
                             {{value.name}}
                         </div>
                     </div>
+                </td>
+                {% endfor %}
+                {% for _ in range(empty_cells) %}
+                <td>
+                    <div class="blank-box"></div>
                 </td>
                 {% endfor %}
             </tr>
@@ -206,6 +223,11 @@
                             {% endif %}
                         </div>
                     </div>
+                </td>
+                {% endfor %}
+                {% for _ in range(auction_empty_cells) %}
+                <td>
+                    <div class="blank-box"></div>
                 </td>
                 {% endfor %}
             </tr>
