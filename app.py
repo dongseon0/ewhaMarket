@@ -265,7 +265,7 @@ def view_details_of_item(key):
         return render_template("details_of_item.html", key=key, data=data, profile_image_path=profile_image_path)
 
 
-@application.route('/auction/<key>/<sellerId>/<selectRisingPrice>', methods=['POST'])
+@application.route('/auction/<key>/<sellerId>/<selectRisingPrice>/', methods=['POST'])
 def set_auction(key, sellerId, selectRisingPrice):
     if session.get('id') is None:
         return jsonify({'msg': '로그인 후 입찰할 수 있습니다.'})
