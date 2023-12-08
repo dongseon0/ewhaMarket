@@ -113,8 +113,8 @@ td {
 }
 
 .desc {
-    margin-top: 5%;
-    margin-bottom: 7%;
+    margin-top: 9px;
+    margin-bottom: 7px;
     max-width: 95%;
     /* Adjust as needed */
     margin-left: 5px;
@@ -130,7 +130,7 @@ td {
     border: 0;
     outline: none;
     width: 45px;
-    border-radius: 20%;
+    border-radius: 5px;
     font-size: 15px;
     margin-left: 145px;
     margin-top: 40px;
@@ -138,7 +138,7 @@ td {
 }
 
 .price {
-    margin-top: 3%;
+    margin-top: 0px;
     margin-bottom: 7%;
     max-width: 95%;
     /* Adjust as needed */
