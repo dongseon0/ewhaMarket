@@ -132,6 +132,7 @@ p {
     border: 3px solid rgb(221, 227, 192);
     font-size: 110%;
     padding: 2%;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
 }
 
 .btn-love:hover {
@@ -149,6 +150,7 @@ p {
     padding: 4px 7px;
     left: 40%;
     top: 40%;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
 }
 
 .btn-money:hover {
@@ -178,9 +180,7 @@ p {
 }
 
 #delete {
-    float: left;
     width: 10%;
-
     background-color: rgb(221, 227, 192);
     border: none;
     border-radius: 5px;
@@ -188,6 +188,7 @@ p {
     font-size: 95%;
     margin: 4%;
     padding: 0.5% 0%;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
 }
 
 #delete:hover {
