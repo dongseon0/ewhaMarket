@@ -16,13 +16,16 @@
                         상품 이미지
                     </p>
                     <div class="inside">
-                        <label for="file">
-                            <div class="file-upload-button">
-                                <p class="file-upload-text">이미지 등록</p>
+                        <div class="reg-file-box">
+                            <label for="file">
+                                <div class="file-upload-button">
+                                    <p class="file-upload-text">이미지 등록</p>
+                                </div>
+                            </label>
+                            <input type="file" name="file" id="file" onchange="loadFile(this)"/>
+                            <div class="image-show" id="image-show">
                             </div>
-                        </label>
-                        <input type="file" name="file" id="file" onchange="loadFile(this)"/>
-                        <div class="image-show" id="image-show"></div>
+                        </div>
                     </div>
                 </li>
                 <hr class="middle-hr">
