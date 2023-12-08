@@ -23,11 +23,19 @@ def hello():
     auction_items = DB.get_items_with_status()
     auction_items = sorted(auction_items, key=lambda x: x.get('key', ''), reverse=True)
     
+    item_counts = len(data)
+    auction_item_counts = len(auction_items)
+
+    empty_cells = 5 - item_counts if 5 > item_counts else 0
+    auction_empty_cells = 5 - auction_item_counts if 5 > auction_item_counts else 0
+
     return render_template(
         "main_page.html",
        data=data.items(),
        row1=locals()['data_0'].items(),
-       auction_items=auction_items
+       auction_items=auction_items,
+       empty_cells = empty_cells,
+       auction_empty_cells = auction_empty_cells
     )
 
 
