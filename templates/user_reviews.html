@@ -10,14 +10,14 @@
     <div class="wrapper">
         <h2 class="text">{{id}} 리뷰</h2>
         <hr class="line1">
-        
+
         <div class="topnav">
             <a href="/user_list/{{id}}/">판매내역</a>
             <a style="text-decoration: underline;" href="/user_reviews/{{id}}/">리뷰</a>
         </div>
         <hr class="line1">
-        
-        <input type="button" onclick="regReview()" id="reg-review" value="등록하기">
+
+        <input type="button" onclick="location.href = '/reg_review/{{id}}/'" id="reg-review" value="등록하기">
         {% if total > 0 %}
         <p class="count_review">
             {{total}}개의 리뷰
@@ -46,7 +46,8 @@
             </table>
             {% endfor %}
         </div>
-        {% if row1|length > 0 %}<hr class="line2">{% endif %}
+        {% if row1|length > 0 %}
+        <hr class="line2">{% endif %}
 
 
         <div class="review">
@@ -72,7 +73,8 @@
             </table>
             {% endfor %}
         </div>
-        {% if row2|length > 0 %}<hr class="line2">{% endif %}
+        {% if row2|length > 0 %}
+        <hr class="line2">{% endif %}
 
         <div class="review">
             {% for key, value in row3 %}
@@ -97,7 +99,8 @@
             </table>
             {% endfor %}
         </div>
-        {% if row3|length > 0 %}<hr class="line2">{% endif %}
+        {% if row3|length > 0 %}
+        <hr class="line2">{% endif %}
 
         <div class="review">
             {% for key, value in row4 %}
@@ -122,7 +125,8 @@
             </table>
             {% endfor %}
         </div>
-        {% if row4|length > 0 %}<hr class="line2">{% endif %}
+        {% if row4|length > 0 %}
+        <hr class="line2">{% endif %}
 
         <div class="review">
             {% for key, value in row5 %}
@@ -147,7 +151,8 @@
             </table>
             {% endfor %}
         </div>
-        {% if row5|length > 0 %}<hr class="line2">{% endif %}
+        {% if row5|length > 0 %}
+        <hr class="line2">{% endif %}
 
         <div class="page-wrap">
             <div class="page-nation">
@@ -169,13 +174,8 @@
     </div>
 
     <script>
-        function regReview() {
-            if ("{{session['id']}}" == "{{id}}")
-            {
-                alert("나에게는 리뷰를 달 수 없습니다.")
-            } else {
-                location.href = '/reg_review/{{id}}/'
-            }
+        if ("{{session['id']}}" == "{{id}}") {
+            document.getElementById("reg-review").style.visibility = "hidden";
         }
     </script>
     {% endblock section %}
