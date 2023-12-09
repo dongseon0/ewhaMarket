@@ -29,7 +29,7 @@
 
 
         <table class="content">
-            
+
             <td>
                 <div style="width: 200px; padding: 6px 6px 6px 8px; margin: 2px;">
                     <select id="category" name="category" onchange="location=this.value">>
@@ -57,7 +57,7 @@
                     </p>
                 </div>
             </td>
-        
+
             <tbody class="product">
                 <tr>
                     {% for key, value in row1 %}
@@ -66,7 +66,6 @@
                             style="cursor:pointer;">
                             <img src="/static/images/items/{{value.img_path}}" width="200px" height="200px">
                             {% if isAuction.get(key) %}
-                            <div class="auction_product">경매</div>
                             <div class="desc">{{value.name}}</div>
                             <div class="status">
                                 {% if value.auctionDescribe == 'pre' %}
@@ -77,6 +76,7 @@
                                 경매 완료
                                 {% endif %}
                             </div>
+                            <div class="auction_product">경매</div>
                             {% else %}
                             <div class="desc">{{value.name}}</div>
                             <div class="price">{{value.fixedPrice}}원</div>
@@ -102,7 +102,6 @@
 
                             <img src="/static/images/items/{{value.img_path}}" width="200px" height="200px">
                             {% if isAuction.get(key) %}
-                            <div class="auction_product">경매</div>
                             <div class="desc">{{value.name}}</div>
                             <div class="status">
                                 {% if value.auctionDescribe == 'pre' %}
@@ -113,6 +112,7 @@
                                 경매 완료
                                 {% endif %}
                             </div>
+                            <div class="auction_product">경매</div>
                             {% else %}
                             <div class="desc">{{value.name}}</div>
                             <div class="price">{{value.fixedPrice}}원</div>
@@ -130,7 +130,6 @@
                             style="cursor:pointer;">
                             <img src="/static/images/items/{{value.img_path}}" width="200px" height="200px">
                             {% if isAuction.get(key) %}
-                            <div class="auction_product">경매</div>
                             <div class="desc">{{value.name}}</div>
                             <div class="status">
                                 {% if value.auctionDescribe == 'pre' %}
@@ -141,6 +140,7 @@
                                 경매 완료
                                 {% endif %}
                             </div>
+                            <div class="auction_product">경매</div>
                             {% else %}
                             <div class="desc">{{value.name}}</div>
                             <div class="price">{{value.fixedPrice}}원</div>
@@ -159,7 +159,6 @@
                             <img src="/static/images/items/{{value.img_path}}" width="200px" height="200px">
                             {% if isAuction.get(key) %}
                             <div class="desc">{{value.name}}</div>
-                            <div class="auction_product">경매</div>
                             <div class="status">
                                 {% if value.auctionDescribe == 'pre' %}
                                 경매 시작 전
@@ -169,6 +168,7 @@
                                 경매 완료
                                 {% endif %}
                             </div>
+                            <div class="auction_product">경매</div>
                             {% else %}
                             <div class="desc">{{value.name}}</div>
                             <div class="price">{{value.fixedPrice}}원</div>
