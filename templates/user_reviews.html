@@ -17,11 +17,11 @@
         </div>
         <hr class="line1">
 
-        <input type="button" onclick="location.href = '/reg_review/{{id}}/'" id="reg-review" value="등록하기">
         {% if total > 0 %}
         <p class="count_review">
             {{total}}개의 리뷰
         </p>
+        <input type="button" onclick="location.href = '/reg_review/{{id}}/'" id="reg-review" value="등록하기">
 
         <div class="review">
             {% for key, value in row1 %}
