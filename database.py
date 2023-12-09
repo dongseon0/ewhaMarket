@@ -358,33 +358,3 @@ class DBhandler:
             if key_value == key:
                 target_value = res.val()
         return target_value
-
-
-    def get_non_auction_items(self):
-        # Get items excluding those with auction status
-        items = self.get_items()
-        non_auction_items = {key: value for key, value in items.items() if not self.get_is_auction_status(key)}
-        return non_auction_items
-
-    def get_items_with_status(self):
-        # Get items with auction status
-        items = self.get_items()
-        auction_items = [value for key, value in items.items() if self.get_is_auction_status(key)]
-        
-        return auction_items
-    
-    def get_auction_item_by_name(self, item_name):
-        items = self.db.child("items").get()
-        target_value = None
-        for res in items.each():
-            key_value = res.key()
-            item_data = res.val()
-
-            if item_data["name"] == item_name and self.get_is_auction_status(key_value):
-                target_value = item_data
-                break
-
-        return target_value
-    
-  
-  

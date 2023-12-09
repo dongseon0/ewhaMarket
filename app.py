@@ -13,47 +13,46 @@ DB = DBhandler()
 # 메인
 @application.route("/")
 def hello():
-    # 최근 등록된 상품(경매 제외)
-    data = DB.get_non_auction_items()
+    data = DB.get_items()
     data = dict(sorted(data.items(), key=lambda x: x[0], reverse=True))
-    for i in range(5):
-        locals()['data_{}'.format(0)] = dict(list(data.items())[0:5])
-    
-    
-    # 경매 상품
-    auction_items = DB.get_items_with_status()
-    auction_items = sorted(auction_items, key=lambda x: x.get('key', ''), reverse=True)
 
-    item_counts = len(data)
-    auction_item_counts = len(auction_items)
+    isAuction = {}
+    for item_key in data.keys():
+        is_auction_status = DB.get_is_auction_status(item_key)
+        isAuction[item_key] = is_auction_status
 
+    filtered_data = {}
+    for item_key, auction_status in isAuction.items():
+        if auction_status == False:  # False인 경우에만 추가
+            filtered_data[item_key] = data[item_key]
+
+    filtered_auction_data = {}
+    for item_key, auction_status in isAuction.items():
+        if auction_status == True:  # True인 경우에만 추가
+            filtered_auction_data[item_key] = data[item_key]
+
+    locals()['data_{}'.format(0)] = dict(list(filtered_data.items())[0:5])
+    locals()['auction_data_{}'.format(0)] = dict(list(filtered_auction_data.items())[0:5])
+
+    item_counts = len(filtered_data)
+    auction_item_counts = len(filtered_auction_data)
     empty_cells = 5 - item_counts if 5 > item_counts else 0
     auction_empty_cells = 5 - auction_item_counts if 5 > auction_item_counts else 0
 
-    row1_auction_items = auction_items[-5:]
-
     return render_template(
         "main_page.html",
-        data=data.items(),
+        data=filtered_data.items(),
         row1=locals()['data_0'].items(),
-        row1_auction_items=row1_auction_items,  
+        row1_auction=locals()['auction_data_0'].items(),
         empty_cells=empty_cells,
         auction_empty_cells=auction_empty_cells
     )
 
-@application.route("/details_of_auction_item/<item_name>/")
-def details_of_auction_item(item_name):
-    item = DB.get_auction_item_by_name(item_name)
-
-    if item:
-        return render_template("details_of_auction_item.html", data=item)
-    else:
-        return render_template("error.html", message="Item not found")
 
 # 상품
 # 전체 상품 리스트
 @application.route("/product_list")
-def view_product_list(): 
+def view_product_list():
     # html에 페이지 인덱스 클릭할 때마다 get으로 받아옴
     page = request.args.get("page", 0, type=int)
     category = request.args.get("category", "all")
@@ -86,12 +85,13 @@ def view_product_list():
     tot_count = len(data)
     for i in range(row_count):  # last row
         if (i == row_count-1) and (tot_count % per_row != 0):
-            locals()['data_{}'.format(i)] = dict(list(data.items())[i*per_row:])
+            locals()['data_{}'.format(i)] = dict(
+                list(data.items())[i*per_row:])
         else:
-            locals()['data_{}'.format(i)] = dict(list(data.items())[i*per_row:(i+1)*per_row])
+            locals()['data_{}'.format(i)] = dict(
+                list(data.items())[i*per_row:(i+1)*per_row])
 
-    empty_cells = per_row - item_counts%per_row if per_row > item_counts%per_page else 0
-    
+    empty_cells = per_row - item_counts % per_row if per_row > item_counts % per_page else 0
 
     isAuction = {}
     for item_key in data.keys():
@@ -110,14 +110,14 @@ def view_product_list():
         page_count=int(math.ceil(item_counts/per_page)),  # 페이지 개수
         total=item_counts,
         category=category,
-        empty_cells = empty_cells,
-        isAuction = isAuction
+        empty_cells=empty_cells,
+        isAuction=isAuction
     )
 
 
 # 경매 상품 리스트
 @application.route("/auction_list")
-def view_auction_list(): 
+def view_auction_list():
     # html에 페이지 인덱스 클릭할 때마다 get으로 받아옴
     page = request.args.get("page", 0, type=int)
     category = request.args.get("category", "all")
@@ -131,10 +131,10 @@ def view_auction_list():
         data = DB.get_items()  # read the table
     else:
         data = DB.get_items_bycategory(category)
-    
+
     # 최근 등록된 상품 순으로 정렬
     data = dict(sorted(data.items(), key=lambda x: x[0], reverse=True))
-    
+
     isAuction = {}
     for item_key in data.keys():
         is_auction_status = DB.get_is_auction_status(item_key)
@@ -158,9 +158,11 @@ def view_auction_list():
     tot_count = len(filtered_data)
     for i in range(row_count):  # last row
         if (i == row_count-1) and (tot_count % per_row != 0):
-            locals()['data_{}'.format(i)] = dict(list(filtered_data.items())[i * per_row:])
+            locals()['data_{}'.format(i)] = dict(
+                list(filtered_data.items())[i * per_row:])
         else:
-            locals()['data_{}'.format(i)] = dict(list(filtered_data.items())[i * per_row:(i + 1) * per_row])
+            locals()['data_{}'.format(i)] = dict(
+                list(filtered_data.items())[i * per_row:(i + 1) * per_row])
 
     empty_cells = per_row - item_counts % per_row if per_row > item_counts % per_page else 0
 
@@ -183,7 +185,7 @@ def view_auction_list():
 
 # 일반 상품 리스트
 @application.route("/list")
-def view_list(): 
+def view_list():
     # html에 페이지 인덱스 클릭할 때마다 get으로 받아옴
     page = request.args.get("page", 0, type=int)
     category = request.args.get("category", "all")
@@ -197,10 +199,10 @@ def view_list():
         data = DB.get_items()  # read the table
     else:
         data = DB.get_items_bycategory(category)
-    
+
     # 최근 등록된 상품 순으로 정렬
     data = dict(sorted(data.items(), key=lambda x: x[0], reverse=True))
-    
+
     isAuction = {}
     for item_key in data.keys():
         is_auction_status = DB.get_is_auction_status(item_key)
@@ -224,9 +226,11 @@ def view_list():
     tot_count = len(filtered_data)
     for i in range(row_count):  # last row
         if (i == row_count-1) and (tot_count % per_row != 0):
-            locals()['data_{}'.format(i)] = dict(list(filtered_data.items())[i * per_row:])
+            locals()['data_{}'.format(i)] = dict(
+                list(filtered_data.items())[i * per_row:])
         else:
-            locals()['data_{}'.format(i)] = dict(list(filtered_data.items())[i * per_row:(i + 1) * per_row])
+            locals()['data_{}'.format(i)] = dict(
+                list(filtered_data.items())[i * per_row:(i + 1) * per_row])
 
     empty_cells = per_row - item_counts % per_row if per_row > item_counts % per_page else 0
 
@@ -460,7 +464,7 @@ def my_page(id):
         data = dict(list(data.items())[:item_counts])
     else:
         data = dict(list(data.items())[start_idx:end_idx])
-    
+
     tot_count = len(data)
     for i in range(row_count):  # last row
         if (i == row_count-1) and (tot_count % per_row != 0):
@@ -469,7 +473,7 @@ def my_page(id):
         else:
             locals()['data_{}'.format(i)] = dict(
                 list(data.items())[i*per_row:(i+1)*per_row])
-    
+
     empty_cells = per_row - item_counts if per_row > item_counts else 0
 
     return render_template(
@@ -482,7 +486,7 @@ def my_page(id):
         page_count=int((item_counts / per_page) + 1),
         total=item_counts,
         id=id,
-        empty_cells = empty_cells
+        empty_cells=empty_cells
     )
 
 
@@ -550,7 +554,7 @@ def my_wish(id):
         data = dict(list(data.items())[:item_counts])
     else:
         data = dict(list(data.items())[start_idx:end_idx])
-    
+
     tot_count = len(data)
     for i in range(row_count):  # last row
         if (i == row_count-1) and (tot_count % per_row != 0):
@@ -559,7 +563,7 @@ def my_wish(id):
         else:
             locals()['data_{}'.format(i)] = dict(
                 list(data.items())[i*per_row:(i+1)*per_row])
-    
+
     empty_cells = per_row - item_counts if per_row > item_counts else 0
 
     return render_template(
@@ -572,7 +576,7 @@ def my_wish(id):
         page_count=int((item_counts / per_page) + 1),
         total=item_counts,
         id=id,
-        empty_cells = empty_cells
+        empty_cells=empty_cells
     )
 
 
@@ -665,7 +669,7 @@ def view_user_list(id):
         data = dict(list(data.items())[:item_counts])
     else:
         data = dict(list(data.items())[start_idx:end_idx])
-    
+
     tot_count = len(data)
     for i in range(row_count):  # last row
         if (i == row_count-1) and (tot_count % per_row != 0):
@@ -674,7 +678,7 @@ def view_user_list(id):
         else:
             locals()['data_{}'.format(i)] = dict(
                 list(data.items())[i*per_row:(i+1)*per_row])
-    
+
     empty_cells = per_row - item_counts if per_row > item_counts else 0
 
     return render_template(
@@ -687,9 +691,8 @@ def view_user_list(id):
         page_count=int((item_counts / per_page) + 1),
         total=item_counts,
         id=id,
-        empty_cells = empty_cells
+        empty_cells=empty_cells
     )
-
 
 
 if __name__ == "__main__":
