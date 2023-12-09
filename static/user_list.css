@@ -42,9 +42,10 @@ table{
 
 
 .desc {
-    margin-top: 5%;
-    margin-bottom: 7%;
-    max-width: 95%; /* Adjust as needed */
+    margin-top: 9px;
+    margin-bottom: 7px;
+    max-width: 95%;
+    /* Adjust as needed */
     margin-left: 5px;
     white-space: nowrap;
     overflow: hidden;
@@ -166,4 +167,46 @@ ul{
     color: black; 
     text-decoration: none; 
     margin: 0 5px; 
+}
+
+.auction_product {
+    float: right;
+    width: 45px;
+    position: relative;
+    bottom: 20px;
+
+    background-color: #dee3c3;
+    border: 0;
+    outline: none;
+    border-radius: 5px;
+    font-size: 15px;
+    padding-top: 3px;
+    text-align: center;
+    margin-right: 2px;
+    margin-top: 6px
+}
+
+.price {
+    margin-top: 0px;
+    margin-bottom: 7%;
+    max-width: 95%;
+    /* Adjust as needed */
+    margin-left: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #757866;
+}
+
+.price1 {
+    margin-top: 2px;
+    margin-bottom: 2px;
+    max-width: 145px;
+    /* Adjust as needed */
+    margin-left: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #757866;
+    font-size: 11px;
 }

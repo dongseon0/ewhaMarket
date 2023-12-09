@@ -1,7 +1,7 @@
 <head>
-  <meta charset="UTF-8">
   <link rel="stylesheet" type="text/css" href="/static/my_page.css">
   <link rel="stylesheet" type="text/css" href="/static/user_list.css">
+  <script src="/static/auction.js" defer></script>
 </head>
 
 <body>
@@ -32,7 +32,18 @@
             <div class="item-box" onclick="location.href='/details_of_item/{{ key }}/'"
               style="cursor:pointer;">
               <img src="/static/images/items/{{ value.img_path }}" width="200px" height="200px">
-              <div class="desc">{{ value.name }}</div>
+              {% if isAuction.get(key) %}
+              <div class="desc">{{value.name}}</div>
+              <div class="price1">
+                  <span class="auction-state" data-start-date="{{ value.startDate }}"
+                      data-start-time="{{ value.startTime }}" data-end-date="{{ value.endDate }}"
+                      data-end-time="{{ value.endTime }}"></span>
+              </div>
+              <div class="auction_product">경매</div>
+              {% else %}
+              <div class="desc">{{value.name}}</div>
+              <div class="price">{{value.fixedPrice}}원</div>
+              {% endif %}
             </div>
           </td>
           {% endfor %}
@@ -50,7 +61,18 @@
             <div class="item-box" onclick="location.href='/details_of_item/{{ key }}/'"
               style="cursor:pointer;">
               <img src="/static/images/items/{{ value.img_path }}" width="200px" height="200px">
-              <div class="desc">{{ value.name }}</div>
+              {% if isAuction.get(key) %}
+              <div class="desc">{{value.name}}</div>
+              <div class="price1">
+                  <span class="auction-state" data-start-date="{{ value.startDate }}"
+                      data-start-time="{{ value.startTime }}" data-end-date="{{ value.endDate }}"
+                      data-end-time="{{ value.endTime }}"></span>
+              </div>
+              <div class="auction_product">경매</div>
+              {% else %}
+              <div class="desc">{{value.name}}</div>
+              <div class="price">{{value.fixedPrice}}원</div>
+              {% endif %}
             </div>
           </td>
           {% endfor %}
