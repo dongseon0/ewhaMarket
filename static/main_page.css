@@ -66,22 +66,6 @@
     text-overflow: ellipsis;
 }
 
-.banner-container {
-    position: relative;
-    width: 1150px;
-    margin: 0 auto;
-    overflow: hidden;
-}
-
-.banner-wrapper {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-}
-
-.banner-item {
-    min-width: 100%;
-}
-
 .arrow {
     position: absolute;
     top: 50%;
@@ -189,11 +173,15 @@ ul.header-list li {
     background-color: rgb(221, 227, 192);
 }
 
-#banner-text {
-    position: relative;
-    top: 27%;
-    left: -26%;
+#banner-box {
+    width: 900px;
+    margin-top: -270px;
+    margin-left: 270px;
+    display: flex;
+}
 
+#banner-text {
+    width: 500px;
     font-size: 30px;
     color: rgb(105, 107, 93);
     margin: auto;
@@ -201,11 +189,7 @@ ul.header-list li {
 }
 
 #banner-image {
-    width: 18%;
-    position: relative;
-    left: 37%;
-    bottom: 36%;
-    border-radius: 7px;
+    width: 350px;
 }
 
 #reg-item {
@@ -215,8 +199,7 @@ ul.header-list li {
     border: none;
     color: rgb(117, 120, 102);
     font-size: 17px;
-    margin: 1%;
-    padding-top: 5px;
+    margin: 2%;
 }
 
 #reg-item:hover {
