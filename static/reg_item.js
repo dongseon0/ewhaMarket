@@ -3,11 +3,19 @@ function div_OnOff(myId, yourId) {
     document.getElementById(yourId).style.display = "none";
 }
 
+function clickFile() {
+    var image = document.getElementById("img");
+
+    image.parentNode.removeChild(image);
+}
+
+
 function loadFile(input) {
     var file = input.files[0];
 
     var image = document.createElement("img");
     image.setAttribute("class", 'img');
+    image.setAttribute("id", 'img');
 
     image.src = URL.createObjectURL(file);
 
@@ -17,7 +25,7 @@ function loadFile(input) {
 
     var container = document.getElementById('image-show');
     container.appendChild(image);
-
+    $('#image-show').attr('value', 1);
 }
 
 function checkInput(){
