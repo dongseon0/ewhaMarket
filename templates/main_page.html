@@ -228,11 +228,14 @@
                             {{value.name}}
                         </div>
                         <div class="price">{{value.fixedPrice}}원</div>
-
                     </div>
                 </td>
                 {% endfor %}
-
+                {% for _ in range(empty_cells) %}
+                <td>
+                    <div class="blank-box"></div>
+                </td>
+                {% endfor %}
             </tr>
         </div>
 
@@ -250,10 +253,9 @@
 
         <div class="product">
             <tr>
-                {% for item in row1_auction_items | reverse %}
+                {% for key, item in row1_auction %}
                 <td>
-                    <div class="item-box" onclick="location.href='/details_of_auction_item/{{item.name}}/';"
-                        style="cursor: pointer;">
+                    <div class="item-box" onclick="location.href='/details_of_item/{{key}}/';" style="cursor: pointer;">
                         <img src="{{ url_for('static', filename='images/items/' + item.img_path) }}"
                             alt="{{ item.name }}" width="200px" height="200px">
                         <div class="desc">
@@ -266,6 +268,11 @@
                         </div>
                         <div class="auction_product">경매</div>
                     </div>
+                </td>
+                {% endfor %}
+                {% for _ in range(auction_empty_cells) %}
+                <td>
+                    <div class="blank-box"></div>
                 </td>
                 {% endfor %}
             </tr>
