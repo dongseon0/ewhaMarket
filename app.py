@@ -413,7 +413,7 @@ def login_user():
         session['id'] = id
         return redirect(url_for('hello'))
     else:
-        flash("Wrong ID or PW!")
+        flash("아이디 혹은 비밀번호가 틀렸습니다.")
         return render_template("login.html")
 
 
@@ -439,7 +439,7 @@ def register_user():
     if DB.insert_user(data, pw_hash):
         return render_template("login.html")
     else:
-        flash("user id already exist!")
+        flash("이미 존재하는 아이디입니다.")
         return render_template("signup.html")
 
 
