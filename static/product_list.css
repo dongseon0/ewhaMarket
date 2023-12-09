@@ -157,6 +157,7 @@ td {
     padding-top: 3px;
     text-align: center;
     margin-right: 2px;
+    margin-top: 6px
 }
 
 .price {
@@ -210,8 +211,8 @@ ul {
 
 .price1 {
     margin-top: 2px;
-    margin-bottom: 7%;
-    max-width: 95%;
+    margin-bottom: 2px;
+    max-width: 145px;
     /* Adjust as needed */
     margin-left: 5px;
     white-space: nowrap;
