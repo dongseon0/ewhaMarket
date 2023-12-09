@@ -17,7 +17,6 @@ textarea {
 
 .wrapper {
     width: 700px;
-
     margin: 75px auto;
     text-align: center;
 }
@@ -95,4 +94,11 @@ label {
     position: absolute;
     top: -11px;
     left: 6.5px;
+}
+
+.fileName {
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
