@@ -169,7 +169,9 @@
         {% else %}
         <p>
             등록된 리뷰가 없습니다.
-        </p>
+        </p><br><br>
+        <input type="button" onclick="location.href = '/reg_review/{{id}}/'" id="reg-review" value="등록하기"
+        style="position: relative; right: 0px;">
         {% endif %}
     </div>
 
