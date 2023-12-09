@@ -102,7 +102,6 @@
                     url: '/auction/{{key}}/{{data.sellerId}}/{{data.selectRisingPrice}}/',
                     data: {},
                     success: function (response) {
-                        alert(response['msg']);
                         window.location.reload();
                     }
                 });
@@ -210,7 +209,6 @@
                     interested: "Y"
                 },
                 success: function (response) {
-                    alert(response['msg']);
                     window.location.reload();
                 },
                 error: function (xhr, status, error) {
@@ -227,7 +225,6 @@
                     interested: "N"
                 },
                 success: function (response) {
-                    alert(response['msg']);
                     window.location.reload();
                 },
                 error: function (xhr, status, error) {
