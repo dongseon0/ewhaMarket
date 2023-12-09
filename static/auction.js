@@ -46,9 +46,9 @@ function remainingTime(element) {
         if (sec < 10) { sec = "0" + sec; }
 
         if (day > 0)
-            element.innerHTML = "남은 시간: " + day + "일 " + hour + "시간 " + min + "분 ";
+            element.innerHTML = "종료까지 " + day + "일 " + hour + "시간 " + min + "분 ";
         else
-            element.innerHTML = "남은 시간: " + hour + "시간 " + min + "분 ";
+            element.innerHTML = "종료까지 " + hour + "시간 " + min + "분 ";
     }
 }
 

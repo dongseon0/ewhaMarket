@@ -453,6 +453,7 @@ def my_page(id):
     start_idx = per_page * page
     end_idx = per_page * (page + 1)
     data = DB.get_lists(id)  # 테이블 읽기
+    data = dict(sorted(data.items(), key=lambda x: x[0], reverse=True))
     if not data:
         data = {}
         item_counts = 0
@@ -476,6 +477,11 @@ def my_page(id):
 
     empty_cells = per_row - item_counts if per_row > item_counts else 0
 
+    isAuction = {}
+    for item_key in data.keys():
+        is_auction_status = DB.get_is_auction_status(item_key)
+        isAuction[item_key] = is_auction_status
+
     return render_template(
         "my_page.html",
         per_row=per_row,
@@ -486,7 +492,8 @@ def my_page(id):
         page_count=int((item_counts / per_page) + 1),
         total=item_counts,
         id=id,
-        empty_cells=empty_cells
+        empty_cells=empty_cells,
+        isAuction=isAuction
     )
 
 
@@ -543,6 +550,7 @@ def my_wish(id):
     start_idx = per_page * page
     end_idx = per_page * (page + 1)
     data = DB.get_items_byheart(id)  # 테이블 읽기
+    data = dict(sorted(data.items(), key=lambda x: x[0], reverse=True))
     if not data:
         data = {}
         item_counts = 0
@@ -566,6 +574,11 @@ def my_wish(id):
 
     empty_cells = per_row - item_counts if per_row > item_counts else 0
 
+    isAuction = {}
+    for item_key in data.keys():
+        is_auction_status = DB.get_is_auction_status(item_key)
+        isAuction[item_key] = is_auction_status
+
     return render_template(
         "my_wish.html",
         per_row=per_row,
@@ -576,7 +589,8 @@ def my_wish(id):
         page_count=int((item_counts / per_page) + 1),
         total=item_counts,
         id=id,
-        empty_cells=empty_cells
+        empty_cells=empty_cells,
+        isAuction=isAuction
     )
 
 
@@ -658,6 +672,7 @@ def view_user_list(id):
     start_idx = per_page * page
     end_idx = per_page * (page + 1)
     data = DB.get_lists(id)  # 테이블 읽기
+    data = dict(sorted(data.items(), key=lambda x: x[0], reverse=True))
     if not data:
         data = {}
         item_counts = 0
@@ -681,6 +696,11 @@ def view_user_list(id):
 
     empty_cells = per_row - item_counts if per_row > item_counts else 0
 
+    isAuction = {}
+    for item_key in data.keys():
+        is_auction_status = DB.get_is_auction_status(item_key)
+        isAuction[item_key] = is_auction_status
+
     return render_template(
         "user_list.html",
         per_row=per_row,
@@ -691,7 +711,8 @@ def view_user_list(id):
         page_count=int((item_counts / per_page) + 1),
         total=item_counts,
         id=id,
-        empty_cells=empty_cells
+        empty_cells=empty_cells,
+        isAuction=isAuction
     )
 
 

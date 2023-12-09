@@ -58,9 +58,9 @@
 
 /*상품 이름 길이 제한*/
 .desc {
-    margin-top: 5%;
-    max-width: 90%;
-    margin-left: 13px;
+    margin-top: 9px;
+    margin-bottom: 7px;
+    margin-left: 5px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -142,11 +142,11 @@ ul.header-list li {
 }
 
 .price {
-    margin-top: 2px;
+    margin-top: 0px;
     margin-bottom: 7%;
     max-width: 95%;
     /* Adjust as needed */
-    margin-left: 14px;
+    margin-left: 5px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -156,10 +156,10 @@ ul.header-list li {
 
 .price1 {
     margin-top: 2px;
-    margin-bottom: 7%;
-    max-width: 95%;
+    margin-bottom: 2px;
+    max-width: 145px;
     /* Adjust as needed */
-    margin-left: 12px;
+    margin-left: 5px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
