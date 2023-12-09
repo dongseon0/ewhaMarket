@@ -1,9 +1,9 @@
 <head>
     <link rel="stylesheet" type="text/css" href="/static/product_list.css">
+    <script src="/static/auction.js" defer></script>
 </head>
 
 <body>
-
     {% extends "index.html" %}
 
     {% block section %}
@@ -63,8 +63,13 @@
                         <div class="item-box" onclick="location.href='/details_of_item/{{key}}/';"
                             style="cursor:pointer;">
                             <img src="/static/images/items/{{value.img_path}}" width="200px" height="200px">
-                            <div class="auction_product">경매</div>
                             <div class="desc">{{value.name}}</div>
+                            <div class="price1">
+                                <span class="auction-state" data-start-date="{{ value.startDate }}"
+                                    data-start-time="{{ value.startTime }}" data-end-date="{{ value.endDate }}"
+                                    data-end-time="{{ value.endTime }}"></span>
+                            </div>
+                            <div class="auction_product">경매</div>
                         </div>
                     </td>
                     {% endfor %}
@@ -84,8 +89,13 @@
                         <div class="item-box" onclick="location.href='/details_of_item/{{key}}/';"
                             style="cursor:pointer;">
                             <img src="/static/images/items/{{value.img_path}}" width="200px" height="200px">
-                            <div class="auction_product">경매</div>
                             <div class="desc">{{value.name}}</div>
+                            <div class="price1">
+                                <span class="auction-state" data-start-date="{{ value.startDate }}"
+                                    data-start-time="{{ value.startTime }}" data-end-date="{{ value.endDate }}"
+                                    data-end-time="{{ value.endTime }}"></span>
+                            </div>
+                            <div class="auction_product">경매</div>
                         </div>
                     </td>
                     {% endfor %}
@@ -98,8 +108,13 @@
                         <div class="item-box" onclick="location.href='/details_of_item/{{key}}/';"
                             style="cursor:pointer;">
                             <img src="/static/images/items/{{value.img_path}}" width="200px" height="200px">
-                            <div class="auction_product">경매</div>
                             <div class="desc">{{value.name}}</div>
+                            <div class="price1">
+                                <span class="auction-state" data-start-date="{{ value.startDate }}"
+                                    data-start-time="{{ value.startTime }}" data-end-date="{{ value.endDate }}"
+                                    data-end-time="{{ value.endTime }}"></span>
+                            </div>
+                            <div class="auction_product">경매</div>
                         </div>
                     </td>
                     {% endfor %}
@@ -112,8 +127,13 @@
                         <div class="item-box" onclick="location.href='/details_of_item/{{key}}/';"
                             style="cursor:pointer;">
                             <img src="/static/images/items/{{value.img_path}}" width="200px" height="200px">
-                            <div class="auction_product">경매</div>
                             <div class="desc">{{value.name}}</div>
+                            <div class="price1">
+                                <span class="auction-state" data-start-date="{{ value.startDate }}"
+                                    data-start-time="{{ value.startTime }}" data-end-date="{{ value.endDate }}"
+                                    data-end-time="{{ value.endTime }}"></span>
+                            </div>
+                            <div class="auction_product">경매</div>
                         </div>
                     </td>
                     {% endfor %}
