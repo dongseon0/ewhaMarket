@@ -28,7 +28,7 @@ def hello():
 
     filtered_auction_data = {}
     for item_key, auction_status in isAuction.items():
-        if auction_status == True:  # False인 경우에만 추가
+        if auction_status == True:  # True인 경우에만 추가
             filtered_auction_data[item_key] = data[item_key]
 
     locals()['data_{}'.format(0)] = dict(list(filtered_data.items())[0:5])
