@@ -2,12 +2,6 @@
     background-color: rgb(221, 227, 192);
 }
 
-#banner {
-    width: 150%;
-    height: 300px;
-    background-color: rgb(221, 227, 192);
-}
-
 .text {
     width: 900px;
     text-align: left;
@@ -187,4 +181,45 @@ ul.header-list li {
     padding-top: 3px;
     text-align: center;
     margin-right: 1px;
+}
+
+#banner {
+    width: 150%;
+    height: 300px;
+    background-color: rgb(221, 227, 192);
+}
+
+#banner-text {
+    position: relative;
+    top: 27%;
+    left: -26%;
+
+    font-size: 30px;
+    color: rgb(105, 107, 93);
+    margin: auto;
+    text-align: center;
+}
+
+#banner-image {
+    width: 18%;
+    position: relative;
+    left: 37%;
+    bottom: 36%;
+    border-radius: 7px;
+}
+
+#reg-item {
+    width: 200px;
+    height: 30px;
+    background-color: white;
+    border: none;
+    color: rgb(117, 120, 102);
+    font-size: 17px;
+    margin: 1%;
+    padding-top: 5px;
+}
+
+#reg-item:hover {
+    background-color: rgb(209, 215, 180);
+    color: rgb(105, 107, 93);
 }
