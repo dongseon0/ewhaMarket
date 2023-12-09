@@ -180,12 +180,15 @@ ul.header-list li {
     display: flex;
 }
 
-#banner-text {
+#banner-element {
     width: 500px;
-    font-size: 30px;
-    color: rgb(105, 107, 93);
     margin: auto;
     text-align: center;
+}
+
+#banner-text {
+    font-size: 30px;
+    color: rgb(105, 107, 93);
 }
 
 #banner-image {
@@ -203,6 +206,5 @@ ul.header-list li {
 }
 
 #reg-item:hover {
-    background-color: rgb(209, 215, 180);
-    color: rgb(105, 107, 93);
+    background-color: rgb(225, 225, 225);
 }
