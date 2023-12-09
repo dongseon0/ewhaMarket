@@ -207,3 +207,16 @@ ul {
     text-decoration: none;
     margin: 0 5px;
 }
+
+.price1 {
+    margin-top: 2px;
+    margin-bottom: 7%;
+    max-width: 95%;
+    /* Adjust as needed */
+    margin-left: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #757866;
+    font-size: 11px;
+}
