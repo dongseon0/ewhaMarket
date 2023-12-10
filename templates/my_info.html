@@ -23,16 +23,40 @@
       <p>아이디 : {{id}}</p>
       <p>닉네임 : {{data['nickname']}}</p>
       <p>프로필 사진 :</p>
-      <div style="display: flex;">
+      <div class="reg-file-box">
         <img src="/static/images/profiles/{{profile}}" alt="프로필 사진" height="200px">
-        <form method="post" enctype="multipart/form-data" action="/change_my_info">
-          <div class="inside" style="margin-left: 30px;">
-            <input type="file" name="file"/>
+        <form method="post" enctype="multipart/form-data" action="/change_my_info" id="change">
+          <div class="inside">
+            <label for="file">
+              <div class="file-upload-button">
+                <p class="file-upload-text">이미지 등록</p>
+              </div>
+            </label>
+            <input type="file" name="file" id="file" onchange="loadFile(this)"/>
+            <div class="file-name-box">
+              <div id="fileName" class="fileName" style="font-size: 85%;">등록된 이미지가 없습니다.</div>
+            </div>
           </div>
-          <input type="submit" style="margin-left: 30px;" value="프로필 사진 변경하기"><br>
+          <input type="button" id="btn" value="프로필 사진 변경하기" onclick="change_img()"><br>
         </form>
       </div>
     </div> 
   </div>
+
+  <script>
+    function loadFile(input) {
+      var file = input.files[0];
+      var name = document.getElementById('fileName');
+      name.textContent = file.name;
+    }
+
+    function change_img() {
+      if (!document.getElementById("file").value)
+        alert("변경할 프로필 사진을 등록해주세요.");
+      else
+        document.getElementById("change").submit();
+    }
+  </script>
+
   {% endblock section %}
 </body>

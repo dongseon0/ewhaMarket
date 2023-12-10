@@ -17,11 +17,11 @@
         </div>
         <hr class="line1">
 
-        <input type="button" onclick="location.href = '/reg_review/{{id}}/'" id="reg-review" value="등록하기">
         {% if total > 0 %}
         <p class="count_review">
             {{total}}개의 리뷰
         </p>
+        <input type="button" onclick="location.href = '/reg_review/{{id}}/'" class="reg-review" value="등록하기">
 
         <div class="review">
             {% for key, value in row1 %}
@@ -169,13 +169,18 @@
         {% else %}
         <p>
             등록된 리뷰가 없습니다.
-        </p>
+        </p><br><br>
+        <input type="button" onclick="location.href = '/reg_review/{{id}}/'" class="reg-review" value="등록하기"
+            style="position: relative; right: 0px;">
         {% endif %}
     </div>
 
     <script>
         if ("{{session['id']}}" == "{{id}}") {
-            document.getElementById("reg-review").style.visibility = "hidden";
+            reg_reviews = document.getElementsByClassName("reg-review");
+            for (i = 0; i < reg_reviews.length; i++) {
+                reg_reviews.item(i).style.visibility = "hidden";
+            }
         }
     </script>
     {% endblock section %}

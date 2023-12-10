@@ -7,10 +7,16 @@
 }
 
 .information {
+    width: 500px;
+    margin: 20px;
     padding: 20px;
+    padding-top: 0px;
     margin-left: 20px;
     margin-right: 20px;
     text-align: left;
+    background-color: rgb(251, 251, 251);
+    border-radius: 10px 10px;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
 }
 
 h4 {
@@ -20,4 +26,46 @@ h4 {
 
 .inside {
     margin: 2% 10% 2% 0%;
+}
+
+#btn {
+    margin-left: 30px;
+}
+
+.inside {
+    width: 400px;
+    margin-left: 30px;
+}
+
+.reg-file-box {
+    width: 100%;
+    display: flex;
+}
+
+#file {
+    display: none;
+}
+
+.file-upload-button {
+    width: 80px;
+    height: 22px;
+    background-color: #EFEFEF;
+    font-size: 80%;
+    color: rgb(120, 119, 119);
+    border: 1px solid rgb(208, 208, 208);
+    border-radius: 5px;
+    position: relative;
+}
+
+.file-upload-text {
+    position: absolute;
+    top: -11px;
+    left: 6.5px;
+}
+
+.fileName {
+    max-width: 300px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
