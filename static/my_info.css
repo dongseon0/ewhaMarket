@@ -28,8 +28,21 @@ h4 {
     margin: 2% 10% 2% 0%;
 }
 
-#btn {
-    margin-left: 30px;
+#save-btn {
+    width: 200px;
+    height: 35px;
+    box-sizing: border-box;
+    border-radius: 7px;
+    border: 3px solid rgb(221, 227, 192);
+    background-color: rgb(221, 227, 192);
+    font-size: 16px;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+}
+
+#save-btn:hover {
+    background-color: rgb(209, 215, 180);
+    color: rgb(122, 125, 103);
+    border: 3px solid rgb(209, 215, 180);
 }
 
 .inside {
@@ -42,12 +55,18 @@ h4 {
     display: flex;
 }
 
+#profile-img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
+
 #file {
     display: none;
 }
 
 .file-upload-button {
-    width: 80px;
+    width: 135px;
     height: 22px;
     background-color: #EFEFEF;
     font-size: 80%;
@@ -61,11 +80,5 @@ h4 {
     position: absolute;
     top: -11px;
     left: 6.5px;
-}
-
-.fileName {
-    max-width: 300px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    width: 200px;
 }
