@@ -19,35 +19,32 @@
     </div>
     <hr>
 
-    <div class="information">
-      <p>아이디 : {{id}}</p>
-      <p>닉네임 : {{data['nickname']}}</p>
-      <p>프로필 사진 :</p>
-      <div class="reg-file-box">
-        <img src="/static/images/profiles/{{profile}}" alt="프로필 사진" height="200px">
-        <form method="post" enctype="multipart/form-data" action="/change_my_info" id="change">
+    <form method="post" enctype="multipart/form-data" action="/change_my_info" id="change">
+      <div class="information">
+        <p>아이디 : {{id}}</p>
+        <p>닉네임 : {{data['nickname']}}</p>
+        <p>프로필 사진 :</p>
+        <div class="reg-file-box">
+          <img src="/static/images/profiles/{{profile}}" alt="프로필 사진" id="profile-img">
           <div class="inside">
             <label for="file">
               <div class="file-upload-button">
-                <p class="file-upload-text">이미지 등록</p>
+                <p class="file-upload-text">프로필 사진 변경하기</p>
               </div>
             </label>
             <input type="file" name="file" id="file" onchange="loadFile(this)"/>
-            <div class="file-name-box">
-              <div id="fileName" class="fileName" style="font-size: 85%;">등록된 이미지가 없습니다.</div>
-            </div>
           </div>
-          <input type="button" id="btn" value="프로필 사진 변경하기" onclick="change_img()"><br>
-        </form>
+        </div>
       </div>
-    </div> 
+      <input type="button" id="save-btn" value="저장" onclick="change_img()">
+    </form>
   </div>
 
   <script>
     function loadFile(input) {
       var file = input.files[0];
-      var name = document.getElementById('fileName');
-      name.textContent = file.name;
+      var image = document.getElementById('profile-img');
+      image.src = URL.createObjectURL(file);
     }
 
     function change_img() {
