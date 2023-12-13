@@ -31,92 +31,89 @@
                         <p class="file-upload-text">이미지 등록</p>
                     </div>
                 </label>
-                <input type="file" name="file" id="file" onchange="loadFile(this)"/>
+                <input type="file" name="file" id="file" onchange="loadFile(this)" />
                 <div class="file-name-box">
                     <div id="fileName" class="fileName" style="font-size: 85%;">등록된 이미지가 없습니다.</div>
                 </div>
-            </div> 
+            </div>
             <br><br>
             <hr>
             <input type="button" id="ok" name="ok" value="등록하기" onclick="submit_review()">
         </div>
-        <!--☆ ★-->
-
-        <script>
-            function loadFile(input) {
-                var file = input.files[0];
-                var name = document.getElementById('fileName');
-                name.textContent = file.name;
-            }
-
-            // 별
-            star = 0;
-            stars = document.getElementsByClassName("star");
-            starsVariable = document.getElementById("stars-variable");
-
-            // 마우스 올린 별 위치만큼 별 채우는 함수, 올리지 않으면 누른 별점만큼 보이게 하는 함수 실행하기
-            function starEvent() {
-                for (i = 0; i < stars.length; i++) {
-                    stars.item(i).addEventListener("mouseover", function () {
-                        starHoverOn(parseInt(this.id));
-                    });
-                    stars.item(i).addEventListener("mouseleave", starHoverOff);
-                    stars.item(i).addEventListener("click", function () {
-                        starSet(parseInt(this.id));
-                    });
-                }
-            }
-
-            // 마우스 올린 별 위치만큼 별 채우기
-            function starHoverOn(h) {
-                for (i = 0; i < stars.length; i++) {
-                    if (i > h) {
-                        stars.item(i).innerHTML = "☆";
-                    } else {
-                        stars.item(i).innerHTML = "★";
-                    }
-                }
-            }
-
-            // 마우스 올리지 않으면 누른 별점만큼 보이게 하기
-            function starHoverOff() {
-                starFill();
-            }
-            
-            // 별 변수에 반영하고 html에 적용하는 함수 실행하기
-            function starSet(i) {
-                star = i;
-                starsVariable.value = i;
-                starFill();
-            }
-
-            // 별 변수만큼 html에 적용하는 함수 실행하기
-            function starFill() {
-                for (i = 0; i < stars.length; i++) {
-                    if (i > star) {
-                        stars.item(i).innerHTML = "☆";
-                    } else {
-                        stars.item(i).innerHTML = "★";
-                    }
-                }
-            }
-            
-            // 기본으로 페이지 로딩할 때 한 번 실행하기
-            starEvent();
-            starFill();
-            // 별
-
-            // 입력하지 않으면 alert 띄우기
-            function submit_review() {
-                if (document.getElementById("review-title").value == "")
-                    alert("제목을 입력해주세요.");
-                else if (document.getElementById("review-contents").value == "")
-                    alert("내용을 입력하세요.");
-                else
-                    document.getElementById("submit-review").submit();
-            }
-        </script>
-
     </form>
+
+    <script>
+        function loadFile(input) {
+            var file = input.files[0];
+            var name = document.getElementById('fileName');
+            name.textContent = file.name;
+        }
+
+        // 별 ☆ ★
+        star = 0;
+        stars = document.getElementsByClassName("star");
+        starsVariable = document.getElementById("stars-variable");
+
+        // 마우스 올린 별 위치만큼 별 채우는 함수, 올리지 않으면 누른 별점만큼 보이게 하는 함수 실행하기
+        function starEvent() {
+            for (i = 0; i < stars.length; i++) {
+                stars.item(i).addEventListener("mouseover", function () {
+                    starHoverOn(parseInt(this.id));
+                });
+                stars.item(i).addEventListener("mouseleave", starHoverOff);
+                stars.item(i).addEventListener("click", function () {
+                    starSet(parseInt(this.id));
+                });
+            }
+        }
+
+        // 마우스 올린 별 위치만큼 별 채우기
+        function starHoverOn(h) {
+            for (i = 0; i < stars.length; i++) {
+                if (i > h) {
+                    stars.item(i).innerHTML = "☆";
+                } else {
+                    stars.item(i).innerHTML = "★";
+                }
+            }
+        }
+
+        // 마우스 올리지 않으면 누른 별점만큼 보이게 하기
+        function starHoverOff() {
+            starFill();
+        }
+
+        // 별 변수에 반영하고 html에 적용하는 함수 실행하기
+        function starSet(i) {
+            star = i;
+            starsVariable.value = i;
+            starFill();
+        }
+
+        // 별 변수만큼 html에 적용하는 함수 실행하기
+        function starFill() {
+            for (i = 0; i < stars.length; i++) {
+                if (i > star) {
+                    stars.item(i).innerHTML = "☆";
+                } else {
+                    stars.item(i).innerHTML = "★";
+                }
+            }
+        }
+
+        // 기본으로 페이지 로딩할 때 한 번 실행하기
+        starEvent();
+        starFill();
+
+        // 입력하지 않으면 alert 띄우기
+        function submit_review() {
+            if (document.getElementById("review-title").value == "")
+                alert("제목을 입력해주세요.");
+            else if (document.getElementById("review-contents").value == "")
+                alert("내용을 입력하세요.");
+            else
+                document.getElementById("submit-review").submit();
+        }
+    </script>
     {% endblock section %}
 </body>
