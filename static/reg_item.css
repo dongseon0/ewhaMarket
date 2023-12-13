@@ -166,8 +166,10 @@ textarea {
 }
 
 .product-registration-end-button {
+    font-size: 15px;
     float: right;
     width: 12%;
+    height: 40px;
     padding: 1.3% 0% 1.3% 0%;
     margin: 2.5% 0% 0% 0%;
     background-color:  rgb(221, 227, 192);
