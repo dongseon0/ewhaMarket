@@ -94,7 +94,7 @@ pip install PyKakao --upgrade
 
 ## 기여자
 
-
+김정민 송영채 신정화 양동선 유지혜 윤수연
 
 
 <br>
