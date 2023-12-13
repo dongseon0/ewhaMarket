@@ -158,3 +158,6 @@ function checkInput(){
     }
 
 }
+
+var text = document.getElementById("description").value;
+text = text.replace(/(?:\r\n|\r|\n)/g, '<br>');
