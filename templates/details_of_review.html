@@ -6,14 +6,18 @@
     {% extends "index.html" %}
 
     {% block section %}
+    <!-- 전체 div() (wrapper) -->
     <div class="wrapper">
+        <!-- 리뷰 쓴 사람의 사진과 아이디 정보 -->
         <a href="/user_list/{{data.buyerId}}/" id="profile-link">
             <img src="/static/images/profiles/{{profile_image_path}}" id="profile">
         </a>
         <div id="user-id"><a href="/user_list/{{data.buyerId}}/">{{data.buyerId}}<a></div>
+
+        <!-- 리뷰 제목 -->
         <div id="review-title">{{data.reviewTitle}}</div>
+        <!-- 리뷰 별점 -->
         <div class="stars">
-            <div id="stars-variable">{{data.starsVariable}}</div>
             <span class="star" id="0">★</span>
             <span class="star" id="1">★</span>
             <span class="star" id="2">★</span>
@@ -21,19 +25,24 @@
             <span class="star" id="4">★</span>
         </div>
         <hr>
+        <!-- 리뷰 사진 -->
         <img src="/static/images/reviews/{{data.img_path}}" id="product-image">
         <br>
+        <!-- 리뷰 내용 -->
         <div id="review-contents">{{data.reviewContents}}</div>
         <br>
+        <!-- 리뷰 도움돼요, 별로예요 버튼 -->
         <button name="good" id="good">👍 {{good}}</button>
         <button name="bad" id="bad">👎 {{bad}}</button>
+        <!-- 리뷰 삭제 버튼 -->
         <input type="button" onclick="location.href='/delete_review/{{key}}/{{data.sellerId}}/';" value="삭제하기"
             id="delete">
     </div>
 
     <script>
+        // 별점만큼 별 채우기
         function starFill() {
-            star = parseInt(document.getElementById("stars-variable").innerHTML);
+            star = parseInt("{{data.starsVariable}}");
             stars = document.getElementsByClassName("star");
             for (i = 0; i < stars.length; i++) {
                 if (i > star) {
@@ -45,7 +54,7 @@
         }
         starFill();
 
-        // -1은 bad, 0은 none, 1은 good
+        // -1은 bad(별로예요), 0은 none, 1은 good(도움돼요)
         function showHeart() {
             $.ajax({
                 type: 'GET',
@@ -81,6 +90,7 @@
             });
         }
 
+        // 도움돼요 버튼 누르면 실행하는 함수
         function good() {
             $.ajax({
                 type: 'POST',
@@ -94,6 +104,7 @@
             });
         }
 
+        // 별로예요 버튼 누르면 실행하는 함수
         function bad() {
             $.ajax({
                 type: 'POST',
@@ -107,6 +118,7 @@
             });
         }
 
+        // 이미 누른 버튼 또 누르면 취소하는 함수
         function cancel() {
             $.ajax({
                 type: 'POST',
@@ -120,11 +132,13 @@
             });
         }
 
+        // 로그인없이 버튼 누르면 alert 후 login 화면으로 넘어가기
         function alertLogin() {
             alert("로그인이 필요합니다.");
             location.href = "/login";
         }
 
+        // 로그인없이 버튼 누르면 안 되게끔 하기 위함
         if ("{{session['id']}}" != "") {
             showHeart();
         }
@@ -133,10 +147,12 @@
             $("#bad").attr("onclick", "alertLogin()");
         }
 
+        // 리뷰 이미지가 없다면 display none으로 바꾸기
         if ("{{data.img_path}}" == "empty.jpeg") {
             document.getElementById("product-image").style.display = "none";
         }
 
+        // 작성자 아이디와 로그인한 아이디가 같지 않으면 삭제하기 버튼 보이지 않게 하기
         if ("{{session['id']}}" != "{{data.buyerId}}") {
             document.getElementById("delete").style.display = "none";
         }
