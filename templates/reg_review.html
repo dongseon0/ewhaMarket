@@ -45,20 +45,12 @@
         </div>
         <!--☆ ★-->
 
-
         <script>
-            function clickFile() {
-            
-            }
-
-
             function loadFile(input) {
                 var file = input.files[0];
-
                 var name = document.getElementById('fileName');
                 name.textContent = file.name;
             }
-
 
             // 별
             star = 0;
@@ -120,7 +112,6 @@
                     document.getElementById("submit-review").submit();
             }
         </script>
-
 
     </form>
     {% endblock section %}
