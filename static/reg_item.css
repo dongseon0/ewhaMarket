@@ -21,6 +21,10 @@
     font-size: 105%;
 }
 
+.small-title {
+    font-size: 90%;
+}
+
 li {
     display: flex;
 }
@@ -64,11 +68,23 @@ li {
     display: none;
 }
 
+.select-status {
+    width: 115%;
+    display: flex;
+    justify-content: space-between;
+}
+
 textarea {
     width: 316%;
     resize: none;
     padding: 5% 0% 5% 5%;
     font-size: 90%;
+}
+
+.select-transaction-method {
+    width: 115%;
+    display: flex;
+    justify-content: space-between;
 }
 
 .input-text {
@@ -78,8 +94,9 @@ textarea {
 }
 
 .input-quantity {
+    margin: 0% 1% 0% 0%;
     width: 60%;
-    padding: 1.8% 0% 1.8% 1.8%;
+    padding: 1.7% 0% 1.7% 1.7%;
     font-size: 90%;
 
 }
@@ -98,38 +115,52 @@ textarea {
     padding: 1.5% 50px 1.5% 1%;
 }
 
-.fixed-pricing-text {
-    width: 69%;
-    padding: 1% 40px 1% 1%;
-    margin: 5% 1% 1% 1%;
-}
-
-.auction-section {
-    width: 200%;
-}
-
-.input-start-price-text{
-    width: 40%;
-    padding: 0.6% 0.6% 0.6% 0.6%;
+.select-pricing-method {
+    margin: 0% 0% 10% 0%;
+    width: 115%;
+    display: flex;
+    justify-content: space-between;
 }
 
 .fixed-pricing-box {
-    width: 110%;
+    width: 160%;
+}
+
+.fixed-pricing-text {
+    margin: 6% 1% 0% 0%;
+    width: 87.5%;
+    padding: 1.9% 0% 1.9% 1.9%;
+    font-size: 90%;
+}
+
+.auction-section {
+    width: 129.6%;
+}
+
+.inside-inside {
+    margin: 5% 0% 8% 0%;
+}
+
+.input-start-price-text{
+    margin: 0% 1% 0% 0%;
+    width: 86.7%;
+    padding: 1.9% 0% 1.9% 1.9%;
+    font-size: 90%;
 }
 
 .select-rising-price-section {
-    width: 75%;
+    width: 96%;
     display: flex;
     justify-content: space-between;
 }
 
 .select-rising-price {
-    width: 20%;
+    width: 23%;
     padding: 1.7% 0% 1.7% 0%;
 }
 
 .input-auction-time {
-    width: 55%;
+    width: 77%;
     display: flex;
     justify-content: space-between;
 }
