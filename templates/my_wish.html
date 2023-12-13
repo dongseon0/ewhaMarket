@@ -22,20 +22,22 @@
     </div>
     <hr>
     
-    <!-- 등록된 리뷰가 있을 때 -->
+    <!-- 찜한 상품이 있을 때 -->
     {% if total > 0 %}
     <p>
       찜한 상품은 {{total}}개입니다.
     </p>
 
     <table>
+      <!-- 찜한 상품 첫번째 줄 -->
       <tbody class="sell">
         <tr>
           {% for key, value in row1 %}
           <td>
-            <div class="item-box" onclick="location.href='/details_of_item/{{ key }}/'"
-              style="cursor:pointer;">
+            <!-- 상품 박스 -->
+            <div class="item-box" onclick="location.href='/details_of_item/{{ key }}/'">
               <img src="/static/images/items/{{ value.img_path }}" width="200px" height="200px">
+              <!-- 경매 상품인 경우 -->
               {% if isAuction.get(key) %}
               <div class="desc">{{value.name}}</div>
               <div class="price1">
@@ -44,6 +46,7 @@
                       data-end-time="{{ value.endTime }}"></span>
               </div>
               <div class="auction_product">경매</div>
+              <!-- 일반 상품인 경우 -->
               {% else %}
               <div class="desc">{{value.name}}</div>
               <div class="price">{{value.fixedPrice}}원</div>
@@ -51,6 +54,7 @@
             </div>
           </td>
           {% endfor %}
+          <!-- 남는 공간은 빈칸으로 채우기 -->
           {% for _ in range(empty_cells) %}
           <td>
             <div class="blank-box"></div>
@@ -58,13 +62,15 @@
           {% endfor %}
         </tr>
       </tbody>
+      <!-- 찜한 상품 두번째 줄 -->
       <tbody class="sell">
         <tr>
           {% for key, value in row2 %}
           <td>
-            <div class="item-box" onclick="location.href='/details_of_item/{{ key }}/'"
-              style="cursor:pointer;">
+            <!-- 상품 박스 -->
+            <div class="item-box" onclick="location.href='/details_of_item/{{ key }}/'">
               <img src="/static/images/items/{{ value.img_path }}" width="200px" height="200px">
+              <!-- 경매 상품인 경우 -->
               {% if isAuction.get(key) %}
               <div class="desc">{{value.name}}</div>
               <div class="price1">
@@ -73,6 +79,7 @@
                       data-end-time="{{ value.endTime }}"></span>
               </div>
               <div class="auction_product">경매</div>
+              <!-- 일반 상품인 경우 -->
               {% else %}
               <div class="desc">{{value.name}}</div>
               <div class="price">{{value.fixedPrice}}원</div>
@@ -96,10 +103,12 @@
         </ul>
       </div>
     </div>
+    <!-- 판매 내역이 있을 때 -->
     {% else %}
     <p>
       찜한 상품이 없습니다.
     </p>
+    <!-- 등록하기 버튼 -->
     {% endif %}
   </div>
   {% endblock section %}
