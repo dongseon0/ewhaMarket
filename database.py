@@ -62,6 +62,7 @@ class DBhandler:
         else:
             return profile
 
+    # 상품
     # 상품 추가
     def insert_item(self, data, img_path, id):
         item_info = {
@@ -125,19 +126,6 @@ class DBhandler:
             if key_value == key:
                 target_value = res.val()
         return target_value
-
-    # 상품 삭제
-    def delete_item_bykey(self, key, sellerId):
-        self.db.child("users").child(sellerId).child(
-            "user_list").child(key).remove()
-        hearts = self.db.child("items").child(key).child("hearts").get()
-        if hearts.each():
-            for heart in hearts.each():
-                heartId = heart.key()
-                self.db.child("users").child(heartId).child(
-                    "user_wish").child(key).remove()
-        self.db.child("items").child(key).remove()
-        return True
 
     # 경매 상품 가져오기
     def get_is_auction_status(self, key):
@@ -224,6 +212,45 @@ class DBhandler:
         self.db.child("users").child(uid).child(
             "user_wish").child(key).set(heart_info)
         return True
+
+    # 상품 삭제
+    def delete_item_bykey(self, key, sellerId):
+        self.db.child("users").child(sellerId).child(
+            "user_list").child(key).remove()
+        hearts = self.db.child("items").child(key).child("hearts").get()
+        if hearts.each():
+            for heart in hearts.each():
+                heartId = heart.key()
+                self.db.child("users").child(heartId).child(
+                    "user_wish").child(key).remove()
+        self.db.child("items").child(key).remove()
+        return True
+
+    # 유저 판매내역 가져오기
+    def get_lists(self, id):
+        user_list = self.db.child("users").child(id).child("user_list").get()
+        matched_items = {}
+        if not user_list.each():
+            return matched_items
+        else:
+            user_list_keys = [item.key() for item in user_list.each()]
+
+        items = self.db.child("items").get()
+        for item in items.each():
+            if item.key() in user_list_keys:
+                matched_items[item.key()] = item.val()
+
+        return matched_items
+
+    def get_lists_bykey(self, key):
+        items = self.db.child("users").child(id).child("user_lists").get()
+        target_value = ""
+        for res in items.each():
+            key_value = res.key()
+
+            if key_value == key:
+                target_value = res.val()
+        return target_value
 
     # 리뷰
     # 리뷰 데이터베이스에 등록하기
@@ -340,33 +367,7 @@ class DBhandler:
         elif int(heart) == -1:
             return True
 
-    # 마이페이지
+    # 마이페이지_개인정보
     def get_user_info(self, id):
         items = self.db.child("users").child(id).child("user_info").get().val()
         return items
-
-    # 판매내역
-    def get_lists(self, id):
-        user_list = self.db.child("users").child(id).child("user_list").get()
-        matched_items = {}
-        if not user_list.each():
-            return matched_items
-        else:
-            user_list_keys = [item.key() for item in user_list.each()]
-
-        items = self.db.child("items").get()
-        for item in items.each():
-            if item.key() in user_list_keys:
-                matched_items[item.key()] = item.val()
-
-        return matched_items
-
-    def get_lists_bykey(self, key):
-        items = self.db.child("users").child(id).child("user_lists").get()
-        target_value = ""
-        for res in items.each():
-            key_value = res.key()
-
-            if key_value == key:
-                target_value = res.val()
-        return target_value
