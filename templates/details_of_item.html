@@ -12,21 +12,23 @@
     <div class="wrapper">
         <h2>상품 세부화면</h2>
         <hr>
+        {% comment %} 수직선 기준 위쪽 컨테이너 {% endcomment %}
         <div class="container">
-
+            {% comment %} 상품 사진 {% endcomment %}
             <div class="columnleft">
                 <img src="/static/images/items/{{data.img_path}}" width="320" alt="item">
             </div>
-
+            {% comment %} 상품 설명 {% endcomment %}    
             <div class="columnright">
                 <div class="alignleft">
+                    {% comment %} 판매자 정보 {% endcomment %}
                     <a href="/user_list/{{data.sellerId}}/"><img src="/static/images/profiles/{{profile_image_path}}"
                             id="profile"></a>
                     <div id="user-id"><a href="/user_list/{{data.sellerId}}/" style=" color: rgb(91, 100, 47); font-size : 110%;
                         text-decoration: none;">{{data.sellerId}}<a></div>
                     <br>
+                    {% comment %} 상품 제목 및 설명 table{% endcomment %}
                     <h2>{{data.name}}</h2>
-
                     <table>
                         <tr>
                             <th>가격</th>
@@ -56,27 +58,26 @@
                     </table>
                     <br>
                 </div>
+                {% comment %} 찜하기 버튼 {% endcomment %}
                 <div class="favorite-button">
                     <input class="btn-love" type="button" value="♡ 찜하기">
                 </div>
 
             </div>
         </div>
-
+        {% comment %} 수직선 기준 하단 부분{% endcomment %}
         <div class="down">
             <hr style="width:100%">
-
         </div>
-
         <br>
-
+        {% comment %} 상품설명 {% endcomment %}
         <div class="comment">
             <p>
             <div class="boldtext">상품설명</div>
             {{data.description}}
             </p>
         </div>
-
+        {% comment %} 상품 삭제하기 버튼 {% endcomment %}
         <br>
         <input type="button" onclick="location.href='/delete_item/{{key}}/{{data.sellerId}}/';" value="삭제하기"
             id="delete">
