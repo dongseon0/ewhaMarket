@@ -138,7 +138,11 @@ textarea {
 }
 
 .inside-inside {
-    margin: 5% 0% 8% 0%;
+    margin: 8% 0% 8% 0%;
+}
+
+.inside-inside-last {
+    margin: 8% 0% 0% 0%;
 }
 
 .input-start-price-text{
