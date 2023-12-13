@@ -18,8 +18,8 @@
       <a href="/my_info/{{session['id']}}/">개인정보</a>
     </div>
     <hr>
+    {% if total > 0 %}
     <div class="top">
-      {% if total > 0 %}
       <p class="count_list">
         {{total}}개의 판매 내역
       </p>
