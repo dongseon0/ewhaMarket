@@ -3,17 +3,21 @@
 </head>
 
 <body>
+  <!-- index.html로부터 확장 -->
   {% extends "index.html" %}
 
   {% block section %}
+  <!-- "이미 존재하는 아이디입니다." 팝업 -->
   {% with mesg = get_flashed_messages() %}
   {% if mesg !=[] %}
   <script>alert("{{ mesg[0] }}")</script>
   {% endif %}
   {% endwith %}
+  <!-- 전체 div (wrapper) -->
   <div class="wrapper">
     <h2 id="title">회원가입</h2>
     <hr><br>
+    <!-- 입력 form -->
     <form method="post" action="/signup_post" id="signup-form" style="width: 70%; margin: auto;">
       <p>아이디 : </p>
       <input type="text" name="id" required>
@@ -21,6 +25,7 @@
       <input type="password" name="pw" required>
       <p>닉네임 : </p>
       <input type="text" name="nickname"><br><br>
+      <!-- 회원가입 버튼 -->
       <input type="submit" value="회원가입" id="signupBtn" /></p>
     </form>
   </div>

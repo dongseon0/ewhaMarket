@@ -5,12 +5,15 @@
 </head>
 
 <body>
+  <!-- index.html로부터 확장 -->
   {% extends "index.html" %}
 
   {% block section %}
+  <!-- 전체 div (wrapper) -->
   <div class="wrapper">
     <h2 class="title">마이 페이지</h2>
     <hr>
+    <!-- 마이페이지 메뉴바 -->
     <div class="menubar">
       <a href="/my_page/{{session['id']}}/">내 상점</a>
       <a href="/my_reviews/{{session['id']}}/">내 리뷰</a>
@@ -19,6 +22,7 @@
     </div>
     <hr>
     
+    <!-- 등록된 리뷰가 있을 때 -->
     {% if total > 0 %}
     <p>
       찜한 상품은 {{total}}개입니다.
