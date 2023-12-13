@@ -469,7 +469,7 @@ def view_user_reviews(id):
     start_idx = per_page*page
     end_idx = per_page*(page+1)  # 페이지 인덱스로 start_idx, end_idx 생성
     data = DB.get_reviews(id)  # read the table
-    star_avg = DB.get_reviews_star_avg(id)
+    star_avg = round(DB.get_reviews_star_avg(id), 1)
     if not data:
         data = {}
         item_counts = 0
