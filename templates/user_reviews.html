@@ -19,7 +19,7 @@
 
         {% if total > 0 %}
         <p class="count_review">
-            {{total}}개의 리뷰
+            {{total}}개의 리뷰 (평균 {{star_avg}}점)
         </p>
         <input type="button" onclick="location.href = '/reg_review/{{id}}/'" class="reg-review" value="등록하기">
 

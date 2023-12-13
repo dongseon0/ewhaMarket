@@ -264,9 +264,22 @@ class DBhandler:
 
     # 특정 아이디의 리뷰들을 데이터베이스에서 불러오기
     def get_reviews(self, sellerId):
-        items = self.db.child("users").child(
-            sellerId).child("user_reviews").get().val()
+        items = self.db.child("users").child(sellerId).child("user_reviews").get().val()
         return items
+
+    # 특정 아이디의 리뷰 평점 평균 계산하기
+    def get_reviews_star_avg(self, sellerId):
+        reviews = self.db.child("users").child(sellerId).child("user_reviews").get()
+
+        if not reviews.each():
+            return 0      
+        
+        stars = 0
+        starCount = 0
+        for review in reviews.each():
+            stars += int(review.val().get("starsVariable")) + 1
+            starCount += 1
+        return float(stars) / starCount
 
     # 데이터베이스에서 특정 리뷰 하트 정보 불러오기
     def get_review_good_bykey(self, key, sellerId):
