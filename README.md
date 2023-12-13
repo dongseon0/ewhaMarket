@@ -1,4 +1,4 @@
-<img src="https://capsule-render.vercel.app/api?type=waving&color=auto&height=200&section=header&text=EWHA MARKET&fontSize=90" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=auto&height=200&section=header&text=내용입력&fontSize=90" />
 # ✨ EwhaMarket
 이화인이라면 누구나 쉽게 경매로 상품을 거래하자!
 
