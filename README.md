@@ -3,7 +3,7 @@
 <aside>
 ✨ 오픈SW플랫폼 "New Age"의 “이화마켓”입니다.
 
-📄[New Age's Notion Page](https://www.notion.so/New-Age-83b1390dd56a4c8ea56b01147e31571c?pvs=21)
+📄[New Age's Notion Page](https://gray-storm-8fd.notion.site/New-Age-83b1390dd56a4c8ea56b01147e31571c?pvs=4)
 
 </aside>
 
@@ -27,7 +27,7 @@
 
 ---
 
-### 기본 화면 구성
+### Main structure
 
 ---
 
@@ -49,7 +49,7 @@
 
 ---
 
-### Structure
+### Files
 
 ---
 
