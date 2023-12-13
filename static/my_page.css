@@ -31,6 +31,7 @@
 .top {
   display: flex;
   /* 메뉴 항목을 가로로 정렬 */
+  flex-direction: column;
   justify-content: space-between;
   /* 메뉴를 수평으로 가운데 정렬 */
   align-items: center;
