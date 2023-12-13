@@ -7,17 +7,19 @@
 
 </aside>
 
+---
+
 ## Members
 
----
 
 | 김정민✨ | 송영채✨ | 신정화✨ |
 |---|---|---|
 | __양동선✨__ | __유지혜✨__ | __윤수연✨__ |
 
+---
+
 ## Resource
 
----
 
 📝[회의록](https://www.notion.so/f1b0e2bf078941c8b82dc361d2293f4c?pvs=21)
 
@@ -27,9 +29,20 @@
 
 ---
 
-### Main structure
+## Tech Stacks
+
+
+<div align="center">
+	<img src="https://img.shields.io/badge/Java-007396?style=flat&logo=Java&logoColor=white" height=50px/>
+	<img src="https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=HTML5&logoColor=white" height=50px/>
+	<img src="https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=CSS3&logoColor=white" height=50px/>
+</div>
 
 ---
+
+## 기본 화면 구성
+
+
 
 - 홈 화면
 <img width="770" alt="홈 화면" src="https://github.com/dongseon0/ewhaMarket/assets/86476876/ef8dbc69-274a-4839-904b-28d6703b7d35">
@@ -49,9 +62,8 @@
 
 ---
 
-### Files
+## File Structure
 
----
 
 ```markdown
 📁 EWHAMARKET
@@ -66,3 +78,4 @@
 ├─ LICENSE
 └─ README.md
 ```
+
