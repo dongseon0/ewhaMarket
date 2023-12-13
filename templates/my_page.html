@@ -23,7 +23,7 @@
       <p class="count_list">
         {{total}}개의 판매 내역
       </p>
-      <button onclick="location.href='/reg_item'" type="button">등록하기</button>
+      <button onclick="location.href='/reg_item'" class="reg-item" type="button">등록하기</button>
     </div>
 
     <table>
@@ -36,9 +36,9 @@
               {% if isAuction.get(key) %}
               <div class="desc">{{value.name}}</div>
               <div class="price1">
-                  <span class="auction-state" data-start-date="{{ value.startDate }}"
-                      data-start-time="{{ value.startTime }}" data-end-date="{{ value.endDate }}"
-                      data-end-time="{{ value.endTime }}"></span>
+                <span class="auction-state" data-start-date="{{ value.startDate }}"
+                  data-start-time="{{ value.startTime }}" data-end-date="{{ value.endDate }}"
+                  data-end-time="{{ value.endTime }}"></span>
               </div>
               <div class="auction_product">경매</div>
               {% else %}
@@ -64,9 +64,9 @@
               {% if isAuction.get(key) %}
               <div class="desc">{{value.name}}</div>
               <div class="price1">
-                  <span class="auction-state" data-start-date="{{ value.startDate }}"
-                      data-start-time="{{ value.startTime }}" data-end-date="{{ value.endDate }}"
-                      data-end-time="{{ value.endTime }}"></span>
+                <span class="auction-state" data-start-date="{{ value.startDate }}"
+                  data-start-time="{{ value.startTime }}" data-end-date="{{ value.endDate }}"
+                  data-end-time="{{ value.endTime }}"></span>
               </div>
               <div class="auction_product">경매</div>
               {% else %}
@@ -95,7 +95,8 @@
     {% else %}
     <p>
       등록된 판매내역이 없습니다.
-    </p>
+    </p><br><br>
+    <input type="button" onclick="location.href = '/reg_item'" class="reg-item" value="등록하기">
     {% endif %}
   </div>
   {% endblock section %}

@@ -38,10 +38,10 @@
   margin-bottom: 3%;
 }
 
-.top button {
+.reg-item {
   width: 70px;
   height: 28px;
-  float: right;
+  /* float: right; */
   background-color: rgb(221, 227, 192);
   border: none;
   border-radius: 5px;
@@ -50,7 +50,7 @@
   box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
 }
 
-.top button:hover {
+.reg-item:hover {
   background-color: rgb(209, 215, 180);
   color: rgb(105, 107, 93);
 }
