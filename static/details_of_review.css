@@ -10,11 +10,9 @@ a {
     margin-left: 1.5%;
 }
 
-.review {
+.wrapper {
     width: 700px;
-
-    margin: auto;
-    margin-top: 7%;
+    margin: 90px auto;
 }
 
 #product-image {
