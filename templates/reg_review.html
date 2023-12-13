@@ -1,5 +1,5 @@
 <head>
-    <link rel="stylesheet" href="/static/reg_review.css" />
+    <link rel="stylesheet" href="/static/reg_review.css">
 </head>
 
 <body>
@@ -54,6 +54,7 @@
             stars = document.getElementsByClassName("star");
             starsVariable = document.getElementById("stars-variable");
 
+            // 마우스 올린 별 위치만큼 별 채우는 함수, 올리지 않으면 누른 별점만큼 보이게 하는 함수 실행하기
             function starEvent() {
                 for (i = 0; i < stars.length; i++) {
                     stars.item(i).addEventListener("mouseover", function () {
@@ -66,6 +67,7 @@
                 }
             }
 
+            // 마우스 올린 별 위치만큼 별 채우기
             function starHoverOn(h) {
                 for (i = 0; i < stars.length; i++) {
                     if (i > h) {
@@ -76,16 +78,19 @@
                 }
             }
 
+            // 마우스 올리지 않으면 누른 별점만큼 보이게 하기
             function starHoverOff() {
                 starFill();
             }
-
+            
+            // 별 변수에 반영하고 html에 적용하는 함수 실행하기
             function starSet(i) {
                 star = i;
                 starsVariable.value = i;
                 starFill();
             }
 
+            // 별 변수만큼 html에 적용하는 함수 실행하기
             function starFill() {
                 for (i = 0; i < stars.length; i++) {
                     if (i > star) {
@@ -95,11 +100,13 @@
                     }
                 }
             }
-
+            
+            // 기본으로 페이지 로딩할 때 한 번 실행하기
             starEvent();
             starFill();
             // 별
 
+            // 입력하지 않으면 alert 띄우기
             function submit_review() {
                 if (document.getElementById("review-title").value == "")
                     alert("제목을 입력해주세요.");
