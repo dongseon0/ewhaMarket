@@ -67,8 +67,7 @@
                 {% for key, item in row1_auction %}
                 <td>
                     <div class="item-box" onclick="location.href='/details_of_item/{{key}}/';" style="cursor: pointer;">
-                        <img src="{{ url_for('static', filename='images/items/' + item.img_path) }}"
-                            alt="{{ item.name }}" width="200px" height="200px">
+                        <img src="{{ url_for('static', filename='images/items/' + item.img_path) }}" width="200px" height="200px">
                         <div class="desc">
                             {{ item.name }}
                         </div>
