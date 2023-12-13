@@ -120,7 +120,18 @@
             });
         }
 
-        showHeart();
+        function alertLogin() {
+            alert("로그인이 필요합니다.");
+            location.href = "/login";
+        }
+
+        if ("{{session['id']}}" != "") {
+            showHeart();
+        }
+        else {
+            $("#good").attr("onclick", "alertLogin()");
+            $("#bad").attr("onclick", "alertLogin()");
+        }
 
         if ("{{data.img_path}}" == "empty.jpeg") {
             document.getElementById("product-image").style.display = "none";
