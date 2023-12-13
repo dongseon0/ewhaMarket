@@ -1,8 +1,6 @@
 .wrapper {
     width: 1000px;
-    cursor: default;
-    margin: auto;
-    margin-top: 3%;
+    margin: 90px auto;
     text-align: center;
 }
 
@@ -15,47 +13,48 @@
     margin-bottom: 1.5%;
 }
 
-hr {
-    border: 1.5px solid rgb(163, 223, 249);
-    width: 100%;
-}
-
 .container {
     display: flex;
-    padding: 20px 80px;
+    padding: 20px;
+    padding-left: 80px;
 }
 
 .columnleft {
-    width: calc(50% - 3%);
-    margin: 3% 4%;
-    background-color: rgb(245, 245, 245); /* Set background color to gray */
+    width: calc(50%);
+    margin: 4%;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Align content vertically center */
-    align-items: center; /* Align content horizontally center */
-
-    border-radius: 10px 10px;
-    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+    justify-content: center;
+    /* Align content vertically center */
+    align-items: center;
 }
 
 .columnleft img {
-    min-width:100% ; /* Ensure the image fills the entire width of .columnleft */
-    height: auto; /* Maintain the aspect ratio */
+    object-fit: cover;
+    width: 135%;
+    height: 95%;
+    margin-right: 6%;
+    object-position: center;
+    /* 이미지를 수평으로 가운데 정렬 */
 }
 
 .columnright {
     background-color: rgb(251, 251, 251);
     width: calc(50% - 3%);
-    margin: 2% auto;
+    margin: 2% 2% 2% 4%;
     padding: 4% 8%;
     border-radius: 10px 10px;
-    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);   
-    overflow-x: auto; 
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+    overflow-x: auto;
 }
 
 .columnright table {
-    width: 100%; /* Ensure the table takes 100% width of its container */
-    table-layout: fixed; /* Set a fixed layout for the table */
+    width: 100%;
+    /* Ensure the table takes 100% width of its container */
+    table-layout: fixed;
+    /* Set a fixed layout for the table */
+    border-spacing: 3px;
+    /* Adjust the spacing between cells */
 }
 
 table,
@@ -66,19 +65,17 @@ td {
 
 td {
     padding: 10px;
-    
 }
 
+th {
+    color: rgb(145, 145, 145);
+}
 
-
-
-
-.alignleft{
+.alignleft {
     text-align: left;
     margin: 0 auto;
     display: block;
 }
-
 
 @media screen and (max-width: 600px) {
 
@@ -97,6 +94,7 @@ td {
     margin: 2% 7% 0% 7%;
     text-align: left;
     box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+
 }
 
 .boldtext {
@@ -111,62 +109,89 @@ p {
 }
 
 .auction {
-    background-color: rgb(241, 244, 253);
+    background-color: rgb(231, 235, 209);
     padding: 4% 2%;
     margin: 1% 25%;
-    text-align: left;
+    text-align: center;
     line-height: 150%;
     font-size: 18px;
     border-radius: 10px 10px;
     box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
 }
 
-.favorite-button { 
+.favorite-button {
     margin: 0 auto;
     display: block;
 }
 
 .btn-love {
-    background-color: aliceblue;
-    color: #1e6b7b;
-    border-radius: 5px;
-    border: 3px solid aliceblue;
-    font-size: 100%;
+    background-color: rgb(221, 227, 192);
+    color: rgb(117, 120, 102);
+    border-radius: 10px;
+    border: 3px solid rgb(221, 227, 192);
+    font-size: 16px;
+    padding: 1% 2%;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
 }
 
 .btn-love:hover {
-    background-color: #c1e6ff;
-    color: #003742;
-    border: 3px solid #c1e6ff;
+    background-color: rgb(209, 215, 180);
+    color: rgb(122, 125, 103);
+    border: 3px solid rgb(209, 215, 180);
 }
 
-
 .btn-money {
-    background-color: rgb(223, 254, 227);
-    color: rgb(30, 123, 75);
-    border-radius: 5px;
-    border: 3px solid rgb(223, 254, 227);
+    background-color: rgb(181, 228, 187);
+    color: rgb(8, 86, 46);
+    border-radius: 10px;
+    border: 1px solid  rgb(125, 190, 133);
     font-size: 100%;
-    padding: 4px 7px;
+    padding: 1%;
     left: 40%;
     top: 40%;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
 }
 
 .btn-money:hover {
-    background-color: rgb(181, 228, 187);
+    background-color: rgb(158, 220, 166);
     color: rgb(8, 86, 46);
-    border: 3px solid rgb(181, 228, 187);
+    border: 1px solid rgb(125, 190, 133);
 }
+
 
 #profile {
     float: left;
-    width: 12%;
+    margin-top: 1%;
     margin-right: 4%;
-    border-radius: 70%;
+    border-radius: 50%;
+    /* 50%로 설정하여 동그라미로 만듭니다 */
+    width: 40px;
+    /* 이미지의 크기를 조절할 수 있습니다 */
+    height: 40px;
+    /* 이미지의 크기를 조절할 수 있습니다 */
+    object-fit: cover;
 }
 
 #user-id {
     padding-top: 2%;
     font-size: 110%;
     font-weight: bold;
+}
+
+#delete {
+    height: 30px;
+    width: 10%;
+    background-color: rgb(221, 227, 192);
+    border: none;
+    border-radius: 5px;
+    color: rgb(117, 120, 102);
+    font-size: 95%;
+    margin: 4%;
+    padding-top: 6px;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+}
+
+#delete:hover {
+    background-color: rgb(209, 215, 180);
+    color: rgb(105, 107, 93);
 }

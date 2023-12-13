@@ -1,7 +1,7 @@
 <head>
-  <meta charset="UTF-8">
   <link rel="stylesheet" type="text/css" href="/static/my_page.css">
   <link rel="stylesheet" type="text/css" href="/static/user_list.css">
+  <script src="/static/auction.js" defer></script>
 </head>
 
 <body>
@@ -18,124 +18,86 @@
       <a href="/my_info/{{session['id']}}/">개인정보</a>
     </div>
     <hr>
-
     {% if total > 0 %}
+    <div class="top">
       <p class="count_list">
         {{total}}개의 판매 내역
       </p>
+      <button onclick="location.href='/reg_item'" class="reg-item" type="button">등록하기</button>
+    </div>
 
-      <div class="sell">
-        {% for key, value in row1 %}
-        <table>
-          <td onclick="location.href='/details_of_item/{{key}}/';" style="cursor:pointer;">
-            <div class="content">
-              <img src="/static/images/items/{{value.img_path}}">
-              <div>
-                <p class="id_seller"><b>{{value.sellerId}}</b></p>
-                <p><b>{{value.name}}</b></p>
-                <p>{{value.description}}</p>
-            
+    <table>
+      <tbody class="sell">
+        <tr>
+          {% for key, value in row1 %}
+          <td>
+            <div class="item-box" onclick="location.href='/details_of_item/{{ key }}/'" style="cursor:pointer;">
+              <img src="/static/images/items/{{ value.img_path }}" width="200px" height="200px">
+              {% if isAuction.get(key) %}
+              <div class="desc">{{value.name}}</div>
+              <div class="price1">
+                <span class="auction-state" data-start-date="{{ value.startDate }}"
+                  data-start-time="{{ value.startTime }}" data-end-date="{{ value.endDate }}"
+                  data-end-time="{{ value.endTime }}"></span>
               </div>
+              <div class="auction_product">경매</div>
+              {% else %}
+              <div class="desc">{{value.name}}</div>
+              <div class="price">{{value.fixedPrice}}원</div>
+              {% endif %}
             </div>
           </td>
-        </table>
-        {% endfor %}
-      </div>
-      {% if row1|length > 0 %}<hr class="line2">{% endif %}
-
-      <div class="sell">
-        {% for key, value in row2 %}
-        <table>
-          <td onclick="location.href='/details_of_item/{{key}}/';" style="cursor:pointer;">
-            <div class="content">
-              <img src="/static/images/items/{{value.img_path}}">
-              <div>
-                <p class="id_seller"><b>{{value.sellerId}}</b></p>
-                <p><b>{{value.name}}</b></p>
-                <p>{{value.description}}</p>
-                 
+          {% endfor %}
+          {% for _ in range(empty_cells) %}
+          <td>
+            <div class="blank-box"></div>
+          </td>
+          {% endfor %}
+        </tr>
+      </tbody>
+      <tbody class="sell">
+        <tr>
+          {% for key, value in row2 %}
+          <td>
+            <div class="item-box" onclick="location.href='/details_of_item/{{ key }}/'" style="cursor:pointer;">
+              <img src="/static/images/items/{{ value.img_path }}" width="200px" height="200px">
+              {% if isAuction.get(key) %}
+              <div class="desc">{{value.name}}</div>
+              <div class="price1">
+                <span class="auction-state" data-start-date="{{ value.startDate }}"
+                  data-start-time="{{ value.startTime }}" data-end-date="{{ value.endDate }}"
+                  data-end-time="{{ value.endTime }}"></span>
               </div>
+              <div class="auction_product">경매</div>
+              {% else %}
+              <div class="desc">{{value.name}}</div>
+              <div class="price">{{value.fixedPrice}}원</div>
+              {% endif %}
             </div>
           </td>
-        </table>
-        {% endfor %}
-      </div>
-      {% if row2|length > 0 %}<hr class="line2">{% endif %}
+          {% endfor %}
+        </tr>
+      </tbody>
+    </table>
 
-      <div class="sell">
-        {% for key, value in row3 %}
-        <table>
-          <td onclick="location.href='/details_of_review/{{key}}/';" style="cursor:pointer;">
-            <div class="content">
-              <img src="/static/images/items/{{value.img_path}}">
-              <div>
-                <p class="id_seller"><b>{{value.sellerId}}</b></p>
-                <p><b>{{value.name}}</b></p>
-                <p>{{value.description}}</p>
-                  
-              </div>
-            </div>
-          </td>
-        </table>
-        {% endfor %}
+    <!--페이지네이션을 위한 코드 시작-->
+    <div class="page-wrap">
+      <div class="page-nation">
+        <ul>
+          <li>
+            {% for i in range(page_count) %}
+            <a href="{{url_for('my_page', id=id, page=i)}}" color="black">{{i+1}}</a>
+            {% endfor %}
+          </li>
+        </ul>
       </div>
-      {% if row3|length > 0 %}<hr class="line2">{% endif %}
-
-      <div class="sell">
-        {% for key, value in row4 %}
-        <table>
-          <td onclick="location.href='/details_of_review/{{key}}/';" style="cursor:pointer;">
-            <div class="content">
-              <img src="/static/images/items/{{value.img_path}}">
-              <div>
-                <p class="id_seller"><b>{{value.sellerId}}</b></p>
-                <p><b>{{value.name}}</b></p>
-                <p>{{value.description}}</p>
-                 
-              </div>
-            </div>
-          </td>
-        </table>
-        {% endfor %}
-      </div>
-      {% if row4|length > 0 %}<hr class="line2">{% endif %}
-
-      <div class="sell">
-        {% for key, value in row5 %}
-        <table>
-          <td onclick="location.href='/details_of_review/{{key}}/';" style="cursor:pointer;">
-            <div class="content">
-              <img src="/static/images/items/{{value.img_path}}">
-              <div>
-                <p class="id_seller"><b>{{value.sellerId}}</b></p>
-                <p><b>{{value.name}}</b></p>
-                <p>{{value.description}}</p>
-                
-              </div>
-            </div>
-          </td>
-        </table>
-        {% endfor %}
-      </div>
-
-      <div class="page-wrap">
-        <div class="page-nation">
-          <ul>
-            <li>
-              {% for i in range(page_count) %}
-              <a href="{{url_for('my_page', id=id, page=i)}}" color="black">{{i+1}}</a>
-              {% endfor %}
-            </li>
-          </ul>
-        </div>
-      </div>
+    </div>
     {% else %}
-      <p>
-        등록된 판매내역이 없습니다.
-      </p>
+    <p>
+      등록된 판매내역이 없습니다.
+    </p>
+    <input type="button" onclick="location.href = '/reg_item'" class="reg-item" value="등록하기">
     {% endif %}
   </div>
   {% endblock section %}
-
-  
 </body>

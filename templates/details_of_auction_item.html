@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,23 +7,24 @@
     {% extends "index.html" %}
 
     {% block section %}
-    <link rel="stylesheet" href="/static/details_of_auction_item.css" />
+    <link rel="stylesheet" href="/static/details_of_item.css" />
 
     <div class="wrapper">
-        <h2 class="text">상품 세부화면</h2>
+        <h2>상품 세부화면</h2>
         <hr>
         <div class="container">
 
             <div class="columnleft">
-                <img 
-                    src="/static/images/items/{{data.img_path}}" width="320" alt="item">
+                <img src="/static/images/items/{{data.img_path}}" width="320" alt="item">
             </div>
 
             <div class="columnright">
                 <div class="alignleft">
-                    <a href="/user_reviews/{{data.sellerId}}/"><img src="/static/images/profiles/{{profile_image_path}}"
-                            id="profile"></a>
-                    <div id="user-id"><a href="/user_reviews/{{data.sellerId}}/" id="seller-id">{{data.sellerId}}<a></div>
+                    <a href="/user_list/{{data.sellerId}}/"><img src="/static/images/profiles/{{profile_image_path}}"
+                        id="profile"></a>
+                    <div id="user-id"><a href="/user_list/{{data.sellerId}}/" style=" color: rgb(91, 100, 47); font-size : 110%;
+                                text-decoration: none;" id="seller-id">{{data.sellerId}}<a></div>
+                    <br>
                     <h2>{{data.name}}</h2>
 
                     <table>
@@ -63,11 +61,7 @@
         </div>
 
         <div class="down">
-            <div class="more">
-                <hr style="width:100%">
-            </div>
-
-            <br>
+            <hr>
 
             <div class="comment">
                 <p>
@@ -75,32 +69,180 @@
                 {{data.description}}
                 </p>
             </div>
-
             <br>
-
             <div class="auction">
                 <div class="boldtext">경매 참여하기</div>
-                <span style="color: red"><span id="auction-state"></span><span id="remaining-hour"></span><span
-                        id="remaining-minute"></span><span id="remaining-second"></span></span><br>
-                현재 가격: <span id="current" style="color: skyblue"></span>
+                <span style="color: red"><span id="auction-state"></span></span>
+                <br>
+                현재 가격: <span id="current" style="color: blue"></span>
                 <input class="btn-money" id="btnMoney" type="button" value="">
                 <span>{{winner}}</span>
             </div>
-
-            <div id="auction-variable" class="none">
-                <div id="key">{{key}}</div>
-                <div id="startPrice">{{data.startPrice}}</div>
-                <div id="currentPrice">{{data.currentPrice}}</div>
-                <div id="selectRisingPrice">{{data.selectRisingPrice}}</div>
-                <div id="start-date">{{data.startDate}}</div>
-                <div id="start-time">{{data.startTime}}</div>
-                <div id="end-date">{{data.endDate}}</div>
-                <div id="end-time">{{data.endTime}}</div>
-            </div>
         </div>
+        <input type="button" onclick="location.href='/delete_item/{{key}}/{{data.sellerId}}/';" value="삭제하기"
+            id="delete">
     </div>
-    <script src="/static/details_of_auction_item.js?after"></script>
+    <script>
+        if ("{{session['id']}}" != "{{data.sellerId}}") {
+            document.getElementById("delete").style.display = "none";
+        }
+
+        currentPrice = Number("{{data.currentPrice}}");
+        risingPrice = Number("{{data.selectRisingPrice}}");
+        document.getElementById("current").innerHTML = currentPrice + "원";
+
+        auctionState = false;
+        function auction() {
+            if (auctionState == true) {
+                $.ajax({
+                    type: 'POST',
+                    url: '/auction/{{key}}/{{data.sellerId}}/{{data.selectRisingPrice}}/',
+                    data: {},
+                    success: function (response) {
+                        window.location.reload();
+                        alert(response['msg']);
+                    }
+                });
+            } else {
+                alert("입찰할 수 없습니다.");
+            }
+        }
+
+        btnMoney = document.getElementById("btnMoney");
+        btnMoney.addEventListener("click", auction);
+        // 버튼 이름 바꾸기
+        if (risingPrice == 1000) {
+            btnMoney.value = "▲천원"
+        } else if (risingPrice == 5000) {
+            btnMoney.value = "▲5천원"
+        } else if (risingPrice == 10000) {
+            btnMoney.value = "▲만원"
+        } else if (risingPrice == 50000) {
+            btnMoney.value = "▲5만원"
+        }
+
+        startDate = ("{{data.startDate}}").split("-");
+        startTime = ("{{data.startTime}}").split(":");
+        endDate = ("{{data.endDate}}").split("-");
+        endTime = ("{{data.endTime}}").split(":");
+        function remaingTime() {
+            var now = new Date();
+            var open = new Date(Number(startDate[0]), Number(startDate[1]) - 1, Number(startDate[2]), Number(startTime[0]), Number(startTime[1]));
+            var end = new Date(Number(endDate[0]), Number(endDate[1]) - 1, Number(endDate[2]), Number(endTime[0]), Number(endTime[1]));
+
+            var nt = now.getTime();
+            var ot = open.getTime();
+            var et = end.getTime();
+
+            if (parseInt(nt) < parseInt(ot)) { // 오픈 전
+                auctionState = false;
+                sec = parseInt(ot - nt) / 1000;
+                day = parseInt(sec / 60 / 60 / 24);
+                sec = (sec - (day * 60 * 60 * 24));
+                hour = parseInt(sec / 60 / 60);
+                sec = (sec - (hour * 60 * 60));
+                min = parseInt(sec / 60);
+                sec = parseInt(sec - (min * 60));
+                if (hour < 10) { hour = "0" + hour; }
+                if (min < 10) { min = "0" + min; }
+                if (sec < 10) { sec = "0" + sec; }
+
+                if (day > 0)
+                    document.getElementById("auction-state").innerHTML = "오픈까지 " + day + "일 " + hour + "시간 " + min + "분 " + sec + "초";
+                else
+                    document.getElementById("auction-state").innerHTML = "오픈까지 " + hour + "시간 " + min + "분 " + sec + "초";
+            } else if (parseInt(nt) > parseInt(et)) { // 종료
+                auctionState = false;
+                document.getElementById("auction-state").innerHTML = "종료되었습니다."
+            } else { // 진행 중
+                auctionState = true;
+                sec = parseInt(et - nt) / 1000;
+                day = parseInt(sec / 60 / 60 / 24);
+                sec = (sec - (day * 60 * 60 * 24));
+                hour = parseInt(sec / 60 / 60);
+                sec = (sec - (hour * 60 * 60));
+                min = parseInt(sec / 60);
+                sec = parseInt(sec - (min * 60));
+                if (hour < 10) { hour = "0" + hour; }
+                if (min < 10) { min = "0" + min; }
+                if (sec < 10) { sec = "0" + sec; }
+
+                if (day > 0)
+                    document.getElementById("auction-state").innerHTML = "남은 시간: " + day + "일 " + hour + "시간 " + min + "분 " + sec + "초";
+                else
+                    document.getElementById("auction-state").innerHTML = "남은 시간: " + hour + "시간 " + min + "분 " + sec + "초";
+            }
+        }
+        remaingTime();
+        setInterval(remaingTime, 1000);
+
+        function showHeart() {
+            $.ajax({
+                type: 'GET',
+                url: '/show_heart/{{key}}/',
+                data: {},
+                success: function (response) {
+                    updateHeartButton(response['my_heart']);
+                }
+            });
+        }
+
+        function updateHeartButton(myHeart) {
+            if (myHeart['interested'] === 'Y') {
+                $(".btn-love").val("♥ 찜하기");
+                $(".btn-love").attr("onclick", "unlike()");
+            } else {
+                $(".btn-love").attr("onclick", "like()");
+            }
+        }
+
+        function like() {
+            $.ajax({
+                type: 'POST',
+                url: '/like/{{key}}/',
+                data: {
+                    interested: "Y"
+                },
+                success: function (response) {
+                    window.location.reload();
+                },
+                error: function (xhr, status, error) {
+                    handleRequestError(xhr);
+                }
+            });
+        }
+
+        function unlike() {
+            $.ajax({
+                type: 'POST',
+                url: '/unlike/{{key}}/',
+                data: {
+                    interested: "N"
+                },
+                success: function (response) {
+                    window.location.reload();
+                },
+                error: function (xhr, status, error) {
+                    handleRequestError(xhr);
+                }
+            });
+        }
+
+        function handleRequestError(xhr) {
+            var response = xhr.responseJSON;
+            if (response && response.error) {
+                alert(response.error);
+                if (response.redirect_url) {
+                    window.location.href = response.redirect_url;
+                }
+            } else {
+                alert('알 수 없는 오류가 발생했습니다.');
+            }
+        }
+
+        $(document).ready(function () {
+            showHeart();
+        });
+    </script>
     {% endblock section %}
 </body>
-
-</html>

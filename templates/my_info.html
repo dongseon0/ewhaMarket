@@ -1,31 +1,6 @@
 <head>
-  <meta charset="UTF-8">
   <link rel="stylesheet" type="text/css" href="/static/my_page.css">
-  <style>
-    .my-info-section {
-      list-style: none;
-    }
-
-    .main-title {
-      margin: 5% 5% 5% 2%;
-    }
-
-    .information {
-      padding: 20px;
-      margin-left: 20px;
-      margin-right: 20px;
-      text-align: left;
-    }
-
-    h4 {
-      width: 200px;
-      margin: 2% 10% 2% 0%;
-    }
-
-    .inside {
-      margin: 2% 10% 2% 0%;
-    }
-  </style>
+  <link rel="stylesheet" href="/static/my_info.css" />
 </head>
 
 <body>
@@ -43,20 +18,41 @@
     </div>
     <hr>
 
-    <div class="information">
-      <p>아이디 : {{id}}</p>
-      <p>닉네임 : {{data['nickname']}}</p>
-      <p>프로필 사진 :</p>
-      <div style="display: flex;">
-        <img src="/static/images/profiles/{{profile}}" alt="프로필 사진" height="200px">
-        <form method="post" enctype="multipart/form-data" action="/change_my_info">
-          <div class="inside" style="margin-left: 30px;">
-            <input type="file" name="file"/>
+    <form method="post" enctype="multipart/form-data" action="/change_my_info" id="change">
+      <div class="information">
+        <p>아이디 : {{id}}</p>
+        <p>닉네임 : {{data['nickname']}}</p>
+        <p>프로필 사진 :</p>
+        <div class="reg-file-box">
+          <img src="/static/images/profiles/{{profile}}" alt="프로필 사진" id="profile-img">
+          <div class="inside">
+            <label for="file">
+              <div class="file-upload-button">
+                <p class="file-upload-text">프로필 사진 변경하기</p>
+              </div>
+            </label>
+            <input type="file" name="file" id="file" onchange="loadFile(this)"/>
           </div>
-          <input type="submit" style="margin-left: 30px;" value="프로필 사진 변경하기"><br>
-        </form>
+        </div>
       </div>
-    </div> 
+      <input type="button" id="save-btn" value="저장" onclick="change_img()">
+    </form>
   </div>
+
+  <script>
+    function loadFile(input) {
+      var file = input.files[0];
+      var image = document.getElementById('profile-img');
+      image.src = URL.createObjectURL(file);
+    }
+
+    function change_img() {
+      if (!document.getElementById("file").value)
+        alert("변경할 프로필 사진을 등록해주세요.");
+      else
+        document.getElementById("change").submit();
+    }
+  </script>
+
   {% endblock section %}
 </body>

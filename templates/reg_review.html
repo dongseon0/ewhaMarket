@@ -1,75 +1,5 @@
-<!DOCTYPE html>
-<html>
-
 <head>
-    <style>
-        textarea {
-            border: 1px solid rgb(226, 226, 226);
-            border-radius: 5px;
-            resize: none;
-        }
-
-        .asterisk {
-            color: red;
-        }
-
-        .stars {
-            color: rgb(163, 223, 249);
-            font-size: 180%;
-            margin-top: -0.9%;
-            margin-bottom: 1%;
-        }
-
-        .review {
-            width: 700px;
-
-            margin: auto;
-            margin-top: 7%;
-            text-align: center;
-        }
-
-        .text1 {
-            font-size: 135%;
-            margin-bottom: 1.5%;
-        }
-
-        .text2 {
-            margin-top: 3%;
-            margin-bottom: 1%;
-        }
-
-        .text3 {
-            margin-top: 2%;
-            margin-bottom: 1%;
-        }
-
-        #buyer-id,
-        #seller-id,
-        #stars-variable {
-            display: none;
-        }
-
-        #review-image {
-            margin-left: 12%;
-        }
-
-        #ok {
-            float: right;
-            width: 14%;
-
-            background-color: rgb(163, 223, 249, 0.75);
-            border: none;
-            border-radius: 5px;
-            color: rgb(36, 81, 100);
-            font-size: 95%;
-            margin: 1%;
-            padding: 0.5% 0%;
-        }
-
-        #ok:hover {
-            background-color: rgb(166, 208, 225);
-        }
-    </style>
+    <link rel="stylesheet" href="/static/reg_review.css">
 </head>
 
 <body>
@@ -77,14 +7,14 @@
 
     {% block section %}
     <form method="post" enctype="multipart/form-data" action="/submit_review_post" id="submit-review">
-        <div class="review">
+        <div class="wrapper">
             <input type="text" id="seller-id" name="sellerId" value="{{sellerId}}">
-            <input type="text" id="buyer-id" name="buyerId" value="{{buyerId}}">
-            <div class="text1">리뷰 작성</div>
+            <input type="text" id="buyer-id" name="buyerId" value="{{session['id']}}">
+            <h2 class="text1">리뷰 작성</h2>
             <hr>
             <div class="text2"><span class="asterisk">* </span>거래 제목을 입력해주세요</div>
             <textarea id="review-title" name="reviewTitle" cols="40" rows="1"></textarea>
-            <div class="text3"><span class="asterisk">* </span>거래는 어떠셨나요?</div>
+            <div class="text2"><span class="asterisk">* </span>솔직한 리뷰를 남겨주세요</div>
             <div class="stars">
                 <input type="range" id="stars-variable" name="starsVariable" min="0" max="4" value="0">
                 <span class="star" id="0">★</span>
@@ -93,79 +23,98 @@
                 <span class="star" id="3">★</span>
                 <span class="star" id="4">★</span>
             </div>
-            <hr>
-            <div class="text2"><span class="asterisk">* </span>솔직한 리뷰를 남겨주세요</div>
             <textarea id="review-contents" name="reviewContents" cols="75" rows="10"></textarea>
             <br><br>
-            <input type="file" id="review-image" name="file" />
+            <div class="reg-file-box">
+                <label for="file">
+                    <div class="file-upload-button">
+                        <p class="file-upload-text">이미지 등록</p>
+                    </div>
+                </label>
+                <input type="file" name="file" id="file" onchange="loadFile(this)" />
+                <div class="file-name-box">
+                    <div id="fileName" class="fileName" style="font-size: 85%;">등록된 이미지가 없습니다.</div>
+                </div>
+            </div>
             <br><br>
             <hr>
             <input type="button" id="ok" name="ok" value="등록하기" onclick="submit_review()">
         </div>
-        <!--☆ ★-->
-        <script>
-            // 별
-            star = 0;
-            stars = document.getElementsByClassName("star");
-            starsVariable = document.getElementById("stars-variable");
-
-            function starEvent() {
-                for (i = 0; i < stars.length; i++) {
-                    stars.item(i).addEventListener("mouseover", function () {
-                        starHoverOn(parseInt(this.id));
-                    });
-                    stars.item(i).addEventListener("mouseleave", starHoverOff);
-                    stars.item(i).addEventListener("click", function () {
-                        starSet(parseInt(this.id));
-                    });
-                }
-            }
-
-            function starHoverOn(h) {
-                for (i = 0; i < stars.length; i++) {
-                    if (i > h) {
-                        stars.item(i).innerHTML = "☆";
-                    } else {
-                        stars.item(i).innerHTML = "★";
-                    }
-                }
-            }
-
-            function starHoverOff() {
-                starFill();
-            }
-
-            function starSet(i) {
-                star = i;
-                starsVariable.value = i;
-                starFill();
-            }
-
-            function starFill() {
-                for (i = 0; i < stars.length; i++) {
-                    if (i > star) {
-                        stars.item(i).innerHTML = "☆";
-                    } else {
-                        stars.item(i).innerHTML = "★";
-                    }
-                }
-            }
-
-            starEvent();
-            starFill();
-            // 별
-
-            function submit_review() {
-                if (document.getElementById("review-title").value == "")
-                    alert("거래 제목을 입력하세요");
-                else if (document.getElementById("review-contents").value == "")
-                    alert("거래 내용을 입력하세요");
-                else
-                    document.getElementById("submit-review").submit();
-            }
-        </script>
     </form>
+
+    <script>
+        // 등록한 파일로 버튼 옆에 뜨는 파일명 바꿈
+        function loadFile(input) {
+            var file = input.files[0];
+            var name = document.getElementById('fileName');
+            name.textContent = file.name;
+        }
+
+        // 별 ☆ ★
+        star = 0;
+        stars = document.getElementsByClassName("star");
+        starsVariable = document.getElementById("stars-variable");
+
+        // 마우스 올린 별 위치만큼 별 채우는 함수, 올리지 않으면 누른 별점만큼 보이게 하는 함수 실행하기
+        function starEvent() {
+            for (i = 0; i < stars.length; i++) {
+                stars.item(i).addEventListener("mouseover", function () {
+                    starHoverOn(parseInt(this.id));
+                });
+                stars.item(i).addEventListener("mouseleave", starHoverOff);
+                stars.item(i).addEventListener("click", function () {
+                    starSet(parseInt(this.id));
+                });
+            }
+        }
+
+        // 마우스 올린 별 위치만큼 별 채우기
+        function starHoverOn(h) {
+            for (i = 0; i < stars.length; i++) {
+                if (i > h) {
+                    stars.item(i).innerHTML = "☆";
+                } else {
+                    stars.item(i).innerHTML = "★";
+                }
+            }
+        }
+
+        // 마우스 올리지 않으면 누른 별점만큼 보이게 하기
+        function starHoverOff() {
+            starFill();
+        }
+
+        // 별 변수에 반영하고 html에 적용하는 함수 실행하기
+        function starSet(i) {
+            star = i;
+            starsVariable.value = i;
+            starFill();
+        }
+
+        // 별 변수만큼 html에 적용하는 함수 실행하기
+        function starFill() {
+            for (i = 0; i < stars.length; i++) {
+                if (i > star) {
+                    stars.item(i).innerHTML = "☆";
+                } else {
+                    stars.item(i).innerHTML = "★";
+                }
+            }
+        }
+
+        // 기본으로 페이지 로딩할 때 한 번 실행하기
+        starEvent();
+        starFill();
+
+        // 입력하지 않으면 alert 띄우기
+        function submit_review() {
+            if (document.getElementById("review-title").value == "")
+                alert("제목을 입력해주세요.");
+            else if (document.getElementById("review-contents").value == "")
+                alert("내용을 입력하세요.");
+            else
+                document.getElementById("submit-review").submit();
+        }
+    </script>
     {% endblock section %}
 </body>
-
-</html>

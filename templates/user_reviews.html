@@ -1,5 +1,4 @@
 <head>
-    <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="/static/user_reviews.css">
 </head>
 
@@ -7,21 +6,26 @@
     {% extends "index.html" %}
 
     {% block section %}
+     <!--전체 div(wrapper)-->
     <div class="wrapper">
         <h2 class="text">{{id}} 리뷰</h2>
         <hr class="line1">
         
+        <!--내부 항목-->
         <div class="topnav">
             <a href="/user_list/{{id}}/">판매내역</a>
             <a style="text-decoration: underline;" href="/user_reviews/{{id}}/">리뷰</a>
         </div>
         <hr class="line1">
-        
+
+        <!--리뷰 존재-->
         {% if total > 0 %}
         <p class="count_review">
-            {{total}}개의 리뷰
+            {{total}}개의 리뷰 (평균 {{star_avg}}점)
         </p>
+        <input type="button" onclick="location.href = '/reg_review/{{id}}/'" class="reg-review" value="등록하기">
 
+        <!--첫번째 행-->
         <div class="review">
             {% for key, value in row1 %}
             <table>
@@ -45,9 +49,10 @@
             </table>
             {% endfor %}
         </div>
-        {% if row1|length > 0 %}<hr class="line2">{% endif %}
+        {% if row1|length > 0 %}
+        <hr class="line2">{% endif %}
 
-
+         <!--두번째 행-->
         <div class="review">
             {% for key, value in row2 %}
             <table>
@@ -71,8 +76,10 @@
             </table>
             {% endfor %}
         </div>
-        {% if row2|length > 0 %}<hr class="line2">{% endif %}
+        {% if row2|length > 0 %}
+        <hr class="line2">{% endif %}
 
+         <!--세번째 행-->
         <div class="review">
             {% for key, value in row3 %}
             <table>
@@ -96,8 +103,10 @@
             </table>
             {% endfor %}
         </div>
-        {% if row3|length > 0 %}<hr class="line2">{% endif %}
+        {% if row3|length > 0 %}
+        <hr class="line2">{% endif %}
 
+         <!--네번째 행-->
         <div class="review">
             {% for key, value in row4 %}
             <table>
@@ -121,8 +130,10 @@
             </table>
             {% endfor %}
         </div>
-        {% if row4|length > 0 %}<hr class="line2">{% endif %}
+        {% if row4|length > 0 %}
+        <hr class="line2">{% endif %}
 
+         <!--다섯번째 행-->
         <div class="review">
             {% for key, value in row5 %}
             <table>
@@ -146,8 +157,10 @@
             </table>
             {% endfor %}
         </div>
-        {% if row5|length > 0 %}<hr class="line2">{% endif %}
+        {% if row5|length > 0 %}
+        <hr class="line2">{% endif %}
 
+        <!--페이지네이션-->
         <div class="page-wrap">
             <div class="page-nation">
                 <ul>
@@ -159,13 +172,23 @@
                 </ul>
             </div>
         </div>
-
+        <!--리뷰 부재-->
         {% else %}
         <p>
             등록된 리뷰가 없습니다.
-        </p>
+        </p><br><br>
+        <input type="button" onclick="location.href = '/reg_review/{{id}}/'" class="reg-review" value="등록하기"
+            style="position: relative; right: 0px;">
         {% endif %}
-        <button onclick="location.href='/reg_review/{{id}}/';" style="width: 100px; height: auto;">리뷰등록</button>
     </div>
+
+    <script>
+        if ("{{session['id']}}" == "{{id}}") {
+            reg_reviews = document.getElementsByClassName("reg-review");
+            for (i = 0; i < reg_reviews.length; i++) {
+                reg_reviews.item(i).style.visibility = "hidden";
+            }
+        }
+    </script>
     {% endblock section %}
 </body>

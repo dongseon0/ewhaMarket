@@ -1,13 +1,6 @@
-* {
-    font-family: Arial, Helvetica, sans-serif;
-    box-sizing: border-box;
-}
-
 .wrapper {
     width: 700px;
-    cursor: default;
-    margin: auto;
-    margin-top: 7%;
+    margin: 75px auto;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -15,13 +8,8 @@
 }
 
 .line1 {
-    border: 1.5px solid rgb(163, 223, 249);
+    border: 1.5px solid rgb(208, 208, 208);
     width: 100%;
-}
-
-.line2 {
-    border: 0.5px solid rgb(38, 83, 103);
-    width: 90%;
 }
 
 table{
@@ -34,24 +22,28 @@ table{
     height: 270px;
     display: inline-block;
 }
-
+/*상품 박스*/
 .item-box {
     width: 200px; 
     height: 270px;
     display: inline-block;
-    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
+    border: 1px solid #e4e4e4;
+    padding: 6px;
+    margin: 2px;
+    border-radius: 10px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
 }
-
+/*상품 박스 내 이미지*/
 .item-box img {
     vertical-align: middle;
+    border-radius: 10px;
     object-fit:cover;
 }
 
-
 .desc {
-    margin-top: 5%;
-    margin-bottom: 7%;
-    max-width: 95%; /* Adjust as needed */
+    margin-top: 9px;
+    margin-bottom: 7px;
+    max-width: 95%;
     margin-left: 5px;
     white-space: nowrap;
     overflow: hidden;
@@ -62,59 +54,12 @@ table{
     background-color: #8a8a8a68;
 }
 
-/*.sell {
-    padding: 10px;
-    padding-bottom: 5px;
-    margin-bottom: 20px;
-    display: flex;
-
-    align-items: center;
-    width: 700px;
-    max-width: 600px;
-}
-*/
-
 /*상품 개수 표시*/
 .count_list {
     font-size: 13px;
-    padding-right: 550px;
-}
-
-/*상품 사진
-.sell img {
     width: 100px;
-    height: 100px;
-    object-fit: cover;
-    padding-right: 20px;
+    padding-right: 500px;
 }
-
-내용
-.content {
-    display: flex;
-    align-items: center;
-}
-.content div {
-    flex: 1;
-    text-align: left;
-}
-.content p {
-    margin: 5px 0;
-}
-.sell p {
-    display: flex;
-    text-align: left;
-    margin: 5px 0;
-}
-
-유저 아이디
-.sell .id_seller {
-    font-weight: bold;
-    flex: 1;
-    color:  rgb(82, 155, 187);
-    text-decoration: underline;
-}
-*/
-
 
 /*내부 네비바*/
 .topnav {
@@ -172,4 +117,43 @@ ul{
     color: black; 
     text-decoration: none; 
     margin: 0 5px; 
+}
+
+.auction_product {
+    float: right;
+    width: 45px;
+    position: relative;
+    bottom: 20px;
+    background-color: #dee3c3;
+    border: 0;
+    outline: none;
+    border-radius: 5px;
+    font-size: 15px;
+    padding-top: 3px;
+    text-align: center;
+    margin-right: 2px;
+    margin-top: 6px
+}
+
+.price {
+    margin-top: 0px;
+    margin-bottom: 7%;
+    max-width: 95%;
+    margin-left: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #757866;
+}
+
+.price1 {
+    margin-top: 2px;
+    margin-bottom: 2px;
+    max-width: 145px;
+    margin-left: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #757866;
+    font-size: 11px;
 }

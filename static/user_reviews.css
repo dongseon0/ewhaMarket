@@ -1,13 +1,6 @@
-* {
-    font-family: Arial, Helvetica, sans-serif;
-    box-sizing: border-box;
-}
-
 .wrapper {
     width: 700px;
-    cursor: default;
-    margin: auto;
-    margin-top: 7%;
+    margin: 75px auto;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -15,13 +8,14 @@
 }
 
 .line1 {
-    border: 1.5px solid rgb(163, 223, 249);
+    border: 1.5px solid rgb(208, 208, 208);
     width: 100%;
 }
 
 .line2 {
-    border: 0.5px solid rgb(38, 83, 103);
+    border: 0.5px solid rgb(208, 208, 208);
     width: 90%;
+    margin-top: -1%;
 }
 
 .review {
@@ -33,26 +27,20 @@
     width: 700px;
     max-width: 600px;
 }
-
-
 /*리뷰 개수 표시*/
 .count_review {
     font-size: 13px;
     padding-right: 550px;
 }
-
 /*리뷰 사진*/
 .review img {
     width: 100px;
     height: 100px;
     object-fit: cover;
-    padding-right: 20px;
-    
+    margin-right: 20px;
     vertical-align: middle;
-    object-fit:cover
+    object-fit:cover;
 }
-
-
 /*리뷰 내용*/
 .review-content {
     display: flex;
@@ -77,10 +65,10 @@
     flex: 1;
 }
 
-/* 별점 색상 */
+/*별점 색상*/
 .review .rating {
-    color: skyblue;
-
+    color: rgb(117, 120, 102);
+    font-size: 150%;
 }
 
 /*내부 네비바*/
@@ -137,4 +125,26 @@
     color: black; 
     text-decoration: none; 
     margin: 0 5px; 
+}
+/*등록하기 버튼*/
+.reg-review {
+    width: 11%;
+    height: 30px;
+    position: relative;
+    right: -275px;
+    bottom: 45px;
+    background-color: rgb(221, 227, 192);
+    border: none;
+    border-radius: 5px;
+    color: rgb(117, 120, 102);
+    font-size: 95%;
+    margin: 1%;
+    margin-bottom: 0;
+    padding-top: 0.5%;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+}
+
+.reg-review:hover {
+    background-color: rgb(209, 215, 180);
+    color: rgb(105, 107, 93);
 }

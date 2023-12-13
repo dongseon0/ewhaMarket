@@ -1,147 +1,48 @@
-<!DOCTYPE html>
-<html>
-
 <head>
-    <style>
-        a {
-            color: black;
-            text-decoration: none;
-        }
-
-        .stars {
-            color: rgb(117, 120, 102);
-            font-size: 150%;
-            padding-left: 15%;
-        }
-
-        .review {
-            width: 700px;
-
-            margin: auto;
-            margin-top: 7%;
-        }
-
-        #product-image {
-            width: 30%;
-
-            /* border: 1px solid rgb(163, 223, 249); */
-            margin-left: 5%;
-            padding: 1%;
-        }
-
-        #product-name {
-            font-size: 110%;
-            margin-top: 3%;
-            margin-bottom: 1%;
-            margin-left: 5%;
-        }
-
-        #review-contents {
-            width: 80%;
-
-            background-color: rgb(236, 236, 236);
-            border-radius: 10px;
-            color: rgb(91, 91, 91);
-            margin: auto;
-            margin-top: 1%;
-            padding: 2% 5%;
-        }
-
-        #stars-variable {
-            display: none;
-        }
-
-        #user-id {
-            margin: 1%;
-        }
-
-        #good,
-        #bad {
-            float: left;
-            width: 10%;
-
-            background-color: rgb(236, 236, 236);
-            border: none;
-            border-radius: 5px;
-            color: rgb(91, 91, 91);
-            font-size: 90%;
-            margin: 1%;
-            padding: 1% 0%;
-        }
-
-        #bad:hover,
-        #good:hover {
-            background-color: rgb(198, 198, 198);
-        }
-
-        .square {
-            width: 63px;
-            height: 63px;
-            overflow: hidden;
-            border-radius: 50%;
-            margin: 0% 5%;
-            float: left;
-            position: relative;
-        }
-
-        .image-cropper {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .image-cropper img {
-            width: auto;
-            height: auto;
-            max-width: none;
-            max-height: none;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        #product-image-check {
-            display: none;
-        }
-    </style>
+    <link rel="stylesheet" href="/static/details_of_review.css">
 </head>
 
 <body>
     {% extends "index.html" %}
 
     {% block section %}
-    <div class="review">
-        <a href="/user_reviews/{{data.buyerId}}/">
-            <div class="square">
-                <div class="image-cropper">
-                    <img src="/static/images/profiles/{{profile_image_path}}" id="profile">
-                </div>
-            </div>
+    <!-- 전체 div() (wrapper) -->
+    <div class="wrapper">
+        <!-- 리뷰 쓴 사람의 사진과 아이디 정보 -->
+        <a href="/user_list/{{data.buyerId}}/" id="profile-link">
+            <img src="/static/images/profiles/{{profile_image_path}}" id="profile">
         </a>
-        <div id="user-id"><a href="/user_reviews/{{data.buyerId}}/">{{data.buyerId}}<a></div>
+        <div id="user-id"><a href="/user_list/{{data.buyerId}}/">{{data.buyerId}}<a></div>
+
+        <!-- 리뷰 제목 -->
         <div id="review-title">{{data.reviewTitle}}</div>
+        <!-- 리뷰 별점 -->
         <div class="stars">
-            <div id="stars-variable">{{data.starsVariable}}</div>
             <span class="star" id="0">★</span>
             <span class="star" id="1">★</span>
             <span class="star" id="2">★</span>
             <span class="star" id="3">★</span>
             <span class="star" id="4">★</span>
         </div>
+        <hr>
+        <!-- 리뷰 사진 -->
         <img src="/static/images/reviews/{{data.img_path}}" id="product-image">
-        <div id="product-image-check">{{data.img_path}}</div>
         <br>
+        <!-- 리뷰 내용 -->
         <div id="review-contents">{{data.reviewContents}}</div>
         <br>
+        <!-- 리뷰 도움돼요, 별로예요 버튼 -->
         <button name="good" id="good">👍 {{good}}</button>
         <button name="bad" id="bad">👎 {{bad}}</button>
+        <!-- 리뷰 삭제 버튼 -->
+        <input type="button" onclick="location.href='/delete_review/{{key}}/{{data.sellerId}}/';" value="삭제하기"
+            id="delete">
     </div>
 
     <script>
+        // 별점만큼 별 채우기
         function starFill() {
-            star = parseInt(document.getElementById("stars-variable").innerHTML);
+            star = parseInt("{{data.starsVariable}}");
             stars = document.getElementsByClassName("star");
             for (i = 0; i < stars.length; i++) {
                 if (i > star) {
@@ -153,7 +54,7 @@
         }
         starFill();
 
-        // -1은 bad, 0은 none, 1은 good
+        // -1은 bad(별로예요), 0은 none, 1은 good(도움돼요)
         function showHeart() {
             $.ajax({
                 type: 'GET',
@@ -189,6 +90,7 @@
             });
         }
 
+        // 도움돼요 버튼 누르면 실행하는 함수
         function good() {
             $.ajax({
                 type: 'POST',
@@ -197,12 +99,12 @@
                     heart: 1
                 },
                 success: function (response) {
-                    alert(response['msg']);
                     window.location.reload()
                 }
             });
         }
 
+        // 별로예요 버튼 누르면 실행하는 함수
         function bad() {
             $.ajax({
                 type: 'POST',
@@ -211,12 +113,12 @@
                     heart: -1
                 },
                 success: function (response) {
-                    alert(response['msg']);
                     window.location.reload()
                 }
             });
         }
 
+        // 이미 누른 버튼 또 누르면 취소하는 함수
         function cancel() {
             $.ajax({
                 type: 'POST',
@@ -225,39 +127,35 @@
                     heart: 0
                 },
                 success: function (response) {
-                    alert(response['msg']);
                     window.location.reload()
                 }
             });
         }
 
-        showHeart();
+        // 로그인없이 버튼 누르면 alert 후 login 화면으로 넘어가기
+        function alertLogin() {
+            alert("로그인이 필요합니다.");
+            location.href = "/login";
+        }
 
-        // 이미지 크기 맞추기
-        window.onload = function () {
-            var croppers = document.querySelectorAll('.image-cropper');
-            croppers.forEach(function (cropper) {
-                var img = cropper.querySelector('img');
-                var imgWidth = img.naturalWidth; // 기본 이미지 가로
-                var imgHeight = img.naturalHeight; // 기본 이미지 세로
-                var cropperWidth = cropper.offsetWidth;
-                var cropperHeight = cropper.offsetHeight;
+        // 로그인없이 버튼 누르면 안 되게끔 하기 위함
+        if ("{{session['id']}}" != "") {
+            showHeart();
+        }
+        else {
+            $("#good").attr("onclick", "alertLogin()");
+            $("#bad").attr("onclick", "alertLogin()");
+        }
 
-                if (imgWidth / imgHeight > cropperWidth / cropperHeight) { // 가로가 세로보다 길면
-                    img.style.width = 'auto';
-                    img.style.height = '100%';
-                } else { // 세로가 가로보다 길면
-                    img.style.width = '100%';
-                    img.style.height = 'auto';
-                }
-            });
-        };
-
-        if (document.getElementById("product-image-check").innerHTML == "") {
+        // 리뷰 이미지가 없다면 display none으로 바꾸기
+        if ("{{data.img_path}}" == "empty.jpeg") {
             document.getElementById("product-image").style.display = "none";
+        }
+
+        // 작성자 아이디와 로그인한 아이디가 같지 않으면 삭제하기 버튼 보이지 않게 하기
+        if ("{{session['id']}}" != "{{data.buyerId}}") {
+            document.getElementById("delete").style.display = "none";
         }
     </script>
     {% endblock section %}
 </body>
-
-</html>

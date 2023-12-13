@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,29 +10,30 @@
     <link rel="stylesheet" href="/static/details_of_item.css" />
 
     <div class="wrapper">
-        <h2 class="text">상품 세부화면</h2>
+        <h2>상품 세부화면</h2>
         <hr>
         <div class="container">
 
             <div class="columnleft">
-                <img 
-                    src="/static/images/items/{{data.img_path}}" width="320" alt="item">
+                <img src="/static/images/items/{{data.img_path}}" width="320" alt="item">
             </div>
 
             <div class="columnright">
                 <div class="alignleft">
-                    <a href="/user_reviews/{{data.sellerId}}/"><img src="/static/images/profiles/{{profile_image_path}}"
+                    <a href="/user_list/{{data.sellerId}}/"><img src="/static/images/profiles/{{profile_image_path}}"
                             id="profile"></a>
-                    <div id="user-id"><a href="/user_reviews/{{data.sellerId}}/">{{data.sellerId}}<a></div>
+                    <div id="user-id"><a href="/user_list/{{data.sellerId}}/" style=" color: rgb(91, 100, 47); font-size : 110%;
+                        text-decoration: none;">{{data.sellerId}}<a></div>
+                    <br>
                     <h2>{{data.name}}</h2>
 
                     <table>
                         <tr>
                             <th>가격</th>
-                            <td>{{data.fixedPrice}}</td>
+                            <td>{{data.fixedPrice}} 원</td>
                         </tr>
-                            <th>상품상태</th>
-                            <td>{{data.status}}</td>
+                        <th>상품상태</th>
+                        <td>{{data.status}}</td>
                         </tr>
                         <th>연락처</th>
                         <td>{{data.phone}}</td>
@@ -66,24 +64,28 @@
         </div>
 
         <div class="down">
-                <hr style="width:100%">
-                
-            </div>
+            <hr style="width:100%">
 
-            <br>
-
-            <div class="comment">
-                <p>
-                <div class="boldtext" >상품설명</div>
-                {{data.description}}
-                </p>
-            </div>
-
-            <br>
         </div>
-    </div>
 
+        <br>
+
+        <div class="comment">
+            <p>
+            <div class="boldtext">상품설명</div>
+            {{data.description}}
+            </p>
+        </div>
+
+        <br>
+        <input type="button" onclick="location.href='/delete_item/{{key}}/{{data.sellerId}}/';" value="삭제하기"
+            id="delete">
+    </div>
     <script>
+        if ("{{session['id']}}" != "{{data.sellerId}}") {
+            document.getElementById("delete").style.display = "none";
+        }
+
         function showHeart() {
             $.ajax({
                 type: 'GET',
@@ -97,9 +99,6 @@
 
         function updateHeartButton(myHeart) {
             if (myHeart['interested'] === 'Y') {
-                $(".btn-love").css("background-color", "#c1e6ff");
-                $(".btn-love").css("color", "#003742");
-                $(".btn-love").css("border", "3px solid #c1e6ff");
                 $(".btn-love").val("♥ 찜하기");
                 $(".btn-love").attr("onclick", "unlike()");
             } else {
@@ -115,7 +114,6 @@
                     interested: "Y"
                 },
                 success: function (response) {
-                    alert(response['msg']);
                     window.location.reload();
                 },
                 error: function (xhr, status, error) {
@@ -132,7 +130,6 @@
                     interested: "N"
                 },
                 success: function (response) {
-                    alert(response['msg']);
                     window.location.reload();
                 },
                 error: function (xhr, status, error) {
@@ -159,5 +156,3 @@
     </script>
     {% endblock section %}
 </body>
-
-</html>

@@ -17,6 +17,7 @@
       <a href="/">이화마켓</a>
     </div>
     <ul class="navbar__login">
+      <li><a href="/product_list">모두의 마켓</a></li>
       {% if session['id'] %}
       <li><a href="/my_page/{{session['id']}}/" id="nav-mypage">{{session['id']}}님</a></li>
       <li><a href="/logout" id="nav-logout">로그아웃</a></li>
@@ -26,6 +27,7 @@
       {% endif %}
     </ul>
   </nav>
+  <div class="empty"></div>
   <section>
     {% block section %}
 

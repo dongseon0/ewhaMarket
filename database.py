@@ -17,7 +17,8 @@ class DBhandler:
             "nickname": data['nickname']
         }
         if self.user_duplicate_check(str(data['id'])):
-            self.db.child("users").child(data['id']).child("user_info").set(user_info)
+            self.db.child("users").child(data['id']).child(
+                "user_info").set(user_info)
             return True
         else:
             return False
@@ -45,10 +46,11 @@ class DBhandler:
                 else:
                     return False
         return False
-    
+
     # 프로필 사진 변경하기
     def set_profile_image(self, id, img_path):
-        self.db.child("users").child(id).child("user_info").child("profile").set(img_path)
+        self.db.child("users").child(id).child(
+            "user_info").child("profile").set(img_path)
         return True
 
     # 특정 아이디의 프로필 사진 불러오기
@@ -60,6 +62,7 @@ class DBhandler:
         else:
             return profile
 
+    # 상품
     # 상품 추가
     def insert_item(self, data, img_path, id):
         item_info = {
@@ -70,7 +73,7 @@ class DBhandler:
             "quantity": data["quantity"],
             "category": data["category"],
             "phone": data["phone"],
-            "img_path": img_path
+            "img_path": img_path,
         }
         if data["select-status-button"] == "new":
             item_info["status"] = "새 상품"
@@ -84,8 +87,8 @@ class DBhandler:
         else:
             item_info["method"] = "직거래"
 
-
-        item_data = self.db.child("users").child(id).child("user_list").push(str(data["name"]))
+        item_data = self.db.child("users").child(
+            id).child("user_list").push(str(data["name"]))
         item_key = item_data['name']
         self.db.child("items").child(item_key).set(item_info)
         if data["select-pricing-button"] == "경매":
@@ -123,7 +126,8 @@ class DBhandler:
             if key_value == key:
                 target_value = res.val()
         return target_value
-    
+
+    # 경매 상품 가져오기
     def get_is_auction_status(self, key):
         item_data = self.db.child("items").child(key).get().val()
         if item_data:
@@ -135,43 +139,47 @@ class DBhandler:
     # 경매 가격, 입찰자 데베에 적용하기
     def set_auction(self, key, selectRisingPrice, id):
         self.db.child("items").child(key).update({"winner": id})
-        currentPrice = self.db.child("items").child(key).get().val().get("currentPrice")
-        self.db.child("items").child(key).update({"currentPrice": (int(currentPrice) + int(selectRisingPrice))})
+        currentPrice = self.db.child("items").child(
+            key).get().val().get("currentPrice")
+        self.db.child("items").child(key).update(
+            {"currentPrice": (int(currentPrice) + int(selectRisingPrice))})
         return True
 
     # 찜한 상품 가져오기
     def get_items_byheart(self, id):
         items = self.db.child("users").child(id).child("user_wish").get()
-        target_value=[]
-        target_key=[]
-        for res in items.each():
-            value = res.val()
-            key_value = res.key()
-            if value['interested'] == "Y":
-                target_key.append(key_value)
-                target_value.append(self.db.child("items").child(key_value).get().val())
-        new_dict={}
-        for k,v in zip(target_key,target_value):
-            new_dict[k]=v
-        return new_dict 
+        target_value = []
+        target_key = []
+        if items.each():
+            for res in items.each():
+                value = res.val()
+                key_value = res.key()
+                if value['interested'] == "Y":
+                    target_key.append(key_value)
+                    target_value.append(self.db.child(
+                        "items").child(key_value).get().val())
+        new_dict = {}
+        for k, v in zip(target_key, target_value):
+            new_dict[k] = v
+        return new_dict
 
     # 카테고리 별로 상품 가져오기
-    def get_items_bycategory(self, cate): 
-        items = self.db.child("item").get() 
-        target_value=[]
-        target_key=[]
-        for res in items.each(): 
-            value = res.val() 
+    def get_items_bycategory(self, cate):
+        items = self.db.child("items").get()
+        target_value = []
+        target_key = []
+        for res in items.each():
+            value = res.val()
             key_value = res.key()
 
             if value['category'] == cate:
                 target_value.append(value)
                 target_key.append(key_value)
-        print("######target_value",target_value)
-        new_dict={}
+        print("######target_value", target_value)
+        new_dict = {}
 
-        for k,v in zip(target_key,target_value): 
-            new_dict[k]=v
+        for k, v in zip(target_key, target_value):
+            new_dict[k] = v
 
         return new_dict
 
@@ -194,13 +202,62 @@ class DBhandler:
         heart_info = {
             "interested": isHeart
         }
+        if isHeart == "Y":
+            self.db.child("items").child(key).child(
+                "hearts").child(uid).set(heart_info)
+        else:
+            self.db.child("items").child(key).child(
+                "hearts").child(uid).remove()
+
         self.db.child("users").child(uid).child(
             "user_wish").child(key).set(heart_info)
         return True
 
+    # 상품 삭제
+    def delete_item_bykey(self, key, sellerId):
+        self.db.child("users").child(sellerId).child(
+            "user_list").child(key).remove()
+        hearts = self.db.child("items").child(key).child("hearts").get()
+        if hearts.each():
+            for heart in hearts.each():
+                heartId = heart.key()
+                self.db.child("users").child(heartId).child(
+                    "user_wish").child(key).remove()
+        self.db.child("items").child(key).remove()
+        return True
+
+    # 유저 판매내역 가져오기
+    def get_lists(self, id):
+        user_list = self.db.child("users").child(id).child("user_list").get()
+        matched_items = {}
+        if not user_list.each():
+            return matched_items
+        else:
+            user_list_keys = [item.key() for item in user_list.each()]
+
+        items = self.db.child("items").get()
+        for item in items.each():
+            if item.key() in user_list_keys:
+                matched_items[item.key()] = item.val()
+
+        return matched_items
+
+    def get_lists_bykey(self, key):
+        items = self.db.child("users").child(id).child("user_lists").get()
+        target_value = ""
+        for res in items.each():
+            key_value = res.key()
+
+            if key_value == key:
+                target_value = res.val()
+        return target_value
+
     # 리뷰
     # 리뷰 데이터베이스에 등록하기
     def reg_review(self, data, img_path, buyerId, sellerId):
+        if img_path == "":
+            img_path = "empty.jpeg"
+        
         review_info = {
             "sellerId": sellerId,
             "buyerId": buyerId,
@@ -225,12 +282,30 @@ class DBhandler:
             if key_value == key:
                 target_value = res.val()
         return target_value
+    
+    # 특정 리뷰 삭제하기
+    def delete_review_bykey(self, key, sellerId):
+        self.db.child("users").child(sellerId).child("user_reviews").child(key).remove()
+        return True
 
     # 특정 아이디의 리뷰들을 데이터베이스에서 불러오기
     def get_reviews(self, sellerId):
-        items = self.db.child("users").child(
-            sellerId).child("user_reviews").get().val()
+        items = self.db.child("users").child(sellerId).child("user_reviews").get().val()
         return items
+
+    # 특정 아이디의 리뷰 평점 평균 계산하기
+    def get_reviews_star_avg(self, sellerId):
+        reviews = self.db.child("users").child(sellerId).child("user_reviews").get()
+
+        if not reviews.each():
+            return 0      
+        
+        stars = 0
+        starCount = 0
+        for review in reviews.each():
+            stars += int(review.val().get("starsVariable")) + 1
+            starCount += 1
+        return float(stars) / starCount
 
     # 데이터베이스에서 특정 리뷰 하트 정보 불러오기
     def get_review_good_bykey(self, key, sellerId):
@@ -279,66 +354,20 @@ class DBhandler:
         if int(heart) == 0:
             self.db.child("users").child(sellerId).child("user_reviews").child(
                 key).child("hearts").child(id).remove()
-            return '취소했습니다.'
+            return True
 
         heart_info = {
             "heart": int(heart)
         }
         self.db.child("users").child(sellerId).child("user_reviews").child(
             key).child("hearts").child(id).set(heart_info)
-        
-        if int(heart) == 1:
-            return '도움돼요!'
-        elif int(heart) == -1:
-            return '별로예요.'
 
-    # 마이페이지
+        if int(heart) == 1:
+            return True
+        elif int(heart) == -1:
+            return True
+
+    # 마이페이지_개인정보
     def get_user_info(self, id):
         items = self.db.child("users").child(id).child("user_info").get().val()
         return items
-
-    # 판매내역
-    def get_lists(self, id):
-        user_list = self.db.child("users").child(id).child("user_list").get()
-        matched_items = {}
-        if not user_list.each():
-            return matched_items
-        else:
-            user_list_keys = [item.key() for item in user_list.each()]
-
-        items = self.db.child("items").get()
-        for item in items.each():
-            if item.key() in user_list_keys:
-                matched_items[item.key()] = item.val()
-
-        return matched_items
-
-    def get_lists_bykey(self, key):
-        items = self.db.child("users").child(id).child("user_lists").get()
-        target_value = ""
-        for res in items.each():
-            key_value = res.key()
-
-            if key_value == key:
-                target_value = res.val()
-        return target_value
-    
-    def get_auction_items(self):
-        response = self.db.child("items").get()
-        items = response.val()
-
-        auction_items = []
-
-        for key, item in items.items():
-            is_auction = self.get_is_auction_status(key)
-
-            if is_auction:
-                end_datetime = datetime.strptime(item['endDate'] + ' ' + item['endTime'], '%Y-%m-%d %H:%M')
-                current_datetime = datetime.now()
-
-                if current_datetime <= end_datetime:
-                    remaining_time = end_datetime - current_datetime
-                    item['remaining_time'] = str(remaining_time)
-                    auction_items.append(item)
-
-        return auction_items

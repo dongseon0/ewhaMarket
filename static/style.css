@@ -14,19 +14,28 @@
 
 /* 네비게이션 바 디자인 정의 */
 .navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
   background-color: rgb(221, 227, 192);
   /* 네비게이션 바 배경색 설정 */
   display: flex;
   /* 요소를 가로로 정렬 */
   justify-content: space-between;
   /* 좌우에 요소를 분배 */
-  padding: 15px 50px;
+  padding: 18px 50px 18px 0px;
+}
+
+.empty {
+  padding: 45px;
 }
 
 .navbar__logo {
   display: flex;
   align-items: center;
   /* 수직 가운데 정렬 */
+  margin-left: 50px;
 }
 
 .navbar__logo a {
@@ -34,7 +43,7 @@
   /* 밑줄 제거 */
   color: rgb(117, 120, 102);
   /* 텍스트 색상 설정 */
-  font-size: 140%;
+  font-size: 160%;
   font-family: 'GmarketSansBold';
 }
 
@@ -43,6 +52,8 @@
   /* 리스트 스타일 제거 */
   display: flex;
   /* 요소를 가로로 정렬 */
+  align-items: flex-end;
+  margin-right: 50px;
 }
 
 .navbar__login li {
@@ -55,18 +66,22 @@
   /* 밑줄 제거 */
   color: rgb(117, 120, 102);
   /* 텍스트 색상 설정 */
+  font-size: 110%;
 }
 
 /* 호버 효과 (마우스를 메뉴 위로 올릴 때) */
 .navbar__login a:hover {
-  color: rgb(255, 152, 152)
-  /* 호버 시 텍스트 색상 변경 */
+  color: rgb(255, 161, 117)
+    /* 호버 시 텍스트 색상 변경 */
 }
 
 /* 공통 디자인 정의 */
+body {
+  overflow-x: hidden;
+}
+
 * {
   cursor: default;
-  /* font-family: Arial, Helvetica, sans-serif; */
   font-family: 'GmarketSansMedium';
 }
 

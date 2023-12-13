@@ -1,21 +1,28 @@
 .product-registration-section {
     list-style: none;
+    padding: 0%;
 }
 
 .wrapper {
-    width: 800px;
+    width: 850px;
     cursor: default;
-    margin: auto;
-    margin-top: 7%;
+    margin: 75px auto;
 }
 
 .main-title {
-    margin: 5% 5% 5% 2%;
+    width: 15%;
+    margin: 5% 5% 5% 3%;
 }
 
-h4 {
-    width: 200px;
-    margin: 2% 10% 2% 0%;
+
+.middle-title {
+    width: 120px;
+    margin: 4% 5% 4% 3%;
+    font-size: 105%;
+}
+
+.small-title {
+    font-size: 90%;
 }
 
 li {
@@ -23,37 +30,84 @@ li {
 }
 
 .inside {
-    margin: 2% 10% 2% 0%;
+    margin: 4% 0% 4% 0%;
+}
+
+.file-upload-button {
+    width: 200px;
+    height: 200px;
+    border: solid rgb(208, 208, 208);
+    background-repeat : no-repeat;
+    background-position : 50% 38%;
+    background-size : 40% 40%;
+    background-image: url("/static/images/camera_icon.png");
+    opacity: 0.5;
+    position: relative;
+}
+
+.reg-file-box {
+    width: 200%;
+    display: flex;
+}
+
+.file-upload-text {
+    font-size: 85%;
+    position: absolute;
+    left: 32%;
+    top: 56%;
+}
+
+.image-show {
+    margin: 0% 0% 0% 5%;
+    width: 200px;
+    height: 200px;
+    border: solid #E7E7E7;
+}
+
+#file {
+    display: none;
+}
+
+.select-status {
+    width: 115%;
+    display: flex;
+    justify-content: space-between;
 }
 
 textarea {
-    width: 275%;
+    width: 316%;
     resize: none;
-    padding: 5%;
+    padding: 5% 0% 5% 5%;
+    font-size: 90%;
 }
 
-.input-name {
-    width: 293%;
-    padding: 2% 1% 2% 1%;
+.select-transaction-method {
+    width: 115%;
+    display: flex;
+    justify-content: space-between;
 }
 
-.input-location {
-    width: 293%;
-    padding: 2% 1% 2% 1%;
-}
-
-.input-tag {
-    width: 293%;
-    padding: 2% 1% 2% 1%;
+.input-text {
+    width: 330%;
+    padding: 5% 0% 5% 5%;
+    font-size: 90%;
 }
 
 .input-quantity {
-    width: 57%;
-    padding: 1% 1% 1% 1%;
+    margin: 0% 1% 0% 0%;
+    width: 60%;
+    padding: 1.7% 0% 1.7% 1.7%;
+    font-size: 90%;
+
+}
+
+.middle-hr {
+    border: 1.5px solid rgb(240, 240, 240);
+    width: 100%;
 }
 
 .input-quntity-box {
-    width: 200%;
+    width: 230%;
 }
 
 .contact-information-text {
@@ -61,48 +115,76 @@ textarea {
     padding: 1.5% 50px 1.5% 1%;
 }
 
-.fixed-pricing-text {
-    width: 69%;
-    padding: 1% 40px 1% 1%;
-    margin: 5% 1% 1% 1%;
-}
-
-.auction-section {
-    width: 200%;
-}
-
-.input-start-price-text{
-    width: 40%;
-    padding: 0.6% 0.6% 0.6% 0.6%;
+.select-pricing-method {
+    margin: 0% 0% 10% 0%;
+    width: 176px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .fixed-pricing-box {
-    width: 110%;
+    width: 160%;
+}
+
+.fixed-pricing-text {
+    margin: 6% 1% 0% 0%;
+    width: 87.5%;
+    padding: 1.9% 0% 1.9% 1.9%;
+    font-size: 90%;
+}
+
+.auction-section {
+    width: 129.6%;
+}
+
+.inside-inside {
+    margin: 8% 0% 8% 0%;
+}
+
+.inside-inside-last {
+    margin: 8% 0% 0% 0%;
+}
+
+.input-start-price-text{
+    margin: 0% 1% 0% 0%;
+    width: 86.7%;
+    padding: 1.9% 0% 1.9% 1.9%;
+    font-size: 90%;
 }
 
 .select-rising-price-section {
-    width: 75%;
+    width: 96%;
     display: flex;
     justify-content: space-between;
 }
 
 .select-rising-price {
-    width: 20%;
+    width: 23%;
     padding: 1.7% 0% 1.7% 0%;
 }
 
 .input-auction-time {
-    width: 55%;
+    width: 77%;
     display: flex;
     justify-content: space-between;
 }
 
 .product-registration-end-button {
+    font-size: 15px;
     float: right;
     width: 12%;
+    height: 40px;
     padding: 1.3% 0% 1.3% 0%;
+    margin: 2.5% 0% 0% 0%;
+    background-color:  rgb(221, 227, 192);
+    color: rgb(117, 120, 102);
+    border-radius: 10px;
+    border: 3px solid  rgb(221, 227, 192);
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
 }
 
-hr {
-    border: 1.5px solid rgb(163, 223, 249);
+.product-registration-end-button:hover {
+    background-color: rgb(209, 215, 180);
+    color: rgb(122, 125, 103);
+    border: 3px solid rgb(209, 215, 180);
 }

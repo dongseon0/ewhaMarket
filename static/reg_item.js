@@ -3,7 +3,33 @@ function div_OnOff(myId, yourId) {
     document.getElementById(yourId).style.display = "none";
 }
 
+function clickFile() {
+    var image = document.getElementById("img");
+
+    image.parentNode.removeChild(image);
+}
+
+
+function loadFile(input) {
+    var file = input.files[0];
+
+    var image = document.createElement("img");
+    image.setAttribute("class", 'img');
+    image.setAttribute("id", 'img');
+
+    image.src = URL.createObjectURL(file);
+
+    image.style.width = "100%";
+    image.style.height = "100%";
+    image.style.objectFit = "cover";
+
+    var container = document.getElementById('image-show');
+    container.appendChild(image);
+    $('#image-show').attr('value', 1);
+}
+
 function checkInput(){
+    var image = document.getElementById("file").value;
     var description = document.getElementById("description").value;
     var quantity = document.getElementById("quantity").value;
     var selectPricingValue = $('input[name=select-pricing-button]:checked').val();
@@ -34,6 +60,12 @@ function checkInput(){
     var status = $('input:radio[name=select-status-button]').is(':checked');
     var method = $('input:radio[name=select-transaction-method-button]').is(':checked');
     var selectPricing = $('input:radio[name=select-pricing-button]').is(':checked');
+
+
+    if(!image) {
+        alert("상품 이미지를 등록해주세요.");
+        return false;
+    }
 
     if(!name) {
         alert("상품명을 입력해주세요.");
@@ -126,3 +158,6 @@ function checkInput(){
     }
 
 }
+
+var text = document.getElementById("description").value;
+text = text.replace(/(?:\r\n|\r|\n)/g, '<br>');

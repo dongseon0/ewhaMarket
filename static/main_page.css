@@ -1,0 +1,206 @@
+.empty {
+    background-color: rgb(221, 227, 192);
+}
+
+.text {
+    width: 900px;
+    text-align: left;
+    margin-left: 20px;
+    float: left;
+    font-size: 140%;
+}
+
+.wrapper {
+    width: 1100px;
+    cursor: default;
+    margin: auto;
+    text-align: center;
+    margin-bottom: 75px;
+    margin-top: 70px;
+}
+
+.item-box {
+    width: 180px;
+    height: 250px;
+    display: inline-block;
+    border: 1px solid #e4e4e4;
+    padding: 6px;
+    margin: 2px;
+    border-radius: 10px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: left;
+}
+
+.item-box img {
+    vertical-align: middle;
+    border-radius: 10px;
+    object-fit: cover;
+    width: 180px;
+    height: 180px;
+}
+
+.item-box:hover {
+    background-color: #8a8a8a68;
+}
+
+.blank-box {
+    width: 180px;
+    height: 250px;
+    display: inline-block;
+    border: 1px solid #e4e4e4;
+    padding: 6px;
+    margin: 2px;
+    border-radius: 10px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: left;
+    visibility: hidden;
+}
+
+/*상품 이름 길이 제한*/
+.desc {
+    margin-top: 9px;
+    margin-bottom: 7px;
+    margin-left: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 30px;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    background: none;
+    padding: 10px;
+    border: none;
+}
+
+ul {
+    display: flex;
+    list-style: none;
+}
+
+#btn {
+    width: 110px;
+    height: 35px;
+    float: right;
+    background-color: rgb(221, 227, 192);
+    border: none;
+    border-radius: 5px;
+    color: rgb(117, 120, 102);
+    font-size: 100%;
+    margin: 1%;
+    padding: 0% 0%;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+}
+
+#btn:hover {
+    background-color: rgb(209, 215, 180);
+    color: rgb(105, 107, 93);
+}
+
+.time {
+    font-size: 12px;
+    margin-bottom: 2400px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.text1 {
+    color: rgb(117, 120, 102);
+}
+
+ul.header-list {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
+    margin: 0;
+}
+
+ul.header-list li {
+    list-style: none;
+}
+
+.price {
+    margin-top: 0px;
+    margin-bottom: 7%;
+    max-width: 95%;
+    /* Adjust as needed */
+    margin-left: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #757866;
+
+}
+
+.price1 {
+    margin-top: 2px;
+    margin-bottom: 2px;
+    max-width: 145px;
+    /* Adjust as needed */
+    margin-left: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #757866;
+    font-size: 10px;
+}
+
+.auction_product {
+    float: right;
+    width: 45px;
+    position: relative;
+    bottom: 10px;
+
+    background-color: #dee3c3;
+    border: 0;
+    outline: none;
+    border-radius: 5px;
+    font-size: 15px;
+    padding-top: 3px;
+    text-align: center;
+    margin-right: 1px;
+}
+
+#banner {
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    background-image: url("/static/images/banner.jpg");
+    background-size: cover;
+    position: relative;
+    text-align: center;
+}
+
+.inner-banner {
+    position: absolute;
+    top: 35%;
+    left: 33.5%;
+}
+
+#banner-text {
+    text-align: center;
+    font-size: 35px;
+    color: rgb(255, 255, 255);
+    margin: 0% 0% 3% 0%;
+}
+
+#reg-item {
+    width: 250px;
+    height: 40px;
+    background-color: white;
+    border: none;
+    color: rgb(117, 120, 102);
+    font-size: 20px;
+    margin: 2%;
+    padding-top: 0.6%;
+}
+
+#reg-item:hover {
+    background-color: rgb(225, 225, 225);
+}
