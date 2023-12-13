@@ -1,240 +1,245 @@
-{% extends "index.html" %}
+<head>
+    <link rel="stylesheet" href="/static/reg_item.css" />
+    <script src="/static/reg_item.js"></script>
+</head>
 
-{% block section %}
-<link rel="stylesheet" href="/static/reg_item.css" />
-<script src="/static/reg_item.js"></script>
-<form method="post" enctype="multipart/form-data" action="/submit_item_post" onsubmit="return checkInput()">
-    <div class="wrapper">
-        <main class="product-registration">
-            <h2 class="main-title">
-                상품 등록
-            </h2>
-            <hr>
-            <ul class=product-registration-section>
-                <li class="image-section">
-                    <p class="middle-title">
-                        상품 이미지
-                    </p>
-                    <div class="inside">
-                        <div class="reg-file-box">
-                            <label for="file">
-                                <div class="file-upload-button">
-                                    <p class="file-upload-text">이미지 등록</p>
-                                </div>
-                            </label>
-                            <input type="file" name="file" id="file" onclick="clickFile()" onchange="loadFile(this)"/>
-                            <div class="image-show" id="image-show" value="">
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <hr class="middle-hr">
-                <li class="name-section">
-                    <p class="middle-title">
-                        상품명
-                    </p>
-                    <div class="inside">
-                        <input id="name" name="name" class="input-text" type="text" placeholder="상품명을 입력해주세요.">
-                    </div>
-                </li>
-                <hr class="middle-hr">
-                <li class="status-section">
-                    <p class="middle-title">
-                        상품 상태
-                    </p>
-                    <div class="inside">
-                        <div class="select-status">
-                            <label for="new" class="new-product">
-                                <input id="new" name="select-status-button" type="radio" value="new">
-                                새 상품
-                            </label>
-                            <label for="lnew" class="lnew-product">
-                                <input id="lnew" name="select-status-button" type="radio" value="lnew">
-                                거의 새 상품
-                            </label>
-                            <label for="used" class="used-product">
-                                <input id="used" name="select-status-button" type="radio" value="used">
-                                중고 상품
-                            </label>
-                        </div>
-                    </div>
-                </li>
-                <hr class="middle-hr">
-                <li class="description-section">
-                    <p class="middle-title">
-                        상품 설명
-                    </p>
-                    <div class="inside">
-                        <div class="input-description">
-                            <textarea id="description" name="description" rows="8" class="input-description-box"
-                                placeholder="구매시기, 브랜드/모델명, 제품의 상태(사용감, 하자 유무)등을 입력해주세요."></textarea>
-                        </div>
-                    </div>
-                </li>
-                <hr class="middle-hr">
-                <li class="transaction-method-section">
-                    <p class="middle-title">
-                        거래 방식
-                    </p>
-                    <div class="inside">
-                        <div class="select-transaction-method">
-                            <label for="택배 거래" class="delivery-transaction">
-                                <input id="택배 거래" name="select-transaction-method-button" type="radio" value="delivery">
-                                택배 거래
-                            </label>
-                            <label for="직거래" class="direct-transaction">
-                                <input id="직거래" name="select-transaction-method-button" type="radio" value="direct">
-                                직거래
-                            </label>
-                        </div>
-                    </div>
-                </li>
-                <hr class="middle-hr">
-                <li class="location-section">
-                    <p class="middle-title">
-                        거래 지역
-                    </p>
-                    <div class="inside">
-                        <div class="select-location-section">
-                            <input id="location" name="location" class="input-text" type="text"
-                                placeholder="선호 거래 지역을 입력해주세요.">
-                        </div>
-                    </div>
-                </li>
-                <hr class="middle-hr">
-                <li class="quantity-section">
-                    <p class="middle-title">
-                        수량
-                    </p>
-                    <div class="inside">
-                        <div class="input-quntity-box">
-                            <input id="quantity" name="quantity" type="number" class="input-quantity"
-                                placeholder="숫자만 입력해주세요.">
-                            <span>개</span>
-                        </div>
-                    </div>
-                </li>
-                <hr class="middle-hr">
-                <li class="category-section">
-                    <p class="middle-title">
-                        카테고리
-                    </p>
-                    <div class="inside">
-                        <div>
-                            <select id="category" name="category">
-                                <option value="의류" selected> 의류 </option>
-                                <option value="화장품"> 화장품 </option>
-                                <option value="책"> 책 </option>
-                                <option value="가구"> 가구 </option>
-                                <option value="전자제품"> 전자제품 </option>
-                                <option value="기타"> 기타 </option>
-                            </select><br><br>
-                        </div>
-                    </div>
-                </li>
-                <hr class="middle-hr">
-                <li class="pricing-section">
-                    <p class="middle-title">
-                        가격 책정
-                    </p>
-                    <div class="inside">
-                        <div class="select-pricing-method">
-                            <label for="고정 가격" class="fixed-price">
-                                <input id="고정 가격" name="select-pricing-button" type="radio" value="고정가격"
-                                    onclick="div_OnOff('fixed-pricing-box', 'auction-section')">
-                                고정 가격
-                            </label>
-                            <label for="경매" class="auction">
-                                <input id="경매" name="select-pricing-button" type="radio" value="경매"
-                                    onclick="div_OnOff('auction-section', 'fixed-pricing-box')">
-                                경매
-                            </label>
-                        </div>
-                        <div class="fixed-pricing-box" id="fixed-pricing-box" style="display: none;">
-                            <hr class="middle-hr">
-                            <input id="fixedPrice" type="text" name="fixed-price" placeholder="가격을 입력해주세요."
-                                class="fixed-pricing-text" value="">
-                            <span>원</span>
-                        </div>
-                        <div class="auction-section" id="auction-section" style="display: none;">
-                            <hr class="middle-hr">
-                            <div class="inside-inside">
-                                <p class="small-title">
-                                    시작가
-                                </p>
-                                <div class="input-start-price">
-                                    <input id="startPrice" type="text" name="start-price" placeholder="경매 시작가를 입력해주세요."
-                                        class="input-start-price-text" value="">
-                                    <span>원</span>
-                                </div>
-                            </div>
-                            <hr class="middle-hr">
-                            <div class="inside-inside">
-                                <p class="small-title">
-                                    상승가
-                                </p>
-                                <div class="select-rising-price-section">
-                                    <label>
-                                        <input type="radio" name="select-rising-price" type="radio" value="50000">
-                                        5만원</label>
-                                    <label>
-                                        <input type="radio" name="select-rising-price" type="radio" value="10000">
-                                        1만원</label>
-                                    <label>
-                                        <input type="radio" name="select-rising-price" type="radio" value="5000">
-                                        5천원</label>
-                                    <label>
-                                        <input type="radio" name="select-rising-price" type="radio" value="1000">
-                                        1천원</label>
-                                </div>
-                            </div>
-                            <hr class="middle-hr">
-                            <div class="inside-inside">
-                                <p class="small-title">
-                                    시작 시각
-                                </p>
-                                <div class="input-auction-time">
-                                    <div class="input-start-date">
-                                        <input type="date" id="startDate" name="start-date" class="input-auction-time-text" value="">
+<body>
+    {% extends "index.html" %}
+
+    {% block section %}
+    <form method="post" enctype="multipart/form-data" action="/submit_item_post" onsubmit="return checkInput()">
+        <div class="wrapper">
+            <main class="product-registration">
+                <h2 class="main-title">
+                    상품 등록
+                </h2>
+                <hr>
+                <ul class=product-registration-section>
+                    <li class="image-section">
+                        <p class="middle-title">
+                            상품 이미지
+                        </p>
+                        <div class="inside">
+                            <div class="reg-file-box">
+                                <label for="file">
+                                    <div class="file-upload-button">
+                                        <p class="file-upload-text">이미지 등록</p>
                                     </div>
-                                    <div class="input-start-time">
-                                        <input type="time" id="startTime" name="start-time" class="input-auction-time-text" value="">
+                                </label>
+                                <input type="file" name="file" id="file" onclick="clickFile()" onchange="loadFile(this)"/>
+                                <div class="image-show" id="image-show" value="">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <hr class="middle-hr">
+                    <li class="name-section">
+                        <p class="middle-title">
+                            상품명
+                        </p>
+                        <div class="inside">
+                            <input id="name" name="name" class="input-text" type="text" placeholder="상품명을 입력해주세요.">
+                        </div>
+                    </li>
+                    <hr class="middle-hr">
+                    <li class="status-section">
+                        <p class="middle-title">
+                            상품 상태
+                        </p>
+                        <div class="inside">
+                            <div class="select-status">
+                                <label for="new" class="new-product">
+                                    <input id="new" name="select-status-button" type="radio" value="new">
+                                    새 상품
+                                </label>
+                                <label for="lnew" class="lnew-product">
+                                    <input id="lnew" name="select-status-button" type="radio" value="lnew">
+                                    거의 새 상품
+                                </label>
+                                <label for="used" class="used-product">
+                                    <input id="used" name="select-status-button" type="radio" value="used">
+                                    중고 상품
+                                </label>
+                            </div>
+                        </div>
+                    </li>
+                    <hr class="middle-hr">
+                    <li class="description-section">
+                        <p class="middle-title">
+                            상품 설명
+                        </p>
+                        <div class="inside">
+                            <div class="input-description">
+                                <textarea id="description" name="description" rows="8" class="input-description-box"
+                                    placeholder="구매시기, 브랜드/모델명, 제품의 상태(사용감, 하자 유무)등을 입력해주세요."></textarea>
+                            </div>
+                        </div>
+                    </li>
+                    <hr class="middle-hr">
+                    <li class="transaction-method-section">
+                        <p class="middle-title">
+                            거래 방식
+                        </p>
+                        <div class="inside">
+                            <div class="select-transaction-method">
+                                <label for="택배 거래" class="delivery-transaction">
+                                    <input id="택배 거래" name="select-transaction-method-button" type="radio" value="delivery">
+                                    택배 거래
+                                </label>
+                                <label for="직거래" class="direct-transaction">
+                                    <input id="직거래" name="select-transaction-method-button" type="radio" value="direct">
+                                    직거래
+                                </label>
+                            </div>
+                        </div>
+                    </li>
+                    <hr class="middle-hr">
+                    <li class="location-section">
+                        <p class="middle-title">
+                            거래 지역
+                        </p>
+                        <div class="inside">
+                            <div class="select-location-section">
+                                <input id="location" name="location" class="input-text" type="text"
+                                    placeholder="선호 거래 지역을 입력해주세요.">
+                            </div>
+                        </div>
+                    </li>
+                    <hr class="middle-hr">
+                    <li class="quantity-section">
+                        <p class="middle-title">
+                            수량
+                        </p>
+                        <div class="inside">
+                            <div class="input-quntity-box">
+                                <input id="quantity" name="quantity" type="number" class="input-quantity"
+                                    placeholder="숫자만 입력해주세요.">
+                                <span>개</span>
+                            </div>
+                        </div>
+                    </li>
+                    <hr class="middle-hr">
+                    <li class="category-section">
+                        <p class="middle-title">
+                            카테고리
+                        </p>
+                        <div class="inside">
+                            <div>
+                                <select id="category" name="category">
+                                    <option value="의류" selected> 의류 </option>
+                                    <option value="화장품"> 화장품 </option>
+                                    <option value="책"> 책 </option>
+                                    <option value="가구"> 가구 </option>
+                                    <option value="전자제품"> 전자제품 </option>
+                                    <option value="기타"> 기타 </option>
+                                </select><br><br>
+                            </div>
+                        </div>
+                    </li>
+                    <hr class="middle-hr">
+                    <li class="pricing-section">
+                        <p class="middle-title">
+                            가격 책정
+                        </p>
+                        <div class="inside">
+                            <div class="select-pricing-method">
+                                <label for="고정 가격" class="fixed-price">
+                                    <input id="고정 가격" name="select-pricing-button" type="radio" value="고정가격"
+                                        onclick="div_OnOff('fixed-pricing-box', 'auction-section')">
+                                    고정 가격
+                                </label>
+                                <label for="경매" class="auction">
+                                    <input id="경매" name="select-pricing-button" type="radio" value="경매"
+                                        onclick="div_OnOff('auction-section', 'fixed-pricing-box')">
+                                    경매
+                                </label>
+                            </div>
+                            <div class="fixed-pricing-box" id="fixed-pricing-box" style="display: none;">
+                                <hr class="middle-hr">
+                                <input id="fixedPrice" type="text" name="fixed-price" placeholder="가격을 입력해주세요."
+                                    class="fixed-pricing-text" value="">
+                                <span>원</span>
+                            </div>
+                            <div class="auction-section" id="auction-section" style="display: none;">
+                                <hr class="middle-hr">
+                                <div class="inside-inside">
+                                    <p class="small-title">
+                                        시작가
+                                    </p>
+                                    <div class="input-start-price">
+                                        <input id="startPrice" type="text" name="start-price" placeholder="경매 시작가를 입력해주세요."
+                                            class="input-start-price-text" value="">
+                                        <span>원</span>
                                     </div>
                                 </div>
-                            </div>
-                            <hr class="middle-hr">
-                            <div class="inside-inside-last">
-                                <p class="small-title">
-                                    종료 시각
-                                </p>
-                                <div class="input-auction-time">
-                                    <div class="input-end-date">
-                                        <input type="date" id="endDate" name="end-date" class="input-auction-time-text" value="">
+                                <hr class="middle-hr">
+                                <div class="inside-inside">
+                                    <p class="small-title">
+                                        상승가
+                                    </p>
+                                    <div class="select-rising-price-section">
+                                        <label>
+                                            <input type="radio" name="select-rising-price" type="radio" value="50000">
+                                            5만원</label>
+                                        <label>
+                                            <input type="radio" name="select-rising-price" type="radio" value="10000">
+                                            1만원</label>
+                                        <label>
+                                            <input type="radio" name="select-rising-price" type="radio" value="5000">
+                                            5천원</label>
+                                        <label>
+                                            <input type="radio" name="select-rising-price" type="radio" value="1000">
+                                            1천원</label>
                                     </div>
-                                    <div class="input-end-time">
-                                        <input type="time" id="endTime" name="end-time" class="input-auction-time-text" value="">
+                                </div>
+                                <hr class="middle-hr">
+                                <div class="inside-inside">
+                                    <p class="small-title">
+                                        시작 시각
+                                    </p>
+                                    <div class="input-auction-time">
+                                        <div class="input-start-date">
+                                            <input type="date" id="startDate" name="start-date" class="input-auction-time-text" value="">
+                                        </div>
+                                        <div class="input-start-time">
+                                            <input type="time" id="startTime" name="start-time" class="input-auction-time-text" value="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="middle-hr">
+                                <div class="inside-inside-last">
+                                    <p class="small-title">
+                                        종료 시각
+                                    </p>
+                                    <div class="input-auction-time">
+                                        <div class="input-end-date">
+                                            <input type="date" id="endDate" name="end-date" class="input-auction-time-text" value="">
+                                        </div>
+                                        <div class="input-end-time">
+                                            <input type="time" id="endTime" name="end-time" class="input-auction-time-text" value="">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </li>
-                <hr class="middle-hr">
-                <li class="contact-information-section">
-                    <p class="middle-title">
-                        연락처
-                    </p>
-                    <div class="inside">
-                        <div class="contact-information-box">
-                            <input id="phone" name="phone" type="text" placeholder="연락처를 입력해주세요."
-                                class="input-text">
+                    </li>
+                    <hr class="middle-hr">
+                    <li class="contact-information-section">
+                        <p class="middle-title">
+                            연락처
+                        </p>
+                        <div class="inside">
+                            <div class="contact-information-box">
+                                <input id="phone" name="phone" type="text" placeholder="연락처를 입력해주세요."
+                                    class="input-text">
+                            </div>
                         </div>
-                    </div>
-                </li>
-            </ul>
-            <hr>
-            <input type="submit" class="product-registration-end-button" value="등록하기"><br><br>
-        </main>
-    </div>
-</form>
-{% endblock section %}
+                    </li>
+                </ul>
+                <hr>
+                <input type="submit" class="product-registration-end-button" value="등록하기"><br><br>
+            </main>
+        </div>
+    </form>
+    {% endblock section %}
+</body>
