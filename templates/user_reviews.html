@@ -6,22 +6,26 @@
     {% extends "index.html" %}
 
     {% block section %}
+     <!--전체 div(wrapper)-->
     <div class="wrapper">
         <h2 class="text">{{id}} 리뷰</h2>
         <hr class="line1">
-
+        
+        <!--내부 항목-->
         <div class="topnav">
             <a href="/user_list/{{id}}/">판매내역</a>
             <a style="text-decoration: underline;" href="/user_reviews/{{id}}/">리뷰</a>
         </div>
         <hr class="line1">
 
+        <!--리뷰 존재-->
         {% if total > 0 %}
         <p class="count_review">
             {{total}}개의 리뷰 (평균 {{star_avg}}점)
         </p>
         <input type="button" onclick="location.href = '/reg_review/{{id}}/'" class="reg-review" value="등록하기">
 
+        <!--첫번째 행-->
         <div class="review">
             {% for key, value in row1 %}
             <table>
@@ -48,7 +52,7 @@
         {% if row1|length > 0 %}
         <hr class="line2">{% endif %}
 
-
+         <!--두번째 행-->
         <div class="review">
             {% for key, value in row2 %}
             <table>
@@ -75,6 +79,7 @@
         {% if row2|length > 0 %}
         <hr class="line2">{% endif %}
 
+         <!--세번째 행-->
         <div class="review">
             {% for key, value in row3 %}
             <table>
@@ -101,6 +106,7 @@
         {% if row3|length > 0 %}
         <hr class="line2">{% endif %}
 
+         <!--네번째 행-->
         <div class="review">
             {% for key, value in row4 %}
             <table>
@@ -127,6 +133,7 @@
         {% if row4|length > 0 %}
         <hr class="line2">{% endif %}
 
+         <!--다섯번째 행-->
         <div class="review">
             {% for key, value in row5 %}
             <table>
@@ -165,7 +172,7 @@
                 </ul>
             </div>
         </div>
-
+        <!--리뷰 부재-->
         {% else %}
         <p>
             등록된 리뷰가 없습니다.

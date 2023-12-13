@@ -7,21 +7,24 @@
     {% extends "index.html" %}
 
     {% block section %}
+    <!--전체 div(wrapper)-->
     <div class="wrapper">
         <h2 class="text">{{id}} 판매 내역</h2>
         <hr class="line1">
         
+        <!--내부 항목-->
         <div class="topnav">
             <a style="text-decoration: underline;" href="/user_list/{{id}}/">판매내역</a>
             <a href="/user_reviews/{{id}}/">리뷰</a>
         </div>
         <hr class="line1">
-
+        <!--판매 내역 존재-->
         {% if total > 0 %}
         <p class="count_list">
             {{total}}개의 판매 내역
         </p>
-        
+
+        <!--첫번째 행-->
         <table>
             <tbody class="sell">
                 <tr>
@@ -52,6 +55,7 @@
                     {% endfor %}
                 </tr>
             </tbody>
+            <!--두번째 행-->
             <tbody class="sell">
                 <tr>
                     {% for key, value in row2 %}
@@ -90,6 +94,7 @@
                 </ul>
             </div>
         </div>
+        <!--판매내역 부재-->
         {% else %}
         <p>
             등록된 판매내역이 없습니다.
