@@ -2,7 +2,7 @@
 
 <aside>
 ✨ 오픈SW플랫폼 "New Age"의 “이화마켓”입니다.
-  
+
 📄[New Age's Notion Page](https://www.notion.so/New-Age-83b1390dd56a4c8ea56b01147e31571c?pvs=21)
 
 </aside>
@@ -32,9 +32,20 @@
 ---
 
 - 홈 화면
+<img width="770" alt="홈 화면" src="https://github.com/dongseon0/ewhaMarket/assets/86476876/ef8dbc69-274a-4839-904b-28d6703b7d35">
+
+
 - 상품 전체 조회 리스트
+<img width="770" alt="상품 전체 조회 리스트" src="https://github.com/dongseon0/ewhaMarket/assets/86476876/a3bf0944-a6f9-4860-816f-7cd6a8d984de">
+
+
 - 로그인 / 로그아웃
+<img width="770" alt="로그인 / 로그아웃" src="https://github.com/dongseon0/ewhaMarket/assets/86476876/8e81a993-754d-49ce-85ec-effe63507f2a">
+
+
 - 마이페이지
+<img width="770" alt="마이페이지" src="https://github.com/dongseon0/ewhaMarket/assets/86476876/c6ccbf4e-f458-4a20-b06f-099e39c9cd15">
+
 
 ---
 
