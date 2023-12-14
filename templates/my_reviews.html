@@ -4,12 +4,15 @@
 </head>
 
 <body>
+  <!-- index.html로부터 확장 -->
   {% extends "index.html" %}
 
   {% block section %}
+  <!-- 전체 div (wrapper) -->
   <div class="wrapper">
     <h2 class="title">마이 페이지</h2>
     <hr>
+    <!-- 마이페이지 메뉴바 -->
     <div class="menubar">
       <a href="/my_page/{{session['id']}}/">내 상점</a>
       <a style="text-decoration: underline;" href="/my_reviews/{{session['id']}}/">내 리뷰</a>
@@ -18,20 +21,24 @@
     </div>
     <hr>
 
+    <!-- 등록된 리뷰가 있을 때 -->
     {% if total > 0 %}
     <p class="count_review">
-      {{total}}개의 리뷰
+      {{total}}개의 리뷰 (평균 {{star_avg}}점)
     </p>
 
+    <!-- 리뷰 첫번째 줄 -->
     <div class="review">
       {% for key, value in row1 %}
       <table>
-        <td onclick="location.href='/details_of_review/{{value.sellerId}}/{{key}}/';" style="cursor:pointer;">
+        <td onclick="location.href='/details_of_review/{{value.sellerId}}/{{key}}/';">
+          <!-- 리뷰 내용 -->
           <div class="review-content">
             <img src="/static/images/reviews/{{value.img_path}}">
             <div>
               <p><b>{{value.buyerId}}</b></p>
               <p>{{value.reviewTitle}}</p>
+              <!-- 리뷰 평점 -->
               <div class="rating">
                 {% for i in range(0, 5) %}
                 {% if i <= value.starsVariable|default(0)|int %} <span class="filled-star">★</span>
@@ -48,15 +55,18 @@
     </div>
     {% if row1|length > 0 %}<hr class="line2">{% endif %}
 
+    <!-- 리뷰 두번째 줄 -->
     <div class="review">
       {% for key, value in row2 %}
       <table>
-        <td onclick="location.href='/details_of_review/{{value.sellerId}}/{{key}}/';" style="cursor:pointer;">
+        <td onclick="location.href='/details_of_review/{{value.sellerId}}/{{key}}/';">
+          <!-- 리뷰 내용 -->
           <div class="review-content">
             <img src="/static/images/reviews/{{value.img_path}}">
             <div>
               <p><b>{{value.buyerId}}</b></p>
               <p>{{value.reviewTitle}}</p>
+              <!-- 리뷰 평점 -->
               <div class="rating">
                 {% for i in range(0, 5) %}
                 {% if i <= value.starsVariable|default(0)|int %} <span class="filled-star">★</span>
@@ -73,15 +83,18 @@
     </div>
     {% if row2|length > 0 %}<hr class="line2">{% endif %}
 
+    <!-- 리뷰 세번째 줄 -->
     <div class="review">
       {% for key, value in row3 %}
       <table>
-        <td onclick="location.href='/details_of_review/{{value.sellerId}}/{{key}}/';" style="cursor:pointer;">
+        <td onclick="location.href='/details_of_review/{{value.sellerId}}/{{key}}/';">
+          <!-- 리뷰 내용 -->
           <div class="review-content">
             <img src="/static/images/reviews/{{value.img_path}}">
             <div>
               <p><b>{{value.buyerId}}</b></p>
               <p>{{value.reviewTitle}}</p>
+              <!-- 리뷰 평점 -->
               <div class="rating">
                 {% for i in range(0, 5) %}
                 {% if i <= value.starsVariable|default(0)|int %} <span class="filled-star">★</span>
@@ -98,15 +111,18 @@
     </div>
     {% if row3|length > 0 %}<hr class="line2">{% endif %}
 
+    <!-- 리뷰 네번째 줄 -->
     <div class="review">
       {% for key, value in row4 %}
       <table>
-        <td onclick="location.href='/details_of_review/{{value.sellerId}}/{{key}}/';" style="cursor:pointer;">
+        <td onclick="location.href='/details_of_review/{{value.sellerId}}/{{key}}/';">
+          <!-- 리뷰 내용 -->
           <div class="review-content">
             <img src="/static/images/reviews/{{value.img_path}}">
             <div>
               <p><b>{{value.buyerId}}</b></p>
               <p>{{value.reviewTitle}}</p>
+              <!-- 리뷰 평점 -->
               <div class="rating">
                 {% for i in range(0, 5) %}
                 {% if i <= value.starsVariable|default(0)|int %} <span class="filled-star">★</span>
@@ -123,15 +139,18 @@
     </div>
     {% if row4|length > 0 %}<hr class="line2">{% endif %}
 
+    <!-- 리뷰 다섯번째 줄 -->
     <div class="review">
       {% for key, value in row5 %}
       <table>
-        <td onclick="location.href='/details_of_review/{{value.sellerId}}/{{key}}/';" style="cursor:pointer;">
+        <td onclick="location.href='/details_of_review/{{value.sellerId}}/{{key}}/';">
+          <!-- 리뷰 내용 -->
           <div class="review-content">
             <img src="/static/images/reviews/{{value.img_path}}">
             <div>
               <p><b>{{value.buyerId}}</b></p>
               <p>{{value.reviewTitle}}</p>
+              <!-- 리뷰 평점 -->
               <div class="rating">
                 {% for i in range(0, 5) %}
                 {% if i <= value.starsVariable|default(0)|int %} <span class="filled-star">★</span>
@@ -148,6 +167,7 @@
     </div>
     {% if row5|length > 0 %}<hr class="line2">{% endif %}
 
+    <!--페이지네이션을 위한 코드 시작-->
     <div class="page-wrap">
       <div class="page-nation">
         <ul>
@@ -159,6 +179,7 @@
         </ul>
       </div>
     </div>
+    <!-- 판매 내역이 있을 때 -->
     {% else %}
       <p style="text-align:center">등록된 리뷰가 없습니다.</p>
     {% endif %}
