@@ -7,7 +7,7 @@
 
 </aside>
 
----
+<br>
 
 ## Members
 
@@ -16,7 +16,7 @@
 |---|---|---|
 | __양동선✨__ | __유지혜✨__ | __윤수연✨__ |
 
----
+
 
 ## Resource
 
@@ -27,7 +27,7 @@
 
 🖥️[기술 블로그](https://www.notion.so/63053ee775144d0089a3e0ecd9fe559a?pvs=21)
 
----
+
 
 ## Tech Stacks
 
@@ -39,7 +39,7 @@
 	<img src="https://img.shields.io/badge/JavaScript-EFE070?style=flate" height=40px/>
 </div>
 
----
+
 
 ## 기본 화면 구성
 
@@ -61,7 +61,7 @@
 <img width="770" alt="마이페이지" src="https://github.com/dongseon0/ewhaMarket/assets/86476876/c6ccbf4e-f458-4a20-b06f-099e39c9cd15">
 
 
----
+
 
 ## File Structure
 

@@ -1,8 +1,3 @@
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-
 <body>
     {% extends "index.html" %}
 
@@ -12,31 +7,33 @@
     <div class="wrapper">
         <h2>상품 세부화면</h2>
         <hr>
+        <!-- 수직선 기준 위쪽 컨테이너 -->
         <div class="container">
-
+            <!-- 상품 사진 -->
             <div class="columnleft">
                 <img src="/static/images/items/{{data.img_path}}" width="320" alt="item">
             </div>
-
+            <!-- 상품 설명 -->
             <div class="columnright">
                 <div class="alignleft">
+                    <!-- 판매자 정보 -->
                     <a href="/user_list/{{data.sellerId}}/"><img src="/static/images/profiles/{{profile_image_path}}"
                             id="profile"></a>
                     <div id="user-id"><a href="/user_list/{{data.sellerId}}/" style=" color: rgb(91, 100, 47); font-size : 110%;
                         text-decoration: none;">{{data.sellerId}}<a></div>
                     <br>
+                    <!-- 상품 제목 및 설명 table -->
                     <h2>{{data.name}}</h2>
-
                     <table>
                         <tr>
                             <th>가격</th>
                             <td>{{data.fixedPrice}} 원</td>
                         </tr>
-                        <th>상품상태</th>
-                        <td>{{data.status}}</td>
+                            <th>상품상태</th>
+                            <td>{{data.status}}</td>
                         </tr>
-                        <th>연락처</th>
-                        <td>{{data.phone}}</td>
+                            <th>연락처</th>
+                            <td>{{data.phone}}</td>
                         <tr>
                             <th>거래방식</th>
                             <td>{{data.method}}</td>
@@ -55,37 +52,37 @@
                         </tr>
                     </table>
                     <br>
-                </div>
+            </div>
+                <!-- 찜하기 버튼 -->
                 <div class="favorite-button">
                     <input class="btn-love" type="button" value="♡ 찜하기">
                 </div>
 
             </div>
         </div>
-
+        <!-- 수직선 기준 하단 부분 -->
         <div class="down">
             <hr style="width:100%">
-
         </div>
-
         <br>
-
+        <!-- 상품 설명 -->
         <div class="comment">
             <p>
             <div class="boldtext">상품설명</div>
             {{data.description}}
             </p>
         </div>
-
+        <!-- 상품 삭제하기 버튼 -->
         <br>
         <input type="button" onclick="location.href='/delete_item/{{key}}/{{data.sellerId}}/';" value="삭제하기"
             id="delete">
     </div>
     <script>
+        // 접속한 아이디와 판매자의 아이디가 다르면 삭제하기 버튼 숨기기
         if ("{{session['id']}}" != "{{data.sellerId}}") {
             document.getElementById("delete").style.display = "none";
         }
-
+        // 찜하기 했었는지 조회하기
         function showHeart() {
             $.ajax({
                 type: 'GET',
@@ -96,7 +93,7 @@
                 }
             });
         }
-
+        // 데베에서 찜하기 상태를 update
         function updateHeartButton(myHeart) {
             if (myHeart['interested'] === 'Y') {
                 $(".btn-love").val("♥ 찜하기");
@@ -105,7 +102,7 @@
                 $(".btn-love").attr("onclick", "like()");
             }
         }
-
+        // 찜하기 버튼을 눌렀을 때
         function like() {
             $.ajax({
                 type: 'POST',
@@ -121,7 +118,7 @@
                 }
             });
         }
-
+        // 찜하기 버튼을 취소했을 때
         function unlike() {
             $.ajax({
                 type: 'POST',
@@ -137,7 +134,7 @@
                 }
             });
         }
-
+        // 오류 핸들링
         function handleRequestError(xhr) {
             var response = xhr.responseJSON;
             if (response && response.error) {

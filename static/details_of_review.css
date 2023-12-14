@@ -1,40 +1,29 @@
+/* 링크 텍스트 설정 */
 a {
     color: black;
     text-decoration: none;
 }
 
-.stars {
-    color: rgb(117, 120, 102);
-    font-size: 150%;
-    padding-left: 15%;
-    margin-left: 1.5%;
-}
-
+/* 전체 div */
 .wrapper {
     width: 700px;
+
     margin: 90px auto;
 }
 
-#product-image {
-    width: 300px;
-    height: 300px;
-
-    margin-left: 5%;
-    padding: 1%;
-    object-fit: cover;
+/* 별점 */
+.stars {
+    color: rgb(117, 120, 102);
+    font-size: 150%;
+    margin-left: 1.5%;
+    padding-left: 15%;
 }
 
-#product-name {
-    font-size: 110%;
-    margin-top: 3%;
-    margin-bottom: 1%;
-    margin-left: 5%;
-}
-
+/* 리뷰 작성자 프로필 사진(정사각형 비율에 맞게 잘리도록) */
 #profile {
+    float: left;
     width: 63px;
     height: 63px;
-    float: left;
 
     border-radius: 50%;
     margin-top: 1%;
@@ -42,6 +31,29 @@ a {
     object-fit: cover;
 }
 
+/* 리뷰 작성자 아이디 */
+#user-id {
+    margin: 1%;
+    margin-left: 17%;
+}
+
+/* 리뷰 제목 */
+#review-title {
+    font-size: 110%;
+    margin-left: 17%;
+}
+
+/* 리뷰 사진(정사각형 비율에 맞게 잘리도록) */
+#review-image {
+    width: 300px;
+    height: 300px;
+
+    margin-left: 5%;
+    object-fit: cover;
+    padding: 1%;
+}
+
+/* 리뷰 내용 */
 #review-contents {
     width: 80%;
 
@@ -53,16 +65,7 @@ a {
     padding: 2% 5%;
 }
 
-#review-title {
-    font-size: 110%;
-    margin-left: 17%;
-}
-
-#user-id {
-    margin: 1%;
-    margin-left: 17%;
-}
-
+/* 도움돼요, 별로예요 버튼 */
 #good,
 #bad {
     float: left;
@@ -71,18 +74,20 @@ a {
     background-color: rgb(236, 236, 236);
     border: none;
     border-radius: 5px;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
     color: rgb(91, 91, 91);
     font-size: 90%;
     margin: 1%;
     padding: 1% 0%;
-    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
 }
 
-#bad:hover,
-#good:hover {
+/* 도움돼요, 별로예요 버튼 호버 */
+#good:hover,
+#bad:hover {
     background-color: rgb(198, 198, 198);
 }
 
+/* 리뷰 삭제하기 버튼 */
 #delete {
     float: right;
     width: 80px;
@@ -90,13 +95,14 @@ a {
     background-color: rgb(221, 227, 192);
     border: none;
     border-radius: 5px;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
     color: rgb(117, 120, 102);
     font-size: 95%;
     margin: 1%;
     padding: 7px 0px 3px 0px;
-    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
 }
 
+/* 리뷰 삭제하기 버튼 호버 */
 #delete:hover {
     background-color: rgb(209, 215, 180);
     color: rgb(105, 107, 93);

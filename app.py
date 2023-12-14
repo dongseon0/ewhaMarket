@@ -21,11 +21,13 @@ def hello():
         is_auction_status = DB.get_is_auction_status(item_key)
         isAuction[item_key] = is_auction_status
 
+    # 일반 상품인 경우
     filtered_data = {}
     for item_key, auction_status in isAuction.items():
         if auction_status == False:  # False인 경우에만 추가
             filtered_data[item_key] = data[item_key]
 
+    # 경매 상품인 경우
     filtered_auction_data = {}
     for item_key, auction_status in isAuction.items():
         if auction_status == True:  # True인 경우에만 추가
@@ -56,16 +58,15 @@ def view_product_list():
     # html에 페이지 인덱스 클릭할 때마다 get으로 받아옴
     page = request.args.get("page", 0, type=int)
     category = request.args.get("category", "all")
-    per_page = 16  # item count to display per page
-    per_row = 4  # item count to display per row
+    per_page = 16  # 한 페이지에 표시할 아이템 수
+    per_row = 4  # 한 행에 표시할 아이템 수
     row_count = int(per_page/per_row)
     start_idx = per_page*page
     end_idx = per_page*(page+1)  # 페이지 인덱스로 start_idx, end_idx 생성
     if category == "all":
-        data = DB.get_items()  # read the table
+        data = DB.get_items()  # 테이블 읽어오기
     else:
         data = DB.get_items_bycategory(category)
-    # data = DB.get_items()   read the table
     # 최근 등록된 상품 순으로 보이게
     data = dict(sorted(data.items(), key=lambda x: x[0], reverse=True))
     item_counts = len(data)
@@ -81,9 +82,8 @@ def view_product_list():
     else:
         data = dict(list(data.items())[start_idx:end_idx])
     # 한 페이지에 start_idx, end_idx 만큼 읽어오기
-    # data = dict(list(data.items())[start_idx:end_idx])
     tot_count = len(data)
-    for i in range(row_count):  # last row
+    for i in range(row_count):  
         if (i == row_count-1) and (tot_count % per_row != 0):
             locals()['data_{}'.format(i)] = dict(list(data.items())[i*per_row:])
         else:
@@ -119,14 +119,14 @@ def view_auction_list():
     # html에 페이지 인덱스 클릭할 때마다 get으로 받아옴
     page = request.args.get("page", 0, type=int)
     category = request.args.get("category", "all")
-    per_page = 16  # item count to display per page
-    per_row = 4  # item count to display per row
+    per_page = 16  # 한 페이지에 표시할 아이템 수
+    per_row = 4  # 한 행에 표시할 아이템 수
     row_count = int(per_page/per_row)
     start_idx = per_page * page
     end_idx = per_page * (page + 1)  # 페이지 인덱스로 start_idx, end_idx 생성
 
     if category == "all":
-        data = DB.get_items()  # read the table
+        data = DB.get_items()  # 테이블 읽어오기
     else:
         data = DB.get_items_bycategory(category)
 
@@ -154,7 +154,7 @@ def view_auction_list():
 
     # 각 행 별 데이터 생성
     tot_count = len(filtered_data)
-    for i in range(row_count):  # last row
+    for i in range(row_count): 
         if (i == row_count-1) and (tot_count % per_row != 0):
             locals()['data_{}'.format(i)] = dict(list(filtered_data.items())[i * per_row:])
         else:
@@ -185,14 +185,14 @@ def view_list():
     # html에 페이지 인덱스 클릭할 때마다 get으로 받아옴
     page = request.args.get("page", 0, type=int)
     category = request.args.get("category", "all")
-    per_page = 16  # item count to display per page
-    per_row = 4  # item count to display per row
+    per_page = 16  # 페이지당 표시할 아이템 수
+    per_row = 4  # 한 행에 표시할 아이템 수
     row_count = int(per_page/per_row)
     start_idx = per_page * page
     end_idx = per_page * (page + 1)  # 페이지 인덱스로 start_idx, end_idx 생성
 
     if category == "all":
-        data = DB.get_items()  # read the table
+        data = DB.get_items()  # 테이블 읽어오기
     else:
         data = DB.get_items_bycategory(category)
 
@@ -220,7 +220,7 @@ def view_list():
 
     # 각 행 별 데이터 생성
     tot_count = len(filtered_data)
-    for i in range(row_count):  # last row
+    for i in range(row_count): 
         if (i == row_count-1) and (tot_count % per_row != 0):
             locals()['data_{}'.format(i)] = dict(list(filtered_data.items())[i * per_row:])
         else:
@@ -245,10 +245,11 @@ def view_list():
     )
 
 
-#상품
+# 상품
 # 상품 등록하기
 @application.route("/reg_item")
 def reg_item():
+    # 로그인 여부 검사하여 로그인 x면 로그인 페이지로, o면 상품 등록 화면으로 넘어감
     if session.get('id') is None:
         flash("로그인 후 상품을 등록해주세요.")
         return render_template("login.html")
@@ -258,7 +259,7 @@ def reg_item():
 
 # 상품 등록 정보 넘기기
 @application.route("/submit_item_post", methods=['POST'])
-def submit_item_post():
+def submit_item_post(): # 상품 등록 시 db에 저장된 값들을 받아서 상품 상세 보기 화면으로 넘김
     image_file = request.files["file"]
     image_file.save("static/images/items/{}".format(image_file.filename))
     data = request.form
@@ -291,9 +292,9 @@ def view_details_of_item(key):
 # 경매 상품 입찰하기
 @application.route('/auction/<key>/<sellerId>/<selectRisingPrice>/', methods=['POST'])
 def set_auction(key, sellerId, selectRisingPrice):
-    if session.get('id') is None:
+    if session.get('id') is None: # 로그인하지 않았다면
         return jsonify({'msg': '로그인 후 입찰할 수 있습니다.'})
-    elif sellerId == session.get('id'):
+    elif sellerId == session.get('id'): # 입찰한 아이디가 판매자 아이디와 같다면
         return jsonify({'msg': '내 상품에는 입찰할 수 없습니다.'})
     else:
         DB.set_auction(key, selectRisingPrice, session.get('id'))
@@ -345,10 +346,8 @@ def unlike(key):
 # 리뷰 등록하기
 @application.route("/reg_review/<id>/")
 def reg_review(id):
-    if session.get('id') is None:
+    if session.get('id') is None: # 로그인하지 않았다면
         return render_template("login.html")
-    elif id == session.get('id'):
-        return redirect(url_for('view_user_reviews', id=id))
     else:
         return render_template("reg_review.html", sellerId=id)
 
@@ -358,22 +357,22 @@ def reg_review(id):
 def submit_review_post():
     data = request.form
     image_file = request.files["file"]
-    if image_file:
+    if image_file: # 이미지를 등록했을 때만 이미지 파일 저장하기
         image_file.save("static/images/reviews/{}".format(image_file.filename))
 
     sellerId = data.get('sellerId')
     review_key = DB.reg_review(
-        data, image_file.filename, buyerId=data.get('buyerId'), sellerId=sellerId)
-    return redirect(url_for('view_details_of_review', key=review_key, sellerId=sellerId))
+        data, image_file.filename, buyerId=data.get('buyerId'), sellerId=sellerId) # 데이터베이스에 리뷰 저장하기
+    return redirect(url_for('view_details_of_review', key=review_key, sellerId=sellerId)) # 리뷰 상세보기 화면으로 넘어가기
 
 
 # 리뷰 상세보기
 @application.route("/details_of_review/<sellerId>/<key>/")
 def view_details_of_review(key, sellerId):
-    data = DB.get_review_bykey(key, sellerId)
-    good = DB.get_review_good_bykey(key, sellerId)
-    bad = DB.get_review_bad_bykey(key, sellerId)
-    profile_image_path = DB.get_profile_image_path_byid(data.get('buyerId'))
+    data = DB.get_review_bykey(key, sellerId) # 아이디와 키값으로 데이터베이스에서 리뷰 불러오기
+    good = DB.get_review_good_bykey(key, sellerId) # 리뷰 도움돼요 수치 불러오기
+    bad = DB.get_review_bad_bykey(key, sellerId) # 리뷰 별로예요 수치 불러오기
+    profile_image_path = DB.get_profile_image_path_byid(data.get('buyerId')) # 리뷰 작성자 프로필 사진 불러오기
     return render_template(
         "details_of_review.html",
         data=data,
@@ -392,17 +391,16 @@ def delete_review(key, sellerId):
     return redirect(url_for('view_user_reviews', id=sellerId))
 
 
-# 리뷰 상세보기에서 하트 불러오기
+# 리뷰 상세보기에 접속한 아이디의 하트 정보 불러오기
 @application.route('/show_review_heart/<sellerId>/<key>/', methods=['GET'])
 def show_review_heart(key, sellerId):
     heart = DB.get_review_heart_bykey(session['id'], key, sellerId)
     return jsonify({'heart': heart})
 
 
-# 리뷰 상세보기에서 하트 업데이트하기
+# 리뷰 상세보기에서 접속한 아이디의 하트 정보 업데이트하기
 @application.route('/update_review_heart/<sellerId>/<key>/<heart>/', methods=['POST'])
 def update_review_heart(key, sellerId, heart):
-    
     msg = DB.update_review_heart(session['id'], key, sellerId, heart)
     return jsonify({'msg': msg})
 
@@ -432,7 +430,7 @@ def view_user_list(id):
         data = dict(list(data.items())[start_idx:end_idx])
 
     tot_count = len(data)
-    for i in range(row_count):  # last row
+    for i in range(row_count):  
         if (i == row_count-1) and (tot_count % per_row != 0):
             locals()['data_{}'.format(i)] = dict(list(data.items())[i*per_row:])
         else:
@@ -463,13 +461,13 @@ def view_user_list(id):
 @application.route("/user_reviews/<id>/")
 def view_user_reviews(id):
     page = request.args.get("page", 0, type=int)
-    per_page = 5  # item count to display per page
-    per_row = 1  # item count to display per row
+    per_page = 5  # 페이지당 표시할 아이템 수
+    per_row = 1  # 한 행당 표시할 아이템 수
     row_count = int(per_page/per_row)
     start_idx = per_page*page
     end_idx = per_page*(page+1)  # 페이지 인덱스로 start_idx, end_idx 생성
-    data = DB.get_reviews(id)  # read the table
-    star_avg = round(DB.get_reviews_star_avg(id), 1)
+    data = DB.get_reviews(id)  # 테이블 읽기
+    star_avg = DB.get_reviews_star_avg(id)
     if not data:
         data = {}
         item_counts = 0
@@ -479,7 +477,7 @@ def view_user_reviews(id):
     # 한 페이지에 start_idx, end_idx 만큼 읽어오기
     data = dict(list(data.items())[start_idx:end_idx])
     tot_count = len(data)
-    for i in range(row_count):  # last row
+    for i in range(row_count): 
         if (i == row_count-1) and (tot_count % per_row != 0):
             locals()['data_{}'.format(i)] = dict(list(data.items())[i*per_row:])
         else:
@@ -613,13 +611,13 @@ def my_page(id):
 @application.route("/my_reviews/<id>/")
 def my_reviews(id):
     page = request.args.get("page", 0, type=int)
-    per_page = 5  # item count to display per page
-    per_row = 1  # item count to display per row
+    per_page = 5  # 한 페이지에 표시할 아이템 수
+    per_row = 1  # 한 행에 표시할 아이템 스
     row_count = int(per_page/per_row)
     start_idx = per_page*page
     end_idx = per_page*(page+1)  # 페이지 인덱스로 start_idx, end_idx 생성
-    data = DB.get_reviews(id)  # read the table
-    star_avg = round(DB.get_reviews_star_avg(id), 1)
+    data = DB.get_reviews(id)  # 테이블 읽어오기
+    star_avg = DB.get_reviews_star_avg(id)
     if not data:
         data = {}
         item_counts = 0
@@ -629,7 +627,7 @@ def my_reviews(id):
     # 한 페이지에 start_idx, end_idx 만큼 읽어오기
     data = dict(list(data.items())[start_idx:end_idx])
     tot_count = len(data)
-    for i in range(row_count):  # last row
+    for i in range(row_count):  
         if (i == row_count-1) and (tot_count % per_row != 0):
             locals()['data_{}'.format(i)] = dict(list(data.items())[i*per_row:])
         else:
@@ -676,7 +674,7 @@ def my_wish(id):
         data = dict(list(data.items())[start_idx:end_idx])
 
     tot_count = len(data)
-    for i in range(row_count):  # last row
+    for i in range(row_count): 
         if (i == row_count-1) and (tot_count % per_row != 0):
             locals()['data_{}'.format(i)] = dict(list(data.items())[i*per_row:])
         else:
