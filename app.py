@@ -21,11 +21,13 @@ def hello():
         is_auction_status = DB.get_is_auction_status(item_key)
         isAuction[item_key] = is_auction_status
 
+    # 일반 상품인 경우
     filtered_data = {}
     for item_key, auction_status in isAuction.items():
         if auction_status == False:  # False인 경우에만 추가
             filtered_data[item_key] = data[item_key]
 
+    # 경매 상품인 경우
     filtered_auction_data = {}
     for item_key, auction_status in isAuction.items():
         if auction_status == True:  # True인 경우에만 추가
@@ -56,16 +58,15 @@ def view_product_list():
     # html에 페이지 인덱스 클릭할 때마다 get으로 받아옴
     page = request.args.get("page", 0, type=int)
     category = request.args.get("category", "all")
-    per_page = 16  # item count to display per page
-    per_row = 4  # item count to display per row
+    per_page = 16  # 한 페이지에 표시할 아이템 수
+    per_row = 4  # 한 행에 표시할 아이템 수
     row_count = int(per_page/per_row)
     start_idx = per_page*page
     end_idx = per_page*(page+1)  # 페이지 인덱스로 start_idx, end_idx 생성
     if category == "all":
-        data = DB.get_items()  # read the table
+        data = DB.get_items()  # 테이블 읽어오기
     else:
         data = DB.get_items_bycategory(category)
-    # data = DB.get_items()   read the table
     # 최근 등록된 상품 순으로 보이게
     data = dict(sorted(data.items(), key=lambda x: x[0], reverse=True))
     item_counts = len(data)
@@ -81,9 +82,8 @@ def view_product_list():
     else:
         data = dict(list(data.items())[start_idx:end_idx])
     # 한 페이지에 start_idx, end_idx 만큼 읽어오기
-    # data = dict(list(data.items())[start_idx:end_idx])
     tot_count = len(data)
-    for i in range(row_count):  # last row
+    for i in range(row_count):  
         if (i == row_count-1) and (tot_count % per_row != 0):
             locals()['data_{}'.format(i)] = dict(list(data.items())[i*per_row:])
         else:
@@ -119,14 +119,14 @@ def view_auction_list():
     # html에 페이지 인덱스 클릭할 때마다 get으로 받아옴
     page = request.args.get("page", 0, type=int)
     category = request.args.get("category", "all")
-    per_page = 16  # item count to display per page
-    per_row = 4  # item count to display per row
+    per_page = 16  # 한 페이지에 표시할 아이템 수
+    per_row = 4  # 한 행에 표시할 아이템 수
     row_count = int(per_page/per_row)
     start_idx = per_page * page
     end_idx = per_page * (page + 1)  # 페이지 인덱스로 start_idx, end_idx 생성
 
     if category == "all":
-        data = DB.get_items()  # read the table
+        data = DB.get_items()  # 테이블 읽어오기
     else:
         data = DB.get_items_bycategory(category)
 
@@ -154,7 +154,7 @@ def view_auction_list():
 
     # 각 행 별 데이터 생성
     tot_count = len(filtered_data)
-    for i in range(row_count):  # last row
+    for i in range(row_count): 
         if (i == row_count-1) and (tot_count % per_row != 0):
             locals()['data_{}'.format(i)] = dict(list(filtered_data.items())[i * per_row:])
         else:
@@ -185,14 +185,14 @@ def view_list():
     # html에 페이지 인덱스 클릭할 때마다 get으로 받아옴
     page = request.args.get("page", 0, type=int)
     category = request.args.get("category", "all")
-    per_page = 16  # item count to display per page
-    per_row = 4  # item count to display per row
+    per_page = 16  # 페이지당 표시할 아이템 수
+    per_row = 4  # 한 행에 표시할 아이템 수
     row_count = int(per_page/per_row)
     start_idx = per_page * page
     end_idx = per_page * (page + 1)  # 페이지 인덱스로 start_idx, end_idx 생성
 
     if category == "all":
-        data = DB.get_items()  # read the table
+        data = DB.get_items()  # 테이블 읽어오기
     else:
         data = DB.get_items_bycategory(category)
 
@@ -220,7 +220,7 @@ def view_list():
 
     # 각 행 별 데이터 생성
     tot_count = len(filtered_data)
-    for i in range(row_count):  # last row
+    for i in range(row_count): 
         if (i == row_count-1) and (tot_count % per_row != 0):
             locals()['data_{}'.format(i)] = dict(list(filtered_data.items())[i * per_row:])
         else:
@@ -430,7 +430,7 @@ def view_user_list(id):
         data = dict(list(data.items())[start_idx:end_idx])
 
     tot_count = len(data)
-    for i in range(row_count):  # last row
+    for i in range(row_count):  
         if (i == row_count-1) and (tot_count % per_row != 0):
             locals()['data_{}'.format(i)] = dict(list(data.items())[i*per_row:])
         else:
@@ -461,12 +461,12 @@ def view_user_list(id):
 @application.route("/user_reviews/<id>/")
 def view_user_reviews(id):
     page = request.args.get("page", 0, type=int)
-    per_page = 5  # item count to display per page
-    per_row = 1  # item count to display per row
+    per_page = 5  # 페이지당 표시할 아이템 수
+    per_row = 1  # 한 행당 표시할 아이템 수
     row_count = int(per_page/per_row)
     start_idx = per_page*page
     end_idx = per_page*(page+1)  # 페이지 인덱스로 start_idx, end_idx 생성
-    data = DB.get_reviews(id)  # read the table
+    data = DB.get_reviews(id)  # 테이블 읽기
     star_avg = DB.get_reviews_star_avg(id)
     if not data:
         data = {}
@@ -477,7 +477,7 @@ def view_user_reviews(id):
     # 한 페이지에 start_idx, end_idx 만큼 읽어오기
     data = dict(list(data.items())[start_idx:end_idx])
     tot_count = len(data)
-    for i in range(row_count):  # last row
+    for i in range(row_count): 
         if (i == row_count-1) and (tot_count % per_row != 0):
             locals()['data_{}'.format(i)] = dict(list(data.items())[i*per_row:])
         else:
@@ -611,12 +611,12 @@ def my_page(id):
 @application.route("/my_reviews/<id>/")
 def my_reviews(id):
     page = request.args.get("page", 0, type=int)
-    per_page = 5  # item count to display per page
-    per_row = 1  # item count to display per row
+    per_page = 5  # 한 페이지에 표시할 아이템 수
+    per_row = 1  # 한 행에 표시할 아이템 스
     row_count = int(per_page/per_row)
     start_idx = per_page*page
     end_idx = per_page*(page+1)  # 페이지 인덱스로 start_idx, end_idx 생성
-    data = DB.get_reviews(id)  # read the table
+    data = DB.get_reviews(id)  # 테이블 읽어오기
     star_avg = DB.get_reviews_star_avg(id)
     if not data:
         data = {}
@@ -627,7 +627,7 @@ def my_reviews(id):
     # 한 페이지에 start_idx, end_idx 만큼 읽어오기
     data = dict(list(data.items())[start_idx:end_idx])
     tot_count = len(data)
-    for i in range(row_count):  # last row
+    for i in range(row_count):  
         if (i == row_count-1) and (tot_count % per_row != 0):
             locals()['data_{}'.format(i)] = dict(list(data.items())[i*per_row:])
         else:
@@ -674,7 +674,7 @@ def my_wish(id):
         data = dict(list(data.items())[start_idx:end_idx])
 
     tot_count = len(data)
-    for i in range(row_count):  # last row
+    for i in range(row_count): 
         if (i == row_count-1) and (tot_count % per_row != 0):
             locals()['data_{}'.format(i)] = dict(list(data.items())[i*per_row:])
         else:
