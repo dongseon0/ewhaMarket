@@ -4,20 +4,24 @@
 </head>
 
 <body>
+    <!-- index.html로부터 확장 -->
     {% extends "index.html" %}
 
     {% block section %}
+    <!-- 카테고리 js -->
     <script>
         $(document).ready(function () {
             //alert("{{category}}");
             $('#category option:contains("{{category}}")').prop("selected", true);
         });
     </script>
+    <!-- 전체 div (wrapper) -->
     <div class="wrapper">
         <div class="text">
             <h2>상품 리스트</h2>
         </div>
         <hr>
+        <!-- 상품 전체 조회 화면 메뉴바 -->
         <div class="menubar">
             <ul class="menubar__menu">
                 <li><a href="/product_list" style="text-decoration: underline;">전체 상품</a></li>
@@ -26,8 +30,9 @@
             </ul>
             <button onclick="location.href='/reg_item'" type="button">등록하기</button>
         </div>
-
+        <!-- 상품 table -->
         <table class="content">
+            <!-- 카테고리 cell -->
             <td>
                 <div style="width: 200px; padding: 6px 6px 6px 8px; margin: 2px;">
                     <select id="category" name="category" onchange="location=this.value">>
@@ -41,12 +46,14 @@
                     </select>
                 </div>
             </td>
+            <!-- table 형태 유지를 위한 blank cell -->
             <td>
                 <div style="width: 200px; padding: 6px; margin: 2px; border: 1px solid; visibility: hidden;"></div>
             </td>
             <td>
                 <div style="width: 200px; padding: 6px; margin: 2px; border: 1px solid; visibility: hidden;"></div>
             </td>
+            <!-- 전체 상품 개수 -->
             <td>
                 <div style="width: 200px; padding: 6px; margin: 2px;">
                     {% if total > 0 %}
@@ -55,7 +62,7 @@
                     </p>
                 </div>
             </td>
-
+            <!-- 첫번째 row -->
             <tbody class="product">
                 <tr>
                     {% for key, value in row1 %}
@@ -63,14 +70,17 @@
                         <div class="item-box" onclick="location.href='/details_of_item/{{key}}/';"
                             style="cursor:pointer;">
                             <img src="/static/images/items/{{value.img_path}}" width="200px" height="200px">
+                            <!-- 경매 상품의 경우 -->
                             {% if isAuction.get(key) %}
                             <div class="desc">{{value.name}}</div>
                             <div class="auction_price">
+                                <!-- 경매 진행 상황 -->
                                 <span class="auction-state" data-start-date="{{ value.startDate }}"
                                     data-start-time="{{ value.startTime }}" data-end-date="{{ value.endDate }}"
                                     data-end-time="{{ value.endTime }}"></span>
                             </div>
                             <div class="auction_product">경매</div>
+                            <!-- 일반 결제 상품의 경우 -->
                             {% else %}
                             <div class="desc">{{value.name}}</div>
                             <div class="price">{{value.fixedPrice}}원</div>
@@ -78,6 +88,7 @@
                         </div>
                     </td>
                     {% endfor %}
+                    <!-- 테이블 형태 유지를 위해 blank-box 추가 -->
                     {% if page_count == page + 1 %}
                     {% for _ in range(empty_cells) %}
                     <td>
@@ -87,22 +98,25 @@
                     {% endif %}
                 </tr>
             </tbody>
+            <!-- 두번째 row -->
             <tbody class="product">
                 <tr>
                     {% for key, value in row2 %}
                     <td>
                         <div class="item-box" onclick="location.href='/details_of_item/{{key}}/';"
                             style="cursor:pointer;">
-
                             <img src="/static/images/items/{{value.img_path}}" width="200px" height="200px">
+                            <!-- 경매 상품의 경우 -->
                             {% if isAuction.get(key) %}
                             <div class="desc">{{value.name}}</div>
                             <div class="auction_price">
+                                <!-- 경매 진행 상황 -->
                                 <span class="auction-state" data-start-date="{{ value.startDate }}"
                                     data-start-time="{{ value.startTime }}" data-end-date="{{ value.endDate }}"
                                     data-end-time="{{ value.endTime }}"></span>
                             </div>
                             <div class="auction_product">경매</div>
+                            <!-- 일반 결제 상품의 경우 -->
                             {% else %}
                             <div class="desc">{{value.name}}</div>
                             <div class="price">{{value.fixedPrice}}원</div>
@@ -112,6 +126,7 @@
                     {% endfor %}
                 </tr>
             </tbody>
+            <!-- 세번째 row -->
             <tbody class="product">
                 <tr>
                     {% for key, value in row3 %}
@@ -119,14 +134,17 @@
                         <div class="item-box" onclick="location.href='/details_of_item/{{key}}/';"
                             style="cursor:pointer;">
                             <img src="/static/images/items/{{value.img_path}}" width="200px" height="200px">
+                            <!-- 경매 상품의 경우 -->
                             {% if isAuction.get(key) %}
                             <div class="desc">{{value.name}}</div>
                             <div class="auction_price">
+                                <!-- 경매 진행 상황 -->
                                 <span class="auction-state" data-start-date="{{ value.startDate }}"
                                     data-start-time="{{ value.startTime }}" data-end-date="{{ value.endDate }}"
                                     data-end-time="{{ value.endTime }}"></span>
                             </div>
                             <div class="auction_product">경매</div>
+                            <!-- 일반 결제 상품의 경우 -->
                             {% else %}
                             <div class="desc">{{value.name}}</div>
                             <div class="price">{{value.fixedPrice}}원</div>
@@ -136,6 +154,7 @@
                     {% endfor %}
                 </tr>
             </tbody>
+            <!-- 네번째 row -->
             <tbody class="product">
                 <tr>
                     {% for key, value in row4 %}
@@ -143,24 +162,28 @@
                         <div class="item-box" onclick="location.href='/details_of_item/{{key}}/';"
                             style="cursor:pointer;">
                             <img src="/static/images/items/{{value.img_path}}" width="200px" height="200px">
+                            <!-- 경매 상품의 경우 -->
                             {% if isAuction.get(key) %}
                             <div class="desc">{{value.name}}</div>
                             <div class="auction_price">
+                                <!-- 경매 진행 상황 -->
                                 <span class="auction-state" data-start-date="{{ value.startDate }}"
                                     data-start-time="{{ value.startTime }}" data-end-date="{{ value.endDate }}"
                                     data-end-time="{{ value.endTime }}"></span>
                             </div>
                             <div class="auction_product">경매</div>
+                            <!-- 일반 결제 상품의 경우 -->
                             {% else %}
                             <div class="desc">{{value.name}}</div>
                             <div class="price">{{value.fixedPrice}}원</div>
                             {% endif %}
+                        </div>
                     </td>
                     {% endfor %}
                 </tr>
             </tbody>
         </table>
-        <!--페이지네이션을 위한 코드 시작-->
+        <!--페이지네이션을 위한 코드 -->
         <div class="page-wrap">
             <div class="page-nation">
                 <ul>
