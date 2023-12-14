@@ -3,20 +3,24 @@
 </head>
 
 <body>
+    <!-- index.html로부터 확장 -->
     {% extends "index.html" %}
 
     {% block section %}
+    <!-- 카테고리 js -->
     <script>
         $(document).ready(function () {
             //alert("{{category}}");
             $('#category option:contains("{{category}}")').prop("selected", true);
         });
     </script>
+    <!-- 전체 div (wrapper) -->
     <div class="wrapper">
         <div class="text">
             <h2>상품 리스트</h2>
         </div>
         <hr>
+        <!-- 일반 결제 상품 전체 조회 화면 메뉴바 -->
         <div class="menubar">
             <ul class="menubar__menu">
                 <li><a href="/product_list">전체 상품</a></li>
@@ -25,9 +29,9 @@
             </ul>
             <button onclick="location.href='/reg_item'" type="button">등록하기</button>
         </div>
-
-
+        <!-- 상품 table -->
         <table class="content">
+            <!-- 카테고리 cell -->
             <td>
                 <div style="width: 200px; padding: 6px 6px 6px 8px; margin: 2px;">
                     <select id="category" name="category" onchange="location=this.value">>
@@ -41,12 +45,14 @@
                     </select>
                 </div>
             </td>
+            <!-- table 형태 유지를 위한 blank cell -->
             <td>
                 <div style="width: 200px; padding: 6px; margin: 2px; border: 1px solid; visibility: hidden;"></div>
             </td>
             <td>
                 <div style="width: 200px; padding: 6px; margin: 2px; border: 1px solid; visibility: hidden;"></div>
             </td>
+            <!-- 전체 일반 결제 상품 개수 -->
             <td>
                 <div style="width: 200px; padding: 6px; margin: 2px;">
                     {% if total > 0 %}
@@ -55,6 +61,7 @@
                     </p>
                 </div>
             </td>
+            <!-- 첫번째 row -->
             <tbody class="product">
                 <tr>
                     {% for key, value in row1 %}
@@ -67,6 +74,7 @@
                         </div>
                     </td>
                     {% endfor %}
+                    <!-- 테이블 형태 유지를 위해 blank-box 추가 -->
                     {% if page_count == page + 1 %}
                     {% for _ in range(empty_cells) %}
                     <td>
@@ -76,6 +84,7 @@
                     {% endif %}
                 </tr>
             </tbody>
+            <!-- 두번째 row -->
             <tbody class="product">
                 <tr>
                     {% for key, value in row2 %}
@@ -90,6 +99,7 @@
                     {% endfor %}
                 </tr>
             </tbody>
+            <!-- 세번째 row -->
             <tbody class="product">
                 <tr>
                     {% for key, value in row3 %}
@@ -104,6 +114,7 @@
                     {% endfor %}
                 </tr>
             </tbody>
+            <!-- 네번째 row -->
             <tbody class="product">
                 <tr>
                     {% for key, value in row4 %}
