@@ -82,7 +82,7 @@
         if ("{{session['id']}}" != "{{data.sellerId}}") {
             document.getElementById("delete").style.display = "none";
         }
-
+        // 찜하기 했었는지 조회하기
         function showHeart() {
             $.ajax({
                 type: 'GET',
@@ -93,7 +93,7 @@
                 }
             });
         }
-
+        // 데베에서 찜하기 상태를 update
         function updateHeartButton(myHeart) {
             if (myHeart['interested'] === 'Y') {
                 $(".btn-love").val("♥ 찜하기");
@@ -102,7 +102,7 @@
                 $(".btn-love").attr("onclick", "like()");
             }
         }
-
+        // 찜하기 버튼을 눌렀을 때
         function like() {
             $.ajax({
                 type: 'POST',
@@ -118,7 +118,7 @@
                 }
             });
         }
-
+        // 찜하기 버튼을 취소했을 때
         function unlike() {
             $.ajax({
                 type: 'POST',
@@ -134,7 +134,7 @@
                 }
             });
         }
-
+        // 오류 핸들링
         function handleRequestError(xhr) {
             var response = xhr.responseJSON;
             if (response && response.error) {
