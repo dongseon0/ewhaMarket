@@ -1,11 +1,4 @@
-.my-info-section {
-    list-style: none;
-}
-
-.main-title {
-    margin: 5% 5% 5% 2%;
-}
-
+/* 개인정보 박스 */
 .information {
     width: 500px;
     margin: 20px;
@@ -19,15 +12,13 @@
     box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
 }
 
-h4 {
-    width: 200px;
-    margin: 2% 10% 2% 0%;
-}
-
+/* 프로필 사진 변경 버튼 div */
 .inside {
-    margin: 2% 10% 2% 0%;
+    width: 400px;
+    margin: 2% 10% 2% 7%;
 }
 
+/* 저장 버튼 */
 #save-btn {
     width: 200px;
     height: 35px;
@@ -39,32 +30,32 @@ h4 {
     box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
 }
 
+/* 저장 버튼 호버 */
 #save-btn:hover {
     background-color: rgb(209, 215, 180);
     color: rgb(122, 125, 103);
     border: 3px solid rgb(209, 215, 180);
 }
 
-.inside {
-    width: 400px;
-    margin-left: 30px;
-}
-
+/* 파일 등록 박스 */
 .reg-file-box {
     width: 100%;
     display: flex;
 }
 
+/* 프로필 사진 */
 #profile-img {
     width: 200px;
     height: 200px;
     object-fit: cover;
 }
 
+/* 파일 */
 #file {
     display: none;
 }
 
+/* 파일 업로드 버튼 */
 .file-upload-button {
     width: 135px;
     height: 22px;
@@ -76,6 +67,7 @@ h4 {
     position: relative;
 }
 
+/* 파일 업로드 버튼 텍스트 */
 .file-upload-text {
     position: absolute;
     top: -11px;

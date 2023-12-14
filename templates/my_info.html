@@ -4,12 +4,15 @@
 </head>
 
 <body>
+  <!-- index.html로부터 확장 -->
   {% extends "index.html" %}
 
   {% block section %}
+  <!-- 전체 div (wrapper) -->
   <div class="wrapper">
     <h2 class="title">마이 페이지</h2>
     <hr>
+    <!-- 마이페이지 메뉴바 -->
     <div class="menubar">
       <a href="/my_page/{{session['id']}}/">내 상점</a>
       <a href="/my_reviews/{{session['id']}}/">내 리뷰</a>
@@ -18,15 +21,18 @@
     </div>
     <hr>
 
+    <!-- 프로필 사진 변경 form -->
     <form method="post" enctype="multipart/form-data" action="/change_my_info" id="change">
       <div class="information">
         <p>아이디 : {{id}}</p>
         <p>닉네임 : {{data['nickname']}}</p>
         <p>프로필 사진 :</p>
+        <!-- 파일 등록 박스 -->
         <div class="reg-file-box">
           <img src="/static/images/profiles/{{profile}}" alt="프로필 사진" id="profile-img">
           <div class="inside">
             <label for="file">
+              <!-- 프로필 사진 변경하기 버튼 -->
               <div class="file-upload-button">
                 <p class="file-upload-text">프로필 사진 변경하기</p>
               </div>
@@ -35,17 +41,20 @@
           </div>
         </div>
       </div>
+      <!-- 저장하기 버튼 -->
       <input type="button" id="save-btn" value="저장" onclick="change_img()">
     </form>
   </div>
 
   <script>
+    // 새로 등록한 이미지 보여주기
     function loadFile(input) {
       var file = input.files[0];
       var image = document.getElementById('profile-img');
       image.src = URL.createObjectURL(file);
     }
 
+    // 프로필 사진 변경사항 저장하기
     function change_img() {
       if (!document.getElementById("file").value)
         alert("변경할 프로필 사진을 등록해주세요.");
