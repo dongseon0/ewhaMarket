@@ -58,6 +58,7 @@ table,
 th,
 td {
     border: none;
+    text-align: left;
 }
 
 td {
