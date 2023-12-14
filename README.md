@@ -41,6 +41,9 @@
 
 
 
+## Presentation
+https://www.canva.com/design/DAF2cpGDZXE/UqdcWZdza9_7FEGaQGeIEQ/view?utm_content=DAF2cpGDZXE&utm_campaign=designshare&utm_medium=link&utm_source=editor
+
 
 ## 기본 화면 구성
 
