@@ -245,10 +245,11 @@ def view_list():
     )
 
 
-#상품
+# 상품
 # 상품 등록하기
 @application.route("/reg_item")
 def reg_item():
+    # 로그인 여부 검사하여 로그인 x면 로그인 페이지로, o면 상품 등록 화면으로 넘어감
     if session.get('id') is None:
         flash("로그인 후 상품을 등록해주세요.")
         return render_template("login.html")
@@ -258,7 +259,7 @@ def reg_item():
 
 # 상품 등록 정보 넘기기
 @application.route("/submit_item_post", methods=['POST'])
-def submit_item_post():
+def submit_item_post(): # 상품 등록 시 db에 저장된 값들을 받아서 상품 상세 보기 화면으로 넘김
     image_file = request.files["file"]
     image_file.save("static/images/items/{}".format(image_file.filename))
     data = request.form
