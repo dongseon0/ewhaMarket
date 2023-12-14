@@ -71,8 +71,6 @@
 ├─ 📁 authentication
 ├─ 📁 static
 │  ├─ 📁 images
-│  ├─ 📁 css
-│  ├─ 📁 js
 ├─ 📁 templates
 ├─ 📑 app.py
 ├─ 📑 database.py
