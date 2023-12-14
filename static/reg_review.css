@@ -1,3 +1,4 @@
+/* 텍스트 입력 박스 설정*/
 textarea {
     border: 1px solid rgb(226, 226, 226);
     border-radius: 5px;
@@ -5,10 +6,20 @@ textarea {
     resize: none;
 }
 
+/* 전체 div */
+.wrapper {
+    width: 700px;
+
+    margin: 75px auto;
+    text-align: center;
+}
+
+/* 필수 입력 표시용 * */
 .asterisk {
     color: red;
 }
 
+/* 별점 */
 .stars {
     color: rgb(117, 120, 102);
     font-size: 180%;
@@ -16,36 +27,30 @@ textarea {
     margin-bottom: 1%;
 }
 
-.wrapper {
-    width: 700px;
-    margin: 75px auto;
-    text-align: center;
-}
-
+/* 텍스트 설정1 */
 .text1 {
     margin-bottom: 3%;
 }
 
+/* 텍스트 설정2 */
 .text2 {
     margin-top: 4%;
     margin-bottom: 2%;
 }
 
-.text3 {
-    margin-top: 3%;
-    margin-bottom: 1.5%;
-}
-
+/* 데이터베이스에 저장하기 위한 데이터들 화면에 보이지 않도록 설정 */
 #buyer-id,
 #seller-id,
 #stars-variable {
     display: none;
 }
 
+/* 리뷰 사진 */
 #review-image {
     margin-left: 21%;
 }
 
+/* 등록하기 버튼 */
 #ok {
     float: right;
     width: 14%;
@@ -53,49 +58,59 @@ textarea {
     background-color: rgb(221, 227, 192);
     border: none;
     border-radius: 5px;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
     color: rgb(117, 120, 102);
     font-size: 95%;
     margin: 1%;
     padding: 0.5% 0%;
-    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
 }
 
+/* 등록하기 버튼 호버 */
 #ok:hover {
     background-color: rgb(209, 215, 180);
     color: rgb(105, 107, 93);
 }
 
-label {
-    width: 14%;
-}
-
-.reg-file-box {
-    margin: 0% 0% 0% 32%;
-    width: 100%;
-    display: flex;
-}
-
+/* input file 커스텀 */
+/* 기존 input file 보이지 않게 설정 */
 #file {
     display: none;
 }
 
-.file-upload-button {
-    width: 80px;
-    height: 22px;
-    background-color: #EFEFEF;
-    font-size: 80%;
-    color: rgb(120, 119, 119);
-    border: 1px solid rgb(208, 208, 208);
-    border-radius: 5px;
-    position: relative;
+/* 이미지 업로드 전체 div */
+.reg-file-box {
+    display: flex;
+    width: 100%;
+
+    margin: 0% 0% 0% 32%;
 }
 
+/* 이미지 업로드 라벨 */
+label {
+    width: 14%;
+}
+
+/* 이미지 업로드 버튼 */
+.file-upload-button {
+    position: relative;
+    width: 80px;
+    height: 22px;
+
+    background-color: #EFEFEF;
+    border: 1px solid rgb(208, 208, 208);
+    border-radius: 5px;
+    color: rgb(120, 119, 119);
+    font-size: 80%;
+}
+
+/* 이미지 업로드 버튼 텍스트 */
 .file-upload-text {
     position: absolute;
     top: -11px;
     left: 6.5px;
 }
 
+/* 이미지 업로드 후 뜨는 파일명 */
 .fileName {
     max-width: 200px;
     white-space: nowrap;

@@ -65,7 +65,7 @@ class DBhandler:
     # 상품
     # 상품 추가
     def insert_item(self, data, img_path, id):
-        item_info = {
+        item_info = { # item_info 딕셔너리에 id값과 상품 등록 시 입력되었던 input값들 추가
             "sellerId": id,
             "name": data["name"],
             "description": data["description"],
@@ -75,6 +75,8 @@ class DBhandler:
             "phone": data["phone"],
             "img_path": img_path,
         }
+        # select-status-button라는 name을 가진 radio버튼의 value값을 검사
+        # status키값에 적절한 value값 저장
         if data["select-status-button"] == "new":
             item_info["status"] = "새 상품"
         elif data["select-status-button"] == "lnew":
@@ -82,6 +84,8 @@ class DBhandler:
         else:
             item_info["status"] = "중고 상품"
 
+        # select-transaction-method-button라는 name을 가진 radio버튼의 value값을 검사
+        # method키값에 적절한 value값 저장
         if data["select-transaction-method-button"] == "delivery":
             item_info["method"] = "택배 거래"
         else:
@@ -91,6 +95,9 @@ class DBhandler:
             id).child("user_list").push(str(data["name"]))
         item_key = item_data['name']
         self.db.child("items").child(item_key).set(item_info)
+        # select-pricing-button라는 name을 가진 radio버튼의 value값을 검사
+        # 경매면 auction_info 딕셔너리 생성 후 입력값 저장
+        # 고정가격이면 fixed_info 딕셔너리 생성 후 입력값 저장
         if data["select-pricing-button"] == "경매":
             auction_info = {
                 "winner": "",
@@ -255,7 +262,7 @@ class DBhandler:
     # 리뷰
     # 리뷰 데이터베이스에 등록하기
     def reg_review(self, data, img_path, buyerId, sellerId):
-        if img_path == "":
+        if img_path == "": # 이미지 없으면 빈 이미지 등록
             img_path = "empty.jpeg"
         
         review_info = {
@@ -305,7 +312,7 @@ class DBhandler:
         for review in reviews.each():
             stars += int(review.val().get("starsVariable")) + 1
             starCount += 1
-        return float(stars) / starCount
+        return round(float(stars) / starCount, 1)
 
     # 데이터베이스에서 특정 리뷰 하트 정보 불러오기
     def get_review_good_bykey(self, key, sellerId):

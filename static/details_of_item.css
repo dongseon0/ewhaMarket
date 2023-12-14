@@ -50,17 +50,15 @@
 
 .columnright table {
     width: 100%;
-    /* Ensure the table takes 100% width of its container */
     table-layout: fixed;
-    /* Set a fixed layout for the table */
     border-spacing: 3px;
-    /* Adjust the spacing between cells */
 }
 
 table,
 th,
 td {
     border: none;
+    text-align: left;
 }
 
 td {

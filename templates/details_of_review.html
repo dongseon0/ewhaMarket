@@ -8,7 +8,7 @@
     {% block section %}
     <!-- 전체 div() (wrapper) -->
     <div class="wrapper">
-        <!-- 리뷰 쓴 사람의 사진과 아이디 정보 -->
+        <!-- 리뷰 작성자의 사진과 아이디 정보 -->
         <a href="/user_list/{{data.buyerId}}/" id="profile-link">
             <img src="/static/images/profiles/{{profile_image_path}}" id="profile">
         </a>
@@ -26,7 +26,7 @@
         </div>
         <hr>
         <!-- 리뷰 사진 -->
-        <img src="/static/images/reviews/{{data.img_path}}" id="product-image">
+        <img src="/static/images/reviews/{{data.img_path}}" id="review-image">
         <br>
         <!-- 리뷰 내용 -->
         <div id="review-contents">{{data.reviewContents}}</div>
@@ -34,7 +34,7 @@
         <!-- 리뷰 도움돼요, 별로예요 버튼 -->
         <button name="good" id="good">👍 {{good}}</button>
         <button name="bad" id="bad">👎 {{bad}}</button>
-        <!-- 리뷰 삭제 버튼 -->
+        <!-- 리뷰 삭제 버튼(작성자에게만 보임) -->
         <input type="button" onclick="location.href='/delete_review/{{key}}/{{data.sellerId}}/';" value="삭제하기"
             id="delete">
     </div>
@@ -62,7 +62,9 @@
                 data: {},
                 success: function (response) {
                     let heart = response['heart'];
-                    if (heart['heart'] == "1") {
+                    if (heart['heart'] == "1") // 기존에 도움돼요를 이미 눌렀다면
+                    {
+                        // 버튼 기본과 호버 색깔 설정
                         $("#good").css("background-color", "rgb(163, 223, 249, 0.75)");
                         $("#good").css("color", "rgb(61, 140, 174)");
                         $("#good").mouseenter(function () {
@@ -70,9 +72,13 @@
                         }).mouseleave(function () {
                             $(this).css("background-color", "rgb(163, 223, 249, 0.75)")
                         });
+                        // 클릭 함수 설정
                         $("#good").attr("onclick", "cancel()");
                         $("#bad").attr("onclick", "bad()");
-                    } else if (heart['heart'] == "-1") {
+                    }
+                    else if (heart['heart'] == "-1") // 기존에 별로예요를 이미 눌렀다면
+                    {
+                        // 버튼 기본과 호버 색깔 설정
                         $("#bad").css("background-color", "pink");
                         $("#bad").css("color", "rgb(156, 87, 87)");
                         $("#bad").mouseenter(function () {
@@ -80,9 +86,13 @@
                         }).mouseleave(function () {
                             $(this).css("background-color", "pink")
                         });
+                        // 클릭 함수 설정
                         $("#good").attr("onclick", "good()");
                         $("#bad").attr("onclick", "cancel()");
-                    } else {
+                    }
+                    else // 기존에 아무것도 누르지 않았다면
+                    {
+                        // 클릭 함수 설정
                         $("#good").attr("onclick", "good()");
                         $("#bad").attr("onclick", "bad()");
                     }
@@ -138,7 +148,7 @@
             location.href = "/login";
         }
 
-        // 로그인없이 버튼 누르면 안 되게끔 하기 위함
+        // 로그인없이 들어가면 showHeart대신 alert 버튼 연결하기
         if ("{{session['id']}}" != "") {
             showHeart();
         }
@@ -147,12 +157,12 @@
             $("#bad").attr("onclick", "alertLogin()");
         }
 
-        // 리뷰 이미지가 없다면 display none으로 바꾸기
+        // 리뷰 이미지가 없다면 이미지를 display none으로 바꾸기
         if ("{{data.img_path}}" == "empty.jpeg") {
-            document.getElementById("product-image").style.display = "none";
+            document.getElementById("review-image").style.display = "none";
         }
 
-        // 작성자 아이디와 로그인한 아이디가 같지 않으면 삭제하기 버튼 보이지 않게 하기
+        // 작성자 아이디와 로그인한 아이디가 같지 않으면, 삭제하기 버튼 보이지 않게 하기
         if ("{{session['id']}}" != "{{data.buyerId}}") {
             document.getElementById("delete").style.display = "none";
         }
