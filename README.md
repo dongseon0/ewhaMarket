@@ -1,13 +1,12 @@
 # New Age
 
-<aside>
 ✨ 오픈SW플랫폼 "New Age"의 “이화마켓”입니다.
 
-📄[New Age's Notion Page](https://gray-storm-8fd.notion.site/New-Age-83b1390dd56a4c8ea56b01147e31571c?pvs=4)
 
-</aside>
+**"이화마켓"** 은 이화인을 위한 중고 거래 플랫폼입니다. 
 
-<br>
+다른 중고 거래 플랫폼과는 차별화된 **'경매'** 기능을 통해 쇼핑의 즐거움을 느껴보세요 !
+
 
 ## Members
 
@@ -20,6 +19,7 @@
 
 ## Resource
 
+📄[Notion](https://gray-storm-8fd.notion.site/New-Age-83b1390dd56a4c8ea56b01147e31571c?pvs=4)
 
 📝[회의록](https://www.notion.so/f1b0e2bf078941c8b82dc361d2293f4c?pvs=21)
 
