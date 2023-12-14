@@ -71,7 +71,27 @@
 ├─ 📁 authentication
 ├─ 📁 static
 │  ├─ 📁 images
+│  ├─ 📑 css files for each html file
+│  └─ 📑 js files for each html file
 ├─ 📁 templates
+│  ├─ 📑 index.html
+│  ├─ 📑 main_page.html
+│  ├─ 📑 product_list.html
+│  ├─ 📑 auction_list.html
+│  ├─ 📑 list.html
+│  ├─ 📑 details_of_item.html
+│  ├─ 📑 details_of_auction.html
+│  ├─ 📑 user_list.html
+│  ├─ 📑 user_reviews.html
+│  ├─ 📑 reg_review.html
+│  ├─ 📑 details_of_review.html
+│  ├─ 📑 reg_item.html
+│  ├─ 📑 login.html
+│  ├─ 📑 signup.html
+│  ├─ 📑 my_page.html
+│  ├─ 📑 my_info.html
+│  ├─ 📑 my_wish.html
+│  └─ 📑 my_reviews.html
 ├─ 📑 app.py
 ├─ 📑 database.py
 ├─ LICENSE
