@@ -40,6 +40,10 @@
 </div>
 
 
+## Demo Video
+https://drive.google.com/file/d/1rBtFBSHeavdqKmL2Kxfa-EhsYEkd5LbP/view?usp=sharing
+<br>
+
 
 ## 기본 화면 구성
 
