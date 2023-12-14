@@ -6,17 +6,21 @@
     {% extends "index.html" %}
 
     {% block section %}
+    <!-- submit용 form -->
     <form method="post" enctype="multipart/form-data" action="/submit_review_post" id="submit-review">
+        <!-- 전체 div() (wrapper) -->
         <div class="wrapper">
+            <!-- 데이터베이스에 저장하기 위함, 화면에는 보이지 않는 데이터들 -->
             <input type="text" id="seller-id" name="sellerId" value="{{sellerId}}">
             <input type="text" id="buyer-id" name="buyerId" value="{{session['id']}}">
+            <input type="range" id="stars-variable" name="starsVariable" min="0" max="4" value="0">
+
             <h2 class="text1">리뷰 작성</h2>
             <hr>
             <div class="text2"><span class="asterisk">* </span>거래 제목을 입력해주세요</div>
             <textarea id="review-title" name="reviewTitle" cols="40" rows="1"></textarea>
             <div class="text2"><span class="asterisk">* </span>솔직한 리뷰를 남겨주세요</div>
             <div class="stars">
-                <input type="range" id="stars-variable" name="starsVariable" min="0" max="4" value="0">
                 <span class="star" id="0">★</span>
                 <span class="star" id="1">★</span>
                 <span class="star" id="2">★</span>
@@ -38,6 +42,7 @@
             </div>
             <br><br>
             <hr>
+            <!-- 입력하지 않은 곳이 있나 확인하기 위해 js 함수 호출 -->
             <input type="button" id="ok" name="ok" value="등록하기" onclick="submit_review()">
         </div>
     </form>
@@ -55,7 +60,7 @@
         stars = document.getElementsByClassName("star");
         starsVariable = document.getElementById("stars-variable");
 
-        // 마우스 올린 별 위치만큼 별 채우는 함수, 올리지 않으면 누른 별점만큼 보이게 하는 함수 실행하기
+        // 마우스 올린 별만큼 별 채우는 함수, 올리지 않으면 누른 별점만큼, 별을 클릭하면 클릭한 만큼 채워지게 하는 함수 실행하기
         function starEvent() {
             for (i = 0; i < stars.length; i++) {
                 stars.item(i).addEventListener("mouseover", function () {
@@ -68,7 +73,7 @@
             }
         }
 
-        // 마우스 올린 별 위치만큼 별 채우기
+        // 마우스 올린 별만큼 별 채우기
         function starHoverOn(h) {
             for (i = 0; i < stars.length; i++) {
                 if (i > h) {
@@ -84,7 +89,7 @@
             starFill();
         }
 
-        // 별 변수에 반영하고 html에 적용하는 함수 실행하기
+        // 별을 클릭하면 클릭한 만큼 별 변수에 반영하기
         function starSet(i) {
             star = i;
             starsVariable.value = i;
@@ -106,7 +111,7 @@
         starEvent();
         starFill();
 
-        // 입력하지 않으면 alert 띄우기
+        // 필수 내용 입력하지 않으면 alert, 아니면 submit
         function submit_review() {
             if (document.getElementById("review-title").value == "")
                 alert("제목을 입력해주세요.");
