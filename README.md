@@ -53,6 +53,20 @@
 <img width="770" alt="상품 전체 조회 리스트" src="https://github.com/dongseon0/ewhaMarket/assets/86476876/a3bf0944-a6f9-4860-816f-7cd6a8d984de">
 
 
+- 상품 상세 화면 (일반 결제)
+  <img width="985" alt="스크린샷 2023-12-14 오후 3 17 23" src="https://github.com/dongseon0/ewhaMarket/assets/78548833/7957a302-a752-4506-92b4-b3fe9785f5c2">
+
+- 상품 상세 화면 (경매)
+ <img width="649" alt="스크린샷 2023-12-14 오후 3 18 07" src="https://github.com/dongseon0/ewhaMarket/assets/78548833/031afb7f-15eb-4ced-a779-c1c824dc6ae4">
+
+- 유저 리뷰 조회
+ <img width="641" alt="스크린샷 2023-12-14 오후 3 19 53" src="https://github.com/dongseon0/ewhaMarket/assets/78548833/359dc7cb-fcc4-4611-b059-7f945ddffea4">
+
+- 유저 리뷰 상세화면
+<img width="510" alt="스크린샷 2023-12-14 오후 3 20 18" src="https://github.com/dongseon0/ewhaMarket/assets/78548833/59f517c9-0243-40f3-9085-4e2ddd2a990a">
+
+
+
 - 로그인 / 로그아웃
 <img width="770" alt="로그인 / 로그아웃" src="https://github.com/dongseon0/ewhaMarket/assets/86476876/8e81a993-754d-49ce-85ec-effe63507f2a">
 
