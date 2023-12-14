@@ -255,7 +255,7 @@ class DBhandler:
     # 리뷰
     # 리뷰 데이터베이스에 등록하기
     def reg_review(self, data, img_path, buyerId, sellerId):
-        if img_path == "":
+        if img_path == "": # 이미지 없으면 빈 이미지 등록
             img_path = "empty.jpeg"
         
         review_info = {
@@ -305,7 +305,7 @@ class DBhandler:
         for review in reviews.each():
             stars += int(review.val().get("starsVariable")) + 1
             starCount += 1
-        return float(stars) / starCount
+        return round(float(stars) / starCount, 1)
 
     # 데이터베이스에서 특정 리뷰 하트 정보 불러오기
     def get_review_good_bykey(self, key, sellerId):
