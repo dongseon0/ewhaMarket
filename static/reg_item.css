@@ -1,19 +1,30 @@
+.wrapper {
+    width: 850px;
+    margin: 75px auto;
+}
+
 .product-registration-section {
     list-style: none;
     padding: 0%;
 }
 
-.wrapper {
-    width: 850px;
-    cursor: default;
-    margin: 75px auto;
+li {
+    display: flex;
+}
+
+.inside {
+    margin: 4% 0% 4% 0%;
+}
+
+.middle-hr {
+    border: 1.5px solid rgb(240, 240, 240);
+    width: 100%;
 }
 
 .main-title {
     width: 15%;
     margin: 5% 5% 5% 3%;
 }
-
 
 .middle-title {
     width: 120px;
@@ -25,12 +36,15 @@
     font-size: 90%;
 }
 
-li {
-    display: flex;
+.input-text {
+    width: 330%;
+    padding: 5% 0% 5% 5%;
+    font-size: 90%;
 }
 
-.inside {
-    margin: 4% 0% 4% 0%;
+.reg-file-box {
+    width: 200%;
+    display: flex;
 }
 
 .file-upload-button {
@@ -45,9 +59,8 @@ li {
     position: relative;
 }
 
-.reg-file-box {
-    width: 200%;
-    display: flex;
+#file {
+    display: none;
 }
 
 .file-upload-text {
@@ -62,10 +75,6 @@ li {
     width: 200px;
     height: 200px;
     border: solid #E7E7E7;
-}
-
-#file {
-    display: none;
 }
 
 .select-status {
@@ -87,10 +96,8 @@ textarea {
     justify-content: space-between;
 }
 
-.input-text {
-    width: 330%;
-    padding: 5% 0% 5% 5%;
-    font-size: 90%;
+.input-quntity-box {
+    width: 230%;
 }
 
 .input-quantity {
@@ -98,21 +105,6 @@ textarea {
     width: 60%;
     padding: 1.7% 0% 1.7% 1.7%;
     font-size: 90%;
-
-}
-
-.middle-hr {
-    border: 1.5px solid rgb(240, 240, 240);
-    width: 100%;
-}
-
-.input-quntity-box {
-    width: 230%;
-}
-
-.contact-information-text {
-    width: 75%;
-    padding: 1.5% 50px 1.5% 1%;
 }
 
 .select-pricing-method {
@@ -167,6 +159,11 @@ textarea {
     width: 77%;
     display: flex;
     justify-content: space-between;
+}
+
+.contact-information-text {
+    width: 75%;
+    padding: 1.5% 50px 1.5% 1%;
 }
 
 .product-registration-end-button {

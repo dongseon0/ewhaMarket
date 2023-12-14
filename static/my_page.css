@@ -1,3 +1,4 @@
+/* 전체 div (wrapper) */
 .wrapper {
   width: 700px;
   margin: 75px auto;
@@ -8,11 +9,13 @@
   align-items: center;
 }
 
+/* 마이페이지 메뉴바 */
 .menubar {
   overflow: hidden;
   text-align: center;
 }
 
+/* 마이페이지 메뉴바 요소 */
 .menubar a {
   display: inline-block;
   color: black;
@@ -23,11 +26,13 @@
   margin-right: 10px;
 }
 
+/* 마이페이지 메뉴바 요소 호버 */
 .menubar a:hover {
   background-color: #ddd;
   color: black;
 }
 
+/* 판매 상품 개수 & 등록하기 버튼 */
 .top {
   display: flex;
   /* 메뉴 항목을 가로로 정렬 */
@@ -38,10 +43,11 @@
   margin-bottom: 3%;
 }
 
-.top button {
+/* 등록하기 버튼 */
+.reg-item {
   width: 70px;
   height: 28px;
-  float: right;
+  /* float: right; */
   background-color: rgb(221, 227, 192);
   border: none;
   border-radius: 5px;
@@ -50,7 +56,8 @@
   box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
 }
 
-.top button:hover {
+/* 등록하기 버튼 호버 */
+.reg-item:hover {
   background-color: rgb(209, 215, 180);
   color: rgb(105, 107, 93);
 }

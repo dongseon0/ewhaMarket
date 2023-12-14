@@ -2,26 +2,32 @@
   <link rel="stylesheet" type="text/css" href="/static/login.css">
 </head>
 
-<body> 
+<body>
+  <!-- index.html로부터 확장 -->
   {% extends "index.html" %}
 
   {% block section %}
+  <!-- "아이디 혹은 비밀번호가 틀렸습니다." 팝업 -->
   {% with mesg = get_flashed_messages() %}
   {% if mesg !=[] %}
     <script>alert("{{ mesg[0] }}")</script>
   {% endif %}
   {% endwith %}
+  <!-- 전체 div (wrapper) -->
   <div class="wrapper">
     <h2 id="title">로그인</h2>
     <hr><br>
+    <!-- 입력 form -->
     <form action="/login_confirm" method="post" id="login-form" style="width: 70%; margin: auto;">
       <p>아이디 : </p>
       <input type="text" name="id">
       <p>비밀번호 : </p>
       <input type="password" name="pw"><br><br>
+      <!-- 로그인 버튼 -->
       <input type="submit" value="로그인" id="loginBtn" /><br>
     </form>
     <div style="width: 70%; margin: auto;">
+      <!-- 회원가입 버튼 -->
       <a href="/signup"><button onclick="/signup" id="signup-btn">회원가입</button></a>
     </div>
   </div>

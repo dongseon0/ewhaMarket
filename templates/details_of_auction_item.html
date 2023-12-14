@@ -1,8 +1,3 @@
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-
 <body>
     {% extends "index.html" %}
 
@@ -22,7 +17,7 @@
                 <div class="alignleft">
                     {% comment %} 판매자 정보 {% endcomment %}
                     <a href="/user_list/{{data.sellerId}}/"><img src="/static/images/profiles/{{profile_image_path}}"
-                        id="profile"></a>
+                            id="profile"></a>
                     <div id="user-id"><a href="/user_list/{{data.sellerId}}/" style=" color: rgb(91, 100, 47); font-size : 110%;
                                 text-decoration: none;" id="seller-id">{{data.sellerId}}<a></div>
                     <br>
@@ -88,17 +83,23 @@
     </div>
 
     <script>
+        // 접속한 아이디와 판매자의 아이디가 다르면 삭제하기 버튼 숨기기
         if ("{{session['id']}}" != "{{data.sellerId}}") {
             document.getElementById("delete").style.display = "none";
         }
 
+        // 데이터베이스에서 현재 가격, 가격 올리는 단위 불러오기
         currentPrice = Number("{{data.currentPrice}}");
         risingPrice = Number("{{data.selectRisingPrice}}");
         document.getElementById("current").innerHTML = currentPrice + "원";
 
+        // 경매 진행중인지 체크하기 위한 변수
         auctionState = false;
+
+        // 입찰하기 버튼 누르면 실행되는 함수
         function auction() {
-            if (auctionState == true) {
+            if (auctionState == true) // 경매가 진행 중이라면
+            {
                 $.ajax({
                     type: 'POST',
                     url: '/auction/{{key}}/{{data.sellerId}}/{{data.selectRisingPrice}}/',
@@ -108,7 +109,9 @@
                         alert(response['msg']);
                     }
                 });
-            } else {
+            }
+            else // 경매가 진행 중이 아니라면
+            {
                 alert("입찰할 수 없습니다.");
             }
         }
@@ -126,20 +129,27 @@
             btnMoney.value = "▲5만원"
         }
 
+        // 데이터베이스에서 시작시간, 종료시간 불러오기
         startDate = ("{{data.startDate}}").split("-");
         startTime = ("{{data.startTime}}").split(":");
         endDate = ("{{data.endDate}}").split("-");
         endTime = ("{{data.endTime}}").split(":");
+
+        // 경매 오픈했는지, 종료했는지, 진행 중이라면 얼마나 남았는지 체크하는 함수
         function remaingTime() {
-            var now = new Date();
+            // 시작시간, 종료시간 변수로 설정하기
             var open = new Date(Number(startDate[0]), Number(startDate[1]) - 1, Number(startDate[2]), Number(startTime[0]), Number(startTime[1]));
             var end = new Date(Number(endDate[0]), Number(endDate[1]) - 1, Number(endDate[2]), Number(endTime[0]), Number(endTime[1]));
 
-            var nt = now.getTime();
             var ot = open.getTime();
             var et = end.getTime();
 
-            if (parseInt(nt) < parseInt(ot)) { // 오픈 전
+            // 현재 시간 체크
+            var now = new Date();
+            var nt = now.getTime();
+
+            if (parseInt(nt) < parseInt(ot)) // 오픈 전
+            {
                 auctionState = false;
                 sec = parseInt(ot - nt) / 1000;
                 day = parseInt(sec / 60 / 60 / 24);
@@ -156,10 +166,14 @@
                     document.getElementById("auction-state").innerHTML = "오픈까지 " + day + "일 " + hour + "시간 " + min + "분 " + sec + "초";
                 else
                     document.getElementById("auction-state").innerHTML = "오픈까지 " + hour + "시간 " + min + "분 " + sec + "초";
-            } else if (parseInt(nt) > parseInt(et)) { // 종료
+            }
+            else if (parseInt(nt) > parseInt(et)) // 종료
+            {
                 auctionState = false;
                 document.getElementById("auction-state").innerHTML = "종료되었습니다."
-            } else { // 진행 중
+            }
+            else // 진행 중
+            {
                 auctionState = true;
                 sec = parseInt(et - nt) / 1000;
                 day = parseInt(sec / 60 / 60 / 24);
@@ -178,8 +192,9 @@
                     document.getElementById("auction-state").innerHTML = "남은 시간: " + hour + "시간 " + min + "분 " + sec + "초";
             }
         }
-        remaingTime();
-        setInterval(remaingTime, 1000);
+
+        remaingTime(); // 처음 들어갈 때 한 번 실행
+        setInterval(remaingTime, 1000); // 매초마다 실행
 
         // 찜하기 했었는지 조회하기
         function showHeart() {
