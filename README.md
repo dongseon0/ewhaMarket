@@ -40,9 +40,6 @@
 </div>
 
 
-## Demo Video
-https://drive.google.com/file/d/1rBtFBSHeavdqKmL2Kxfa-EhsYEkd5LbP/view?usp=sharing
-<br>
 
 
 ## 기본 화면 구성
@@ -82,6 +79,10 @@ https://drive.google.com/file/d/1rBtFBSHeavdqKmL2Kxfa-EhsYEkd5LbP/view?usp=shari
 
 - 유저 판매 내역
 <img width="627" alt="스크린샷 2023-12-14 오후 3 21 35" src="https://github.com/dongseon0/ewhaMarket/assets/78548833/556bbac0-58c7-48ab-91bb-db327bb32482">
+
+## Demo Video
+https://drive.google.com/file/d/1rBtFBSHeavdqKmL2Kxfa-EhsYEkd5LbP/view?usp=sharing
+<br>
 
 
 
